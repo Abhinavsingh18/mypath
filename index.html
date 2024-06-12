@@ -1,132 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <div class="container">
-      <div class="row row-centered">
-        <div class="clearfix gap"></div>
-        <div
-          class="col-xs-12 col-lg-4 col-md-4 col-sm-6 col-centered text-center"
-        >
-          <div class="account-wall pad_low">
-            <div class="text-center" style="margin-top: 14px">
-              <img
-                src="https://cdn.healthscion.com/HS/images/healthscion.png"
-                class="text-center"
-                style="width: 190px"
-              />
-            </div>
-            <div class="text-center text-margin">
-              <h4>Welcome back, please log in</h4>
-            </div>
-            <div id="LoginControl_Div1" class="form-signin">
-              <input
-                name="LoginControl$txtUserName"
-                type="text"
-                id="LoginControl_txtUserName"
-                class="form-control font_style"
-                placeholder="Username"
-              />
-              <input
-                name="LoginControl$txtPassword"
-                type="password"
-                id="LoginControl_txtPassword"
-                class="form-control font_style"
-                placeholder="Password"
-              />
-              <div class="pad_top"></div>
-              <div class="text-center" id="btnLogindiv" style="">
-                <input
-                  type="submit"
-                  name="LoginControl$btnLogin"
-                  value="Log In"
-                  onclick="loadergif();"
-                  id="LoginControl_btnLogin"
-                  class="btn btn-lg background-cloudchowblue btn-block btn-edge"
-                />
-              </div>
-              <div>
-                <input
-                  type="hidden"
-                  name="LoginControl$hdnclientid"
-                  id="LoginControl_hdnclientid"
-                />
-              </div>
-              <div>
-                <input
-                  type="hidden"
-                  name="LoginControl$hdnclientid1"
-                  id="LoginControl_hdnclientid1"
-                />
-              </div>
-              <div class="text-center gif-loader" id="gifLogin">
-                <img src="../../Image/ajax-loader.gif" />
-              </div>
-              <span class="checkbox pull-left btn-edge" style="display: none"
-                ><input
-                  id="LoginControl_chkRememberMe"
-                  type="checkbox"
-                  name="LoginControl$chkRememberMe"
-              /></span>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="styles.css">
+        <title>Login Form</title>
+        <style>
+            @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
 
-              <div class="pull-right need-help">
-                <a
-                  href="#"
-                  id="forgetPass"
-                  class="text-center pull-left pad_zero"
-                  data-toggle="modal"
-                  data-target="#ForgotPasswordModal"
-                  onclick="hiddenvalue()"
-                  >Forgot your password?</a
-                ><br />
-              </div>
-              <input
-                type="hidden"
-                name="LoginControl$forgotpassword"
-                id="LoginControl_forgotpassword"
-              />
-              <span class="clearfix"></span>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  text-decoration: none;
+}
+
+body{
+  background-color: #282A36;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card{
+    width: auto;
+    height: auto;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    border-radius: 20px;
+    margin-top: 20vh;
+}
+
+.card h2{
+  margin-bottom: 10px;
+}
+
+.card a.fp{
+  width: 100%;
+  display: flex;
+  color: #5881D0;
+}
+
+.login_register{
+  display: flex;
+  width: 100%;
+  border: 1px solid rgba(221, 221, 221, 1);
+  border-radius: 15px;
+  margin: 20px 0;
+}
+
+.login_register a{
+  font-size: 1em;
+  padding: 10px 55px;
+  border: none;
+  width: 50%;
+}
+
+.login_register a.login{
+  border-radius: 15px;
+  background: linear-gradient(90deg, #003A74, #006AD5);
+  color: white;
+}
+
+.login_register a.register{
+  border-radius: 15px;
+  background-color: transparent;
+  color: black;
+}
+
+.form{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.form input{
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #DDDDDD;
+  color: #A0A6A3;
+  font-family: "Roboto Mono", sans-serif;
+  box-shadow: 1px 5px 9px rgba(211, 211, 211, .7);
+}
+
+.form input.email{
+  margin-bottom: 15px;
+}
+
+.form input.pass{
+  margin-bottom: 5px;
+}
+
+.login_btn{
+  font-size: 20px;
+  color: white;
+  border-radius: 15px;
+  border: none;
+  background-color: #003A74;
+  width: 100%;
+  padding: 10px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  background: linear-gradient(-90deg, #003A74, #006AD5);
+  box-shadow: 1px 5px 9px rgba(211, 211, 211, .9);
+}
+
+.footer_card{
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.footer_card p{
+  margin-right: 10px;
+}
+
+.footer_card a{
+  color: #5881D0;
+}
+        </style>
+    </head>
+    <body>
+
+    
+             <!-- FORMULAIRE DE CONNEXION -->
+        <div class="card">
+            <h2>Login Form</h2>
+    
+                <!-- SE CONNECTER / S'INSCRIRE -->
+            <div class="login_register">
+                <a href="
+    " class="login" target="blank">Login</a>
+                <a href="
+    " class="register" target="blank"></a>
             </div>
-          </div>
-          <br />
-          <div class="text-center">
-            <a id="btnios" href="https://goo.gl/EbWVbe" target="_blank">
-              <img src="../../Images/iphone_signin.png" class="shop-button" />
-            </a>
-            <a id="btnandroid" target="_blank" href="https://goo.gl/JgKkJQ">
-              <img src="../../Images/google_signin.png" class="shop-button" />
-            </a>
-          </div>
-          <br />
-          <div class="row">
-            <div class="text-center">
-              <a
-                href="https://www.labscion.com/"
-                class="text-center"
-                target="_blank"
-                >Powered by HealthScion</a
-              >
-              |
-              <a
-                href="#"
-                id="btnshowfaq"
-                data-toggle="modal"
-                data-target="#ModalFAQ"
-                >FAQ</a
-              >
+    
+                <!-- FORMULAIRE -->
+            <form class="form">
+                <input name="Username" type="text" placeholder="Username" class="email">
+                <input name="Password"type="password" placeholder="Password" class="pass">
+            </form>
+    
+                <!-- MOT DE PASSE OUBLIE ? -->
+            <a href="#" class="fp">Forgot password?</a>
+    
+                <!-- BOUTTON LOGIN -->
+                <button type="button" class="login_btn">Login</button>
+    
+                <!-- PIED DE LA CARD -->
+            <div class="footer_card">
             </div>
-            <div class="text-center">
-              <p>
-                © 2023 HealthScion Technologies Pvt. Ltd. All Rights Reserved.
-              </p>
-            </div>
-          </div>
         </div>
-      </div>
-    </div>
-  </body>
+            
+    </body>
+    </html>
 </html>
