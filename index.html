@@ -1,12 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
-    <h1>har har mahadev</h1>
-    
-</body>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row row-centered">
+        <div class="clearfix gap"></div>
+        <div
+          class="col-xs-12 col-lg-4 col-md-4 col-sm-6 col-centered text-center"
+        >
+          <div class="account-wall pad_low">
+            <div class="text-center" style="margin-top: 14px">
+              <img
+                src="https://cdn.healthscion.com/HS/images/healthscion.png"
+                class="text-center"
+                style="width: 190px"
+              />
+            </div>
+            <div class="text-center text-margin">
+              <h4>Welcome back, please log in</h4>
+            </div>
+            <div id="LoginControl_Div1" class="form-signin">
+              <input
+                name="LoginControl$txtUserName"
+                type="text"
+                id="LoginControl_txtUserName"
+                class="form-control font_style"
+                placeholder="Username"
+              />
+              <input
+                name="LoginControl$txtPassword"
+                type="password"
+                id="LoginControl_txtPassword"
+                class="form-control font_style"
+                placeholder="Password"
+              />
+              <div class="pad_top"></div>
+              <div class="text-center" id="btnLogindiv" style="">
+                <input
+                  type="submit"
+                  name="LoginControl$btnLogin"
+                  value="Log In"
+                  onclick="loadergif();"
+                  id="LoginControl_btnLogin"
+                  class="btn btn-lg background-cloudchowblue btn-block btn-edge"
+                />
+              </div>
+              <div>
+                <input
+                  type="hidden"
+                  name="LoginControl$hdnclientid"
+                  id="LoginControl_hdnclientid"
+                />
+              </div>
+              <div>
+                <input
+                  type="hidden"
+                  name="LoginControl$hdnclientid1"
+                  id="LoginControl_hdnclientid1"
+                />
+              </div>
+              <div class="text-center gif-loader" id="gifLogin">
+                <img src="../../Image/ajax-loader.gif" />
+              </div>
+              <span class="checkbox pull-left btn-edge" style="display: none"
+                ><input
+                  id="LoginControl_chkRememberMe"
+                  type="checkbox"
+                  name="LoginControl$chkRememberMe"
+              /></span>
+
+              <div class="pull-right need-help">
+                <a
+                  href="#"
+                  id="forgetPass"
+                  class="text-center pull-left pad_zero"
+                  data-toggle="modal"
+                  data-target="#ForgotPasswordModal"
+                  onclick="hiddenvalue()"
+                  >Forgot your password?</a
+                ><br />
+              </div>
+              <input
+                type="hidden"
+                name="LoginControl$forgotpassword"
+                id="LoginControl_forgotpassword"
+              />
+              <span class="clearfix"></span>
+            </div>
+          </div>
+          <br />
+          <div class="text-center">
+            <a id="btnios" href="https://goo.gl/EbWVbe" target="_blank">
+              <img src="../../Images/iphone_signin.png" class="shop-button" />
+            </a>
+            <a id="btnandroid" target="_blank" href="https://goo.gl/JgKkJQ">
+              <img src="../../Images/google_signin.png" class="shop-button" />
+            </a>
+          </div>
+          <br />
+          <div class="row">
+            <div class="text-center">
+              <a
+                href="https://www.labscion.com/"
+                class="text-center"
+                target="_blank"
+                >Powered by HealthScion</a
+              >
+              |
+              <a
+                href="#"
+                id="btnshowfaq"
+                data-toggle="modal"
+                data-target="#ModalFAQ"
+                >FAQ</a
+              >
+            </div>
+            <div class="text-center">
+              <p>
+                © 2023 HealthScion Technologies Pvt. Ltd. All Rights Reserved.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
