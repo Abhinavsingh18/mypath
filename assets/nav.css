@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap");
+
 body {
   font-family: "Montserrat", sans-serif;
   margin: 0;
@@ -7,7 +8,23 @@ body {
   flex-direction: column;
   align-items: center;
 }
-.navtabs {
+
+/* Namespace nav styles with 'nav-' prefix */
+.nav-full {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+  padding-top: 10px;
+}
+
+.nav-logo img {
+  height: 90px;
+  width: 190px;
+}
+
+.nav-tabs {
   display: flex;
   justify-content: center;
   margin-top: 0;
@@ -15,39 +32,110 @@ body {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   padding: 0 20px;
-  
   position: relative;
 }
-.navtab {
+
+.nav-tab {
   margin: 0;
   padding: 10px;
   cursor: pointer;
   color: #333;
   transition: color 0.3s;
 }
-.navtab:hover {
+
+.nav-tab:hover {
   color: #007bff;
 }
-.navtab.active {
+
+.nav-tab.active {
   color: #007bff;
   font-weight: 600;
 }
-.underline {
+
+.nav-underline {
   position: absolute;
   bottom: 0;
   height: 2px;
   background: #007bff;
   transition: left 0.3s ease, width 0.3s ease;
 }
+
+.nav-contact {
+  display: flex;
+}
+
+.nav-contact > svg {
+  height: 1.2rem;
+  width: 1.2rem;
+}
+
+.nav-mobno {
+  font-size: 1rem;
+}
+
+.nav-account {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-account > h4 {
+  font-size: 1rem;
+  margin-top: 7px;
+}
+
+.nav-account select {
+  width: 30px;
+  padding: 8px;
+  border: none;
+  border-radius: 4px;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  color: #333;
+  background-color: transparent;
+  background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="5" viewBox="0 0 10 5"><path fill="none" stroke="currentColor" stroke-width="1" d="M0 0l5 5 5-5"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 10px 5px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  text-indent: -9999px;
+  margin-top: 12px;
+}
+
+@media only screen and (max-width: 768px) {
+  .nav-contact {
+    display: none;
+  }
+  .nav-account > h4 {
+    display: none;
+  }
+  .nav-logo {
+    display: none;
+  }
+  .nav-tabs {
+    padding: 0;
+  }
+  .nav-tab {
+    font-size: 0.75rem;
+    padding: 4px;
+  }
+}
+
+/* Styles for other components */
 .content {
   display: none;
   padding: 100px 20px 20px;
   max-width: 900px;
   text-align: center;
 }
+
 .content.active {
   display: block;
 }
+
 .footer {
   position: absolute;
   bottom: 10px;
@@ -69,155 +157,52 @@ body {
 .footer a:hover {
   color: linear-gradient(145deg, #007aff, #005bb5);
 }
-.navfull {
+
+.main {
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-evenly;
-  width: 100%;
+  flex-wrap: wrap;
+  gap: 2vw;
+  width: 75vw;
+  justify-content: center;
   padding-top: 10px;
 }
-.logo img{
-  height: 90px;
-  width: 190px;
-}
-select {
-width: 30px;
-padding: 8px;
-border:none;
-border-radius: 4px;
-font-family: Arial, sans-serif;
-font-size: 16px;
-color: #333;
-background-color:transparent;
-background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="5" viewBox="0 0 10 5"><path fill="none" stroke="currentColor" stroke-width="1" d="M0 0l5 5 5-5"/></svg>');
-background-repeat: no-repeat;
-background-position: right 10px center;
-background-size: 10px 5px;
--webkit-appearance: none; /* Removes default styling in Safari */
--moz-appearance: none; /* Removes default styling in Firefox */
-appearance: none; /* Removes default styling in modern browsers */
-text-indent: -9999px; /* Hides the selected option text */
-margin-top: 12    px;
-}
 
-/* Display the text when the select is hovered */
-
-
-/* Style the options */
-option {
-padding: 8px;
-}
-.account{
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-
-/* Style the form label */
-label {
-font-family: Arial, sans-serif;
-font-size: 16px;
-margin-bottom: 8px;
-display: block;
-}
-.account > h4{
-  font-size: 1rem;
-  margin-top: 7px;
-}
-.mobno{
-  font-size: 1rem;
-}
-.contact{
-  display: flex;  
-}
-.contact>svg{
-  height: 1.2rem;
-  width: 1.2rem;
-}
-@media only screen and (max-width:768px) {
-
-.contact{
-  display: none;
-}
-.account>h4{
-  display: none;
-}
-.logo{
-  display: none;
-}
-
-.navtabs{
-  /* width:px; */
-  padding: 0;
-
-}
-.navtab{
-  /* height: max-content; */
-  font-size: 0.75rem;
-  padding: 4px;
-  /* width: 20%; */
-}
-.tools{
-height:24vh !important;
-width: 46vw !important;
-}
-.main{
-width: 100vw !important;
-}
-.account>h4{
-font-size: 0.85rem;
-}
-
-
-
-
-}
-.main{
-display: flex;flex-wrap: wrap;
-gap: 2vw;
-width: 75vw;
-justify-content: center;
-padding-top: 10px;
-
-}
-
-
-.tools{
+.tools {
   display: flex;
   flex-direction: column;
   align-items: center;
   height: 16vw;
-  width:14vw;
+  width: 14vw;
   border: 0.2px solid rgb(211, 190, 190);
   border-radius: 13px;
   background-color: rgb(236, 197, 197);
-
 }
-.tools:hover{
+
+.tools:hover {
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
-.tools .icon{
+
+.tools .icon {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 60%;
   width: 100%;
   font-weight: 100;
-  
 }
+
 .icon svg {
   height: 52%;
   width: 52%;
   color: rgb(113, 113, 200);
 }
-.tools span{
 
+.tools span {
   font-weight: 700;
   color: #212121;
   margin-top: 19px;
 }
-a{
+
+a {
   text-decoration: none;
 }

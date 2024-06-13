@@ -17,264 +17,39 @@
     <link rel="stylesheet" href="./assets/jquery.jscrollpane.css" />
     <link rel="stylesheet" href="./assets/kendo.common.min.css" />
     <link rel="stylesheet" href="./assets/nav.css" />
-  </head>
+  </head> 
   <body>
-    <!-- <style>
-      @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap");
-      body {
-        font-family: "Montserrat", sans-serif;
-        margin: 0;
-        background-color: #f4f4f4;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-      .navtabs {
-        display: flex;
-        justify-content: center;
-        margin-top: 0;
-        background: white;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        border-radius: 8px;
-        padding: 0 20px;
-        
-        position: relative;
-      }
-      .navtab {
-        margin: 0;
-        padding: 10px;
-        cursor: pointer;
-        color: #333;
-        transition: color 0.3s;
-      }
-      .navtab:hover {
-        color: #007bff;
-      }
-      .navtab.active {
-        color: #007bff;
-        font-weight: 600;
-      }
-      .underline {
-        position: absolute;
-        bottom: 0;
-        height: 2px;
-        background: #007bff;
-        transition: left 0.3s ease, width 0.3s ease;
-      }
-      .content {
-        display: none;
-        padding: 100px 20px 20px;
-        max-width: 900px;
-        text-align: center;
-      }
-      .content.active {
-        display: block;
-      }
-      .footer {
-        position: absolute;
-        bottom: 10px;
-        right: 10px;
-        font-size: 14px;
-        color: #000;
-        transition: color 0.3s ease;
-        font-family: "Montserrat", sans-serif;
-      }
+   
 
-      .footer a {
-        background: linear-gradient(145deg, #007aff, #005bb5);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        text-decoration: none;
-        transition: all 0.3s ease;
-      }
-
-      .footer a:hover {
-        color: linear-gradient(145deg, #007aff, #005bb5);
-      }
-      .navfull {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-evenly;
-        width: 100%;
-        padding-top: 10px;
-      }
-      .logo img{
-        height: 90px;
-        width: 190px;
-      }
-      select {
-      width: 30px;
-      padding: 8px;
-      border:none;
-      border-radius: 4px;
-      font-family: Arial, sans-serif;
-      font-size: 16px;
-      color: #333;
-      background-color:transparent;
-      background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="5" viewBox="0 0 10 5"><path fill="none" stroke="currentColor" stroke-width="1" d="M0 0l5 5 5-5"/></svg>');
-      background-repeat: no-repeat;
-      background-position: right 10px center;
-      background-size: 10px 5px;
-      -webkit-appearance: none; /* Removes default styling in Safari */
-      -moz-appearance: none; /* Removes default styling in Firefox */
-      appearance: none; /* Removes default styling in modern browsers */
-      text-indent: -9999px; /* Hides the selected option text */
-      margin-top: 12    px;
-    }
-
-    /* Display the text when the select is hovered */
-  
-
-    /* Style the options */
-    option {
-      padding: 8px;
-    }
-    .account{
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-    }
-
-    /* Style the form label */
-    label {
-      font-family: Arial, sans-serif;
-      font-size: 16px;
-      margin-bottom: 8px;
-      display: block;
-    }
-    .account > h4{
-        font-size: 1rem;
-        margin-top: 7px;
-    }
-    .mobno{
-        font-size: 1rem;
-    }
-    .contact{
-        display: flex;  
-    }
-    .contact>svg{
-        height: 1.2rem;
-        width: 1.2rem;
-    }
-    @media only screen and (max-width:768px) {
-    
-    .contact{
-        display: none;
-    }
-    .account>h4{
-        display: none;
-    }
-    .logo{
-        display: none;
-    }
-    
-    .navtabs{
-        /* width:px; */
-        padding: 0;
-
-    }
-    .navtab{
-        /* height: max-content; */
-        font-size: 0.75rem;
-        padding: 4px;
-        /* width: 20%; */
-    }
-   .tools{
-    height:24vh !important;
-    width: 46vw !important;
-   }
-   .main{
-    width: 100vw !important;
-   }
-   .account>h4{
-    font-size: 0.85rem;
-   }
-    
-    
-  
-    
-}
-.main{
-    display: flex;flex-wrap: wrap;
-    gap: 2vw;
-    width: 75vw;
-    justify-content: center;
-    padding-top: 10px;
-
-}
-
-
-    .tools{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        height: 16vw;
-        width:14vw;
-        border: 0.2px solid rgb(211, 190, 190);
-        border-radius: 13px;
-        background-color: rgb(236, 197, 197);
-    
-    }
-    .tools:hover{
-        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-    }
-    .tools .icon{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 60%;
-        width: 100%;
-        font-weight: 100;
-        
-    }
-    .icon svg {
-        height: 52%;
-        width: 52%;
-        color: rgb(113, 113, 200);
-    }
-    .tools span{
-
-        font-weight: 700;
-        color: #212121;
-        margin-top: 19px;
-    }
-    a{
-        text-decoration: none;
-    }
-    </style> -->
-
-    <div class="navfull">
-        <div class="logo">
-            <img class="logo1" src="./assets/Remove background project.png" alt="">
-            <!-- <img class="logo2" src="./assets/file.png" alt=""> -->
-        </div>
-      <div class="navtabs">
-        <div class="navtab active" data-target="home">PATIENT</div>
-        <div class="navtab" data-target="about">STAFF</div>
-        <div class="navtab" data-target="contact">LABORATORY</div>
-        <div class="navtab" data-target="page4">ACCOUNTS</div>
-        <div class="navtab" data-target="page5">CONTROLS</div>
-
-        <div class="underline"></div>
+    <div class="nav-full">
+      <div class="nav-logo">
+        <img class="logo1" src="./assets/Remove background project.png" alt="">
+        <!-- <img class="logo2" src="./assets/file.png" alt=""> -->
       </div>
-      <div class="contact">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#7171c8" d="M164.9 24.6c-7.7-18.6-28-28.5-47.4-23.2l-88 24C12.1 30.2 0 46 0 64C0 311.4 200.6 512 448 512c18 0 33.8-12.1 38.6-29.5l24-88c5.3-19.4-4.6-39.7-23.2-47.4l-96-40c-16.3-6.8-35.2-2.1-46.3 11.6L304.7 368C234.3 334.7 177.3 277.7 144 207.3L193.3 167c13.7-11.2 18.4-30 11.6-46.3l-40-96z"/></svg>
-      <h4 class="mobno">+91 6969696969</h4>
+      <div class="nav-tabs">
+        <div class="nav-tab active" data-target="home">PATIENT</div>
+        <div class="nav-tab" data-target="about">STAFF</div>
+        <div class="nav-tab" data-target="contact">LABORATORY</div>
+        <div class="nav-tab" data-target="page4">ACCOUNTS</div>
+        <div class="nav-tab" data-target="page5">CONTROLS</div>
+        <div class="nav-underline"></div>
       </div>
-      <div class="account" style="display: flex;">
-        <h4>Hi , Username</h4>
+      <div class="nav-contact">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+          <path fill="#7171c8" d="M164.9 24.6c-7.7-18.6-28-28.5-47.4-23.2l-88 24C12.1 30.2 0 46 0 64C0 311.4 200.6 512 448 512c18 0 33.8-12.1 38.6-29.5l24-88c5.3-19.4-4.6-39.7-23.2-47.4l-96-40c-16.3-6.8-35.2-2.1-46.3 11.6L304.7 368C234.3 334.7 177.3 277.7 144 207.3L193.3 167c13.7-11.2 18.4-30 11.6-46.3l-40-96z"/>
+        </svg>
+        <h4 class="nav-mobno">+91 6969696969</h4>
+      </div>
+      <div class="nav-account">
+        <h4>Hi, Username</h4>
         <form>
-            
-            <select name="acc" id="acc">
-              <option href="/gty" value="option1">HOME</option>
-              <option value="option2">SUPPORT</option>
-              <option value="option3">CHANGE PASSWORD</option>
-              <option value="option4">LOGOUT</option>
-            </select>
-          </form>
-          
+          <select name="acc" id="acc">
+            <option href="/gty" value="option1">HOME</option>
+            <option value="option2">SUPPORT</option>
+            <option value="option3">CHANGE PASSWORD</option>
+            <option value="option4">LOGOUT</option>
+          </select>
+        </form>
       </div>
     </div>
     <div id="filterMenu" style="width: 100%;">
