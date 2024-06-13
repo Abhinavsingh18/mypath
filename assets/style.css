@@ -976,7 +976,9 @@ a.plslogin:hover {
   top: -2px;
 }
 .next > i,
-.prev > i {
+.prev > i,
+.reset>i,
+.allbtn>i {
   scale: 1.65;
   font-weight: 700;
 }
