@@ -17,7 +17,7 @@
         }
 
         body {
-            background-color: #f4f4f4;
+            background-color: #b3afaf;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -25,11 +25,15 @@
         }
 
         .container {
-            width: 80%;
-            background-color: white;
+            width: 52%;
+            height: 95vh;
+            background-color: #f1d9d9;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        select,input,textarea{
+            background-color: #d2b9b9;
         }
 
         .form-group {
@@ -62,6 +66,7 @@
 
         .form-group .radio-group label {
             margin-right: 20px;
+
         }
 
         .form-group .radio-group input {
@@ -132,12 +137,43 @@
             text-decoration: none;
             cursor: pointer;
         }
+        .select{
+            width: 200px;
+        }
+        
+        .radio-group>label{
+            display: flex;
+            gap:2px;
+            width: 19%;
+            padding: 0;
+
+        }
+        label>input{
+            width: max-content !important;
+        }
+        #openModalBtn{
+            position:relative;
+            left:-20.5px;
+            width:15vw;
+            height:2.5vw;
+            border-top-right-radius: 20px;
+            border-bottom-right-radius: 20px;
+            margin-bottom: 2vw;
+            font-size:1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #openModalBtn:hover{
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
 
     </style>
 </head>
 <body>
-    <div class="container">
-        <button id="openModalBtn" class="form-actions button" style="background-color: #28a745; color: white;">REGISTER PATIENT</button>
+    <div class="container" >
+        <div id="openModalBtn" class="form-actions button" style="background-color: #28a745; color: white;">REGISTER PATIENT</div>
         
         <form id="adviseInvestigationForm">
             <div class="form-group">
@@ -175,14 +211,16 @@
                 </div>
             </div>
 
-            <div class="form-group">
-                <label for="addNewDoctor">Add New Doctor:</label>
-                <input type="checkbox" id="addNewDoctor" name="addNewDoctor">
-            </div>
-
-            <div class="form-group">
-                <label for="urgentReport">Urgent Report:</label>
-                <input type="checkbox" id="urgentReport" name="urgentReport">
+            <div style="display: flex;gap: 2.75vw;">
+                <div class="form-group" style="width:10vw !important;">
+                    <label for="addNewDoctor" style="width: max-content;">Add New Doctor:</label>
+                    <input  style="scale: 0.3;" type="checkbox" id="addNewDoctor" name="addNewDoctor">
+                </div>
+    
+                <div class="form-group" style="width:10vw !important;">
+                    <label for="urgentReport" style="width: max-content;">Urgent Report:</label>
+                    <input style="scale: 0.3;"  type="checkbox" id="urgentReport" name="urgentReport">
+                </div>
             </div>
 
             <div class="form-group">
@@ -241,7 +279,7 @@
 
     <!-- The Modal -->
     <div id="myModal" class="modal">
-        <div class="modal-content">
+        <div class="modal-content" style="background-color: #f1d9d9;">
             <span class="close">&times;</span>
             <form id="registerPatientForm">
                 <div class="form-group">
