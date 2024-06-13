@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./assets/kendo.metro.min.css" />
+    <link rel="stylesheet" href="./assets/style.css" />
+    <link rel="stylesheet" href="./assets/jquery-ui-1.9.1.custom.css" />
+    <link rel="stylesheet" href="./assets/jquery.jscrollpane.css" />
+    <link rel="stylesheet" href="./assets/kendo.common.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="./assets/nav.css">
+  </head>
+  <body>
+    <div class="navfull" style="scale: 0.8;">
+        <div class="logo">
+            <img class="logo1" src="./assets/Remove background project.png" alt="">
+            <!-- <img class="logo2" src="./assets/file.png" alt=""> -->
+        </div>
+      <div class="navtabs">
+        <div class="navtab active" data-target="home">PATIENT</div>
+        <div class="navtab" data-target="about">STAFF</div>
+        <div class="navtab" data-target="contact">LABORATORY</div>
+        <div class="navtab" data-target="page4">ACCOUNTS</div>
+        <div class="navtab" data-target="page5">CONTROLS</div>
+
+        <div class="underline"></div>
+      </div>
+      <div class="contact">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#7171c8" d="M164.9 24.6c-7.7-18.6-28-28.5-47.4-23.2l-88 24C12.1 30.2 0 46 0 64C0 311.4 200.6 512 448 512c18 0 33.8-12.1 38.6-29.5l24-88c5.3-19.4-4.6-39.7-23.2-47.4l-96-40c-16.3-6.8-35.2-2.1-46.3 11.6L304.7 368C234.3 334.7 177.3 277.7 144 207.3L193.3 167c13.7-11.2 18.4-30 11.6-46.3l-40-96z"/></svg>
+      <h4 class="mobno">+91 6969696969</h4>
+      </div>
+      <div class="account" style="display: flex;">
+        <h4>Hi , Username</h4>
+        <form>
+            
+            <select name="acc" id="acc">
+              <option href="/gty" value="option1">HOME</option>
+              <option value="option2">SUPPORT</option>
+              <option value="option3">CHANGE PASSWORD</option>
+              <option value="option4">LOGOUT</option>
+            </select>
+          </form>
+          
+      </div>
+    </div>
+    <div id="filterMenu" style="width: 100%;">
+      <div
+        id="labMenuUpper"
+        data-role="menu"
+        class="k-widget k-reset k-header k-menu k-menu-horizontal"
+        tabindex="0"
+        role="menubar"
+      >
+        <div class="topnextprevcalender">
+          <div class="reminderbtn">
+            <div class="btnrmd">
+              <input type="button" id="btnReminderTest" value="Reminder" />
+            </div>
+          </div>
+          <div class="calendarara">
+            <div class="allbtn">
+              <input type="button" id="AllDates" value="All" />
+            </div>
+            <div class="prev">
+              <i class="fa-solid fa-chevron-right fa-flip-horizontal"></i>
+            </div>
+            <h3>
+              <span id="lbldate" >13 Jun 2024</span>
+            </h3>
+            <div>
+              <div class="iconcl" id="imgCalender"></div>
+              <div id="DateContainer" class="fromtodate" style="display: none">
+                <span class="arw"></span>
+                <h6>From Date</h6>
+                <div class="inptarea">
+                  <span class="k-widget k-datetimepicker k-header" style=""
+                    ><span class="k-picker-wrap k-state-default"
+                      ><input
+                        type="text"
+                        id="txtFromDate"
+                        data-role="datetimepicker"
+                        class="k-input"
+                        role="textbox"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                        aria-disabled="false"
+                        aria-readonly="false"
+                        aria-label="Current focused date is 6/13/2024 1:54:59 PM"
+                        style="width: 100%"
+                      /><span unselectable="on" class="k-select"
+                        ><span
+                          unselectable="on"
+                          class="k-icon k-i-calendar"
+                          role="button"
+                          aria-controls="txtFromDate_dateview"
+                          >select</span
+                        ><span
+                          unselectable="on"
+                          class="k-icon k-i-clock"
+                          role="button"
+                          aria-controls="txtFromDate_timeview"
+                          >select</span
+                        ></span
+                      ></span
+                    ></span
+                  >
+                </div>
+                <h6>To Date:</h6>
+                <div class="inptarea no">
+                  <span class="k-widget k-datetimepicker k-header" style=""
+                    ><span class="k-picker-wrap k-state-default"
+                      ><input
+                        type="text"
+                        id="txtToDate"
+                        data-role="datetimepicker"
+                        class="k-input"
+                        role="textbox"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                        aria-disabled="false"
+                        aria-readonly="false"
+                        aria-label="Current focused date is 6/14/2024 1:54:59 PM"
+                        style="width: 100%"
+                      /><span unselectable="on" class="k-select"
+                        ><span
+                          unselectable="on"
+                          class="k-icon k-i-calendar"
+                          role="button"
+                          aria-controls="txtToDate_dateview"
+                          >select</span
+                        ><span
+                          unselectable="on"
+                          class="k-icon k-i-clock"
+                          role="button"
+                          aria-controls="txtToDate_timeview"
+                          >select</span
+                        ></span
+                      ></span
+                    ></span
+                  >
+                </div>
+                <div style="width: 100%; text-align: center">
+                  <a
+                    href="javascript:void(0);"
+                    id="btndateok"
+                    style="
+                      padding: 4px 10px;
+                      background: #26a6dc;
+                      border-radius: 3px;
+                      color: #fff;
+                      text-decoration: none;
+                      text-transform: uppercase;
+                      margin: 8px 0 5px;
+                      display: inline-block;
+                    "
+                    >Ok</a
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="next">
+              <i
+                style="margin-left: 12px"
+                class="fa-solid fa-chevron-right"
+              ></i>
+              <input type="button" id="NextDate" value="Next" />
+            </div>
+            <div class="reset" id="butReset"></div>
+          </div>
+         
+        </div>
+      </div>
+    </div>
+    <div style="width: 100%;height: 3.5rem;background-color: #007bff;display: flex;align-items: center;">
+        <span style="color: #1a4814;font-weight: 700;font-size: 2.4rem; font-family: Montserrat, Cochin, Georgia, Times, 'Times New Roman', serif;">Sample Worklist</span>
+    </div>
+    <div class="worklistlinks k-widget k-reset k-header k-menu k-menu-horizontal"
+      id="labMenu"
+      data-role="menu"
+      tabindex="0"
+      role="menubar"
+    >
+      <ul>
+        <li class="branches">
+          <a href="#">Branches</a>
+          <div class="testdropdwn k-content" tabindex="-1">
+            <div
+              class="scroll-pane"
+              style="overflow: hidden; padding: 0px; width: 140px"
+            >
+              <div class="jspContainer" style="width: 140px; height: 270px">
+                <div
+                  class="jspPane"
+                  style="padding: 0px; top: 0px; width: 140px"
+                >
+                  <div id="selectBranches" style="display: none">
+                    <p>
+                      <input
+                        type="checkbox"
+                        name="branch"
+                        id="chkLocation0"
+                      /><label for="chkLocation0"
+                        ><span></span>Samarpan Health Care Institute</label
+                      >
+                    </p>
+                    <p>
+                      <input
+                        type="checkbox"
+                        name="branch"
+                        id="chkLocation1"
+                      /><label for="chkLocation1"
+                        ><span></span>Samarpan Health Care Institute jiwaji
+                        nagar</label
+                      >
+                    </p>
+                    <p>
+                      <input
+                        type="checkbox"
+                        name="branch"
+                        id="chkLocation2"
+                      /><label for="chkLocation2"
+                        ><span></span>Samarpan Health Care Institute garima
+                        hospital</label
+                      >
+                    </p>
+                    <p>
+                      <input
+                        type="checkbox"
+                        name="branch"
+                        id="chkLocation3"
+                      /><label for="chkLocation3"
+                        ><span></span>Samarpan Health Care Institute patali
+                        hanuman hazira</label
+                      >
+                    </p>
+                    <p>
+                      <input
+                        type="checkbox"
+                        name="branch"
+                        id="chkLocation4"
+                      /><label for="chkLocation4"
+                        ><span></span>Samarpan Health Care Institute lakkad
+                        khana</label
+                      >
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="branches">
+          <a href="#">Panel</a>
+          <div class="testdropdwn k-content" tabindex="-1">
+            <div
+              class="scroll-pane"
+              style="overflow: hidden; padding: 0px; width: 140px"
+            >
+              <div class="jspContainer" style="width: 140px; height: 270px">
+                <div
+                  class="jspPane"
+                  style="padding: 0px; top: 0px; width: 140px"
+                >
+                  <div id="divPanel1"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="testic">
+          <a href="javascript:void(0);">Test</a>
+          <div class="testdropdwn k-content" style="width: 160px" tabindex="-1">
+            <p>
+              <input
+                type="radio"
+                name="testFilter"
+                value="0"
+                id="allTest"
+                checked=""
+              />
+              <label for="allTest"> <span></span> All tests </label>
+            </p>
+            <p>
+              <input
+                type="radio"
+                name="testFilter"
+                value="5"
+                id="pendingTest"
+              />
+              <label for="pendingTest" style="color: #cf8dea">
+                <span></span> Pending Tests
+              </label>
+            </p>
+            <p>
+              <input
+                type="radio"
+                name="testFilter"
+                value="1"
+                id="partialTest"
+              />
+              <label for="partialTest" style="color: orange">
+                <span></span> Partial Tests
+              </label>
+            </p>
+            <p>
+              <input
+                type="radio"
+                name="testFilter"
+                value="2"
+                id="completeTest"
+              />
+              <label for="completeTest" style="color: green">
+                <span></span> Complete Tests
+              </label>
+            </p>
+            <p>
+              <input
+                type="radio"
+                name="testFilter"
+                value="3"
+                id="incompleteTest"
+              />
+              <label style="color: red" for="incompleteTest">
+                <span></span> Incomplete Tests
+              </label>
+            </p>
+            <p>
+              <input
+                type="radio"
+                name="testFilter"
+                value="4"
+                id="outsourceTest"
+              />
+              <label style="color: gray" for="outsourceTest">
+                <span></span> Outsource Tests
+              </label>
+            </p>
+          </div>
+        </li>
+        <li class="sample">
+          <a href="javascript:void(0);">Sample</a>
+          <div class="testdropdwn k-content" tabindex="-1">
+            <p>
+              <input
+                type="radio"
+                name="sampleFilter"
+                value="0"
+                id="sampleFilAll"
+                checked=""
+              />
+              <label for="sampleFilAll"> <span></span>All </label>
+            </p>
+            <p>
+              <input
+                type="radio"
+                name="sampleFilter"
+                id="sampleFilYes"
+                value="1"
+              />
+              <label for="sampleFilYes"> <span></span>Yes </label>
+            </p>
+            <p>
+              <input
+                type="radio"
+                name="sampleFilter"
+                id="sampleFilNo"
+                value="2"
+              />
+              <label for="sampleFilNo"> <span></span>No </label>
+            </p>
+          </div>
+        </li>
+        <li class="due">
+          <a href="javascript:void(0);">Due</a>
+          <div class="testdropdwn k-content" tabindex="-1">
+            <p>
+              <input
+                type="radio"
+                name="paidFilter"
+                id="paidFil"
+                value="0"
+                checked=""
+              />
+              <label for="paidFil"> <span></span> All </label>
+            </p>
+            <p>
+              <input type="radio" name="paidFilter" id="paidFilt" value="1" />
+              <label style="color: orange" for="paidFilt">
+                <span></span> Fully Paid
+              </label>
+            </p>
+            <p>
+              <input type="radio" name="paidFilter" id="paidFilD" value="2" />
+              <label style="color: green" for="paidFilD">
+                <span></span> Due
+              </label>
+            </p>
+            <p>
+              <input type="radio" name="paidFilter" id="paidFilR" value="3" />
+              <label style="color: red" for="paidFilR">
+                <span></span>Refund
+              </label>
+            </p>
+          </div>
+        </li>
+        <li class="delivery">
+          <a href="javascript:void(0);"> Delivery</a>
+          <div class="testdropdwn k-content" tabindex="-1">
+            <p>
+              <input
+                type="radio"
+                name="deliverFilter"
+                id="deliverFA"
+                value="0"
+                checked=""
+              />
+              <label for="deliverFA"> <span></span> All </label>
+            </p>
+            <p>
+              <input
+                type="radio"
+                name="deliverFilter"
+                id="deliverFDB"
+                value="1"
+              />
+              <label for="deliverFDB"> <span></span>Delivery Boy </label>
+            </p>
+            <p>
+              <input
+                type="radio"
+                name="deliverFilter"
+                id="deliverFE"
+                value="2"
+              />
+              <label for="deliverFE"> <span></span>Email </label>
+            </p>
+            <p>
+              <input
+                type="radio"
+                name="deliverFilter"
+                id="deliverFilH"
+                value="3"
+              />
+              <label for="deliverFilH"> <span></span>Hospital </label>
+            </p>
+            <p>
+              <input
+                type="radio"
+                name="deliverFilter"
+                id="deliverFilC"
+                value="4"
+              />
+              <label for="deliverFilC"> <span></span>Courier </label>
+            </p>
+            <p>
+              <input
+                type="radio"
+                name="deliverFilter"
+                id="deliverFilS"
+                value="5"
+              />
+              <label for="deliverFilS"> <span></span>Self </label>
+            </p>
+          </div>
+        </li>
+        <li class="chek">
+          <a href="javascript:void(0);">Checked</a>
+          <div class="testdropdwn k-content" tabindex="-1">
+            <p>
+              <input
+                type="radio"
+                name="checkedFilter"
+                value="0"
+                id="AllChecked"
+                checked=""
+              />
+              <label for="AllChecked"> <span></span> All </label>
+            </p>
+            <p>
+              <input
+                type="radio"
+                name="checkedFilter"
+                value="1"
+                id="YesChecked"
+              />
+              <label for="YesChecked"> <span></span>Yes </label>
+            </p>
+            <p>
+              <input
+                type="radio"
+                name="checkedFilter"
+                value="2"
+                id="NoChecked"
+              />
+              <label for="NoChecked"> <span></span>No </label>
+            </p>
+          </div>
+        </li>
+        <li class="printed">
+          <a href="javascript:void(0);">Published</a>
+          <div class="testdropdwn k-content" tabindex="-1">
+            <p>
+              <input
+                type="radio"
+                name="publishedFilter"
+                value="0"
+                id="AllPublished"
+                checked=""
+              />
+              <label for="AllPublished"> <span></span> All </label>
+            </p>
+            <p>
+              <input
+                type="radio"
+                name="publishedFilter"
+                value="1"
+                id="YesPublished"
+              />
+              <label for="YesPublished"> <span></span>Yes </label>
+            </p>
+            <p>
+              <input
+                type="radio"
+                name="publishedFilter"
+                value="2"
+                id="NoPublished"
+              />
+              <label for="NoPublished"> <span></span>No </label>
+            </p>
+          </div>
+        </li>
+
+        <li class="delivered">
+          <a href="javascript:void(0);">Delivered</a>
+          <div class="testdropdwn k-content" tabindex="-1">
+            <p>
+              <input
+                type="radio"
+                name="deliveredFilter"
+                value="0"
+                id="AllDelivered"
+                checked=""
+              />
+              <label for="AllDelivered"> <span></span>All </label>
+            </p>
+            <p>
+              <input
+                type="radio"
+                name="deliveredFilter"
+                value="1"
+                id="YesDelivered"
+              />
+              <label for="YesDelivered"> <span></span>Yes </label>
+            </p>
+            <p>
+              <input
+                type="radio"
+                name="deliveredFilter"
+                value="2"
+                id="NoDelivered"
+              />
+              <label for="NoDelivered"> <span></span>No </label>
+            </p>
+          </div>
+        </li>
+        <li class="canceled">
+          <a href="javascript:void(0);">Cancelled</a>
+          <div class="testdropdwn k-content" tabindex="-1">
+            <p>
+              <input
+                type="radio"
+                name="cancelFilter"
+                id="cancleAll"
+                value="0"
+                checked=""
+              />
+              <label for="cancleAll"> <span></span>All </label>
+            </p>
+            <p>
+              <input
+                type="radio"
+                name="cancelFilter"
+                id="cancleYes"
+                value="1"
+              />
+              <label for="cancleYes"> <span></span>Yes </label>
+            </p>
+            <p>
+              <input type="radio" name="cancelFilter" id="cancleNo" value="2" />
+              <label for="cancleNo"> <span></span>No </label>
+            </p>
+          </div>
+        </li>
+        <li class="due">
+          <a href="javascript:void(0);">Pay Mode</a>
+          <div class="testdropdwn k-content" tabindex="-1">
+            <p>
+              <input
+                type="radio"
+                name="payFilter"
+                id="payAll"
+                value="0"
+                checked=""
+              />
+              <label for="payAll"> <span></span>All </label>
+            </p>
+            <p>
+              <input type="radio" name="payFilter" id="payCash" value="1" />
+              <label for="payCash"> <span></span>Cash </label>
+            </p>
+            <p>
+              <input type="radio" name="payFilter" id="payCheque" value="2" />
+              <label for="payCheque"> <span></span>Cheque </label>
+            </p>
+            <p>
+              <input type="radio" name="payFilter" id="payCard" value="3" />
+              <label for="payCard"> <span></span>Card </label>
+            </p>
+          </div>
+        </li>
+        <li class="urgent">
+          <a href="javascript:void(0);">Urgent Tests</a>
+          <input type="checkbox" id="isUrgent" />
+          <label style="color: red" for="isUrgent">
+            <span></span>
+          </label>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>
