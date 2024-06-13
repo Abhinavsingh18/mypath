@@ -1,0 +1,134 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap");
+body {
+  font-family: "Montserrat", sans-serif;
+  margin: 0;
+  background-color: #f4f4f4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.navtabs {
+  display: flex;
+  justify-content: center;
+  margin-top: 0;
+  background: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 6px 20px;
+  
+  position: relative;
+}
+.navtab {
+  margin: 0;
+  padding: 10px;
+  cursor: pointer;
+  color: #333;
+  transition: color 0.3s;
+  font-size: 1rem;
+}
+.navtab:hover {
+  color: #007bff;
+}
+.navtab.active {
+  color: #007bff;
+  font-weight: 600;
+}
+.underline {
+  position: absolute;
+  bottom: 0;
+  height: 2px;
+  background: #007bff;
+  transition: left 0.3s ease, width 0.3s ease;
+}
+.content {
+  display: none;
+  padding: 100px 20px 20px;
+  max-width: 900px;
+  text-align: center;
+}
+.content.active {
+  display: block;
+}
+.footer {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  font-size: 14px;
+  color: #000;
+  transition: color 0.3s ease;
+  font-family: "Montserrat", sans-serif;
+}
+
+.footer a {
+  background: linear-gradient(145deg, #007aff, #005bb5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.footer a:hover {
+  color: linear-gradient(145deg, #007aff, #005bb5);
+}
+.navfull {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+  padding-top: 10px;
+}
+.logo img{
+  height: 100px;
+  width: 220px;
+}
+select {
+width: 30px;
+padding: 8px;
+border:none;
+border-radius: 4px;
+font-family: Arial, sans-serif;
+font-size: 16px;
+color: #333;
+background-color:transparent;
+background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="5" viewBox="0 0 10 5"><path fill="none" stroke="currentColor" stroke-width="1" d="M0 0l5 5 5-5"/></svg>');
+background-repeat: no-repeat;
+background-position: right 10px center;
+background-size: 10px 5px;
+-webkit-appearance: none; /* Removes default styling in Safari */
+-moz-appearance: none; /* Removes default styling in Firefox */
+appearance: none; /* Removes default styling in modern browsers */
+text-indent: -9999px; /* Hides the selected option text */
+margin-top: 12    px;
+}
+option {
+    padding: 8px;
+  }
+  .account{
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+  }
+
+  /* Style the form label */
+  label {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    margin-bottom: 8px;
+    display: block;
+  }
+  .account > h4{
+      font-size: 1rem;
+      margin-top: 7px;
+  }
+  .mobno{
+      font-size: 1rem;
+  }
+  .contact{
+      display: flex;  
+  }
+  .contact>svg{
+      height: 1.2rem;
+      width: 1.2rem;
+  }

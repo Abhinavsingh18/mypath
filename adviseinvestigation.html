@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advised Investigation</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&display=swap");
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+            text-decoration: none;
+        }
+
+        body {
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 80%;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            width: 20%;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 75%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-family: "Roboto Mono", sans-serif;
+        }
+
+        .form-group .radio-group {
+            display: flex;
+            align-items: center;
+            width: 75%;
+        }
+
+        .form-group .radio-group label {
+            margin-right: 20px;
+        }
+
+        .form-group .radio-group input {
+            margin-right: 5px;
+        }
+
+        .form-group .checkbox-group {
+            display: flex;
+            align-items: center;
+            width: 75%;
+        }
+
+        .form-group .checkbox-group input {
+            margin-right: 5px;
+        }
+
+        .form-actions {
+            text-align: center;
+        }
+
+        .form-actions button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #28a745;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .form-actions button:hover {
+            background-color: #218838;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            border-radius: 10px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button id="openModalBtn" class="form-actions button" style="background-color: #28a745; color: white;">REGISTER PATIENT</button>
+        
+        <form id="adviseInvestigationForm">
+            <div class="form-group">
+                <label for="advisedDate">Advised Date:</label>
+                <input type="date" id="advisedDate" name="advisedDate" required>
+            </div>
+
+            <div class="form-group">
+                <label for="advisedByDoctor">Advised By Doctor:</label>
+                <input type="text" id="advisedByDoctor" name="advisedByDoctor" required>
+            </div>
+
+            <div class="form-group">
+                <label for="advisedByFacility">Advised By Medical Facility:</label>
+                <select id="advisedByFacility" name="advisedByFacility" required>
+                    <option value="">Select Facility</option>
+                    <option value="facility1">Facility 1</option>
+                    <option value="facility2">Facility 2</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="locations">Locations:</label>
+                <input type="text" id="locations" name="locations" value="Samarpan Health Care Institute" readonly>
+            </div>
+
+            <div class="form-group">
+                <label for="reportDeliveryMode">Report Delivery Mode:</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="reportDeliveryMode" value="email" required>Email</label>
+                    <label><input type="radio" name="reportDeliveryMode" value="hospitalDoctor">Hospital/Doctor</label>
+                    <label><input type="radio" name="reportDeliveryMode" value="courier">Courier</label>
+                    <label><input type="radio" name="reportDeliveryMode" value="self">Self</label>
+                    <label><input type="radio" name="reportDeliveryMode" value="directByHand">Direct/By Hand</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="addNewDoctor">Add New Doctor:</label>
+                <input type="checkbox" id="addNewDoctor" name="addNewDoctor">
+            </div>
+
+            <div class="form-group">
+                <label for="urgentReport">Urgent Report:</label>
+                <input type="checkbox" id="urgentReport" name="urgentReport">
+            </div>
+
+            <div class="form-group">
+                <label for="referredBy">Referred By:</label>
+                <select id="referredBy" name="referredBy">
+                    <option value="">Select</option>
+                    <option value="referral1">Referral 1</option>
+                    <option value="referral2">Referral 2</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="insurancePanel">Select Insurance Panel:</label>
+                <select id="insurancePanel" name="insurancePanel">
+                    <option value="">None</option>
+                    <option value="panel1">Panel 1</option>
+                    <option value="panel2">Panel 2</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="collectedBy">To Be Collected By:</label>
+                <select id="collectedBy" name="collectedBy">
+                    <option value="">Select</option>
+                    <option value="collector1">Collector 1</option>
+                    <option value="collector2">Collector 2</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="patientAddress">Patient Address:</label>
+                <textarea id="patientAddress" name="patientAddress" rows="3" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="clinicalHistory">Clinical History (H/O):</label>
+                <textarea id="clinicalHistory" name="clinicalHistory" rows="3" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="accountSettlement">Account Settlement:</label>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="corporatePanel" name="corporatePanel">
+                    <label for="corporatePanel">Corporate Panel</label>
+                    <input type="checkbox" id="csr" name="csr">
+                    <label for="csr">CSR</label>
+                </div>
+                <div style="color: red; font-size: 12px;">No Corporate Panel Exist</div>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit">Register Patient</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <form id="registerPatientForm">
+                <div class="form-group">
+                    <label for="title">Title:</label>
+                    <select id="title" name="title">
+                        <option value="mr">Mr.</option>
+                        <option value="mrs">Mrs.</option>
+                        <option value="ms">Ms.</option>
+                        <option value="dr">Dr.</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="firstName">First Name:</label>
+                    <input type="text" id="firstName" name="firstName" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="lastName">Last Name:</label>
+                    <input type="text" id="lastName" name="lastName" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="uid">UID:</label>
+                    <input type="text" id="uid" name="uid" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="gender">Gender:</label>
+                    <select id="gender" name="gender" required>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="age">Age:</label>
+                    <input type="number" id="age" name="age" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="dob">Date of Birth:</label>
+                    <input type="date" id="dob" name="dob" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="contactNumber">Contact Number:</label>
+                    <input type="tel" id="contactNumber" name="contactNumber" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="address">Address:</label>
+                    <textarea id="address" name="address" rows="3" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="area">Area:</label>
+                    <input type="text" id="area" name="area" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="city">City:</label>
+                    <input type="text" id="city" name="city" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="state">State:</label>
+                    <input type="text" id="state" name="state" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="country">Country:</label>
+                    <input type="text" id="country" name="country" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="pincode">Pincode:</label>
+                    <input type="text" id="pincode" name="pincode" required>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit">Submit</button>
+                    <button type="reset">Reset</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Get the modal
+        var modal = document.getElementById("myModal");
+
+        // Get the button that opens the modal
+        var btn = document.getElementById("openModalBtn");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks the button, open the modal 
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
