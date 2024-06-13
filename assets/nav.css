@@ -35,7 +35,7 @@ body {
   position: relative;
 }
 
-.nav-tab {
+.unique-tab {
   margin: 0;
   padding: 10px;
   cursor: pointer;
@@ -43,11 +43,11 @@ body {
   transition: color 0.3s;
 }
 
-.nav-tab:hover {
+.unique-tab:hover {
   color: #007bff;
 }
 
-.nav-tab.active {
+.unique-tab.active {
   color: #007bff;
   font-weight: 600;
 }
@@ -118,7 +118,7 @@ body {
   .nav-tabs {
     padding: 0;
   }
-  .nav-tab {
+  .unique-tab {
     font-size: 0.75rem;
     padding: 4px;
   }
