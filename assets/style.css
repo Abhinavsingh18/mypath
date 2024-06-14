@@ -977,8 +977,8 @@ a.plslogin:hover {
 }
 .next > i,
 .prev > i,
-.reset>i,
-.allbtn>i {
+.reset > i,
+.allbtn > i {
   scale: 1.65;
   font-weight: 700;
 }
@@ -1654,7 +1654,7 @@ a.plslogin:hover {
   text-align: center;
 }
 .grdhdng {
-  background: #0ac04e;
+  background: #007bff;
   height: 38px;
   width: 100%;
 }
@@ -8302,9 +8302,9 @@ _:future,
   }
 }
 
-#navbar{
+#navbar {
   width: 80vw;
 }
-a{
+a {
   text-decoration: none !important;
 }
