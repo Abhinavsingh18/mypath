@@ -8301,3 +8301,10 @@ _:future,
     left: -65px;
   }
 }
+
+#navbar{
+  width: 80vw;
+}
+a{
+  text-decoration: none !important;
+}
