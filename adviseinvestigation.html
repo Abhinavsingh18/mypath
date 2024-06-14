@@ -188,12 +188,35 @@
         border-radius: 50%;
         scale: 1.2;
       }
+      .addnd{
+        display: flex; gap: 11vw
+      }
+      @media only screen and (max-width:768px){
+        .maincont{
+            width: auto !important;
+        }
+        .form-group .radio-group {
+            flex-direction: column;
+        }
+        .container{
+            margin:0;
+            width: 100%;
+            scale:0.95
+        }
+        .form-group>input{
+            scale: 1.05 !important;
+        }
+        .addnd{
+            gap: 38vw;
+        }
+      }
+
       
      
     </style>
   </head>
   <body>
-    <div
+    <div class="maincont"
       style="
         width:100%;
         display: flex;
@@ -291,7 +314,7 @@
             </div>
           </div>
 
-          <div style="display: flex; gap: 11vw">
+          <div class="addnd">
             <div class="form-group" style="width: 10vw !important">
               <label for="addNewDoctor" style="width: max-content"
                 >Add New Doctor:</label
@@ -366,7 +389,7 @@
 
           <div class="form-group">
             <label for="accountSettlement">Account Settlement:</label>
-            <div class="checkbox-group">
+            <div class="checkbox-group" style="gap: 2.1vw;">
               <input
                 type="checkbox"
                 id="corporatePanel"
