@@ -1,21 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap"
-    rel="stylesheet"
-  />
-  <link rel="stylesheet" href="./assets/nav.css">
-  <link rel="stylesheet" href="./assets/style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
- 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./assets/nav.css" />
+    <link rel="stylesheet" href="./assets/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
 
-</head>
-<body>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
     <div id="navbar"></div>
 
     <div id="filterMenu" style="width: 100%">
@@ -55,7 +62,6 @@
             </h3>
             <div>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                
                 <path
                   d="M152 24c0-13.3-10.7-24-24-24s-24 10.7-24 24V64H64C28.7 64 0 92.7 0 128v16 48V448c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V192 144 128c0-35.3-28.7-64-64-64H344V24c0-13.3-10.7-24-24-24s-24 10.7-24 24V64H152V24zM48 192h80v56H48V192zm0 104h80v64H48V296zm128 0h96v64H176V296zm144 0h80v64H320V296zm80-48H320V192h80v56zm0 160v40c0 8.8-7.2 16-16 16H320V408h80zm-128 0v56H176V408h96zm-144 0v56H64c-8.8 0-16-7.2-16-16V408h80zM272 248H176V192h96v56z"
                 />
@@ -171,28 +177,915 @@
         </div>
       </div>
     </div>
-     <div
-      style="
-        width: 100%;
-        height: 3.5rem;
-        background-color: #007bff;
-        display: flex;
-        align-items: center;
-        padding:30px 25px;
-      "
-    >
-      <span
-        style="
-          color: #ffffff;
-          font-weight: 700;
-          font-size: 1.4rem;
-          font-family: BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
-            Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-        "
-        >Sample Worklist </span
+    <div>
+      <div class="grdhdng">
+        <h2>Sample Worklist</h2>
+      </div>
+      <br />
+      <div align="center">
+        <input
+          type="text"
+          id="txtSearchWorkList"
+          placeholder="Search"
+          style="
+            height: 27px;
+            border-radius: 3px;
+            border: solid 1px #ccc;
+            padding: 4px 10px;
+            width: 250px;
+          "
+        />
+        &nbsp;
+        <input
+          type="text"
+          id="txtBarCode"
+          placeholder="Barcode Search"
+          style="
+            height: 27px;
+            border-radius: 3px;
+            border: solid 1px #ccc;
+            padding: 4px 10px;
+            width: 250px;
+          "
+          autofocus=""
+        />
+      </div>
+      <br />
+      <div
+        id="grid"
+        oncontextmenu="return false;"
+        style="margin: 0px 15px 15px; height: 430px"
+        data-role="grid"
+        class="k-grid k-widget"
       >
+        <div class="k-grid-header" style="padding-right: 0px">
+          <div class="k-grid-header-wrap" data-role="resizable">
+            <table role="grid" tabindex="-1">
+              <colgroup>
+                <col style="width: 110px" />
+                <col style="width: 210px" />
+                <col style="width: 145px" />
+                <col style="width: 150px" />
+                <col style="width: 100px" />
+              </colgroup>
+              <thead>
+                <tr>
+                  <th
+                    role="columnheader"
+                    data-field="SrNo"
+                    data-title="Serial No"
+                    class="k-header k-filterable"
+                    data-role="sortable"
+                  >
+                    <a class="k-grid-filter" href="#" tabindex="-1"
+                      ><span class="k-icon k-filter"></span></a
+                    ><a class="k-link" href="#" tabindex="-1">Serial No</a>
+                  </th>
+                  <th
+                    role="columnheader"
+                    data-field="PatientName"
+                    data-title="Patient Name"
+                    class="k-header k-filterable"
+                    data-role="sortable"
+                  >
+                    <a class="k-grid-filter" href="#" tabindex="-1"
+                      ><span class="k-icon k-filter"></span></a
+                    ><a class="k-link" href="#" tabindex="-1">Patient Name</a>
+                  </th>
+                  <th
+                    role="columnheader"
+                    data-field="Dt"
+                    data-title="Advised Date"
+                    class="k-header"
+                    data-role="sortable"
+                    data-dir="desc"
+                    aria-sort="descending"
+                  >
+                    <a class="k-link" href="#" tabindex="-1"
+                      >Advised Date<span class="k-icon k-i-arrow-s"></span
+                    ></a>
+                  </th>
+                  <th
+                    role="columnheader"
+                    data-field="AdvisedDoctor"
+                    data-title="Refered By"
+                    class="k-header"
+                    data-role="sortable"
+                  >
+                    <a class="k-link" href="#" tabindex="-1">Refered By</a>
+                  </th>
+                  <th
+                    role="columnheader"
+                    data-field="Urgent"
+                    data-title="!"
+                    style="display: none"
+                    class="k-header"
+                    data-role="sortable"
+                  >
+                    <a class="k-link" href="#" tabindex="-1">!</a>
+                  </th>
+                  <th
+                    role="columnheader"
+                    data-field=""
+                    data-title="S"
+                    style="
+                      display: none;
+                      color: rgb(255, 0, 0);
+                      font-weight: bold;
+                    "
+                    class="k-header"
+                  >
+                    S
+                  </th>
+                  <th
+                    role="columnheader"
+                    data-field="TotalAmount"
+                    data-title="Total"
+                    style="display: none"
+                    class="k-header"
+                    data-role="sortable"
+                  >
+                    <a class="k-link" href="#" tabindex="-1">Total</a>
+                  </th>
+                  <th
+                    role="columnheader"
+                    data-field="Discount"
+                    data-title="Dis"
+                    style="display: none"
+                    class="k-header"
+                    data-role="sortable"
+                  >
+                    <a class="k-link" href="#" tabindex="-1">Dis</a>
+                  </th>
+                  <th
+                    role="columnheader"
+                    data-field="NetAmount"
+                    data-title="Net"
+                    style="display: none"
+                    class="k-header"
+                    data-role="sortable"
+                  >
+                    <a class="k-link" href="#" tabindex="-1">Net</a>
+                  </th>
+                  <th
+                    role="columnheader"
+                    data-field="Balance"
+                    data-title="Bal"
+                    style="display: none"
+                    class="k-header"
+                    data-role="sortable"
+                  >
+                    <a class="k-link" href="#" tabindex="-1">Bal</a>
+                  </th>
+                  <th
+                    role="columnheader"
+                    data-field="Refund"
+                    data-title="Refund"
+                    style="display: none"
+                    class="k-header"
+                    data-role="sortable"
+                  >
+                    <a class="k-link" href="#" tabindex="-1">Refund</a>
+                  </th>
+                  <th
+                    role="columnheader"
+                    data-field=""
+                    data-title="Information"
+                    class="k-header"
+                  >
+                    Information
+                  </th>
+                </tr>
+              </thead>
+            </table>
+          </div>
+        </div>
+        <div class="k-grid-content scroll-pane" style="height: 328.4px">
+          <table
+            role="grid"
+            tabindex="0"
+            data-role="selectable"
+            class="k-selectable"
+            style="height: auto"
+          >
+            <colgroup>
+              <col style="width: 110px" />
+              <col style="width: 210px" />
+              <col style="width: 145px" />
+              <col style="width: 150px" />
+              <col style="width: 100px" />
+            </colgroup>
+            <tbody>
+              <tr
+                data-uid="9dabf605-9854-4835-b2e6-1a6c112d0749"
+                role="row"
+                style="
+                  background-color: rgb(99, 220, 144);
+                  color: rgb(255, 255, 255);
+                "
+              >
+                <td role="gridcell">161030</td>
+                <td role="gridcell">Mr. RAHUL /M/24 (Y)</td>
+                <td role="gridcell">14/06/2024 03:40:19 PM</td>
+                <td role="gridcell"></td>
+                <td style="display: none" role="gridcell">N</td>
+                <td style="display: none" role="gridcell">
+                  <a class="complete">C</a>
+                </td>
+                <td style="display: none" role="gridcell">100</td>
+                <td style="display: none" role="gridcell">0</td>
+                <td style="display: none" role="gridcell">100</td>
+                <td style="display: none" role="gridcell">100</td>
+                <td style="display: none" role="gridcell">0</td>
+                <td role="gridcell">
+                  <input
+                    type="button"
+                    class="k-grid-sample"
+                    value="Show"
+                    style="height: 25px; font-size: 12px"
+                  />
+                </td>
+              </tr>
+              <tr
+                class="k-alt"
+                data-uid="51ccf70e-602f-49b3-a135-03426a40ae2e"
+                role="row"
+                style="
+                  background-color: rgb(99, 220, 144);
+                  color: rgb(255, 255, 255);
+                "
+              >
+                <td role="gridcell">161029</td>
+                <td role="gridcell">Ms. SUNDARI /F/50 (Y)</td>
+                <td role="gridcell">14/06/2024 03:11:10 PM</td>
+                <td role="gridcell"></td>
+                <td style="display: none" role="gridcell">N</td>
+                <td style="display: none" role="gridcell">
+                  <a class="complete">C</a>
+                </td>
+                <td style="display: none" role="gridcell">50</td>
+                <td style="display: none" role="gridcell">0</td>
+                <td style="display: none" role="gridcell">50</td>
+                <td style="display: none" role="gridcell">50</td>
+                <td style="display: none" role="gridcell">0</td>
+                <td role="gridcell">
+                  <input
+                    type="button"
+                    class="k-grid-sample"
+                    value="Show"
+                    style="height: 25px; font-size: 12px"
+                  />
+                </td>
+              </tr>
+              <tr
+                data-uid="14531d2e-6cb0-4c29-b1e1-6b37e4269508"
+                role="row"
+                style="
+                  background-color: rgb(99, 220, 144);
+                  color: rgb(255, 255, 255);
+                "
+              >
+                <td role="gridcell">161028</td>
+                <td role="gridcell">Ms. YOGITA /F/21 (Y)</td>
+                <td role="gridcell">14/06/2024 02:59:40 PM</td>
+                <td role="gridcell"></td>
+                <td style="display: none" role="gridcell">N</td>
+                <td style="display: none" role="gridcell">
+                  <a class="complete">C</a>
+                </td>
+                <td style="display: none" role="gridcell">100</td>
+                <td style="display: none" role="gridcell">0</td>
+                <td style="display: none" role="gridcell">100</td>
+                <td style="display: none" role="gridcell">100</td>
+                <td style="display: none" role="gridcell">0</td>
+                <td role="gridcell">
+                  <input
+                    type="button"
+                    class="k-grid-sample"
+                    value="Show"
+                    style="height: 25px; font-size: 12px"
+                  />
+                </td>
+              </tr>
+              <tr
+                class="k-alt"
+                data-uid="36e9a537-8184-493f-91e9-fa316e3a5f48"
+                role="row"
+                style="
+                  background-color: rgb(99, 220, 144);
+                  color: rgb(255, 255, 255);
+                "
+              >
+                <td role="gridcell">161027</td>
+                <td role="gridcell">Mr. DHEERAJ /M/41 (Y)</td>
+                <td role="gridcell">14/06/2024 02:59:20 PM</td>
+                <td role="gridcell"></td>
+                <td style="display: none" role="gridcell">N</td>
+                <td style="display: none" role="gridcell">
+                  <a class="complete">C</a>
+                </td>
+                <td style="display: none" role="gridcell">50</td>
+                <td style="display: none" role="gridcell">0</td>
+                <td style="display: none" role="gridcell">50</td>
+                <td style="display: none" role="gridcell">50</td>
+                <td style="display: none" role="gridcell">0</td>
+                <td role="gridcell">
+                  <input
+                    type="button"
+                    class="k-grid-sample"
+                    value="Show"
+                    style="height: 25px; font-size: 12px"
+                  />
+                </td>
+              </tr>
+              <tr
+                data-uid="932e4ff3-d4eb-4982-bde0-55054788773b"
+                role="row"
+                style="
+                  background-color: rgb(99, 220, 144);
+                  color: rgb(255, 255, 255);
+                "
+              >
+                <td role="gridcell">161026</td>
+                <td role="gridcell">Mr. NAZIM /M/5 (Y)</td>
+                <td role="gridcell">14/06/2024 02:58:50 PM</td>
+                <td role="gridcell">Dr. S.G.GADKAR D.C.H</td>
+                <td style="display: none" role="gridcell">N</td>
+                <td style="display: none" role="gridcell">
+                  <a class="complete">C</a>
+                </td>
+                <td style="display: none" role="gridcell">500</td>
+                <td style="display: none" role="gridcell">0</td>
+                <td style="display: none" role="gridcell">500</td>
+                <td style="display: none" role="gridcell">500</td>
+                <td style="display: none" role="gridcell">0</td>
+                <td role="gridcell">
+                  <input
+                    type="button"
+                    class="k-grid-sample"
+                    value="Show"
+                    style="height: 25px; font-size: 12px"
+                  />
+                </td>
+              </tr>
+              <tr
+                class="k-alt"
+                data-uid="0bac5914-9a38-49b7-be27-fbb913301480"
+                role="row"
+                style="
+                  background-color: rgb(99, 220, 144);
+                  color: rgb(255, 255, 255);
+                "
+              >
+                <td role="gridcell">161025</td>
+                <td role="gridcell">Mr. RAMJI LAL /M/50 (Y)</td>
+                <td role="gridcell">14/06/2024 02:57:56 PM</td>
+                <td role="gridcell">Dr. VACHASPATI SHARMA</td>
+                <td style="display: none" role="gridcell">N</td>
+                <td style="display: none" role="gridcell">
+                  <a class="complete">C</a>
+                </td>
+                <td style="display: none" role="gridcell">380</td>
+                <td style="display: none" role="gridcell">0</td>
+                <td style="display: none" role="gridcell">380</td>
+                <td style="display: none" role="gridcell">380</td>
+                <td style="display: none" role="gridcell">0</td>
+                <td role="gridcell">
+                  <input
+                    type="button"
+                    class="k-grid-sample"
+                    value="Show"
+                    style="height: 25px; font-size: 12px"
+                  />
+                </td>
+              </tr>
+              <tr
+                data-uid="7d636149-8618-48ba-a553-12bd0f95a195"
+                role="row"
+                style="
+                  background-color: rgb(99, 220, 144);
+                  color: rgb(255, 255, 255);
+                "
+              >
+                <td role="gridcell">161024</td>
+                <td role="gridcell">Mrs. KOMAL /F/29 (Y)</td>
+                <td role="gridcell">14/06/2024 02:49:46 PM</td>
+                <td role="gridcell"></td>
+                <td style="display: none" role="gridcell">N</td>
+                <td style="display: none" role="gridcell">
+                  <a class="complete">C</a>
+                </td>
+                <td style="display: none" role="gridcell">300</td>
+                <td style="display: none" role="gridcell">0</td>
+                <td style="display: none" role="gridcell">300</td>
+                <td style="display: none" role="gridcell">300</td>
+                <td style="display: none" role="gridcell">0</td>
+                <td role="gridcell">
+                  <input
+                    type="button"
+                    class="k-grid-sample"
+                    value="Show"
+                    style="height: 25px; font-size: 12px"
+                  />
+                </td>
+              </tr>
+              <tr
+                class="k-alt"
+                data-uid="30b2b474-51f9-4386-b221-31f6597f532d"
+                role="row"
+                style="
+                  background-color: rgb(99, 220, 144);
+                  color: rgb(255, 255, 255);
+                "
+              >
+                <td role="gridcell">161023</td>
+                <td role="gridcell">Mrs. BABY BHADORIYA /F/34 (Y)</td>
+                <td role="gridcell">14/06/2024 02:49:28 PM</td>
+                <td role="gridcell"></td>
+                <td style="display: none" role="gridcell">N</td>
+                <td style="display: none" role="gridcell">
+                  <a class="complete">C</a>
+                </td>
+                <td style="display: none" role="gridcell">50</td>
+                <td style="display: none" role="gridcell">0</td>
+                <td style="display: none" role="gridcell">50</td>
+                <td style="display: none" role="gridcell">50</td>
+                <td style="display: none" role="gridcell">0</td>
+                <td role="gridcell">
+                  <input
+                    type="button"
+                    class="k-grid-sample"
+                    value="Show"
+                    style="height: 25px; font-size: 12px"
+                  />
+                </td>
+              </tr>
+              <tr
+                data-uid="7e55ffbc-e22d-43e5-bd16-c5c2602bd20d"
+                role="row"
+                style="
+                  background-color: rgb(99, 220, 144);
+                  color: rgb(255, 255, 255);
+                "
+              >
+                <td role="gridcell">161022</td>
+                <td role="gridcell">Mr. ROHIT /M/22 (Y)</td>
+                <td role="gridcell">14/06/2024 02:49:04 PM</td>
+                <td role="gridcell"></td>
+                <td style="display: none" role="gridcell">N</td>
+                <td style="display: none" role="gridcell">
+                  <a class="complete">C</a>
+                </td>
+                <td style="display: none" role="gridcell">350</td>
+                <td style="display: none" role="gridcell">0</td>
+                <td style="display: none" role="gridcell">350</td>
+                <td style="display: none" role="gridcell">350</td>
+                <td style="display: none" role="gridcell">0</td>
+                <td role="gridcell">
+                  <input
+                    type="button"
+                    class="k-grid-sample"
+                    value="Show"
+                    style="height: 25px; font-size: 12px"
+                  />
+                </td>
+              </tr>
+              <tr
+                class="k-alt"
+                data-uid="fd04bac7-6114-4d5f-a131-469494ea9833"
+                role="row"
+                style="
+                  background-color: rgb(99, 220, 144);
+                  color: rgb(255, 255, 255);
+                "
+              >
+                <td role="gridcell">161021</td>
+                <td role="gridcell">Smt. PUSHPA RATHOR /F/61 (Y)</td>
+                <td role="gridcell">14/06/2024 02:48:43 PM</td>
+                <td role="gridcell"></td>
+                <td style="display: none" role="gridcell">N</td>
+                <td style="display: none" role="gridcell">
+                  <a class="complete">C</a>
+                </td>
+                <td style="display: none" role="gridcell">360</td>
+                <td style="display: none" role="gridcell">0</td>
+                <td style="display: none" role="gridcell">360</td>
+                <td style="display: none" role="gridcell">360</td>
+                <td style="display: none" role="gridcell">0</td>
+                <td role="gridcell">
+                  <input
+                    type="button"
+                    class="k-grid-sample"
+                    value="Show"
+                    style="height: 25px; font-size: 12px"
+                  />
+                </td>
+              </tr>
+              <tr
+                data-uid="a43f525c-ce44-4ee0-abfd-ccc9d3d0cd9b"
+                role="row"
+                style="
+                  background-color: rgb(99, 220, 144);
+                  color: rgb(255, 255, 255);
+                "
+              >
+                <td role="gridcell">161020</td>
+                <td role="gridcell">Mrs. KAMLESH /F/27 (Y)</td>
+                <td role="gridcell">14/06/2024 02:48:04 PM</td>
+                <td role="gridcell"></td>
+                <td style="display: none" role="gridcell">N</td>
+                <td style="display: none" role="gridcell">
+                  <a class="complete">C</a>
+                </td>
+                <td style="display: none" role="gridcell">160</td>
+                <td style="display: none" role="gridcell">0</td>
+                <td style="display: none" role="gridcell">160</td>
+                <td style="display: none" role="gridcell">160</td>
+                <td style="display: none" role="gridcell">0</td>
+                <td role="gridcell">
+                  <input
+                    type="button"
+                    class="k-grid-sample"
+                    value="Show"
+                    style="height: 25px; font-size: 12px"
+                  />
+                </td>
+              </tr>
+              <tr
+                class="k-alt"
+                data-uid="38ab3259-3265-4d2f-9e2d-079bf912b402"
+                role="row"
+                style="
+                  background-color: rgb(99, 220, 144);
+                  color: rgb(255, 255, 255);
+                "
+              >
+                <td role="gridcell">161019</td>
+                <td role="gridcell">Mrs. SAMINA KHAN /F/35 (Y)</td>
+                <td role="gridcell">14/06/2024 02:47:45 PM</td>
+                <td role="gridcell"></td>
+                <td style="display: none" role="gridcell">N</td>
+                <td style="display: none" role="gridcell">
+                  <a class="complete">C</a>
+                </td>
+                <td style="display: none" role="gridcell">100</td>
+                <td style="display: none" role="gridcell">0</td>
+                <td style="display: none" role="gridcell">100</td>
+                <td style="display: none" role="gridcell">100</td>
+                <td style="display: none" role="gridcell">0</td>
+                <td role="gridcell">
+                  <input
+                    type="button"
+                    class="k-grid-sample"
+                    value="Show"
+                    style="height: 25px; font-size: 12px"
+                  />
+                </td>
+              </tr>
+              <tr
+                data-uid="b34fe7b1-8ac1-4741-9bec-6361324bcb5b"
+                role="row"
+                style="
+                  background-color: rgb(99, 220, 144);
+                  color: rgb(255, 255, 255);
+                "
+              >
+                <td role="gridcell">161018</td>
+                <td role="gridcell">Mr. JONY YADAV /M/35 (Y)</td>
+                <td role="gridcell">14/06/2024 02:47:23 PM</td>
+                <td role="gridcell"></td>
+                <td style="display: none" role="gridcell">N</td>
+                <td style="display: none" role="gridcell">
+                  <a class="complete">C</a>
+                </td>
+                <td style="display: none" role="gridcell">200</td>
+                <td style="display: none" role="gridcell">0</td>
+                <td style="display: none" role="gridcell">200</td>
+                <td style="display: none" role="gridcell">200</td>
+                <td style="display: none" role="gridcell">0</td>
+                <td role="gridcell">
+                  <input
+                    type="button"
+                    class="k-grid-sample"
+                    value="Show"
+                    style="height: 25px; font-size: 12px"
+                  />
+                </td>
+              </tr>
+              <tr
+                class="k-alt"
+                data-uid="7eea66be-d2e8-4da1-b19c-db3ed74a6ee2"
+                role="row"
+                style="
+                  background-color: rgb(99, 220, 144);
+                  color: rgb(255, 255, 255);
+                "
+              >
+                <td role="gridcell">161017</td>
+                <td role="gridcell">Mrs. ISHRAT /F/25 (Y)</td>
+                <td role="gridcell">14/06/2024 12:27:19 PM</td>
+                <td role="gridcell"></td>
+                <td style="display: none" role="gridcell">N</td>
+                <td style="display: none" role="gridcell">
+                  <a class="complete">C</a>
+                </td>
+                <td style="display: none" role="gridcell">130</td>
+                <td style="display: none" role="gridcell">0</td>
+                <td style="display: none" role="gridcell">130</td>
+                <td style="display: none" role="gridcell">130</td>
+                <td style="display: none" role="gridcell">0</td>
+                <td role="gridcell">
+                  <input
+                    type="button"
+                    class="k-grid-sample"
+                    value="Show"
+                    style="height: 25px; font-size: 12px"
+                  />
+                </td>
+              </tr>
+              <tr
+                data-uid="c96e7b46-cc93-4e68-a736-8aa598bb37a5"
+                role="row"
+                style="
+                  background-color: rgb(99, 220, 144);
+                  color: rgb(255, 255, 255);
+                "
+              >
+                <td role="gridcell">161016</td>
+                <td role="gridcell">Mrs. USHA KUSHWAH /F/35 (Y)</td>
+                <td role="gridcell">14/06/2024 12:26:43 PM</td>
+                <td role="gridcell"></td>
+                <td style="display: none" role="gridcell">N</td>
+                <td style="display: none" role="gridcell">
+                  <a class="complete">C</a>
+                </td>
+                <td style="display: none" role="gridcell">100</td>
+                <td style="display: none" role="gridcell">0</td>
+                <td style="display: none" role="gridcell">100</td>
+                <td style="display: none" role="gridcell">100</td>
+                <td style="display: none" role="gridcell">0</td>
+                <td role="gridcell">
+                  <input
+                    type="button"
+                    class="k-grid-sample"
+                    value="Show"
+                    style="height: 25px; font-size: 12px"
+                  />
+                </td>
+              </tr>
+              <tr
+                class="k-alt"
+                data-uid="3a2f049a-d8d9-41ee-8d30-d4f403bb958a"
+                role="row"
+                style="
+                  background-color: rgb(99, 220, 144);
+                  color: rgb(255, 255, 255);
+                "
+              >
+                <td role="gridcell">161015</td>
+                <td role="gridcell">Mrs. PRIYANKA SIKARWAR /F/30 (Y)</td>
+                <td role="gridcell">14/06/2024 11:42:37 AM</td>
+                <td role="gridcell"></td>
+                <td style="display: none" role="gridcell">N</td>
+                <td style="display: none" role="gridcell">
+                  <a class="complete">C</a>
+                </td>
+                <td style="display: none" role="gridcell">300</td>
+                <td style="display: none" role="gridcell">0</td>
+                <td style="display: none" role="gridcell">300</td>
+                <td style="display: none" role="gridcell">300</td>
+                <td style="display: none" role="gridcell">0</td>
+                <td role="gridcell">
+                  <input
+                    type="button"
+                    class="k-grid-sample"
+                    value="Show"
+                    style="height: 25px; font-size: 12px"
+                  />
+                </td>
+              </tr>
+              <tr
+                data-uid="5318a3f1-8944-4284-853f-50a36096635a"
+                role="row"
+                style="
+                  background-color: rgb(99, 220, 144);
+                  color: rgb(255, 255, 255);
+                "
+              >
+                <td role="gridcell">161014</td>
+                <td role="gridcell">Mr. ABHISHEK SHARMA /M/23 (Y)</td>
+                <td role="gridcell">14/06/2024 11:42:07 AM</td>
+                <td role="gridcell"></td>
+                <td style="display: none" role="gridcell">N</td>
+                <td style="display: none" role="gridcell">
+                  <a class="complete">C</a>
+                </td>
+                <td style="display: none" role="gridcell">350</td>
+                <td style="display: none" role="gridcell">0</td>
+                <td style="display: none" role="gridcell">350</td>
+                <td style="display: none" role="gridcell">350</td>
+                <td style="display: none" role="gridcell">0</td>
+                <td role="gridcell">
+                  <input
+                    type="button"
+                    class="k-grid-sample"
+                    value="Show"
+                    style="height: 25px; font-size: 12px"
+                  />
+                </td>
+              </tr>
+              <tr
+                class="k-alt"
+                data-uid="6c9c8696-dea8-4948-85e7-46d6c831cb8d"
+                role="row"
+                style="
+                  background-color: rgb(99, 220, 144);
+                  color: rgb(255, 255, 255);
+                "
+              >
+                <td role="gridcell">161013</td>
+                <td role="gridcell">Smt. NEELAM /F/42 (Y)</td>
+                <td role="gridcell">14/06/2024 11:41:28 AM</td>
+                <td role="gridcell"></td>
+                <td style="display: none" role="gridcell">N</td>
+                <td style="display: none" role="gridcell">
+                  <a class="complete">C</a>
+                </td>
+                <td style="display: none" role="gridcell">840</td>
+                <td style="display: none" role="gridcell">0</td>
+                <td style="display: none" role="gridcell">840</td>
+                <td style="display: none" role="gridcell">840</td>
+                <td style="display: none" role="gridcell">0</td>
+                <td role="gridcell">
+                  <input
+                    type="button"
+                    class="k-grid-sample"
+                    value="Show"
+                    style="height: 25px; font-size: 12px"
+                  />
+                </td>
+              </tr>
+              <tr
+                data-uid="b98aecb7-39b3-4972-9442-d46c5c4f561c"
+                role="row"
+                style="
+                  background-color: rgb(99, 220, 144);
+                  color: rgb(255, 255, 255);
+                "
+              >
+                <td role="gridcell">161012</td>
+                <td role="gridcell">Smt. ANITA /F/55 (Y)</td>
+                <td role="gridcell">14/06/2024 11:40:54 AM</td>
+                <td role="gridcell"></td>
+                <td style="display: none" role="gridcell">N</td>
+                <td style="display: none" role="gridcell">
+                  <a class="complete">C</a>
+                </td>
+                <td style="display: none" role="gridcell">120</td>
+                <td style="display: none" role="gridcell">0</td>
+                <td style="display: none" role="gridcell">120</td>
+                <td style="display: none" role="gridcell">120</td>
+                <td style="display: none" role="gridcell">0</td>
+                <td role="gridcell">
+                  <input
+                    type="button"
+                    class="k-grid-sample"
+                    value="Show"
+                    style="height: 25px; font-size: 12px"
+                  />
+                </td>
+              </tr>
+              <tr
+                class="k-alt"
+                data-uid="78e72928-17b6-4828-98bb-17b87ee643a9"
+                role="row"
+                style="
+                  background-color: rgb(99, 220, 144);
+                  color: rgb(255, 255, 255);
+                "
+              >
+                <td role="gridcell">161011</td>
+                <td role="gridcell">Smt. NARMADA DHAKAD /F/58 (Y)</td>
+                <td role="gridcell">14/06/2024 11:40:28 AM</td>
+                <td role="gridcell"></td>
+                <td style="display: none" role="gridcell">N</td>
+                <td style="display: none" role="gridcell">
+                  <a class="complete">C</a>
+                </td>
+                <td style="display: none" role="gridcell">230</td>
+                <td style="display: none" role="gridcell">0</td>
+                <td style="display: none" role="gridcell">230</td>
+                <td style="display: none" role="gridcell">230</td>
+                <td style="display: none" role="gridcell">0</td>
+                <td role="gridcell">
+                  <input
+                    type="button"
+                    class="k-grid-sample"
+                    value="Show"
+                    style="height: 25px; font-size: 12px"
+                  />
+                </td>
+              </tr>
+              <tr
+                data-uid="c8ce4cdc-a674-42f4-a481-a3ec3865da3c"
+                role="row"
+                style="
+                  background-color: rgb(99, 220, 144);
+                  color: rgb(255, 255, 255);
+                "
+              >
+                <td role="gridcell">161010</td>
+                <td role="gridcell">Mr. MOHAN LAL /M/54 (Y)</td>
+                <td role="gridcell">14/06/2024 11:39:35 AM</td>
+                <td role="gridcell"></td>
+                <td style="display: none" role="gridcell">N</td>
+                <td style="display: none" role="gridcell">
+                  <a class="complete">C</a>
+                </td>
+                <td style="display: none" role="gridcell">250</td>
+                <td style="display: none" role="gridcell">0</td>
+                <td style="display: none" role="gridcell">250</td>
+                <td style="display: none" role="gridcell">250</td>
+                <td style="display: none" role="gridcell">0</td>
+                <td role="gridcell">
+                  <input
+                    type="button"
+                    class="k-grid-sample"
+                    value="Show"
+                    style="height: 25px; font-size: 12px"
+                  />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="k-grid-footer" tabindex="-1" style="padding-right: 17px">
+          <div class="k-grid-footer-wrap">
+            <table>
+              <colgroup>
+                <col style="width: 110px" />
+                <col style="width: 210px" />
+                <col style="width: 145px" />
+                <col style="width: 150px" />
+                <col style="width: 100px" />
+              </colgroup>
+              <tbody>
+                <tr class="k-footer-template">
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td style="display: none">?</td>
+                  <td style="display: none">21</td>
+                  <td style="display: none">5020.00</td>
+                  <td style="display: none">0.00</td>
+                  <td style="display: none">5020.00</td>
+                  <td style="display: none">5020.00</td>
+                  <td style="display: none">0.00</td>
+                  <td>&nbsp;</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="k-pager-wrap k-grid-pager k-widget" data-role="pager">
+          <a
+            href="#"
+            title="Go to the first page"
+            class="k-link k-state-disabled"
+            data-page="1"
+            tabindex="-1"
+            ><span class="k-icon k-i-seek-w">Go to the first page</span></a
+          ><a
+            href="#"
+            title="Go to the previous page"
+            class="k-link k-state-disabled"
+            data-page="1"
+            tabindex="-1"
+            ><span class="k-icon k-i-arrow-w">Go to the previous page</span></a
+          >
+          <ul class="k-pager-numbers k-reset">
+            <li><span class="k-state-selected">1</span></li>
+          </ul>
+          <a
+            href="#"
+            title="Go to the next page"
+            class="k-link k-state-disabled"
+            data-page="1"
+            tabindex="-1"
+            ><span class="k-icon k-i-arrow-e">Go to the next page</span></a
+          ><a
+            href="#"
+            title="Go to the last page"
+            class="k-link k-state-disabled"
+            data-page="1"
+            tabindex="-1"
+            ><span class="k-icon k-i-seek-e">Go to the last page</span></a
+          ><span class="k-pager-info k-label">1 - 21 of 21 items</span>
+        </div>
+      </div>
     </div>
 
     <script src="nav.js"></script>
-</body>
+  </body>
 </html>
