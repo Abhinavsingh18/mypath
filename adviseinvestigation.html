@@ -417,7 +417,7 @@
     <div id="myModal" class="modal">
       <div class="modal-content" style="background-color: #f1d9d9">
         <span class="close">&times;</span>
-        <form id="registerPatientForm">
+        <!-- <form id="registerPatientForm">
           <div class="form-group">
             <label for="title">Title:</label>
             <select id="title" name="title">
@@ -511,7 +511,103 @@
             <button type="submit">Submit</button>
             <button type="reset">Reset</button>
           </div>
+        </form> -->
+        <form id="registerPatientForm">
+          <div class="form-group">
+            <label for="title">Title:</label>
+            <select id="title" name="title">
+              <option value="mr">Mr.</option>
+              <option value="mrs">Mrs.</option>
+              <option value="ms">Ms.</option>
+              <option value="dr">Dr.</option>
+            </select>
+          </div>
+        
+          <div class="form-group">
+            <label for="firstname">First Name:</label>
+            <input type="text" id="firstname" name="firstname" required />
+          </div>
+        
+          <div class="form-group">
+            <label for="lastname">Last Name:</label>
+            <input type="text" id="lastname" name="lastname" required />
+          </div>
+        
+          <div class="form-group">
+            <label for="uid">UID:</label>
+            <input type="text" id="uid" name="uid" required />
+          </div>
+        
+          <div class="form-group">
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender" required>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+        
+          <div class="form-group">
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" required />
+          </div>
+        
+          <div class="form-group">
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" name="dob" required />
+          </div>
+        
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required />
+          </div>
+        
+          <div class="form-group">
+            <label for="contactnumber">Contact Number:</label>
+            <input
+              type="tel"
+              id="contactnumber"
+              name="contactnumber"
+              required
+            />
+          </div>
+        
+          <div class="form-group">
+            <label for="address">Address:</label>
+            <textarea id="address" name="address" rows="3" required></textarea>
+          </div>
+        
+          <div class="form-group">
+            <label for="area">Area:</label>
+            <input type="text" id="area" name="area" required />
+          </div>
+        
+          <div class="form-group">
+            <label for="city">City:</label>
+            <input type="text" id="city" name="city" required />
+          </div>
+        
+          <div class="form-group">
+            <label for="state">State:</label>
+            <input type="text" id="state" name="state" required />
+          </div>
+        
+          <div class="form-group">
+            <label for="country">Country:</label>
+            <input type="text" id="country" name="country" required />
+          </div>
+        
+          <div class="form-group">
+            <label for="pincode">Pincode:</label>
+            <input type="text" id="pincode" name="pincode" required />
+          </div>
+        
+          <div class="form-actions">
+            <button type="submit">Submit</button>
+            <button type="reset">Reset</button>
+          </div>
         </form>
+        
       </div>
     </div>
 
