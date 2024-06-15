@@ -218,155 +218,14 @@
         data-role="grid"
         class="k-grid k-widget"
       >
-        <div class="k-grid-header" style="padding-right: 0px">
-          <div class="k-grid-header-wrap" data-role="resizable">
-            <table role="grid" tabindex="-1" style="width: 93vw;">
-              <colgroup>
-                <col style="width: 110px" />
-                <col style="width: 210px" />
-                <col style="width: 145px" />
-                <col style="width: 150px" />
-                <col style="width: 100px" />
-              </colgroup>
-              <thead>
-                <tr>
-                  <th
-                    role="columnheader"
-                    data-field="SrNo"
-                    data-title="Serial No"
-                    class="k-header k-filterable"
-                    data-role="sortable"
-                  >
-                    <a class="k-grid-filter" href="#" tabindex="-1"
-                      ><span class="k-icon k-filter"></span></a
-                    ><a class="k-link" href="#" tabindex="-1">Serial No</a>
-                  </th>
-                  <th
-                    role="columnheader"
-                    data-field="PatientName"
-                    data-title="Patient Name"
-                    class="k-header k-filterable"
-                    data-role="sortable"
-                  >
-                    <a class="k-grid-filter" href="#" tabindex="-1"
-                      ><span class="k-icon k-filter"></span></a
-                    ><a class="k-link" href="#" tabindex="-1">Patient Name</a>
-                  </th>
-                  <th
-                    role="columnheader"
-                    data-field="Dt"
-                    data-title="Advised Date"
-                    class="k-header"
-                    data-role="sortable"
-                    data-dir="desc"
-                    aria-sort="descending"
-                  >
-                    <a class="k-link" href="#" tabindex="-1"
-                      >Advised Date<span class="k-icon k-i-arrow-s"></span
-                    ></a>
-                  </th>
-                  <th
-                    role="columnheader"
-                    data-field="AdvisedDoctor"
-                    data-title="Refered By"
-                    class="k-header"
-                    data-role="sortable"
-                  >
-                    <a class="k-link" href="#" tabindex="-1">Refered By</a>
-                  </th>
-                  <th
-                    role="columnheader"
-                    data-field="Urgent"
-                    data-title="!"
-                    style="display: none"
-                    class="k-header"
-                    data-role="sortable"
-                  >
-                    <a class="k-link" href="#" tabindex="-1">!</a>
-                  </th>
-                  <th
-                    role="columnheader"
-                    data-field=""
-                    data-title="S"
-                    style="
-                      display: none;
-                      color: rgb(255, 0, 0);
-                      font-weight: bold;
-                    "
-                    class="k-header"
-                  >
-                    S
-                  </th>
-                  <th
-                    role="columnheader"
-                    data-field="TotalAmount"
-                    data-title="Total"
-                    style="display: none"
-                    class="k-header"
-                    data-role="sortable"
-                  >
-                    <a class="k-link" href="#" tabindex="-1">Total</a>
-                  </th>
-                  <th
-                    role="columnheader"
-                    data-field="Discount"
-                    data-title="Dis"
-                    style="display: none"
-                    class="k-header"
-                    data-role="sortable"
-                  >
-                    <a class="k-link" href="#" tabindex="-1">Dis</a>
-                  </th>
-                  <th
-                    role="columnheader"
-                    data-field="NetAmount"
-                    data-title="Net"
-                    style="display: none"
-                    class="k-header"
-                    data-role="sortable"
-                  >
-                    <a class="k-link" href="#" tabindex="-1">Net</a>
-                  </th>
-                  <th
-                    role="columnheader"
-                    data-field="Balance"
-                    data-title="Bal"
-                    style="display: none"
-                    class="k-header"
-                    data-role="sortable"
-                  >
-                    <a class="k-link" href="#" tabindex="-1">Bal</a>
-                  </th>
-                  <th
-                    role="columnheader"
-                    data-field="Refund"
-                    data-title="Refund"
-                    style="display: none"
-                    class="k-header"
-                    data-role="sortable"
-                  >
-                    <a class="k-link" href="#" tabindex="-1">Refund</a>
-                  </th>
-                  <th
-                    role="columnheader"
-                    data-field=""
-                    data-title="Information"
-                    class="k-header"
-                  >
-                    Information
-                  </th>
-                </tr>
-              </thead>
-            </table>
-          </div>
-        </div>
+        
         <div class="k-grid-content scroll-pane" style="height: 328.4px;width: 100% !important;">
           <table
             role="grid"
             tabindex="0"
             data-role="selectable"
             class="k-selectable"
-            style="height: auto;width: 90%;"
+            style="height: auto;width:100%;"
           >
             <colgroup>
               <col style="width: 110px" />
@@ -375,6 +234,135 @@
               <col style="width: 150px" />
               <col style="width: 100px" />
             </colgroup>
+            <thead>
+              <tr>
+                <th
+                  role="columnheader"
+                  data-field="SrNo"
+                  data-title="Serial No"
+                  class="k-header k-filterable"
+                  data-role="sortable"
+                >
+                  <a class="k-grid-filter" href="#" tabindex="-1"
+                    ><span class="k-icon k-filter"></span></a
+                  ><a class="k-link" href="#" tabindex="-1">Serial No</a>
+                </th>
+                <th
+                  role="columnheader"
+                  data-field="PatientName"
+                  data-title="Patient Name"
+                  class="k-header k-filterable"
+                  data-role="sortable"
+                >
+                  <a class="k-grid-filter" href="#" tabindex="-1"
+                    ><span class="k-icon k-filter"></span></a
+                  ><a class="k-link" href="#" tabindex="-1">Patient Name</a>
+                </th>
+                <th
+                  role="columnheader"
+                  data-field="Dt"
+                  data-title="Advised Date"
+                  class="k-header"
+                  data-role="sortable"
+                  data-dir="desc"
+                  aria-sort="descending"
+                >
+                  <a class="k-link" href="#" tabindex="-1"
+                    >Advised Date<span class="k-icon k-i-arrow-s"></span
+                  ></a>
+                </th>
+                <th
+                  role="columnheader"
+                  data-field="AdvisedDoctor"
+                  data-title="Refered By"
+                  class="k-header"
+                  data-role="sortable"
+                >
+                  <a class="k-link" href="#" tabindex="-1">Refered By</a>
+                </th>
+                <th
+                  role="columnheader"
+                  data-field="Urgent"
+                  data-title="!"
+                  style="display: none"
+                  class="k-header"
+                  data-role="sortable"
+                >
+                  <a class="k-link" href="#" tabindex="-1">!</a>
+                </th>
+                <th
+                  role="columnheader"
+                  data-field=""
+                  data-title="S"
+                  style="
+                    display: none;
+                    color: rgb(255, 0, 0);
+                    font-weight: bold;
+                  "
+                  class="k-header"
+                >
+                  S
+                </th>
+                <th
+                  role="columnheader"
+                  data-field="TotalAmount"
+                  data-title="Total"
+                  style="display: none"
+                  class="k-header"
+                  data-role="sortable"
+                >
+                  <a class="k-link" href="#" tabindex="-1">Total</a>
+                </th>
+                <th
+                  role="columnheader"
+                  data-field="Discount"
+                  data-title="Dis"
+                  style="display: none"
+                  class="k-header"
+                  data-role="sortable"
+                >
+                  <a class="k-link" href="#" tabindex="-1">Dis</a>
+                </th>
+                <th
+                  role="columnheader"
+                  data-field="NetAmount"
+                  data-title="Net"
+                  style="display: none"
+                  class="k-header"
+                  data-role="sortable"
+                >
+                  <a class="k-link" href="#" tabindex="-1">Net</a>
+                </th>
+                <th
+                  role="columnheader"
+                  data-field="Balance"
+                  data-title="Bal"
+                  style="display: none"
+                  class="k-header"
+                  data-role="sortable"
+                >
+                  <a class="k-link" href="#" tabindex="-1">Bal</a>
+                </th>
+                <th
+                  role="columnheader"
+                  data-field="Refund"
+                  data-title="Refund"
+                  style="display: none"
+                  class="k-header"
+                  data-role="sortable"
+                >
+                  <a class="k-link" href="#" tabindex="-1">Refund</a>
+                </th>
+                <th
+                  role="columnheader"
+                  data-field=""
+                  data-title="Information"
+                  class="k-header"
+                >
+                  Information
+                </th>
+              </tr>
+            </thead>
             <tbody>
               <tr
                 data-uid="9dabf605-9854-4835-b2e6-1a6c112d0749"
