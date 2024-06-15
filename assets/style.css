@@ -262,7 +262,7 @@ a.plslogin:hover {
   padding-left: 60px;
 }
 .scroll-pane {
-  
+  width: 430px;
   height: 270px;
   overflow: auto;
 }
