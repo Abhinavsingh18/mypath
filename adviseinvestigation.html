@@ -542,6 +542,43 @@
         }
       };
     </script>
+    <script>
+      document.getElementById('registerPatientForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+      
+        // Get form data
+        var formData = new FormData(this);
+      
+        // Convert form data to JSON
+        var object = {};
+        formData.forEach(function(value, key) {
+          object[key] = value;
+        });
+        var json = JSON.stringify(object);
+      
+        // Send data to the server
+        fetch('https://rssmarthut.com/mypath/patients.php', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: json
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.status === 'success') {
+            alert('Patient registered successfully');
+          } else {
+            alert('Registration failed: ' + data.message);
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          alert('An error occurred while registering the patient');
+        });
+      });
+      </script>
+      
     <script src="nav.js"></script>
 </body>
 </html>
