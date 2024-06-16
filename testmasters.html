@@ -462,22 +462,26 @@
                 <form id="primaryCategoryForm" action="https://rssmarthut.com/mypath/primarycategory.php" method="POST" style="padding-left: 12px;padding-bottom: 12px;">
                   <label for="primaryCategoryName">Name:</label>
                   <input type="text" id="primaryCategoryName" name="primaryCategoryName" required placeholder="ENTER THE PRIMARY CATEGORY" style="padding-left:4PX; width: 18vw; border: 0.1px solid #f296fd; border-radius: 3px;background-color: #ececec;">
-                  <button type="submit" style="border: 0.1px solid pink;border-radius: 5px;height: 1.7vw;width: 7vw;" onclick="alert('PRIMARY CATEGORY ADDED SUCCESSFULLY')">Add</button>
+                  <button id="primarybtn" type="submit" style="border: 0.1px solid pink;border-radius: 5px;height: 1.7vw;width: 7vw;" onclick="alert('PRIMARY CATEGORY ADDED SUCCESSFULLY')">Add</button>
               </form>
               
             </div>
           </div>
           <div id="secondaryCategoryModal" class="modal">
             <div class="modal-content">
-                <span class="close" id="closeSecondaryModal" style="top: -8px;">&times;</span>
+                <span class="close" id="closeSecondaryModal">&times;</span>
                 <div class="modal-header">ADD SECONDARY CATEGORY</div>
-                <form id="secondaryCategoryForm" style="padding-left: 12px;padding-bottom: 12px;">
+                <form id="secondaryCategoryForm" style="padding-left: 12px; padding-bottom: 12px;">
                     <label for="secondaryCategoryName">Name:</label>
-                    <input type="text" id="secondaryCategoryName" name="secondaryCategoryName" required placeholder="ENTER THE SECONDARY CATEGORY" style="padding-left:4PX; width: 18vw;   border: 0.1px solid #f296fd;border-radius: 3px;background-color: #ececec;">
-                    <button type="submit" style="    border: 0.1px solid pink;border-radius: 5px;height: 1.7vw;width: 7vw;">Add</button>
+                    <input type="text" id="secondaryCategoryName" name="secondaryCategoryName" required placeholder="ENTER THE SECONDARY CATEGORY" style="padding-left:4PX; width: 18vw; border: 0.1px solid #f296fd; border-radius: 3px; background-color: #ececec;">
+                    <label for="primaryCategorySelect">Select Primary Category:</label>
+                    <select id="primaryCategorySelect" name="primaryCategorySelect" required style="padding-left:4PX; width: 18vw; border: 0.1px solid #f296fd; border-radius: 3px; background-color: #ececec;">
+                        <!-- Options will be dynamically added here -->
+                    </select>
+                    <button id="secondarybtn" type="submit" style="border: 0.1px solid pink; border-radius: 5px; height: 1.7vw; width: 7vw;">Add</button>
                 </form>
             </div>
-          </div>
+        </div>
         </div>
 
         <!-- Tabs Start Here -->
@@ -501,6 +505,9 @@
       // Get close elements
       const closePrimaryModal = document.getElementById("closePrimaryModal");
       const closeSecondaryModal = document.getElementById("closeSecondaryModal");
+
+      const primarybtn=document.getElementById("primarybtn");
+      const secondarybtn=document.getElementById("secondarybtn");
   
       // Open primary category modal
       addPrimaryCategoryBtn.addEventListener("click", () => {
@@ -516,9 +523,16 @@
       closePrimaryModal.addEventListener("click", () => {
           primaryCategoryModal.style.display = "none";
       });
+      primarybtn.addEventListener("click", () => {
+          primaryCategoryModal.style.display = "none";
+      });
+
   
       // Close secondary category modal
       closeSecondaryModal.addEventListener("click", () => {
+          secondaryCategoryModal.style.display = "none";
+      });
+      secondarybtn.addEventListener("click", () => {
           secondaryCategoryModal.style.display = "none";
       });
   
