@@ -458,11 +458,13 @@
             <div class="modal-content">
                 <span class="close" id="closePrimaryModal" style="top: -8px;">&times;</span>
                 <div class="modal-header">ADD PRIMARY CATEGORY</div>
-                <form id="primaryCategoryForm" style="padding-left: 12px;padding-bottom: 12px; ">
-                    <label for="primaryCategoryName">Name:</label>
-                    <input type="text" id="primaryCategoryName" name="primaryCategoryName" required placeholder="ENTER THE PRIMARY CATEGORY" style=" padding-left:4PX; width: 18vw;  border: 0.1px solid #f296fd; border-radius: 3px;background-color: #ececec;">
-                    <button type="submit" style="    border: 0.1px solid pink;border-radius: 5px;height: 1.7vw;width: 7vw;">Add</button>
-                </form>
+               
+                <form id="primaryCategoryForm" action="https://rssmarthut.com/mypath/primarycategory.php" method="POST" style="padding-left: 12px;padding-bottom: 12px;">
+                  <label for="primaryCategoryName">Name:</label>
+                  <input type="text" id="primaryCategoryName" name="primaryCategoryName" required placeholder="ENTER THE PRIMARY CATEGORY" style="padding-left:4PX; width: 18vw; border: 0.1px solid #f296fd; border-radius: 3px;background-color: #ececec;">
+                  <button type="submit" style="border: 0.1px solid pink;border-radius: 5px;height: 1.7vw;width: 7vw;" onclick="alert('PRIMARY CATEGORY ADDED SUCCESSFULLY')">Add</button>
+              </form>
+              
             </div>
           </div>
           <div id="secondaryCategoryModal" class="modal">
@@ -491,35 +493,35 @@
       // Get modal elements
       const primaryCategoryModal = document.getElementById("primaryCategoryModal");
       const secondaryCategoryModal = document.getElementById("secondaryCategoryModal");
-
+  
       // Get button elements
       const addPrimaryCategoryBtn = document.getElementById("addPrimaryCategoryBtn");
       const addSecondaryCategoryBtn = document.getElementById("addSecondaryCategoryBtn");
-
+  
       // Get close elements
       const closePrimaryModal = document.getElementById("closePrimaryModal");
       const closeSecondaryModal = document.getElementById("closeSecondaryModal");
-
+  
       // Open primary category modal
       addPrimaryCategoryBtn.addEventListener("click", () => {
           primaryCategoryModal.style.display = "block";
       });
-
+  
       // Open secondary category modal
       addSecondaryCategoryBtn.addEventListener("click", () => {
           secondaryCategoryModal.style.display = "block";
       });
-
+  
       // Close primary category modal
       closePrimaryModal.addEventListener("click", () => {
           primaryCategoryModal.style.display = "none";
       });
-
+  
       // Close secondary category modal
       closeSecondaryModal.addEventListener("click", () => {
           secondaryCategoryModal.style.display = "none";
       });
-
+  
       // Close modals when clicking outside
       window.addEventListener("click", (event) => {
           if (event.target == primaryCategoryModal) {
@@ -529,20 +531,54 @@
               secondaryCategoryModal.style.display = "none";
           }
       });
-
+  
       // Handle form submissions
       document.getElementById("primaryCategoryForm").addEventListener("submit", (event) => {
           event.preventDefault();
-          // Add your form submission code here
-          primaryCategoryModal.style.display = "none";
+          const form = event.target;
+          const formData = new FormData(form);
+  
+          fetch(form.action, {
+              method: form.method,
+              body: formData
+          }).then(response => {
+              if (!response.ok) {
+                  throw new Error('Network response was not ok');
+              }
+              return response.json();
+          }).then(data => {
+              console.log(data);
+              primaryCategoryModal.style.display = "none"; // Hide the modal on successful form submission
+              
+          }).catch(error => {
+              console.error('There has been a problem with your fetch operation:', error);
+              
+          });
       });
-
+  
       document.getElementById("secondaryCategoryForm").addEventListener("submit", (event) => {
           event.preventDefault();
-          // Add your form submission code here
-          secondaryCategoryModal.style.display = "none";
+          const form = event.target;
+          const formData = new FormData(form);
+  
+          fetch(form.action, {
+              method: form.method,
+              body: formData
+          }).then(response => {
+              if (!response.ok) {
+                  throw new Error('Network response was not ok');
+              }
+              return response.json();
+          }).then(data => {
+              console.log(data);
+              secondaryCategoryModal.style.display = "none"; // Hide the modal on successful form submission
+          }).catch(error => {
+              console.error('There has been a problem with your fetch operation:', error);
+          });
       });
   </script>
+  
+  
     <script src="nav.js"></script>
   </body>
 </html>
