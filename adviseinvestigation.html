@@ -416,132 +416,125 @@
     <!-- The Modal -->
     <div id="myModal" class="modal">
       <div class="modal-content" style="background-color: #f1d9d9">
-        <span class="close">&times;</span>
-        <form id="registerPatientForm">
-          <div class="form-group">
-            <label for="title">Title:</label>
-            <select id="title" name="title">
-              <option value="mr">Mr.</option>
-              <option value="mrs">Mrs.</option>
-              <option value="ms">Ms.</option>
-              <option value="dr">Dr.</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="firstName">First Name:</label>
-            <input type="text" id="firstName" name="firstName" required />
-          </div>
-
-          <div class="form-group">
-            <label for="lastName">Last Name:</label>
-            <input type="text" id="lastName" name="lastName" required />
-          </div>
-
-          <div class="form-group">
-            <label for="uid">UID:</label>
-            <input type="text" id="uid" name="uid" required />
-          </div>
-
-          <div class="form-group">
-            <label for="gender">Gender:</label>
-            <select id="gender" name="gender" required>
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="age">Age:</label>
-            <input type="number" id="age" name="age" required />
-          </div>
-
-          <div class="form-group">
-            <label for="dob">Date of Birth:</label>
-            <input type="date" id="dob" name="dob" required />
-          </div>
-
-          <div class="form-group">
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required />
-          </div>
-
-          <div class="form-group">
-            <label for="contactNumber">Contact Number:</label>
-            <input
-              type="tel"
-              id="contactNumber"
-              name="contactNumber"
-              required
-            />
-          </div>
-
-          <div class="form-group">
-            <label for="address">Address:</label>
-            <textarea id="address" name="address" rows="3" required></textarea>
-          </div>
-
-          <div class="form-group">
-            <label for="area">Area:</label>
-            <input type="text" id="area" name="area" required />
-          </div>
-
-          <div class="form-group">
-            <label for="city">City:</label>
-            <input type="text" id="city" name="city" required />
-          </div>
-
-          <div class="form-group">
-            <label for="state">State:</label>
-            <input type="text" id="state" name="state" required />
-          </div>
-
-          <div class="form-group">
-            <label for="country">Country:</label>
-            <input type="text" id="country" name="country" required />
-          </div>
-
-          <div class="form-group">
-            <label for="pincode">Pincode:</label>
-            <input type="text" id="pincode" name="pincode" required />
-          </div>
-
-          <div class="form-actions">
-            <button type="submit">Submit</button>
-            <button type="reset">Reset</button>
-          </div>
-        </form>
+          <span class="close">&times;</span>
+          <form id="registerPatientForm" method="POST" action="https://rssmarthut.com/mypath/patients.php">
+              <div class="form-group">
+                  <label for="title">Title:</label>
+                  <select id="title" name="title">
+                      <option value="mr">Mr.</option>
+                      <option value="mrs">Mrs.</option>
+                      <option value="ms">Ms.</option>
+                      <option value="dr">Dr.</option>
+                  </select>
+              </div>
+              <div class="form-group">
+                  <label for="firstname">First Name:</label>
+                  <input type="text" id="firstname" name="firstname" required />
+              </div>
+              <div class="form-group">
+                  <label for="lastname">Last Name:</label>
+                  <input type="text" id="lastname" name="lastname" required />
+              </div>
+              <div class="form-group">
+                  <label for="uid">UID:</label>
+                  <input type="text" id="uid" name="uid" required />
+              </div>
+              <div class="form-group">
+                  <label for="gender">Gender:</label>
+                  <select id="gender" name="gender" required>
+                      <option value="male">Male</option>
+                      <option value="female">Female</option>
+                      <option value="other">Other</option>
+                  </select>
+              </div>
+              <div class="form-group">
+                  <label for="age">Age:</label>
+                  <input type="number" id="age" name="age" required />
+              </div>
+              <div class="form-group">
+                  <label for="dob">Date of Birth:</label>
+                  <input type="date" id="dob" name="dob" required />
+              </div>
+              <div class="form-group">
+                  <label for="email">Email:</label>
+                  <input type="email" id="email" name="email" required />
+              </div>
+              <div class="form-group">
+                  <label for="contactnumber">Contact Number:</label>
+                  <input type="tel" id="contactnumber" name="contactnumber" required />
+              </div>
+              <div class="form-group">
+                  <label for="address">Address:</label>
+                  <textarea id="address" name="address" rows="3" required></textarea>
+              </div>
+              <div class="form-group">
+                  <label for="area">Area:</label>
+                  <input type="text" id="area" name="area" required />
+              </div>
+              <div class="form-group">
+                  <label for="city">City:</label>
+                  <input type="text" id="city" name="city" required />
+              </div>
+              <div class="form-group">
+                  <label for="state">State:</label>
+                  <input type="text" id="state" name="state" required />
+              </div>
+              <div class="form-group">
+                  <label for="country">Country:</label>
+                  <input type="text" id="country" name="country" required />
+              </div>
+              <div class="form-group">
+                  <label for="pincode">Pincode:</label>
+                  <input type="text" id="pincode" name="pincode" required />
+              </div>
+              <div class="form-actions">
+                  <button type="submit">Submit</button>
+                  <button type="reset">Reset</button>
+              </div>
+          </form>
       </div>
-    </div>
-
+  </div>
+  
     <script>
       // Get the modal
       var modal = document.getElementById("myModal");
-
+  
       // Get the button that opens the modal
       var btn = document.getElementById("openModalBtn");
-
+  
       // Get the <span> element that closes the modal
       var span = document.getElementsByClassName("close")[0];
-
+  
       // When the user clicks the button, open the modal
-      btn.onclick = function () {
+      btn.onclick = function() {
         modal.style.display = "block";
-      };
-
+      }
+  
       // When the user clicks on <span> (x), close the modal
-      span.onclick = function () {
+      span.onclick = function() {
         modal.style.display = "none";
-      };
-
+      }
+  
       // When the user clicks anywhere outside of the modal, close it
-      window.onclick = function (event) {
+      window.onclick = function(event) {
         if (event.target == modal) {
           modal.style.display = "none";
         }
-      };
+      }
+  
+      // Handle form submission
+  
+        // Get form data
+        var formData = new FormData(event.target);
+  
+        // Convert form data to JSON
+        var data = {};
+        formData.forEach((value, key) => {
+          data[key] = value;
+        });
+  
+       
     </script>
     <script src="nav.js"></script>
-</body>
-</html>
+  </body>
+  </html>
