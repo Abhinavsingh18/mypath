@@ -137,117 +137,17 @@
               <div class="clsebtn" onclick="">X</div>
               <table width="450" border="0" cellspacing="0" cellpadding="0">
                 <thead>
-                    <th>Sr.No.</th>
-                    <th class="primry">Secondary Category</th>
-                    <th class="disble">Active</th>
-                    <th>edit</th>
+                    <tr>
+                        <th>Sr.No.</th>
+                        <th class="primry">Secondary Category</th>
+                        <th>edit</th>
+                    </tr>
                 </thead>
-                <tbody data-bind="foreach: secondaryCategories">
-                  <tr>
-                    <td data-bind="text: $index() + 1">1</td>
-                    <td
-                      class="primname"
-                      style="text-align: left; padding: 0 15px"
-                      data-bind="text: SecondaryCategoryName, click: $root.secondaryCategories.selectSecondaryCategory"
-                    >
-                      BIOCHEMISTRY ROUTINE
-                    </td>
-                    <td class="disbl">
-                      <input
-                        type="checkbox"
-                        name="disable"
-                        disabled="disabled"
-                        data-bind="checked: IsActive"
-                      /><label for="disable"><span></span></label>
-                    </td>
-                    <td>
-                      <span
-                        class="edit"
-                        data-bind="click: editSecondaryCategory"
-                        ><a href="#">edit</a></span
-                      >
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td data-bind="text: $index() + 1">2</td>
-                    <td
-                      class="primname"
-                      style="text-align: left; padding: 0 15px"
-                      data-bind="text: SecondaryCategoryName, click: $root.secondaryCategories.selectSecondaryCategory"
-                    >
-                      BIOCHEMISTRY SPECIAL
-                    </td>
-                    <td class="disbl">
-                      <input
-                        type="checkbox"
-                        name="disable"
-                        disabled="disabled"
-                        data-bind="checked: IsActive"
-                      /><label for="disable"><span></span></label>
-                    </td>
-                    <td>
-                      <span
-                        class="edit"
-                        data-bind="click: editSecondaryCategory"
-                        ><a href="#">edit</a></span
-                      >
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td data-bind="text: $index() + 1">3</td>
-                    <td
-                      class="primname"
-                      style="text-align: left; padding: 0 15px"
-                      data-bind="text: SecondaryCategoryName, click: $root.secondaryCategories.selectSecondaryCategory"
-                    >
-                      DRUG ASSAY
-                    </td>
-                    <td class="disbl">
-                      <input
-                        type="checkbox"
-                        name="disable"
-                        disabled="disabled"
-                        data-bind="checked: IsActive"
-                      /><label for="disable"><span></span></label>
-                    </td>
-                    <td>
-                      <span
-                        class="edit"
-                        data-bind="click: editSecondaryCategory"
-                        ><a href="#">edit</a></span
-                      >
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td data-bind="text: $index() + 1">4</td>
-                    <td
-                      class="primname"
-                      style="text-align: left; padding: 0 15px"
-                      data-bind="text: SecondaryCategoryName, click: $root.secondaryCategories.selectSecondaryCategory"
-                    >
-                      GLUCOSE TOLERANCE TEST
-                    </td>
-                    <td class="disbl">
-                      <input
-                        type="checkbox"
-                        name="disable"
-                        disabled="disabled"
-                        data-bind="checked: IsActive"
-                      /><label for="disable"><span></span></label>
-                    </td>
-                    <td>
-                      <span
-                        class="edit"
-                        data-bind="click: editSecondaryCategory"
-                        ><a href="#">edit</a></span
-                      >
-                    </td>
-                  </tr>
+                <tbody id="secondaryCategoryTableBody" data-bind="foreach: secondaryCategories">
+                    <!-- Secondary categories will be populated here -->
                 </tbody>
-              </table>
+            </table>
+            
               
             </div>
             <div
@@ -263,91 +163,18 @@
               <div class="clsebtn">X</div>
               <table width="450" border="0" cellspacing="0" cellpadding="0">
                 <thead>
-                  <th>Sr.No.</th>
-                    <th class="primry">Description</th>
-
+                  <tr>
+                    <th>Sr.No.</th>
+                    <th class="primry">Secondary Category</th>
+                    <th class="disble">Active</th>
                     <th>edit</th>
+                  </tr>
                 </thead>
-                <tbody data-bind="foreach: investigations">
-                  <tr data-bind="click: editInvestigation">
-                    <td data-bind="text: $index() + 1">1</td>
-                    <td
-                      class="primname"
-                      style="text-align: left; padding: 0 15px"
-                      data-bind="text: Description"
-                    >
-                      BLOOD SUGAR FASTING
-                    </td>
-                    <td>
-                      <span
-                        class="edit"
-                        data-bind="click: editInvestigation"
-                        ><a href="#">edit</a></span
-                      >
-                    </td>
-                  </tr>
-
-                  <tr data-bind="click: editInvestigation">
-                    <td data-bind="text: $index() + 1">2</td>
-                    <td
-                      class="primname"
-                      style="text-align: left; padding: 0 15px"
-                      data-bind="text: Description"
-                    >
-                      TOTAL BILIRUBIN
-                    </td>
-                    <td>
-                      <span
-                        class="edit"
-                        data-bind="click: editInvestigation"
-                        ><a href="#">edit</a></span
-                      >
-                    </td>
-                  </tr>
-
-                  <tr data-bind="click: editInvestigation">
-                    <td data-bind="text: $index() + 1">3</td>
-                    <td
-                      class="primname"
-                      style="text-align: left; padding: 0 15px"
-                      data-bind="text: Description"
-                    >
-                      BLOOD SUGAR RANDOM
-                    </td>
-                    <td>
-                      <span
-                        class="edit"
-                        data-bind="click: editInvestigation"
-                        ><a href="#">edit</a></span
-                      >
-                    </td>
-                  </tr>
-
-                  <tr data-bind="click: editInvestigation">
-                    <td data-bind="text: $index() + 1">4</td>
-                    <td
-                      class="primname"
-                      style="text-align: left; padding: 0 15px"
-                      data-bind="text: Description"
-                    >
-                      DIRECT BILIRUBIN (CONJUGATED)
-                    </td>
-                    <td>
-                      <span
-                        class="edit"
-                        data-bind="click: editInvestigation"
-                        ><a href="#">edit</a></span
-                      >
-                    </td>
-                  </tr>
-
-                  
-
-                  
-
-                  
+                <tbody id="secondaryCategoryTableBody">
+                  <!-- Secondary categories will be dynamically added here -->
                 </tbody>
-                <tbody>
+              </table>
+              
                   
                 </tbody>
               </table>
@@ -504,102 +331,220 @@
   </script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-    var primaryCategorySelect = document.getElementById('primaryCategorySelect');
+        var primaryCategorySelect = document.getElementById('primaryCategorySelect');
 
-    function fetchPrimaryCategories() {
-        
-        var url = 'https://rssmarthut.com/mypath/primarycategory.php?fetch=true';
+        function fetchPrimaryCategories() {
+            var url = 'https://rssmarthut.com/mypath/primarycategory.php?fetch=true';
 
-        
-        fetch(url)
-            .then(response => response.json())
-            .then(data => {
-                // Call populatePrimaryCategorySelect here
-                populatePrimaryCategorySelect(data);
-                populatePrimaryCategoryTable(data);
-            })
-            .catch(error => {
-                console.error('Error fetching primary categories:', error);
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    populatePrimaryCategorySelect(data);
+                    populatePrimaryCategoryTable(data);
+                })
+                .catch(error => {
+                    console.error('Error fetching primary categories:', error);
+                });
+        }
+
+        // Function to populate the primary category select element
+        function populatePrimaryCategorySelect(categories) {
+            primaryCategorySelect.innerHTML = ''; // Clear any existing options
+            categories.forEach(category => {
+                var option = document.createElement('option');
+                option.value = category; // Replace with the actual ID field
+                option.textContent = category; // Replace with the actual name field
+                primaryCategorySelect.appendChild(option);
             });
-    }
+        }
 
-    // Function to populate the primary category select element
-    function populatePrimaryCategorySelect(categories) {
-    
-        primaryCategorySelect.innerHTML = ''; // Clear any existing options
-        categories.forEach(category => {
-            var option = document.createElement('option');
-            option.value = category; // Replace with the actual ID field
-            option.textContent = category; // Replace with the actual name field
-            primaryCategorySelect.appendChild(option);
-        });
-    }
+        function populatePrimaryCategoryTable(categories) {
+            var tableBody = document.getElementById('primaryCategoryTableBody');
+            tableBody.innerHTML = ''; // Clear any existing rows
 
+            categories.forEach((category, index) => {
+                var row = document.createElement('tr');
 
+                // Sr.No.
+                var srNoCell = document.createElement('td');
+                srNoCell.textContent = index + 1;
+                row.appendChild(srNoCell);
 
-    function populatePrimaryCategoryTable(categories) {
-    var tableBody = document.getElementById('primaryCategoryTableBody');
-    tableBody.innerHTML = ''; // Clear any existing rows
+                // Primary Category
+                var primaryCategoryCell = document.createElement('td');
+                primaryCategoryCell.className = 'primname';
+                primaryCategoryCell.style.textAlign = 'left';
+                primaryCategoryCell.style.padding = '0 15px';
+                primaryCategoryCell.textContent = category; // Replace with the actual name field
+                row.appendChild(primaryCategoryCell);
 
-    categories.forEach((category, index) => {
-        var row = document.createElement('tr');
+                // Active
+                var activeCell = document.createElement('td');
+                activeCell.className = 'disbl';
+                var checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.name = 'disable';
+                checkbox.id = 'disable';
+                checkbox.disabled = true;
+                checkbox.checked = category; // Replace with the actual active field
+                activeCell.appendChild(checkbox);
+                var label = document.createElement('label');
+                label.htmlFor = 'disable';
+                label.innerHTML = '<span></span>';
+                activeCell.appendChild(label);
+                row.appendChild(activeCell);
 
-        // Sr.No.
-        var srNoCell = document.createElement('td');
-        srNoCell.textContent = index + 1;
-        row.appendChild(srNoCell);
+                // Edit
+                var editCell = document.createElement('td');
+                var editSpan = document.createElement('span');
+                editSpan.className = 'edit';
+                var editLink = document.createElement('a');
+                editLink.href = '#';
+                editLink.textContent = 'edit';
+                editLink.addEventListener('click', function() {
+                    editPrimaryCategory(category); // Define this function to handle editing
+                });
+                editSpan.appendChild(editLink);
+                editCell.appendChild(editSpan);
+                row.appendChild(editCell);
 
-        // Primary Category
-        var primaryCategoryCell = document.createElement('td');
-        primaryCategoryCell.className = 'primname';
-        primaryCategoryCell.style.textAlign = 'left';
-        primaryCategoryCell.style.padding = '0 15px';
-        primaryCategoryCell.textContent = category; // Replace with the actual name field
-        row.appendChild(primaryCategoryCell);
+                // Append the row to the table body
+                tableBody.appendChild(row);
+            });
 
-        // Active
-        var activeCell = document.createElement('td');
-        activeCell.className = 'disbl';
-        var checkbox = document.createElement('input');
-        checkbox.type = 'checkbox';
-        checkbox.name = 'disable';
-        checkbox.id = 'disable';
-        checkbox.disabled = true;
-        checkbox.checked = category; // Replace with the actual active field
-        activeCell.appendChild(checkbox);
-        var label = document.createElement('label');
-        label.htmlFor = 'disable';
-        label.innerHTML = '<span></span>';
-        activeCell.appendChild(label);
-        row.appendChild(activeCell);
+            // Add click listeners to the primary category cells
+            addPrimaryCategoryClickListener();
+        }
 
-        // Edit
-        var editCell = document.createElement('td');
-        var editSpan = document.createElement('span');
-        editSpan.className = 'edit';
-        var editLink = document.createElement('a');
-        editLink.href = '#';
-        editLink.textContent = 'edit';
-        editLink.addEventListener('click', function() {
-            editPrimaryCategory(category); // Define this function to handle editing
-        });
-        editSpan.appendChild(editLink);
-        editCell.appendChild(editSpan);
-        row.appendChild(editCell);
+        function editPrimaryCategory(category) {
+            console.log('Editing category:', category);
+        }
 
-        // Append the row to the table body
-        tableBody.appendChild(row);
+        // Function to add event listeners to primary category cells
+        function addPrimaryCategoryClickListener() {
+            const primaryCategoryCells = document.querySelectorAll('.primname');
+
+            primaryCategoryCells.forEach(cell => {
+                cell.addEventListener('click', function() {
+                    const primaryCategoryName = this.textContent.trim();
+                    fetchSecondaryCategories(primaryCategoryName);
+                    
+                });
+            });
+        }
+
+        // Function to fetch secondary categories based on primary category name
+        function fetchSecondaryCategories(primaryCategoryName) {
+            const url = 'https://rssmarthut.com/mypath/secondarycategory.php?fetch=true&pname=' + encodeURIComponent(primaryCategoryName);
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    populateSecondaryCategoryTable(data);
+                })
+                .catch(error => {
+                    console.error('Error fetching secondary categories:', error);
+                });
+        }
+
+        // Function to populate the secondary category table
+        function populateSecondaryCategoryTable(categories) {
+            const tbody = document.getElementById('secondaryCategoryTableBody');
+            tbody.innerHTML = ''; // Clear existing rows
+
+            categories.forEach((category, index) => {
+                const row = document.createElement('tr');
+
+                const srNoCell = document.createElement('td');
+                srNoCell.textContent = index + 1;
+                row.appendChild(srNoCell);
+
+                const secondaryCategoryCell = document.createElement('td');
+                secondaryCategoryCell.textContent = category.sname;
+                row.appendChild(secondaryCategoryCell);
+
+                const editCell = document.createElement('td');
+                const editSpan = document.createElement('span');
+                editSpan.className = 'edit';
+                const editLink = document.createElement('a');
+                editLink.href = '#';
+                editLink.textContent = 'edit';
+                editSpan.appendChild(editLink);
+                editCell.appendChild(editSpan);
+                row.appendChild(editCell);
+
+                tbody.appendChild(row);
+            });
+        }
+
+        // Fetch primary categories on page load
+        fetchPrimaryCategories();
     });
-}    
-    function editPrimaryCategory(category) { console.log('Editing category:', category);}
-  
-    fetchPrimaryCategories();
-});
+</script>
 
+ <script>
+  // Function to add event listeners to primary category cells
+  function addPrimaryCategoryClickListener() {
+      const primaryCategoryCells = document.querySelectorAll('.primname');
 
+      primaryCategoryCells.forEach(cell => {
+          cell.addEventListener('click', function() {
+        
+              const primaryCategoryName = this.textContent.trim();
+              fetchSecondaryCategories(primaryCategoryName);
+              console.log(primaryCategoryName)
+          });
+      });
+  }
 
+  // Function to fetch secondary categories based on primary category name
+  function fetchSecondaryCategories(primaryCategoryName) {
+      const url = 'https://rssmarthut.com/mypath/secondarycategory.php?fetch=true&pname=' + encodeURIComponent(primaryCategoryName);
 
-  </script>
+      fetch(url)
+          .then(response => response.json())
+          .then(data => {
+              populateSecondaryCategoryTable(data);
+          })
+          .catch(error => {
+              console.error('Error fetching secondary categories:', error);
+          });
+  }
+
+  // Function to populate the secondary category table
+  function populateSecondaryCategoryTable(categories) {
+      const tbody = document.getElementById('secondaryCategoryTableBody');
+      tbody.innerHTML = ''; // Clear existing rows
+
+      categories.forEach((category, index) => {
+          const row = document.createElement('tr');
+
+          const srNoCell = document.createElement('td');
+          srNoCell.textContent = index + 1;
+          row.appendChild(srNoCell);
+
+          const secondaryCategoryCell = document.createElement('td');
+          secondaryCategoryCell.textContent = category.sname;
+          row.appendChild(secondaryCategoryCell);
+
+          const editCell = document.createElement('td');
+          const editSpan = document.createElement('span');
+          editSpan.className = 'edit';
+          const editLink = document.createElement('a');
+          editLink.href = '#';
+          editLink.textContent = 'edit';
+          editSpan.appendChild(editLink);
+          editCell.appendChild(editSpan);
+          row.appendChild(editCell);
+
+          tbody.appendChild(row);
+      });
+  }
+
+  // Initialize the primary category table with click listeners
+  addPrimaryCategoryClickListener();
+</script>
+
   
   
    
