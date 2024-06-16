@@ -97,7 +97,7 @@
       -webkit-appearance: none; /* Removes default styling in Safari */
       -moz-appearance: none; /* Removes default styling in Firefox */
       appearance: none; /* Removes default styling in modern browsers */
-      text-indent: -9999px; /* Hides the selected option text */
+      
       margin-top: 12    px;
     }
 

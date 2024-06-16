@@ -472,13 +472,18 @@
                 <span class="close" id="closeSecondaryModal">&times;</span>
                 <div class="modal-header">ADD SECONDARY CATEGORY</div>
                 <form id="secondaryCategoryForm" style="padding-left: 12px; padding-bottom: 12px;">
-                    <label for="secondaryCategoryName">Name:</label>
-                    <input type="text" id="secondaryCategoryName" name="secondaryCategoryName" required placeholder="ENTER THE SECONDARY CATEGORY" style="padding-left:4PX; width: 18vw; border: 0.1px solid #f296fd; border-radius: 3px; background-color: #ececec;">
+                  <div style="margin-bottom:1vw;">
                     <label for="primaryCategorySelect">Select Primary Category:</label>
-                    <select id="primaryCategorySelect" name="primaryCategorySelect" required style="padding-left:4PX; width: 18vw; border: 0.1px solid #f296fd; border-radius: 3px; background-color: #ececec;">
-                        <!-- Options will be dynamically added here -->
-                    </select>
-                    <button id="secondarybtn" type="submit" style="border: 0.1px solid pink; border-radius: 5px; height: 1.7vw; width: 7vw;">Add</button>
+                  <select id="primaryCategorySelect" name="primaryCategorySelect" required style="padding:0 4px; width: 18vw; border: 0.1px solid #f296fd; border-radius: 3px; background-color: #ececec;">
+                      <!-- Options will be dynamically added here -->
+                  </select>
+                  </div>
+
+                  <div>
+                    <label for="secondaryCategoryName">Name:</label>
+                  <input type="text" id="secondaryCategoryName" name="secondaryCategoryName" required placeholder="ENTER THE SECONDARY CATEGORY" style="padding-left:4PX; width: 18vw; border: 0.1px solid #f296fd; border-radius: 3px; background-color: #ececec;">
+                  <button id="secondarybtn" type="submit" style="border: 0.1px solid rgb(176, 170, 171); border-radius: 5px; height: 1.7vw; width: 8.5vw;">Add</button>
+                  </div>
                 </form>
             </div>
         </div>
@@ -591,8 +596,46 @@
           });
       });
   </script>
-  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+    var primaryCategorySelect = document.getElementById('primaryCategorySelect');
+
+    function fetchPrimaryCategories() {
+        // var url = 'https://rssmarthut.com/mypath/primarycategory.php';
+        var url = 'https://rssmarthut.com/mypath/primarycategory.php?fetch=true';
+
+        
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                // Call populatePrimaryCategorySelect here
+                populatePrimaryCategorySelect(data);
+            })
+            .catch(error => {
+                console.error('Error fetching primary categories:', error);
+            });
+    }
+
+    // Function to populate the primary category select element
+    function populatePrimaryCategorySelect(categories) {
+    
+        primaryCategorySelect.innerHTML = ''; // Clear any existing options
+        categories.forEach(category => {
+            var option = document.createElement('option');
+            option.value = category; // Replace with the actual ID field
+            option.textContent = category; // Replace with the actual name field
+            primaryCategorySelect.appendChild(option);
+        });
+    }
+
+    // Call fetchPrimaryCategories when the DOM is fully loaded
+    fetchPrimaryCategories();
+});
+
+  </script>
   
     <script src="nav.js"></script>
   </body>
 </html>
+
+
