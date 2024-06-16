@@ -23,6 +23,50 @@
     />
   </head>
   <body>
+    <style>
+      .modal {
+          display: none;
+          position: fixed;
+          z-index: 1;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          overflow: auto;
+          background-color: rgba(0,0,0,0.4);
+      }
+
+      .modal-content {
+          background-color: #fefefe;
+          margin: 15% auto;
+        
+          border: 1px solid #888;
+          width: 80%;
+          max-width: 500px;
+          border-radius: 10px;
+      }
+
+      .close {
+          color: #aaa;
+          float: right;
+          font-size: 28px;
+          font-weight: bold;
+      }
+
+      .close:hover,
+      .close:focus {
+          color: black;
+          text-decoration: none;
+          cursor: pointer;
+      }
+
+      .modal-header {
+      
+          margin-bottom: 15px;
+          background-color: #26a6dc;
+      }
+  </style>
+
     <div id="navbar"></div>
     <div class="serachbar1">
       <div class="forsearchcenter">
@@ -179,6 +223,7 @@
             <div
               class="addprimarycategorybtn"
               data-bind="click: addNewPrimaryCategory"
+              id="addPrimaryCategoryBtn"
             >
               <span></span>Add Primary Category
             </div>
@@ -304,6 +349,7 @@
             <div
               class="addsecndrycategorybtn"
               data-bind="click: addNewSecondaryCategory"
+              id="addSecondaryCategoryBtn"
             >
               <span></span>Add Secondary Category
             </div>
@@ -407,6 +453,39 @@
               <span></span>ADD INVESTIGATION
             </div>
           </div>
+          <div id="primaryCategoryModal" class="modal">
+            <div class="modal-content">
+                <span class="close" id="closePrimaryModal">&times;</span>
+                <div class="modal-header">ADD PRIMARY CATEGORY</div>
+                <form id="primaryCategoryForm" style="padding-left: 12px;padding-bottom: 12px;">
+                    <label for="primaryCategoryName">Name:</label>
+                    <input type="text" id="primaryCategoryName" name="primaryCategoryName" required placeholder="ENTER THE PRIMARY CATEGORY" style=" padding-left:4PX; width: 18vw;  border: 0.1px solid #f296fd;
+    border-radius: 3px;
+    background-color: #ececec;">
+                    <button type="submit" style="    border: 0.1px solid pink;
+    border-radius: 5px;
+    height: 1.7vw;
+    width: 7vw;">Add</button>
+                </form>
+            </div>
+          </div>
+          <div id="secondaryCategoryModal" class="modal">
+            <div class="modal-content">
+                <span class="close" id="closeSecondaryModal">&times;</span>
+                <div class="modal-header">ADD SECONDARY CATEGORY</div>
+                <form id="primaryCategoryForm" style="padding-left: 12px;padding-bottom: 12px;">
+                  <form id="secondaryCategoryForm" >
+                    <label for="secondaryCategoryName">Name:</label>
+                    <input type="text" id="secondaryCategoryName" name="secondaryCategoryName" required placeholder="ENTER THE SECONDARY CATEGORY" style="padding-left:4PX; width: 18vw;   border: 0.1px solid #f296fd;
+    border-radius: 3px;
+    background-color: #ececec;">
+                    <button type="submit" style="    border: 0.1px solid pink;
+    border-radius: 5px;
+    height: 1.7vw;
+    width: 7vw;">Add</button>
+                </form>
+            </div>
+          </div>
         </div>
 
         <!-- Tabs Start Here -->
@@ -418,6 +497,62 @@
 
      
     </div>
+    <script>
+      // Get modal elements
+      const primaryCategoryModal = document.getElementById("primaryCategoryModal");
+      const secondaryCategoryModal = document.getElementById("secondaryCategoryModal");
+
+      // Get button elements
+      const addPrimaryCategoryBtn = document.getElementById("addPrimaryCategoryBtn");
+      const addSecondaryCategoryBtn = document.getElementById("addSecondaryCategoryBtn");
+
+      // Get close elements
+      const closePrimaryModal = document.getElementById("closePrimaryModal");
+      const closeSecondaryModal = document.getElementById("closeSecondaryModal");
+
+      // Open primary category modal
+      addPrimaryCategoryBtn.addEventListener("click", () => {
+          primaryCategoryModal.style.display = "block";
+      });
+
+      // Open secondary category modal
+      addSecondaryCategoryBtn.addEventListener("click", () => {
+          secondaryCategoryModal.style.display = "block";
+      });
+
+      // Close primary category modal
+      closePrimaryModal.addEventListener("click", () => {
+          primaryCategoryModal.style.display = "none";
+      });
+
+      // Close secondary category modal
+      closeSecondaryModal.addEventListener("click", () => {
+          secondaryCategoryModal.style.display = "none";
+      });
+
+      // Close modals when clicking outside
+      window.addEventListener("click", (event) => {
+          if (event.target == primaryCategoryModal) {
+              primaryCategoryModal.style.display = "none";
+          }
+          if (event.target == secondaryCategoryModal) {
+              secondaryCategoryModal.style.display = "none";
+          }
+      });
+
+      // Handle form submissions
+      document.getElementById("primaryCategoryForm").addEventListener("submit", (event) => {
+          event.preventDefault();
+          // Add your form submission code here
+          primaryCategoryModal.style.display = "none";
+      });
+
+      document.getElementById("secondaryCategoryForm").addEventListener("submit", (event) => {
+          event.preventDefault();
+          // Add your form submission code here
+          secondaryCategoryModal.style.display = "none";
+      });
+  </script>
     <script src="nav.js"></script>
   </body>
 </html>
