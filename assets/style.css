@@ -8320,3 +8320,9 @@ _:future,
 a {
   text-decoration: none !important;
 }
+
+
+#searchResults >li {
+  display: flex;
+  justify-content: space-between;
+}

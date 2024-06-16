@@ -274,10 +274,11 @@
             
             border-radius: 7px;
             
-            border: 0.1px solid #d2b9b9;
+            
             width: 21vw;
             position: absolute;
-            background-color: #f1e5e5;">
+            background-color: #f1e5e5;
+            padding-left: 5px;padding-right: 4px;">
             </ul>
           </div>
           <div class="form-group">
@@ -598,7 +599,18 @@
               // Display new results
               data.forEach((patient) => {
                 const li = document.createElement("li");
-                li.textContent = `${patient.firstname} - ${patient.pid}`;
+                const firstNameSpan = document.createElement("span");
+                const pidSpan = document.createElement("span");
+
+                firstNameSpan.textContent = patient.firstname;
+                pidSpan.textContent = patient.pid;
+
+                li.appendChild(firstNameSpan);
+                
+                li.appendChild(pidSpan);
+                
+                // li.textContent = `${patient.firstname} - ${patient.pid}`;
+
                 searchResults.appendChild(li);
               });
             })
