@@ -1,22 +1,3491 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap"
-    rel="stylesheet"
-  />
-  <link rel="stylesheet" href="./assets/nav.css">
-  <link rel="stylesheet" href="./assets/style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
- 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./assets/nav.css" />
+    <link rel="stylesheet" href="./assets/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
 
-</head>
-<body>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
     <div id="navbar"></div>
+    <div class="serachbar1">
+      <div class="forsearchcenter">
+        <input
+          type="text"
+          name="Search"
+          id="LISTestMasterModel_txtInvestigationSearch"
+          value="Search Investigation here"
+          onblur="if(this.value == '') {this.value = 'Search Investigation here'};"
+          onfocus="if(this.value =='Search Investigation here') {this.value =''};"
+        />
+        <input type="submit" name="" />
+      </div>
+    </div>
+    <div id="LISTestMasterModel" style="width: 100%">
+      <div class="middlesecregistion">
+        <div class="addPlusIcon" style="display: none">
+          Please click to show list box <i class="icon-plus"></i>
+        </div>
+        <div class="categorylist">
+          <div class="categoryouter">
+            <div class="parimarycategory">
+              <table width="450" border="0" cellspacing="0" cellpadding="0">
+                <thead>
+                  <th>Sr.No.</th>
+                  <th class="primry">Primary Category</th>
+                  <th class="disble">Active</th>
+                  <th>edit</th>
+                </thead>
+
+                <tbody data-bind="foreach: primaryCategories">
+                  <tr>
+                    <td data-bind="text: $index() + 1">1</td>
+                    <td
+                      class="primname"
+                      style="text-align: left; padding: 0 15px"
+                      data-bind="text: PrimaryCategoryName, click: $root.selectPrimaryCategory"
+                    >
+                      BIOCHEMISTRY
+                    </td>
+                    <td class="disbl">
+                      <input
+                        type="checkbox"
+                        name="disable"
+                        id="disable"
+                        disabled="disabled"
+                        data-bind="checked: IsActive"
+                      /><label for="disable"><span></span></label>
+                    </td>
+                    <td>
+                      <span class="edit" data-bind="click: editPrimaryCategory"
+                        ><a href="#">edit</a></span
+                      >
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td data-bind="text: $index() + 1">2</td>
+                    <td
+                      class="primname"
+                      style="text-align: left; padding: 0 15px"
+                      data-bind="text: PrimaryCategoryName, click: $root.selectPrimaryCategory"
+                    >
+                      CANCER MARKER
+                    </td>
+                    <td class="disbl">
+                      <input
+                        type="checkbox"
+                        name="disable"
+                        id="disable"
+                        disabled="disabled"
+                        data-bind="checked: IsActive"
+                      /><label for="disable"><span></span></label>
+                    </td>
+                    <td>
+                      <span class="edit" data-bind="click: editPrimaryCategory"
+                        ><a href="#">edit</a></span
+                      >
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td data-bind="text: $index() + 1">3</td>
+                    <td
+                      class="primname"
+                      style="text-align: left; padding: 0 15px"
+                      data-bind="text: PrimaryCategoryName, click: $root.selectPrimaryCategory"
+                    >
+                      CARDIOLOGY
+                    </td>
+                    <td class="disbl">
+                      <input
+                        type="checkbox"
+                        name="disable"
+                        id="disable"
+                        disabled="disabled"
+                        data-bind="checked: IsActive"
+                      /><label for="disable"><span></span></label>
+                    </td>
+                    <td>
+                      <span class="edit" data-bind="click: editPrimaryCategory"
+                        ><a href="#">edit</a></span
+                      >
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td data-bind="text: $index() + 1">4</td>
+                    <td
+                      class="primname"
+                      style="text-align: left; padding: 0 15px"
+                      data-bind="text: PrimaryCategoryName, click: $root.selectPrimaryCategory"
+                    >
+                      CT SCAN
+                    </td>
+                    <td class="disbl">
+                      <input
+                        type="checkbox"
+                        name="disable"
+                        id="disable"
+                        disabled="disabled"
+                        data-bind="checked: IsActive"
+                      /><label for="disable"><span></span></label>
+                    </td>
+                    <td>
+                      <span class="edit" data-bind="click: editPrimaryCategory"
+                        ><a href="#">edit</a></span
+                      >
+                    </td>
+                  </tr>
+
+                  
+
+                  
+                </tbody>
+              </table>
+              <div id="subOverlay" class="suboverly">
+                <div class="inptarea">
+                  <input
+                    type="text"
+                    id="txtSearchPrimaryCategory"
+                    class="ui-autocomplete-input"
+                    autocomplete="off"
+                  /><span
+                    role="status"
+                    aria-live="polite"
+                    class="ui-helper-hidden-accessible"
+                  ></span>
+                  <input type="submit" name="" />
+                </div>
+              </div>
+             
+            </div>
+            <div
+              class="addprimarycategorybtn"
+              data-bind="click: addNewPrimaryCategory"
+            >
+              <span></span>Add Primary Category
+            </div>
+          </div>
+          <div class="categoryouter">
+            <div class="secondrycategory">
+              <div class="clsebtn" onclick="">X</div>
+              <table width="450" border="0" cellspacing="0" cellpadding="0">
+                <thead>
+                    <th>Sr.No.</th>
+                    <th class="primry">Secondary Category</th>
+                    <th class="disble">Active</th>
+                    <th>edit</th>
+                </thead>
+                <tbody data-bind="foreach: secondaryCategories">
+                  <tr>
+                    <td data-bind="text: $index() + 1">1</td>
+                    <td
+                      class="primname"
+                      style="text-align: left; padding: 0 15px"
+                      data-bind="text: SecondaryCategoryName, click: $root.secondaryCategories.selectSecondaryCategory"
+                    >
+                      BIOCHEMISTRY ROUTINE
+                    </td>
+                    <td class="disbl">
+                      <input
+                        type="checkbox"
+                        name="disable"
+                        disabled="disabled"
+                        data-bind="checked: IsActive"
+                      /><label for="disable"><span></span></label>
+                    </td>
+                    <td>
+                      <span
+                        class="edit"
+                        data-bind="click: editSecondaryCategory"
+                        ><a href="#">edit</a></span
+                      >
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td data-bind="text: $index() + 1">2</td>
+                    <td
+                      class="primname"
+                      style="text-align: left; padding: 0 15px"
+                      data-bind="text: SecondaryCategoryName, click: $root.secondaryCategories.selectSecondaryCategory"
+                    >
+                      BIOCHEMISTRY SPECIAL
+                    </td>
+                    <td class="disbl">
+                      <input
+                        type="checkbox"
+                        name="disable"
+                        disabled="disabled"
+                        data-bind="checked: IsActive"
+                      /><label for="disable"><span></span></label>
+                    </td>
+                    <td>
+                      <span
+                        class="edit"
+                        data-bind="click: editSecondaryCategory"
+                        ><a href="#">edit</a></span
+                      >
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td data-bind="text: $index() + 1">3</td>
+                    <td
+                      class="primname"
+                      style="text-align: left; padding: 0 15px"
+                      data-bind="text: SecondaryCategoryName, click: $root.secondaryCategories.selectSecondaryCategory"
+                    >
+                      DRUG ASSAY
+                    </td>
+                    <td class="disbl">
+                      <input
+                        type="checkbox"
+                        name="disable"
+                        disabled="disabled"
+                        data-bind="checked: IsActive"
+                      /><label for="disable"><span></span></label>
+                    </td>
+                    <td>
+                      <span
+                        class="edit"
+                        data-bind="click: editSecondaryCategory"
+                        ><a href="#">edit</a></span
+                      >
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td data-bind="text: $index() + 1">4</td>
+                    <td
+                      class="primname"
+                      style="text-align: left; padding: 0 15px"
+                      data-bind="text: SecondaryCategoryName, click: $root.secondaryCategories.selectSecondaryCategory"
+                    >
+                      GLUCOSE TOLERANCE TEST
+                    </td>
+                    <td class="disbl">
+                      <input
+                        type="checkbox"
+                        name="disable"
+                        disabled="disabled"
+                        data-bind="checked: IsActive"
+                      /><label for="disable"><span></span></label>
+                    </td>
+                    <td>
+                      <span
+                        class="edit"
+                        data-bind="click: editSecondaryCategory"
+                        ><a href="#">edit</a></span
+                      >
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              
+            </div>
+            <div
+              class="addsecndrycategorybtn"
+              data-bind="click: addNewSecondaryCategory"
+            >
+              <span></span>Add Secondary Category
+            </div>
+          </div>
+          <div class="categoryouter no">
+            <div class="lastadvisecategory">
+              <div class="clsebtn">X</div>
+              <table width="450" border="0" cellspacing="0" cellpadding="0">
+                <thead>
+                  <th>Sr.No.</th>
+                    <th class="primry">Description</th>
+
+                    <th>edit</th>
+                </thead>
+                <tbody data-bind="foreach: investigations">
+                  <tr data-bind="click: editInvestigation">
+                    <td data-bind="text: $index() + 1">1</td>
+                    <td
+                      class="primname"
+                      style="text-align: left; padding: 0 15px"
+                      data-bind="text: Description"
+                    >
+                      BLOOD SUGAR FASTING
+                    </td>
+                    <td>
+                      <span
+                        class="edit"
+                        data-bind="click: editInvestigation"
+                        ><a href="#">edit</a></span
+                      >
+                    </td>
+                  </tr>
+
+                  <tr data-bind="click: editInvestigation">
+                    <td data-bind="text: $index() + 1">2</td>
+                    <td
+                      class="primname"
+                      style="text-align: left; padding: 0 15px"
+                      data-bind="text: Description"
+                    >
+                      TOTAL BILIRUBIN
+                    </td>
+                    <td>
+                      <span
+                        class="edit"
+                        data-bind="click: editInvestigation"
+                        ><a href="#">edit</a></span
+                      >
+                    </td>
+                  </tr>
+
+                  <tr data-bind="click: editInvestigation">
+                    <td data-bind="text: $index() + 1">3</td>
+                    <td
+                      class="primname"
+                      style="text-align: left; padding: 0 15px"
+                      data-bind="text: Description"
+                    >
+                      BLOOD SUGAR RANDOM
+                    </td>
+                    <td>
+                      <span
+                        class="edit"
+                        data-bind="click: editInvestigation"
+                        ><a href="#">edit</a></span
+                      >
+                    </td>
+                  </tr>
+
+                  <tr data-bind="click: editInvestigation">
+                    <td data-bind="text: $index() + 1">4</td>
+                    <td
+                      class="primname"
+                      style="text-align: left; padding: 0 15px"
+                      data-bind="text: Description"
+                    >
+                      DIRECT BILIRUBIN (CONJUGATED)
+                    </td>
+                    <td>
+                      <span
+                        class="edit"
+                        data-bind="click: editInvestigation"
+                        ><a href="#">edit</a></span
+                      >
+                    </td>
+                  </tr>
+
+                  
+
+                  
+
+                  
+                </tbody>
+                <tbody>
+                  
+                </tbody>
+              </table>
+              
+            </div>
+            <div class="addinvestgnbtn" data-bind="click: addNewInvestigation">
+              <span></span>ADD INVESTIGATION
+            </div>
+          </div>
+        </div>
+
+        <!-- Tabs Start Here -->
+        <div
+          id="tabs-container"
+          data-bind="visible: selectedInvestigation() != null"
+          style="display: none"
+        >
+          <ul class="tabs-menu">
+            <li class="current">
+              <a href="#tab-1"
+                >Edit Investigation <i class="icon-caret-down"></i>
+                <span id="tab1" style="display: none"
+                  ><img
+                    src="../../Image/errorIcon.png"
+                    style="vertical-align: -5px; margin-left: 8px" /></span
+              ></a>
+            </li>
+            <li>
+              <a href="#tab-2"
+                >Add Calculation <i class="icon-caret-down"></i>
+                <span id="tab2" style="display: none"
+                  ><img
+                    src="../../Image/errorIcon.png"
+                    style="vertical-align: -5px; margin-left: 8px" /></span
+              ></a>
+            </li>
+            <li>
+              <a href="#tab-3"
+                >Branches <i class="icon-caret-down"></i>
+                <span id="tab3" style="display: none"
+                  ><img
+                    src="../../Image/errorIcon.png"
+                    style="vertical-align: -5px; margin-left: 8px" /></span
+              ></a>
+            </li>
+            <li>
+              <a href="#tab-4"
+                >Range <i class="icon-caret-down"></i>
+                <span id="tab4" style="display: none"
+                  ><img
+                    src="../../Image/errorIcon.png"
+                    style="vertical-align: -5px; margin-left: 8px" /></span
+              ></a>
+            </li>
+          </ul>
+
+          <div class="tab">
+            <div
+              class="addinvestigationmaster validationEngineContainer"
+              id="LisTestMaster_divAddInvestigation"
+            >
+              <div id="tab-1" class="tab-content">
+                <div data-bind="if: !UpdateView()">
+                  <h2>Add Investigation</h2>
+                </div>
+                <div data-bind="if: UpdateView()"></div>
+
+                <div
+                  class="leftfields"
+                  data-bind="if: selectedInvestigation() != null"
+                ></div>
+                <div
+                  class="rightestcat"
+                  data-bind="if: selectedInvestigation() != null"
+                ></div>
+                <div
+                  class="bottomfields"
+                  data-bind="visible: selectedInvestigation() != null &amp;&amp; selectedInvestigation().InvestigationType() != 'antibiotics'"
+                  style="height: 250px; display: none"
+                >
+                  <div class="floting">
+                    <h5>Remarks</h5>
+
+                    <div
+                      id="ctl00_MainContent_LISTestMasterControl_RadEditor5"
+                      class="RadEditor Default reWrapper reDropdown,reToolbar,reSpinBox,RadEditor,reModule,reEditorModes,reDropDownBody,reAjaxspell_wrapper"
+                      style="height: 150px; width: 600px; border: none"
+                    >
+                      <!-- 2014.3.1024.45 -->
+                      <div
+                        id="ctl00_MainContent_LISTestMasterControl_RadEditor5_dialogOpener"
+                        style="display: none"
+                      >
+                        <div
+                          id="ctl00_MainContent_LISTestMasterControl_RadEditor5_dialogOpener_Window"
+                          style="display: none"
+                        >
+                          <div
+                            id="ctl00_MainContent_LISTestMasterControl_RadEditor5_dialogOpener_Window_C"
+                            style="display: none"
+                          ></div>
+                          <input
+                            id="ctl00_MainContent_LISTestMasterControl_RadEditor5_dialogOpener_Window_ClientState"
+                            name="ctl00_MainContent_LISTestMasterControl_RadEditor5_dialogOpener_Window_ClientState"
+                            type="hidden"
+                            autocomplete="off"
+                          />
+                        </div>
+                        <input
+                          id="ctl00_MainContent_LISTestMasterControl_RadEditor5_dialogOpener_ClientState"
+                          name="ctl00_MainContent_LISTestMasterControl_RadEditor5_dialogOpener_ClientState"
+                          type="hidden"
+                          autocomplete="off"
+                        />
+                      </div>
+                      <table
+                        id="ctl00_MainContent_LISTestMasterControl_RadEditor5Wrapper"
+                        class="reLayoutWrapper"
+                        style="width: 100%; height: 150px"
+                      >
+                        <caption style="display: none">
+                          RadEditor - HTML WYSIWYG Editor. MS Word-like content
+                          editing experience thanks to a rich set of formatting
+                          tools, dropdowns, dialogs, system modules and built-in
+                          spell-check.
+                        </caption>
+                        <thead style="display: none">
+                          <tr>
+                            <th scope="col">
+                              <span
+                                >RadEditor's components - toolbar, content area,
+                                modes and modules</span
+                              >
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row" style="display: none">
+                              <span></span>
+                            </th>
+                            <td class="reWrapper_corner reCorner_top_left">
+                              &nbsp;
+                            </td>
+                            <td
+                              class="reWrapper_center reCenter_top"
+                              colspan="3"
+                            >
+                              &nbsp;
+                            </td>
+                            <td class="reWrapper_corner reCorner_top_right">
+                              &nbsp;
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row" style="display: none">
+                              <span>Toolbar's wrapper</span>
+                            </th>
+                            <td class="reLeftVerticalSide" rowspan="4">
+                              &nbsp;
+                            </td>
+                            <td
+                              rowspan="4"
+                              id="ctl00_MainContent_LISTestMasterControl_RadEditor5Left"
+                              class="reTlbVertical"
+                            ></td>
+                            <td
+                              id="ctl00_MainContent_LISTestMasterControl_RadEditor5Top"
+                              class="reToolCell"
+                              style="width: 100%"
+                            >
+                              <div class="Default reToolbarWrapper" style="">
+                                <ul class="reToolbar Default">
+                                  <li class="reGrip grip_first">&nbsp;</li>
+                                  <li>
+                                    <a
+                                      title="Bold"
+                                      class="reTool"
+                                      href="#"
+                                      unselectable="on"
+                                      ><span class="Bold" unselectable="on"
+                                        >&nbsp;</span
+                                      ></a
+                                    >
+                                  </li>
+                                  <li>
+                                    <a
+                                      title="Italic"
+                                      class="reTool"
+                                      href="#"
+                                      unselectable="on"
+                                      ><span class="Italic" unselectable="on"
+                                        >&nbsp;</span
+                                      ></a
+                                    >
+                                  </li>
+                                  <li>
+                                    <a
+                                      title="Underline"
+                                      class="reTool"
+                                      href="#"
+                                      unselectable="on"
+                                      ><span class="Underline" unselectable="on"
+                                        >&nbsp;</span
+                                      ></a
+                                    >
+                                  </li>
+                                  <li>
+                                    <a
+                                      title="Strikethrough"
+                                      class="reTool"
+                                      href="#"
+                                      unselectable="on"
+                                      ><span
+                                        class="StrikeThrough"
+                                        unselectable="on"
+                                        >&nbsp;</span
+                                      ></a
+                                    >
+                                  </li>
+                                  <li>
+                                    <a
+                                      title="Font Name"
+                                      class="reDropdown"
+                                      href="#"
+                                      unselectable="on"
+                                      ><span class="FontName" unselectable="on"
+                                        >Font&nbsp;Name</span
+                                      ></a
+                                    >
+                                  </li>
+                                  <li>
+                                    <a
+                                      title="Real font size"
+                                      class="reDropdown"
+                                      href="#"
+                                      unselectable="on"
+                                      ><span
+                                        class="RealFontSize"
+                                        unselectable="on"
+                                        >Real font size</span
+                                      ></a
+                                    >
+                                  </li>
+                                  <li>
+                                    <a
+                                      title="Align Left"
+                                      class="reTool"
+                                      href="#"
+                                      unselectable="on"
+                                      ><span
+                                        class="JustifyLeft"
+                                        unselectable="on"
+                                        >&nbsp;</span
+                                      ></a
+                                    >
+                                  </li>
+                                  <li>
+                                    <a
+                                      title="Align Left"
+                                      class="reTool"
+                                      href="#"
+                                      unselectable="on"
+                                      ><span
+                                        class="JustifyLeft"
+                                        unselectable="on"
+                                        >&nbsp;</span
+                                      ></a
+                                    >
+                                  </li>
+                                  <li>
+                                    <a
+                                      title="Align Center"
+                                      class="reTool"
+                                      href="#"
+                                      unselectable="on"
+                                      ><span
+                                        class="JustifyCenter"
+                                        unselectable="on"
+                                        >&nbsp;</span
+                                      ></a
+                                    >
+                                  </li>
+                                  <li>
+                                    <a
+                                      title="Align Right"
+                                      class="reTool"
+                                      href="#"
+                                      unselectable="on"
+                                      ><span
+                                        class="JustifyRight"
+                                        unselectable="on"
+                                        >&nbsp;</span
+                                      ></a
+                                    >
+                                  </li>
+                                  <li>
+                                    <a
+                                      title="Justify"
+                                      class="reTool"
+                                      href="#"
+                                      unselectable="on"
+                                      ><span
+                                        class="JustifyFull"
+                                        unselectable="on"
+                                        >&nbsp;</span
+                                      ></a
+                                    >
+                                  </li>
+                                  <li>
+                                    <a
+                                      title="Bullet List"
+                                      class="reTool"
+                                      href="#"
+                                      unselectable="on"
+                                      ><span
+                                        class="InsertUnorderedList"
+                                        unselectable="on"
+                                        >&nbsp;</span
+                                      ></a
+                                    >
+                                  </li>
+                                  <li>
+                                    <a
+                                      title="Numbered List"
+                                      class="reTool"
+                                      href="#"
+                                      unselectable="on"
+                                      ><span
+                                        class="InsertOrderedList"
+                                        unselectable="on"
+                                        >&nbsp;</span
+                                      ></a
+                                    >
+                                  </li>
+                                  <li>
+                                    <a
+                                      title="Indent"
+                                      class="reTool"
+                                      href="#"
+                                      unselectable="on"
+                                      ><span class="Indent" unselectable="on"
+                                        >&nbsp;</span
+                                      ></a
+                                    >
+                                  </li>
+                                  <li>
+                                    <a
+                                      title="Outdent"
+                                      class="reTool"
+                                      href="#"
+                                      unselectable="on"
+                                      ><span class="Outdent" unselectable="on"
+                                        >&nbsp;</span
+                                      ></a
+                                    >
+                                  </li>
+                                  <li>
+                                    <a
+                                      title="Paragraph Style"
+                                      class="reDropdown"
+                                      href="#"
+                                      unselectable="on"
+                                      ><span
+                                        class="FormatBlock"
+                                        unselectable="on"
+                                        >Normal</span
+                                      ></a
+                                    >
+                                  </li>
+                                  <li>
+                                    <a
+                                      title="Subscript"
+                                      class="reTool"
+                                      href="#"
+                                      unselectable="on"
+                                      ><span class="Subscript" unselectable="on"
+                                        >&nbsp;</span
+                                      ></a
+                                    >
+                                  </li>
+                                  <li>
+                                    <a
+                                      title="SuperScript"
+                                      class="reTool"
+                                      href="#"
+                                      unselectable="on"
+                                      ><span
+                                        class="Superscript"
+                                        unselectable="on"
+                                        >&nbsp;</span
+                                      ></a
+                                    >
+                                  </li>
+                                  <li>
+                                    <a
+                                      title="Cut"
+                                      class="reTool"
+                                      href="#"
+                                      unselectable="on"
+                                      ><span class="Cut" unselectable="on"
+                                        >&nbsp;</span
+                                      ></a
+                                    >
+                                  </li>
+                                  <li>
+                                    <a
+                                      title="Insert Table"
+                                      class="reTool reSplitButton"
+                                      href="#"
+                                      unselectable="on"
+                                      ><span
+                                        class="InsertTable"
+                                        unselectable="on"
+                                        >&nbsp;</span
+                                      ><span class="split_arrow"
+                                        >&nbsp;</span
+                                      ></a
+                                    >
+                                  </li>
+                                  <li class="reGrip grip_last">&nbsp;</li>
+                                </ul>
+                              </div>
+                            </td>
+                            <td
+                              rowspan="4"
+                              id="ctl00_MainContent_LISTestMasterControl_RadEditor5Right"
+                              class="reTlbVertical"
+                            ></td>
+                            <td rowspan="4" class="reRightVerticalSide">
+                              &nbsp;
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row" style="display: none">
+                              <span>Content area wrapper</span>
+                            </th>
+                            <td
+                              id="ctl00_MainContent_LISTestMasterControl_RadEditor5Center"
+                              class="reContentCell"
+                              style="height: 100%"
+                            >
+                              <label
+                                for="ctl00_MainContent_LISTestMasterControl_RadEditor5ContentHiddenTextarea"
+                                style="display: none"
+                                >RadEditor hidden textarea</label
+                              ><textarea
+                                id="ctl00_MainContent_LISTestMasterControl_RadEditor5ContentHiddenTextarea"
+                                name="ctl00$MainContent$LISTestMasterControl$RadEditor5"
+                                rows="4"
+                                cols="20"
+                                style="display: none"
+                              ></textarea
+                              ><iframe
+                                frameborder="0"
+                                src="javascript:'<html></html>';"
+                                id="ctl00_MainContent_LISTestMasterControl_RadEditor5_contentIframe"
+                                title="Rich text editor with ID ctl00_MainContent_LISTestMasterControl_RadEditor5"
+                                style="
+                                  width: 100%;
+                                  height: 148px;
+                                  margin: 0px;
+                                  padding: 0px;
+                                "
+                                >Your browser does not support inline frames or
+                                is currently configured not to display inline
+                                frames.</iframe
+                              >
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row" style="display: none">
+                              <span
+                                >RadEditor's bottom area: Design, Html and
+                                Preview modes, Statistics module and resize
+                                handle.</span
+                              >
+                            </th>
+                            <td class="reToolZone">
+                              <table
+                                class="reBottomTable"
+                                id="ctl00_MainContent_LISTestMasterControl_RadEditor5_BottomTable"
+                                style="width: 100%"
+                              >
+                                <caption style="display: none">
+                                  It contains RadEditor's Modes/views (HTML,
+                                  Design and Preview), Statistics and Resizer
+                                </caption>
+                                <thead style="display: none">
+                                  <tr>
+                                    <th scope="col">
+                                      <span>Editor Mode buttons</span>
+                                    </th>
+                                    <th scope="col">
+                                      <span>Statistics module</span>
+                                    </th>
+                                    <th scope="col">
+                                      <span>Editor resizer</span>
+                                    </th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td class="reEditorModesCell">
+                                      <div
+                                        class="reEditorModes"
+                                        id="ctl00_MainContent_LISTestMasterControl_RadEditor5_ModesWrapper"
+                                      >
+                                        <ul>
+                                          <li>
+                                            <a
+                                              href="javascript:void(0);"
+                                              title="Design"
+                                              class="reMode_design reMode_selected"
+                                              ><span>Design</span></a
+                                            >
+                                          </li>
+                                          <li>
+                                            <a
+                                              href="javascript:void(0);"
+                                              title="HTML"
+                                              class="reMode_html"
+                                              ><span>HTML</span></a
+                                            >
+                                          </li>
+                                          <li>
+                                            <a
+                                              href="javascript:void(0);"
+                                              title="Preview"
+                                              class="reMode_preview"
+                                              ><span>Preview</span></a
+                                            >
+                                          </li>
+                                        </ul>
+                                      </div>
+                                    </td>
+                                    <td
+                                      class="reBottomZone"
+                                      id="ctl00_MainContent_LISTestMasterControl_RadEditor5Bottom"
+                                    >
+                                      &nbsp;
+                                    </td>
+                                    <td
+                                      class="reResizeCell"
+                                      style="width: 15px"
+                                    >
+                                      <div
+                                        id="ctl00_MainContent_LISTestMasterControl_RadEditor5BottomResizer"
+                                        style="cursor: se-resize"
+                                      >
+                                        &nbsp;
+                                      </div>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                              <noscript>
+                                <p>
+                                  RadEditor - please enable JavaScript to use
+                                  the rich text editor.
+                                </p>
+                              </noscript>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row" style="display: none">
+                              <span
+                                >RadEditor's Modules - special tools used to
+                                provide extra information such as Tag Inspector,
+                                Real Time HTML Viewer, Tag Properties and
+                                other.</span
+                              >
+                            </th>
+                            <td
+                              id="ctl00_MainContent_LISTestMasterControl_RadEditor5Module"
+                              class="reToolZone"
+                            ></td>
+                          </tr>
+                          <tr>
+                            <th scope="row" style="display: none">
+                              <span></span>
+                            </th>
+                            <td class="reWrapper_corner reCorner_bottom_left">
+                              &nbsp;
+                            </td>
+                            <td
+                              class="reWrapper_center reCenter_bottom"
+                              colspan="3"
+                            >
+                              &nbsp;
+                            </td>
+                            <td class="reWrapper_corner reCorner_bottom_right">
+                              &nbsp;
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <input
+                        id="ctl00_MainContent_LISTestMasterControl_RadEditor5_ClientState"
+                        name="ctl00_MainContent_LISTestMasterControl_RadEditor5_ClientState"
+                        type="hidden"
+                        autocomplete="off"
+                      />
+                    </div>
+                  </div>
+                  <!-- ko if:selectedInvestigation() != null--><!-- /ko -->
+                </div>
+              </div>
+              <div id="tab-2" class="tab-content">
+                <div
+                  class="bottomfields"
+                  data-bind="if: selectedInvestigation() != null &amp;&amp; selectedInvestigation().InvestigationType() != 'antibiotics'"
+                ></div>
+
+                <div
+                  class="bottomfields"
+                  data-bind="if: selectedInvestigation() != null &amp;&amp; selectedInvestigation().InvestigationType() != 'antibiotics'"
+                ></div>
+              </div>
+              <div id="tab-3" class="tab-content">
+                <div
+                  class="brancharea"
+                  data-bind="if: selectedInvestigation() != null"
+                ></div>
+              </div>
+            </div>
+            <div id="tab-4" class="tab-content">
+              <div
+                class="resulttypearea"
+                data-bind="visible: selectedInvestigation() != null &amp;&amp; selectedInvestigation().InvestigationType() == 'single'"
+                style="display: none"
+              >
+                <ul id="tabing">
+                  <li>
+                    <a
+                      rel="showrange"
+                      data-bind="visible: selectedInvestigation() != null &amp;&amp; selectedInvestigation().ResultType() == 'Numerical',
+                          text: showRange() ? 'Hide Range' : 'Show Range',
+                          click: function () {
+                              objLisTestMasterModel.showComment(false);
+                              objLisTestMasterModel.showWord(false);
+                              objLisTestMasterModel.showRange(!objLisTestMasterModel.showRange());
+  
+                          }"
+                      style="display: none"
+                      class=""
+                      >Show Range</a
+                    >
+                  </li>
+
+                  <li>
+                    <a
+                      rel="showword"
+                      data-bind="text: showWord() ? 'Hide Word' : 'Show Word',
+                          click: function () {
+                              objLisTestMasterModel.showComment(false);
+                              objLisTestMasterModel.showRange(false);
+                              objLisTestMasterModel.showWord(!objLisTestMasterModel.showWord());
+                          }"
+                      class=""
+                      >Show Word</a
+                    >
+                  </li>
+
+                  <li>
+                    <a
+                      rel="showcomment"
+                      data-bind="text: showComment() ? 'Hide Comment' : 'Show Comment',
+                      click: function () {
+                          objLisTestMasterModel.showRange(false);
+                          objLisTestMasterModel.showWord(false);
+                          objLisTestMasterModel.showComment(!objLisTestMasterModel.showComment());
+  
+                      }"
+                      class=""
+                      >Show Comment</a
+                    >
+                  </li>
+                </ul>
+                <div id="showtype">
+                  <div
+                    class="showrangearea validationEngineContainer"
+                    id="showrange"
+                    style="position: relative; display: none"
+                    data-bind="visible: selectedInvestigation() != null &amp;&amp; selectedInvestigation().ResultType() == 'Numerical' &amp;&amp; showRange()"
+                  >
+                    <h2>Range</h2>
+                    <div class="frinslt">
+                      <div class="floting">
+                        <h5>Range Name</h5>
+                        <input
+                          type="text"
+                          name=""
+                          data-bind="value: selectedInvestigation() != null &amp;&amp; selectedInvestigation().selectedRange() != null ? selectedInvestigation().selectedRange().RangeName : '', valueUpdate: 'afterkeydown'"
+                        />
+                      </div>
+                      <div class="floting">
+                        <h5>Critical Low</h5>
+                        <input
+                          type="text"
+                          name="txtCL"
+                          data-bind="disable:selectedInvestigation() != null &amp;&amp; selectedInvestigation().selectedRange() != null &amp;&amp; selectedInvestigation().selectedRange().ChkGT ,value: selectedInvestigation() != null &amp;&amp; selectedInvestigation().selectedRange() != null ? selectedInvestigation().selectedRange().CriticalLow : '', valueUpdate: 'afterkeydown',
+      css: { invalidEntry: selectedInvestigation() != null &amp;&amp; selectedInvestigation().selectedRange() != null &amp;&amp; selectedInvestigation().selectedRange().invalidCriticalLow }"
+                          class=""
+                        />
+                      </div>
+                      <div class="floting">
+                        <h5>Range From</h5>
+                        <input
+                          type="text"
+                          name=""
+                          data-bind="value: selectedInvestigation() != null &amp;&amp; selectedInvestigation().selectedRange() != null ? selectedInvestigation().selectedRange().RangeFrom : '', valueUpdate: 'afterkeydown',
+      css: { invalidEntry: selectedInvestigation() != null &amp;&amp; selectedInvestigation().selectedRange() != null &amp;&amp; selectedInvestigation().selectedRange().invalidRangeFrom }"
+                          data-validation-engine="validate[required]"
+                          class=""
+                        />
+                      </div>
+                      <div class="floting">
+                        <h5>Range To</h5>
+                        <input
+                          type="text"
+                          name=""
+                          data-bind="value: selectedInvestigation() != null &amp;&amp; selectedInvestigation().selectedRange() != null ? selectedInvestigation().selectedRange().RangeTo : '', valueUpdate: 'afterkeydown',
+      css: { invalidEntry: selectedInvestigation() != null &amp;&amp; selectedInvestigation().selectedRange() != null &amp;&amp; selectedInvestigation().selectedRange().invalidRangeTo }"
+                          data-validation-engine="validate[required]"
+                          class=""
+                        />
+                      </div>
+                      <div class="floting">
+                        <h5>Critical High</h5>
+                        <input
+                          type="text"
+                          name="txtCH"
+                          data-bind="disable:selectedInvestigation() != null &amp;&amp; selectedInvestigation().selectedRange() != null &amp;&amp; selectedInvestigation().selectedRange().ChkGT,value: selectedInvestigation() != null &amp;&amp; selectedInvestigation().selectedRange() != null ? selectedInvestigation().selectedRange().CriticalHigh : '', valueUpdate: 'afterkeydown'"
+                        />
+                      </div>
+                      <div class="floting">
+                        <h5>Gender</h5>
+                        <select
+                          class="custom age"
+                          name=""
+                          data-bind="options: ['Both', 'Male', 'Female'], value: selectedInvestigation() != null &amp;&amp; selectedInvestigation().selectedRange() != null ? selectedInvestigation().selectedRange().Gender : 'Both'"
+                        >
+                          <option value="Both">Both</option>
+                          <option value="Male">Male</option>
+                          <option value="Female">Female</option>
+                        </select>
+                      </div>
+                      <div class="floting">
+                        <h5>&gt;</h5>
+                        <input
+                          style="width: 20px; height: 21px; margin-top: 10px"
+                          type="checkbox"
+                          name="chkgt"
+                          data-bind="enable:selectedInvestigation() != null &amp;&amp; selectedInvestigation().selectedRange() != null ,checked: selectedInvestigation() != null &amp;&amp; selectedInvestigation().selectedRange() != null &amp;&amp; selectedInvestigation().selectedRange().AgeCategory().AgecategoryName()=='Custom' &amp;&amp; selectedInvestigation().selectedRange().ChkGT,click:onchkgt"
+                          disabled=""
+                        />
+                      </div>
+                      <div class="floting">
+                        <h5>&lt;</h5>
+                        <input
+                          style="width: 20px; height: 21px; margin-top: 10px"
+                          type="checkbox"
+                          name="chklt"
+                          data-bind="enable:selectedInvestigation() != null &amp;&amp; selectedInvestigation().selectedRange() != null ,checked: selectedInvestigation() != null &amp;&amp; selectedInvestigation().selectedRange() != null &amp;&amp; selectedInvestigation().selectedRange().AgeCategory().AgecategoryName()=='Custom' &amp;&amp; selectedInvestigation().selectedRange().ChkLT,click:onchklt"
+                          disabled=""
+                        />
+                      </div>
+                      <div class="floting">
+                        <h5>&gt;=</h5>
+                        <input
+                          style="width: 20px; height: 21px; margin-top: 10px"
+                          type="checkbox"
+                          name="chkgtequal"
+                          data-bind="enable:selectedInvestigation() != null &amp;&amp; selectedInvestigation().selectedRange() != null ,checked: selectedInvestigation() != null &amp;&amp; selectedInvestigation().selectedRange() != null &amp;&amp; selectedInvestigation().selectedRange().AgeCategory().AgecategoryName()=='Custom' &amp;&amp; selectedInvestigation().selectedRange().ChkGTEQUAL,click:onchkgtequal"
+                          disabled=""
+                        />
+                      </div>
+                      <div class="floting">
+                        <h5>&lt;=</h5>
+                        <input
+                          style="width: 20px; height: 21px; margin-top: 10px"
+                          type="checkbox"
+                          name="chkltequal"
+                          data-bind="enable:selectedInvestigation() != null &amp;&amp; selectedInvestigation().selectedRange() != null ,checked: selectedInvestigation() != null &amp;&amp; selectedInvestigation().selectedRange() != null &amp;&amp; selectedInvestigation().selectedRange().AgeCategory().AgecategoryName()=='Custom' &amp;&amp; selectedInvestigation().selectedRange().ChkLTEQUAL,click:onchkltequal"
+                          disabled=""
+                        />
+                      </div>
+                    </div>
+                    <div
+                      class="frinslt"
+                      style="width: 100%; display: block; float: left"
+                    >
+                      <div class="floting">
+                        <h5>Age Category</h5>
+                        <select
+                          class="custom age"
+                          name=""
+                          data-bind="options: ageCategories, optionsText: 'AgecategoryName', value: selectedInvestigation() != null &amp;&amp; selectedInvestigation().selectedRange() != null ? selectedInvestigation().selectedRange().AgeCategory : null"
+                        >
+                          <option value="">Infant</option>
+                          <option value="">New Born</option>
+                          <option value="">Custom</option>
+                          <option value="">All Ages</option>
+                          <option value="">Adult</option>
+                          <option value="">Child</option>
+                        </select>
+                      </div>
+                      <div class="floting">
+                        <h5>Age From</h5>
+                        <input
+                          type="text"
+                          name=""
+                          data-bind="enable:selectedInvestigation() != null &amp;&amp; selectedInvestigation().selectedRange() != null &amp;&amp; selectedInvestigation().selectedRange().AgeCategory().AgecategoryName()=='Custom',value: selectedInvestigation() != null &amp;&amp; selectedInvestigation().selectedRange() != null ? (selectedInvestigation().selectedRange().AgeCategory().AgecategoryName()=='Custom'?selectedInvestigation().selectedRange().AgeFrom:selectedInvestigation().selectedRange().AgeCategory().AgeFrom) : 0, valueUpdate: 'afterkeydown'"
+                          disabled=""
+                        />
+                      </div>
+                      <div class="floting">
+                        <h5>Age From Type</h5>
+                        <select
+                          style="padding: 12px 55px 12px 15px"
+                          name=""
+                          data-bind="options: ['D', 'M', 'Y'],enable:selectedInvestigation() != null &amp;&amp; selectedInvestigation().selectedRange() != null &amp;&amp; selectedInvestigation().selectedRange().AgeCategory().AgecategoryName()=='Custom',css:{disablecombo:selectedInvestigation() != null &amp;&amp; selectedInvestigation().selectedRange() != null &amp;&amp; selectedInvestigation().selectedRange().AgeCategory().AgecategoryName()!='Custom'},value: selectedInvestigation() != null &amp;&amp; selectedInvestigation().selectedRange() != null ?(selectedInvestigation().selectedRange().AgeCategory().AgecategoryName()=='Custom'?selectedInvestigation().selectedRange().AgeFromType:selectedInvestigation().selectedRange().AgeCategory().AgeFromType) : 'D'"
+                          disabled=""
+                          class=""
+                        >
+                          <option value="D">D</option>
+                          <option value="M">M</option>
+                          <option value="Y">Y</option>
+                        </select>
+                      </div>
+                      <div class="floting">
+                        <h5>Age To</h5>
+                        <input
+                          type="text"
+                          name=""
+                          data-bind="enable:selectedInvestigation() != null &amp;&amp; selectedInvestigation().selectedRange() != null &amp;&amp; selectedInvestigation().selectedRange().AgeCategory().AgecategoryName()=='Custom',value: selectedInvestigation() != null &amp;&amp; selectedInvestigation().selectedRange() != null ? (selectedInvestigation().selectedRange().AgeCategory().AgecategoryName()=='Custom'?selectedInvestigation().selectedRange().AgeTo:selectedInvestigation().selectedRange().AgeCategory().AgeTo) : 0, valueUpdate: 'afterkeydown'"
+                          disabled=""
+                        />
+                      </div>
+                      <div class="floting">
+                        <h5>Age To Type</h5>
+                        <select
+                          style="padding: 12px 55px 12px 15px"
+                          name=""
+                          data-bind="options: ['D', 'M', 'Y'],enable:selectedInvestigation() != null &amp;&amp; selectedInvestigation().selectedRange() != null &amp;&amp; selectedInvestigation().selectedRange().AgeCategory().AgecategoryName()=='Custom',css:{disablecombo:selectedInvestigation() != null &amp;&amp; selectedInvestigation().selectedRange() != null &amp;&amp; selectedInvestigation().selectedRange().AgeCategory().AgecategoryName()!='Custom'},value: selectedInvestigation() != null &amp;&amp; selectedInvestigation().selectedRange() != null ?(selectedInvestigation().selectedRange().AgeCategory().AgecategoryName()=='Custom'?selectedInvestigation().selectedRange().AgeToType:selectedInvestigation().selectedRange().AgeCategory().AgeToType) : 'D'"
+                          disabled=""
+                          class=""
+                        >
+                          <!-- ko if: selectedInvestigation() != null && selectedInvestigation().selectedRange() != null && selectedInvestigation().selectedRange().AgeFromType()=='M' --><!-- /ko -->
+                          <!-- ko if: selectedInvestigation() != null && selectedInvestigation().selectedRange() != null && selectedInvestigation().selectedRange().AgeFromType()=='Y' --><!-- /ko -->
+                          <!-- ko ifnot: selectedInvestigation() != null && selectedInvestigation().selectedRange() != null && (selectedInvestigation().selectedRange().AgeFromType()=='Y' || selectedInvestigation().selectedRange().AgeFromType()=='M' ) -->
+
+                          <!-- /ko -->
+                          <option value="D">D</option>
+                          <option value="M">M</option>
+                          <option value="Y">Y</option>
+                        </select>
+                      </div>
+                      <div class="floting">
+                        <h5>Branch</h5>
+                        <select
+                          class="custom age"
+                          data-bind="options: $root.Locations, optionsText: 'LocationName', value: selectedInvestigation() != null &amp;&amp; selectedInvestigation().selectedRange() != null ? selectedInvestigation().selectedRange().Branch : null"
+                        ></select>
+                      </div>
+                      <div
+                        class="floating"
+                        id="divspecies"
+                        style="display: none"
+                      >
+                        <h5>Species</h5>
+
+                        <select
+                          class="custom spe"
+                          name=""
+                          data-bind="options: ageCategoriesSpecies, optionsText: 'AgecategoryNameSpecies', value: selectedInvestigation() != null &amp;&amp; selectedInvestigation().selectedRange() != null ? selectedInvestigation().selectedRange().AgeCategorySpecies : null"
+                        ></select>
+                      </div>
+                    </div>
+
+                    <div class="leftcommentarea">
+                      <h4>Comment</h4>
+                      <div
+                        data-bind="visible: selectedInvestigation() != null &amp;&amp; selectedInvestigation().selectedRange() != null"
+                        style="position: relative; z-index: 0; display: none"
+                      >
+                        <div
+                          id="ctl00_MainContent_LISTestMasterControl_RadEditor2"
+                          class="RadEditor Default reWrapper reDropdown,reToolbar,reSpinBox,RadEditor,reModule,reEditorModes,reDropDownBody,reAjaxspell_wrapper"
+                          style="
+                            width: 680px;
+                            height: 400px;
+                            border: none;
+                            width: 440px;
+                          "
+                        >
+                          <div
+                            id="ctl00_MainContent_LISTestMasterControl_RadEditor2_dialogOpener"
+                            style="display: none"
+                          >
+                            <div
+                              id="ctl00_MainContent_LISTestMasterControl_RadEditor2_dialogOpener_Window"
+                              style="display: none"
+                            >
+                              <div
+                                id="ctl00_MainContent_LISTestMasterControl_RadEditor2_dialogOpener_Window_C"
+                                style="display: none"
+                              ></div>
+                              <input
+                                id="ctl00_MainContent_LISTestMasterControl_RadEditor2_dialogOpener_Window_ClientState"
+                                name="ctl00_MainContent_LISTestMasterControl_RadEditor2_dialogOpener_Window_ClientState"
+                                type="hidden"
+                                autocomplete="off"
+                              />
+                            </div>
+                            <input
+                              id="ctl00_MainContent_LISTestMasterControl_RadEditor2_dialogOpener_ClientState"
+                              name="ctl00_MainContent_LISTestMasterControl_RadEditor2_dialogOpener_ClientState"
+                              type="hidden"
+                              autocomplete="off"
+                            />
+                          </div>
+                          <table
+                            id="ctl00_MainContent_LISTestMasterControl_RadEditor2Wrapper"
+                            class="reLayoutWrapper"
+                            style="width: 100%; height: 400px"
+                          >
+                            <caption style="display: none">
+                              RadEditor - HTML WYSIWYG Editor. MS Word-like
+                              content editing experience thanks to a rich set of
+                              formatting tools, dropdowns, dialogs, system
+                              modules and built-in spell-check.
+                            </caption>
+                            <thead style="display: none">
+                              <tr>
+                                <th scope="col">
+                                  <span
+                                    >RadEditor's components - toolbar, content
+                                    area, modes and modules</span
+                                  >
+                                </th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <th scope="row" style="display: none">
+                                  <span></span>
+                                </th>
+                                <td class="reWrapper_corner reCorner_top_left">
+                                  &nbsp;
+                                </td>
+                                <td
+                                  class="reWrapper_center reCenter_top"
+                                  colspan="3"
+                                >
+                                  &nbsp;
+                                </td>
+                                <td class="reWrapper_corner reCorner_top_right">
+                                  &nbsp;
+                                </td>
+                              </tr>
+                              <tr>
+                                <th scope="row" style="display: none">
+                                  <span>Toolbar's wrapper</span>
+                                </th>
+                                <td class="reLeftVerticalSide" rowspan="4">
+                                  &nbsp;
+                                </td>
+                                <td
+                                  rowspan="4"
+                                  id="ctl00_MainContent_LISTestMasterControl_RadEditor2Left"
+                                  class="reTlbVertical"
+                                ></td>
+                                <td
+                                  id="ctl00_MainContent_LISTestMasterControl_RadEditor2Top"
+                                  class="reToolCell"
+                                  style="width: 100%"
+                                >
+                                  <div
+                                    class="Default reToolbarWrapper"
+                                    style=""
+                                  >
+                                    <ul class="reToolbar Default">
+                                      <li class="reGrip grip_first">&nbsp;</li>
+                                      <li>
+                                        <a
+                                          title="Bold"
+                                          class="reTool"
+                                          href="#"
+                                          unselectable="on"
+                                          ><span class="Bold" unselectable="on"
+                                            >&nbsp;</span
+                                          ></a
+                                        >
+                                      </li>
+                                      <li>
+                                        <a
+                                          title="Italic"
+                                          class="reTool"
+                                          href="#"
+                                          unselectable="on"
+                                          ><span
+                                            class="Italic"
+                                            unselectable="on"
+                                            >&nbsp;</span
+                                          ></a
+                                        >
+                                      </li>
+                                      <li>
+                                        <a
+                                          title="Underline"
+                                          class="reTool"
+                                          href="#"
+                                          unselectable="on"
+                                          ><span
+                                            class="Underline"
+                                            unselectable="on"
+                                            >&nbsp;</span
+                                          ></a
+                                        >
+                                      </li>
+                                      <li>
+                                        <a
+                                          title="Strikethrough"
+                                          class="reTool"
+                                          href="#"
+                                          unselectable="on"
+                                          ><span
+                                            class="StrikeThrough"
+                                            unselectable="on"
+                                            >&nbsp;</span
+                                          ></a
+                                        >
+                                      </li>
+                                      <li>
+                                        <a
+                                          title="Font Name"
+                                          class="reDropdown"
+                                          href="#"
+                                          unselectable="on"
+                                          ><span
+                                            class="FontName"
+                                            unselectable="on"
+                                            >Font&nbsp;Name</span
+                                          ></a
+                                        >
+                                      </li>
+                                      <li>
+                                        <a
+                                          title="Real font size"
+                                          class="reDropdown"
+                                          href="#"
+                                          unselectable="on"
+                                          ><span
+                                            class="RealFontSize"
+                                            unselectable="on"
+                                            >Real font size</span
+                                          ></a
+                                        >
+                                      </li>
+                                      <li>
+                                        <a
+                                          title="Align Left"
+                                          class="reTool"
+                                          href="#"
+                                          unselectable="on"
+                                          ><span
+                                            class="JustifyLeft"
+                                            unselectable="on"
+                                            >&nbsp;</span
+                                          ></a
+                                        >
+                                      </li>
+                                      <li>
+                                        <a
+                                          title="Align Left"
+                                          class="reTool"
+                                          href="#"
+                                          unselectable="on"
+                                          ><span
+                                            class="JustifyLeft"
+                                            unselectable="on"
+                                            >&nbsp;</span
+                                          ></a
+                                        >
+                                      </li>
+                                      <li>
+                                        <a
+                                          title="Align Center"
+                                          class="reTool"
+                                          href="#"
+                                          unselectable="on"
+                                          ><span
+                                            class="JustifyCenter"
+                                            unselectable="on"
+                                            >&nbsp;</span
+                                          ></a
+                                        >
+                                      </li>
+                                      <li>
+                                        <a
+                                          title="Align Right"
+                                          class="reTool"
+                                          href="#"
+                                          unselectable="on"
+                                          ><span
+                                            class="JustifyRight"
+                                            unselectable="on"
+                                            >&nbsp;</span
+                                          ></a
+                                        >
+                                      </li>
+                                      <li>
+                                        <a
+                                          title="Justify"
+                                          class="reTool"
+                                          href="#"
+                                          unselectable="on"
+                                          ><span
+                                            class="JustifyFull"
+                                            unselectable="on"
+                                            >&nbsp;</span
+                                          ></a
+                                        >
+                                      </li>
+                                      <li>
+                                        <a
+                                          title="Bullet List"
+                                          class="reTool"
+                                          href="#"
+                                          unselectable="on"
+                                          ><span
+                                            class="InsertUnorderedList"
+                                            unselectable="on"
+                                            >&nbsp;</span
+                                          ></a
+                                        >
+                                      </li>
+                                      <li>
+                                        <a
+                                          title="Numbered List"
+                                          class="reTool"
+                                          href="#"
+                                          unselectable="on"
+                                          ><span
+                                            class="InsertOrderedList"
+                                            unselectable="on"
+                                            >&nbsp;</span
+                                          ></a
+                                        >
+                                      </li>
+                                      <li>
+                                        <a
+                                          title="Indent"
+                                          class="reTool"
+                                          href="#"
+                                          unselectable="on"
+                                          ><span
+                                            class="Indent"
+                                            unselectable="on"
+                                            >&nbsp;</span
+                                          ></a
+                                        >
+                                      </li>
+                                      <li>
+                                        <a
+                                          title="Outdent"
+                                          class="reTool"
+                                          href="#"
+                                          unselectable="on"
+                                          ><span
+                                            class="Outdent"
+                                            unselectable="on"
+                                            >&nbsp;</span
+                                          ></a
+                                        >
+                                      </li>
+                                      <li>
+                                        <a
+                                          title="Paragraph Style"
+                                          class="reDropdown"
+                                          href="#"
+                                          unselectable="on"
+                                          ><span
+                                            class="FormatBlock"
+                                            unselectable="on"
+                                            >Normal</span
+                                          ></a
+                                        >
+                                      </li>
+                                      <li>
+                                        <a
+                                          title="Subscript"
+                                          class="reTool"
+                                          href="#"
+                                          unselectable="on"
+                                          ><span
+                                            class="Subscript"
+                                            unselectable="on"
+                                            >&nbsp;</span
+                                          ></a
+                                        >
+                                      </li>
+                                      <li>
+                                        <a
+                                          title="SuperScript"
+                                          class="reTool"
+                                          href="#"
+                                          unselectable="on"
+                                          ><span
+                                            class="Superscript"
+                                            unselectable="on"
+                                            >&nbsp;</span
+                                          ></a
+                                        >
+                                      </li>
+                                      <li>
+                                        <a
+                                          title="Cut"
+                                          class="reTool"
+                                          href="#"
+                                          unselectable="on"
+                                          ><span class="Cut" unselectable="on"
+                                            >&nbsp;</span
+                                          ></a
+                                        >
+                                      </li>
+                                      <li>
+                                        <a
+                                          title="Insert Table"
+                                          class="reTool reSplitButton"
+                                          href="#"
+                                          unselectable="on"
+                                          ><span
+                                            class="InsertTable"
+                                            unselectable="on"
+                                            >&nbsp;</span
+                                          ><span class="split_arrow"
+                                            >&nbsp;</span
+                                          ></a
+                                        >
+                                      </li>
+                                      <li class="reGrip grip_last">&nbsp;</li>
+                                    </ul>
+                                  </div>
+                                </td>
+                                <td
+                                  rowspan="4"
+                                  id="ctl00_MainContent_LISTestMasterControl_RadEditor2Right"
+                                  class="reTlbVertical"
+                                ></td>
+                                <td rowspan="4" class="reRightVerticalSide">
+                                  &nbsp;
+                                </td>
+                              </tr>
+                              <tr>
+                                <th scope="row" style="display: none">
+                                  <span>Content area wrapper</span>
+                                </th>
+                                <td
+                                  id="ctl00_MainContent_LISTestMasterControl_RadEditor2Center"
+                                  class="reContentCell"
+                                  style="height: 100%"
+                                >
+                                  <label
+                                    for="ctl00_MainContent_LISTestMasterControl_RadEditor2ContentHiddenTextarea"
+                                    style="display: none"
+                                    >RadEditor hidden textarea</label
+                                  ><textarea
+                                    id="ctl00_MainContent_LISTestMasterControl_RadEditor2ContentHiddenTextarea"
+                                    name="ctl00$MainContent$LISTestMasterControl$RadEditor2"
+                                    rows="4"
+                                    cols="20"
+                                    style="display: none"
+                                  ></textarea
+                                  ><iframe
+                                    frameborder="0"
+                                    src="javascript:'<html></html>';"
+                                    id="ctl00_MainContent_LISTestMasterControl_RadEditor2_contentIframe"
+                                    title="Rich text editor with ID ctl00_MainContent_LISTestMasterControl_RadEditor2"
+                                    style="
+                                      width: 100%;
+                                      height: 398px;
+                                      margin: 0px;
+                                      padding: 0px;
+                                    "
+                                    >Your browser does not support inline frames
+                                    or is currently configured not to display
+                                    inline frames.</iframe
+                                  >
+                                </td>
+                              </tr>
+                              <tr>
+                                <th scope="row" style="display: none">
+                                  <span
+                                    >RadEditor's bottom area: Design, Html and
+                                    Preview modes, Statistics module and resize
+                                    handle.</span
+                                  >
+                                </th>
+                                <td class="reToolZone">
+                                  <table
+                                    class="reBottomTable"
+                                    id="ctl00_MainContent_LISTestMasterControl_RadEditor2_BottomTable"
+                                    style="width: 100%"
+                                  >
+                                    <caption style="display: none">
+                                      It contains RadEditor's Modes/views (HTML,
+                                      Design and Preview), Statistics and
+                                      Resizer
+                                    </caption>
+                                    <thead style="display: none">
+                                      <tr>
+                                        <th scope="col">
+                                          <span>Editor Mode buttons</span>
+                                        </th>
+                                        <th scope="col">
+                                          <span>Statistics module</span>
+                                        </th>
+                                        <th scope="col">
+                                          <span>Editor resizer</span>
+                                        </th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr>
+                                        <td class="reEditorModesCell">
+                                          <div
+                                            class="reEditorModes"
+                                            id="ctl00_MainContent_LISTestMasterControl_RadEditor2_ModesWrapper"
+                                          >
+                                            <ul>
+                                              <li>
+                                                <a
+                                                  href="javascript:void(0);"
+                                                  title="Design"
+                                                  class="reMode_design reMode_selected"
+                                                  ><span>Design</span></a
+                                                >
+                                              </li>
+                                              <li>
+                                                <a
+                                                  href="javascript:void(0);"
+                                                  title="HTML"
+                                                  class="reMode_html"
+                                                  ><span>HTML</span></a
+                                                >
+                                              </li>
+                                              <li>
+                                                <a
+                                                  href="javascript:void(0);"
+                                                  title="Preview"
+                                                  class="reMode_preview"
+                                                  ><span>Preview</span></a
+                                                >
+                                              </li>
+                                            </ul>
+                                          </div>
+                                        </td>
+                                        <td
+                                          class="reBottomZone"
+                                          id="ctl00_MainContent_LISTestMasterControl_RadEditor2Bottom"
+                                        >
+                                          &nbsp;
+                                        </td>
+                                        <td
+                                          class="reResizeCell"
+                                          style="width: 15px"
+                                        >
+                                          <div
+                                            id="ctl00_MainContent_LISTestMasterControl_RadEditor2BottomResizer"
+                                            style="cursor: se-resize"
+                                          >
+                                            &nbsp;
+                                          </div>
+                                        </td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                  <noscript>
+                                    <p>
+                                      RadEditor - please enable JavaScript to
+                                      use the rich text editor.
+                                    </p>
+                                  </noscript>
+                                </td>
+                              </tr>
+                              <tr>
+                                <th scope="row" style="display: none">
+                                  <span
+                                    >RadEditor's Modules - special tools used to
+                                    provide extra information such as Tag
+                                    Inspector, Real Time HTML Viewer, Tag
+                                    Properties and other.</span
+                                  >
+                                </th>
+                                <td
+                                  id="ctl00_MainContent_LISTestMasterControl_RadEditor2Module"
+                                  class="reToolZone"
+                                ></td>
+                              </tr>
+                              <tr>
+                                <th scope="row" style="display: none">
+                                  <span></span>
+                                </th>
+                                <td
+                                  class="reWrapper_corner reCorner_bottom_left"
+                                >
+                                  &nbsp;
+                                </td>
+                                <td
+                                  class="reWrapper_center reCenter_bottom"
+                                  colspan="3"
+                                >
+                                  &nbsp;
+                                </td>
+                                <td
+                                  class="reWrapper_corner reCorner_bottom_right"
+                                >
+                                  &nbsp;
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                          <input
+                            id="ctl00_MainContent_LISTestMasterControl_RadEditor2_ClientState"
+                            name="ctl00_MainContent_LISTestMasterControl_RadEditor2_ClientState"
+                            type="hidden"
+                            autocomplete="off"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div style="position: absolute; right: -38px; top: 145px">
+                      <h5 id="hLoc">Locations</h5>
+                      <select
+                        id="LISAdvisedInvestigationControlKnockout_drpLocation"
+                        data-validation-engine="validate[required]"
+                        style="display: none"
+                      >
+                        <option value="0">Select Location</option>
+                        <option value="524ccc5a-f88d-4956-974b-cc13516b402e">
+                          Samarpan Health Care Institute
+                        </option>
+                        <option value="edd1c1f4-b9d5-4129-94a9-3c120b609a0a">
+                          Samarpan Health Care Institute jiwaji nagar
+                        </option>
+                        <option value="9b2deb16-fe18-4216-a989-c616a8dd0f20">
+                          Samarpan Health Care Institute garima hospital
+                        </option>
+                        <option value="b90a26f7-438e-40fd-be5d-da0e339636d9">
+                          Samarpan Health Care Institute patali hanuman hazira
+                        </option>
+                        <option value="0c456785-e445-44e1-b815-f3b8b0bebcfd">
+                          Samarpan Health Care Institute lakkad khana
+                        </option></select
+                      ><span class="ui-combobox"
+                        ><input
+                          title=""
+                          class="ui-state-default ui-combobox-input ui-autocomplete-input ui-widget ui-widget-content ui-corner-left"
+                          autocomplete="off"
+                          data-validation-engine="validate[funcCall[checkDropDown]]"
+                          disabled="" /><span
+                          role="status"
+                          aria-live="polite"
+                          class="ui-helper-hidden-accessible"
+                          style="display: none"
+                        ></span
+                        ><a
+                          tabindex="-1"
+                          class="ui-button ui-widget ui-state-default ui-button-icon-only ui-corner-right ui-combobox-toggle"
+                          role="button"
+                          aria-disabled="false"
+                          title=""
+                          style="display: none"
+                          ><span
+                            class="ui-button-icon-primary ui-icon ui-icon-triangle-1-s"
+                          ></span
+                          ><span class="ui-button-text"></span></a
+                      ></span>
+                    </div>
+                    <div id="divspeciesrange" style="display: none"></div>
+                    <div id="divnormalrange" style="display: inline-block">
+                      <div
+                        data-bind="if: selectedInvestigation() != null &amp;&amp; selectedInvestigation().Range().length > 0"
+                      ></div>
+                    </div>
+
+                    <div
+                      class="buttonaddarea"
+                      data-bind="if: selectedInvestigation() != null"
+                    ></div>
+                  </div>
+                  <div
+                    class="showrangearea validationEngineContainer"
+                    id="showword"
+                    data-bind="visible: showWord()"
+                    style="display: none"
+                  >
+                    <h2>Word</h2>
+                    <div class="frinslt">
+                      <div class="floting">
+                        <h5>Words</h5>
+                        <input
+                          type="text"
+                          name=""
+                          style="width: 180px"
+                          data-bind="value: selectedInvestigation() != null &amp;&amp; selectedInvestigation().selectedWord() != null ? selectedInvestigation().selectedWord().Word : '', valueUpdate: 'afterkeydown'"
+                          data-validation-engine="validate[required]"
+                        />
+                      </div>
+                      <div class="floting">
+                        <h5>Gender</h5>
+                        <select
+                          class="custom age"
+                          name=""
+                          data-bind="options: ['Both', 'Male', 'Female'], value: selectedInvestigation() != null &amp;&amp; selectedInvestigation().selectedWord() != null ? selectedInvestigation().selectedWord().Gender : null"
+                        >
+                          <option value="Both">Both</option>
+                          <option value="Male">Male</option>
+                          <option value="Female">Female</option>
+                        </select>
+                      </div>
+                      <div class="floting">
+                        <h5>Age Category</h5>
+                        <select
+                          class="custom age"
+                          name=""
+                          data-bind="options: ageCategories, optionsText: 'AgecategoryName', value: selectedInvestigation() != null &amp;&amp; selectedInvestigation().selectedWord() != null ? selectedInvestigation().selectedWord().AgeCategory : null"
+                        >
+                          <option value="">Infant</option>
+                          <option value="">New Born</option>
+                          <option value="">Custom</option>
+                          <option value="">All Ages</option>
+                          <option value="">Adult</option>
+                          <option value="">Child</option>
+                        </select>
+                      </div>
+                      <div class="floting">
+                        <h5>Reference Range</h5>
+                        <input
+                          style="width: 20px; height: 21px; margin-top: 10px"
+                          type="checkbox"
+                          name="active"
+                          id="chkReferenceRangeWord"
+                          data-bind="checked: selectedInvestigation() != null &amp;&amp; selectedInvestigation().selectedWord() != null &amp;&amp; selectedInvestigation().selectedWord().IsReferenceWord"
+                        />
+                      </div>
+                      <div class="floting">
+                        <h5>Is Default</h5>
+                        <input
+                          style="width: 20px; height: 21px; margin-top: 10px"
+                          type="checkbox"
+                          name="active1"
+                          data-bind="enable:selectedInvestigation() != null &amp;&amp; selectedInvestigation().selectedWord() != null &amp;&amp; selectedInvestigation().selectedWord().IsReferenceWord,checked: selectedInvestigation() != null &amp;&amp; selectedInvestigation().selectedWord() != null &amp;&amp; selectedInvestigation().selectedWord().IsDefault,click:onisdefault"
+                          disabled=""
+                        />
+                      </div>
+                      <div class="floting">
+                        <h5>Range Bold</h5>
+                        <input
+                          style="width: 20px; height: 21px; margin-top: 10px"
+                          type="checkbox"
+                          name="active1"
+                          data-bind="enable: selectedInvestigation() != null &amp;&amp; selectedInvestigation().selectedWord() != null &amp;&amp; selectedInvestigation().selectedWord().IsReferenceWord &amp;&amp; selectedInvestigation().selectedWord().IsDefault, checked: selectedInvestigation() != null &amp;&amp; selectedInvestigation().selectedWord() != null &amp;&amp; selectedInvestigation().selectedWord().IsRangeBold, click: onrangebold"
+                          disabled=""
+                        />
+                      </div>
+                    </div>
+
+                    <div
+                      data-bind="if: selectedInvestigation() != null &amp;&amp; selectedInvestigation().Word().length > 0"
+                    ></div>
+
+                    <div
+                      class="buttonaddarea"
+                      data-bind="if: selectedInvestigation() != null"
+                    ></div>
+                  </div>
+                  <div
+                    class="showrangearea validationEngineContainer"
+                    id="showcomment"
+                    data-bind="visible: showComment()"
+                    style="width: 1132px !important; display: none"
+                  >
+                    <h2>Comment</h2>
+                    <div class="frinslt">
+                      <div class="floting">
+                        <h5>Name</h5>
+                        <input
+                          type="text"
+                          name=""
+                          style="width: 180px"
+                          data-bind="value: selectedInvestigation() != null &amp;&amp; selectedInvestigation().selectedComment() != null ? selectedInvestigation().selectedComment().Name : '', valueUpdate: 'afterkeydown'"
+                          data-validation-engine="validate[required]"
+                        />
+                      </div>
+                      <div class="floting">
+                        <h5>Gender</h5>
+                        <select
+                          class="custom age"
+                          name=""
+                          data-bind="options: ['Both', 'Male', 'Female'], value: selectedInvestigation() != null &amp;&amp; selectedInvestigation().selectedComment() != null ? selectedInvestigation().selectedComment().Gender : null"
+                        >
+                          <option value="Both">Both</option>
+                          <option value="Male">Male</option>
+                          <option value="Female">Female</option>
+                        </select>
+                      </div>
+                      <div class="floting">
+                        <h5>Age Category</h5>
+                        <select
+                          class="custom age"
+                          name=""
+                          data-bind="options: ageCategories, optionsText: 'AgecategoryName', value: selectedInvestigation() != null &amp;&amp; selectedInvestigation().selectedComment() != null ? selectedInvestigation().selectedComment().AgeCategory : null"
+                        >
+                          <option value="">Infant</option>
+                          <option value="">New Born</option>
+                          <option value="">Custom</option>
+                          <option value="">All Ages</option>
+                          <option value="">Adult</option>
+                          <option value="">Child</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div
+                      data-bind="if: selectedInvestigation() != null &amp;&amp; selectedInvestigation().Comment().length > 0"
+                    ></div>
+                    <div class="leftcommentarea">
+                      <h4>Comment</h4>
+                      <div
+                        data-bind="visible: selectedInvestigation() != null &amp;&amp; selectedInvestigation().selectedComment() != null"
+                        style="display: none"
+                      >
+                        <div
+                          id="ctl00_MainContent_LISTestMasterControl_RadEditor3"
+                          class="RadEditor Default reWrapper reDropdown,reToolbar,reSpinBox,RadEditor,reModule,reEditorModes,reDropDownBody,reAjaxspell_wrapper"
+                          style="width: 680px; height: 400px"
+                        >
+                          <div
+                            id="ctl00_MainContent_LISTestMasterControl_RadEditor3_dialogOpener"
+                            style="display: none"
+                          >
+                            <div
+                              id="ctl00_MainContent_LISTestMasterControl_RadEditor3_dialogOpener_Window"
+                              style="display: none"
+                            >
+                              <div
+                                id="ctl00_MainContent_LISTestMasterControl_RadEditor3_dialogOpener_Window_C"
+                                style="display: none"
+                              ></div>
+                              <input
+                                id="ctl00_MainContent_LISTestMasterControl_RadEditor3_dialogOpener_Window_ClientState"
+                                name="ctl00_MainContent_LISTestMasterControl_RadEditor3_dialogOpener_Window_ClientState"
+                                type="hidden"
+                                autocomplete="off"
+                              />
+                            </div>
+                            <input
+                              id="ctl00_MainContent_LISTestMasterControl_RadEditor3_dialogOpener_ClientState"
+                              name="ctl00_MainContent_LISTestMasterControl_RadEditor3_dialogOpener_ClientState"
+                              type="hidden"
+                              autocomplete="off"
+                            />
+                          </div>
+                          <table
+                            id="ctl00_MainContent_LISTestMasterControl_RadEditor3Wrapper"
+                            class="reLayoutWrapper"
+                            style="width: 100%; height: 400px"
+                          >
+                            <caption style="display: none">
+                              RadEditor - HTML WYSIWYG Editor. MS Word-like
+                              content editing experience thanks to a rich set of
+                              formatting tools, dropdowns, dialogs, system
+                              modules and built-in spell-check.
+                            </caption>
+                            <thead style="display: none">
+                              <tr>
+                                <th scope="col">
+                                  <span
+                                    >RadEditor's components - toolbar, content
+                                    area, modes and modules</span
+                                  >
+                                </th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <th scope="row" style="display: none">
+                                  <span></span>
+                                </th>
+                                <td class="reWrapper_corner reCorner_top_left">
+                                  &nbsp;
+                                </td>
+                                <td
+                                  class="reWrapper_center reCenter_top"
+                                  colspan="3"
+                                >
+                                  &nbsp;
+                                </td>
+                                <td class="reWrapper_corner reCorner_top_right">
+                                  &nbsp;
+                                </td>
+                              </tr>
+                              <tr>
+                                <th scope="row" style="display: none">
+                                  <span>Toolbar's wrapper</span>
+                                </th>
+                                <td class="reLeftVerticalSide" rowspan="4">
+                                  &nbsp;
+                                </td>
+                                <td
+                                  rowspan="4"
+                                  id="ctl00_MainContent_LISTestMasterControl_RadEditor3Left"
+                                  class="reTlbVertical"
+                                ></td>
+                                <td
+                                  id="ctl00_MainContent_LISTestMasterControl_RadEditor3Top"
+                                  class="reToolCell"
+                                  style="width: 100%"
+                                >
+                                  <div
+                                    class="Default reToolbarWrapper"
+                                    style=""
+                                  >
+                                    <ul class="reToolbar Default">
+                                      <li class="reGrip grip_first">&nbsp;</li>
+                                      <li>
+                                        <a
+                                          title="Bold"
+                                          class="reTool"
+                                          href="#"
+                                          unselectable="on"
+                                          ><span class="Bold" unselectable="on"
+                                            >&nbsp;</span
+                                          ></a
+                                        >
+                                      </li>
+                                      <li>
+                                        <a
+                                          title="Italic"
+                                          class="reTool"
+                                          href="#"
+                                          unselectable="on"
+                                          ><span
+                                            class="Italic"
+                                            unselectable="on"
+                                            >&nbsp;</span
+                                          ></a
+                                        >
+                                      </li>
+                                      <li>
+                                        <a
+                                          title="Underline"
+                                          class="reTool"
+                                          href="#"
+                                          unselectable="on"
+                                          ><span
+                                            class="Underline"
+                                            unselectable="on"
+                                            >&nbsp;</span
+                                          ></a
+                                        >
+                                      </li>
+                                      <li>
+                                        <a
+                                          title="Strikethrough"
+                                          class="reTool"
+                                          href="#"
+                                          unselectable="on"
+                                          ><span
+                                            class="StrikeThrough"
+                                            unselectable="on"
+                                            >&nbsp;</span
+                                          ></a
+                                        >
+                                      </li>
+                                      <li>
+                                        <a
+                                          title="Font Name"
+                                          class="reDropdown"
+                                          href="#"
+                                          unselectable="on"
+                                          ><span
+                                            class="FontName"
+                                            unselectable="on"
+                                            >Font&nbsp;Name</span
+                                          ></a
+                                        >
+                                      </li>
+                                      <li>
+                                        <a
+                                          title="Real font size"
+                                          class="reDropdown"
+                                          href="#"
+                                          unselectable="on"
+                                          ><span
+                                            class="RealFontSize"
+                                            unselectable="on"
+                                            >Real font size</span
+                                          ></a
+                                        >
+                                      </li>
+                                      <li>
+                                        <a
+                                          title="Align Left"
+                                          class="reTool"
+                                          href="#"
+                                          unselectable="on"
+                                          ><span
+                                            class="JustifyLeft"
+                                            unselectable="on"
+                                            >&nbsp;</span
+                                          ></a
+                                        >
+                                      </li>
+                                      <li>
+                                        <a
+                                          title="Align Left"
+                                          class="reTool"
+                                          href="#"
+                                          unselectable="on"
+                                          ><span
+                                            class="JustifyLeft"
+                                            unselectable="on"
+                                            >&nbsp;</span
+                                          ></a
+                                        >
+                                      </li>
+                                      <li>
+                                        <a
+                                          title="Align Center"
+                                          class="reTool"
+                                          href="#"
+                                          unselectable="on"
+                                          ><span
+                                            class="JustifyCenter"
+                                            unselectable="on"
+                                            >&nbsp;</span
+                                          ></a
+                                        >
+                                      </li>
+                                      <li>
+                                        <a
+                                          title="Align Right"
+                                          class="reTool"
+                                          href="#"
+                                          unselectable="on"
+                                          ><span
+                                            class="JustifyRight"
+                                            unselectable="on"
+                                            >&nbsp;</span
+                                          ></a
+                                        >
+                                      </li>
+                                      <li>
+                                        <a
+                                          title="Justify"
+                                          class="reTool"
+                                          href="#"
+                                          unselectable="on"
+                                          ><span
+                                            class="JustifyFull"
+                                            unselectable="on"
+                                            >&nbsp;</span
+                                          ></a
+                                        >
+                                      </li>
+                                      <li>
+                                        <a
+                                          title="Bullet List"
+                                          class="reTool"
+                                          href="#"
+                                          unselectable="on"
+                                          ><span
+                                            class="InsertUnorderedList"
+                                            unselectable="on"
+                                            >&nbsp;</span
+                                          ></a
+                                        >
+                                      </li>
+                                      <li>
+                                        <a
+                                          title="Numbered List"
+                                          class="reTool"
+                                          href="#"
+                                          unselectable="on"
+                                          ><span
+                                            class="InsertOrderedList"
+                                            unselectable="on"
+                                            >&nbsp;</span
+                                          ></a
+                                        >
+                                      </li>
+                                      <li>
+                                        <a
+                                          title="Indent"
+                                          class="reTool"
+                                          href="#"
+                                          unselectable="on"
+                                          ><span
+                                            class="Indent"
+                                            unselectable="on"
+                                            >&nbsp;</span
+                                          ></a
+                                        >
+                                      </li>
+                                      <li>
+                                        <a
+                                          title="Outdent"
+                                          class="reTool"
+                                          href="#"
+                                          unselectable="on"
+                                          ><span
+                                            class="Outdent"
+                                            unselectable="on"
+                                            >&nbsp;</span
+                                          ></a
+                                        >
+                                      </li>
+                                      <li>
+                                        <a
+                                          title="Paragraph Style"
+                                          class="reDropdown"
+                                          href="#"
+                                          unselectable="on"
+                                          ><span
+                                            class="FormatBlock"
+                                            unselectable="on"
+                                            >Normal</span
+                                          ></a
+                                        >
+                                      </li>
+                                      <li>
+                                        <a
+                                          title="Subscript"
+                                          class="reTool"
+                                          href="#"
+                                          unselectable="on"
+                                          ><span
+                                            class="Subscript"
+                                            unselectable="on"
+                                            >&nbsp;</span
+                                          ></a
+                                        >
+                                      </li>
+                                      <li>
+                                        <a
+                                          title="SuperScript"
+                                          class="reTool"
+                                          href="#"
+                                          unselectable="on"
+                                          ><span
+                                            class="Superscript"
+                                            unselectable="on"
+                                            >&nbsp;</span
+                                          ></a
+                                        >
+                                      </li>
+                                      <li>
+                                        <a
+                                          title="Cut"
+                                          class="reTool"
+                                          href="#"
+                                          unselectable="on"
+                                          ><span class="Cut" unselectable="on"
+                                            >&nbsp;</span
+                                          ></a
+                                        >
+                                      </li>
+                                      <li>
+                                        <a
+                                          title="Insert Table"
+                                          class="reTool reSplitButton"
+                                          href="#"
+                                          unselectable="on"
+                                          ><span
+                                            class="InsertTable"
+                                            unselectable="on"
+                                            >&nbsp;</span
+                                          ><span class="split_arrow"
+                                            >&nbsp;</span
+                                          ></a
+                                        >
+                                      </li>
+                                      <li class="reGrip grip_last">&nbsp;</li>
+                                    </ul>
+                                  </div>
+                                </td>
+                                <td
+                                  rowspan="4"
+                                  id="ctl00_MainContent_LISTestMasterControl_RadEditor3Right"
+                                  class="reTlbVertical"
+                                ></td>
+                                <td rowspan="4" class="reRightVerticalSide">
+                                  &nbsp;
+                                </td>
+                              </tr>
+                              <tr>
+                                <th scope="row" style="display: none">
+                                  <span>Content area wrapper</span>
+                                </th>
+                                <td
+                                  id="ctl00_MainContent_LISTestMasterControl_RadEditor3Center"
+                                  class="reContentCell"
+                                  style="height: 100%"
+                                >
+                                  <label
+                                    for="ctl00_MainContent_LISTestMasterControl_RadEditor3ContentHiddenTextarea"
+                                    style="display: none"
+                                    >RadEditor hidden textarea</label
+                                  ><textarea
+                                    id="ctl00_MainContent_LISTestMasterControl_RadEditor3ContentHiddenTextarea"
+                                    name="ctl00$MainContent$LISTestMasterControl$RadEditor3"
+                                    rows="4"
+                                    cols="20"
+                                    style="display: none"
+                                  ></textarea
+                                  ><iframe
+                                    frameborder="0"
+                                    src="javascript:'<html></html>';"
+                                    id="ctl00_MainContent_LISTestMasterControl_RadEditor3_contentIframe"
+                                    title="Rich text editor with ID ctl00_MainContent_LISTestMasterControl_RadEditor3"
+                                    style="
+                                      width: 100%;
+                                      height: 398px;
+                                      margin: 0px;
+                                      padding: 0px;
+                                    "
+                                    >Your browser does not support inline frames
+                                    or is currently configured not to display
+                                    inline frames.</iframe
+                                  >
+                                </td>
+                              </tr>
+                              <tr>
+                                <th scope="row" style="display: none">
+                                  <span
+                                    >RadEditor's bottom area: Design, Html and
+                                    Preview modes, Statistics module and resize
+                                    handle.</span
+                                  >
+                                </th>
+                                <td class="reToolZone">
+                                  <table
+                                    class="reBottomTable"
+                                    id="ctl00_MainContent_LISTestMasterControl_RadEditor3_BottomTable"
+                                    style="width: 100%"
+                                  >
+                                    <caption style="display: none">
+                                      It contains RadEditor's Modes/views (HTML,
+                                      Design and Preview), Statistics and
+                                      Resizer
+                                    </caption>
+                                    <thead style="display: none">
+                                      <tr>
+                                        <th scope="col">
+                                          <span>Editor Mode buttons</span>
+                                        </th>
+                                        <th scope="col">
+                                          <span>Statistics module</span>
+                                        </th>
+                                        <th scope="col">
+                                          <span>Editor resizer</span>
+                                        </th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr>
+                                        <td class="reEditorModesCell">
+                                          <div
+                                            class="reEditorModes"
+                                            id="ctl00_MainContent_LISTestMasterControl_RadEditor3_ModesWrapper"
+                                          >
+                                            <ul>
+                                              <li>
+                                                <a
+                                                  href="javascript:void(0);"
+                                                  title="Design"
+                                                  class="reMode_design reMode_selected"
+                                                  ><span>Design</span></a
+                                                >
+                                              </li>
+                                              <li>
+                                                <a
+                                                  href="javascript:void(0);"
+                                                  title="HTML"
+                                                  class="reMode_html"
+                                                  ><span>HTML</span></a
+                                                >
+                                              </li>
+                                              <li>
+                                                <a
+                                                  href="javascript:void(0);"
+                                                  title="Preview"
+                                                  class="reMode_preview"
+                                                  ><span>Preview</span></a
+                                                >
+                                              </li>
+                                            </ul>
+                                          </div>
+                                        </td>
+                                        <td
+                                          class="reBottomZone"
+                                          id="ctl00_MainContent_LISTestMasterControl_RadEditor3Bottom"
+                                        >
+                                          &nbsp;
+                                        </td>
+                                        <td
+                                          class="reResizeCell"
+                                          style="width: 15px"
+                                        >
+                                          <div
+                                            id="ctl00_MainContent_LISTestMasterControl_RadEditor3BottomResizer"
+                                            style="cursor: se-resize"
+                                          >
+                                            &nbsp;
+                                          </div>
+                                        </td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                  <noscript>
+                                    <p>
+                                      RadEditor - please enable JavaScript to
+                                      use the rich text editor.
+                                    </p>
+                                  </noscript>
+                                </td>
+                              </tr>
+                              <tr>
+                                <th scope="row" style="display: none">
+                                  <span
+                                    >RadEditor's Modules - special tools used to
+                                    provide extra information such as Tag
+                                    Inspector, Real Time HTML Viewer, Tag
+                                    Properties and other.</span
+                                  >
+                                </th>
+                                <td
+                                  id="ctl00_MainContent_LISTestMasterControl_RadEditor3Module"
+                                  class="reToolZone"
+                                ></td>
+                              </tr>
+                              <tr>
+                                <th scope="row" style="display: none">
+                                  <span></span>
+                                </th>
+                                <td
+                                  class="reWrapper_corner reCorner_bottom_left"
+                                >
+                                  &nbsp;
+                                </td>
+                                <td
+                                  class="reWrapper_center reCenter_bottom"
+                                  colspan="3"
+                                >
+                                  &nbsp;
+                                </td>
+                                <td
+                                  class="reWrapper_corner reCorner_bottom_right"
+                                >
+                                  &nbsp;
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                          <input
+                            id="ctl00_MainContent_LISTestMasterControl_RadEditor3_ClientState"
+                            name="ctl00_MainContent_LISTestMasterControl_RadEditor3_ClientState"
+                            type="hidden"
+                            autocomplete="off"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="buttonaddarea"
+                      data-bind="if: selectedInvestigation() != null"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tabs End Here -->
+
+        <div
+          data-bind="visible: selectedInvestigation() != null"
+          style="display: none"
+        >
+          <div
+            data-bind="visible: selectedInvestigation() != null &amp;&amp; (selectedInvestigation().InvestigationType() == 'profile' || selectedInvestigation().InvestigationType() == 'package') "
+            style="display: none"
+          >
+            <div class="serachbar">
+              <div class="forsearchcenter">
+                <input
+                  type="text"
+                  name="Search"
+                  id="LISTestMasterModel_txtSeachInvestigationsForProfile"
+                  value="Search Investigation here"
+                  onblur="if(this.value == '') {this.value = 'Search Investigation here'};"
+                  onfocus="if(this.value =='Search Investigation here') {this.value =''};"
+                  class="ui-autocomplete-input"
+                  autocomplete="off"
+                /><span
+                  role="status"
+                  aria-live="polite"
+                  class="ui-helper-hidden-accessible"
+                ></span>
+              </div>
+            </div>
+
+            <div class="investigationareaLis">
+              <div class="flostringarea">
+                <h2>Primary Categories</h2>
+                <div class="midlist">
+                  <div
+                    class="scroll-pane"
+                    style="overflow: hidden; padding: 0px; width: 293px"
+                  >
+                    <div
+                      class="jspContainer"
+                      style="width: 293px; height: 273px"
+                    >
+                      <div
+                        class="jspPane"
+                        style="padding: 0px; top: 0px; width: 293px"
+                      >
+                        <div data-bind="foreach: primaryCategories()">
+                          <p
+                            data-bind="text: PrimaryCategoryName, click: $root.selectProfilePrimaryCategory "
+                          >
+                            BIOCHEMISTRY
+                          </p>
+
+                          <p
+                            data-bind="text: PrimaryCategoryName, click: $root.selectProfilePrimaryCategory "
+                          >
+                            CANCER MARKER
+                          </p>
+
+                          <p
+                            data-bind="text: PrimaryCategoryName, click: $root.selectProfilePrimaryCategory "
+                          >
+                            CARDIOLOGY
+                          </p>
+
+                          <p
+                            data-bind="text: PrimaryCategoryName, click: $root.selectProfilePrimaryCategory "
+                          >
+                            CT SCAN
+                          </p>
+
+                          <p
+                            data-bind="text: PrimaryCategoryName, click: $root.selectProfilePrimaryCategory "
+                          >
+                            CULTURE AND SENSITIVITY
+                          </p>
+
+                          <p
+                            data-bind="text: PrimaryCategoryName, click: $root.selectProfilePrimaryCategory "
+                          >
+                            CYTOLOGY
+                          </p>
+
+                          <p
+                            data-bind="text: PrimaryCategoryName, click: $root.selectProfilePrimaryCategory "
+                          >
+                            DELETE
+                          </p>
+
+                          <p
+                            data-bind="text: PrimaryCategoryName, click: $root.selectProfilePrimaryCategory "
+                          >
+                            DELETE
+                          </p>
+
+                          <p
+                            data-bind="text: PrimaryCategoryName, click: $root.selectProfilePrimaryCategory "
+                          >
+                            ENDOCRINOLOGY
+                          </p>
+
+                          <p
+                            data-bind="text: PrimaryCategoryName, click: $root.selectProfilePrimaryCategory "
+                          >
+                            FLUID
+                          </p>
+
+                          <p
+                            data-bind="text: PrimaryCategoryName, click: $root.selectProfilePrimaryCategory "
+                          >
+                            HAEMATOLOGY
+                          </p>
+
+                          <p
+                            data-bind="text: PrimaryCategoryName, click: $root.selectProfilePrimaryCategory "
+                          >
+                            HISTOPATHOLOGY
+                          </p>
+
+                          <p
+                            data-bind="text: PrimaryCategoryName, click: $root.selectProfilePrimaryCategory "
+                          >
+                            IMMUNOLOGY - SEROLOGY
+                          </p>
+
+                          <p
+                            data-bind="text: PrimaryCategoryName, click: $root.selectProfilePrimaryCategory "
+                          >
+                            MAMMOGRAPHY
+                          </p>
+
+                          <p
+                            data-bind="text: PrimaryCategoryName, click: $root.selectProfilePrimaryCategory "
+                          >
+                            MICROBIOLOGY
+                          </p>
+
+                          <p
+                            data-bind="text: PrimaryCategoryName, click: $root.selectProfilePrimaryCategory "
+                          >
+                            MOLECULAR DIAGNOSTIC ASSAYS
+                          </p>
+
+                          <p
+                            data-bind="text: PrimaryCategoryName, click: $root.selectProfilePrimaryCategory "
+                          >
+                            NEUROLOGY
+                          </p>
+
+                          <p
+                            data-bind="text: PrimaryCategoryName, click: $root.selectProfilePrimaryCategory "
+                          >
+                            OPG
+                          </p>
+
+                          <p
+                            data-bind="text: PrimaryCategoryName, click: $root.selectProfilePrimaryCategory "
+                          >
+                            PACKAGE
+                          </p>
+
+                          <p
+                            data-bind="text: PrimaryCategoryName, click: $root.selectProfilePrimaryCategory "
+                          >
+                            PROFILE
+                          </p>
+
+                          <p
+                            data-bind="text: PrimaryCategoryName, click: $root.selectProfilePrimaryCategory "
+                          >
+                            RADIOLOGY
+                          </p>
+
+                          <p
+                            data-bind="text: PrimaryCategoryName, click: $root.selectProfilePrimaryCategory "
+                          >
+                            SEMEN ANALYSIS
+                          </p>
+
+                          <p
+                            data-bind="text: PrimaryCategoryName, click: $root.selectProfilePrimaryCategory "
+                          >
+                            SPECIAL X-RAYS
+                          </p>
+
+                          <p
+                            data-bind="text: PrimaryCategoryName, click: $root.selectProfilePrimaryCategory "
+                          >
+                            STOOL EXAMINATION REPORT
+                          </p>
+
+                          <p
+                            data-bind="text: PrimaryCategoryName, click: $root.selectProfilePrimaryCategory "
+                          >
+                            ULTRASOUND
+                          </p>
+
+                          <p
+                            data-bind="text: PrimaryCategoryName, click: $root.selectProfilePrimaryCategory "
+                          >
+                            URINE EXAMINATION REPORT
+                          </p>
+
+                          <p
+                            data-bind="text: PrimaryCategoryName, click: $root.selectProfilePrimaryCategory "
+                          >
+                            X-RAY
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="flostringarea">
+                <h2 class="sec">Secondary Categories</h2>
+                <div class="midlist">
+                  <div
+                    class="scroll-pane"
+                    style="overflow: hidden; padding: 0px; width: 293px"
+                  >
+                    <div
+                      class="jspContainer"
+                      style="width: 293px; height: 273px"
+                    >
+                      <div
+                        class="jspPane"
+                        style="padding: 0px; top: 0px; width: 293px"
+                      >
+                        <div
+                          data-bind="foreach: profileSecondaryCategories()"
+                        ></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="flostringarea">
+                <h2>Investigations</h2>
+                <div class="midlist">
+                  <div
+                    class="scroll-pane"
+                    style="overflow: hidden; padding: 0px; width: 293px"
+                  >
+                    <div
+                      class="jspContainer"
+                      style="width: 293px; height: 273px"
+                    >
+                      <div
+                        class="jspPane"
+                        style="padding: 0px; top: 0px; width: 293px"
+                      >
+                        <div data-bind="foreach: profileInvestigations()"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="flostringarea">
+                <h2 class="sec">Investigations</h2>
+                <div class="midlistlastt">
+                  <div
+                    class="scroll-pane"
+                    style="overflow: hidden; padding: 0px; width: 293px"
+                  >
+                    <div
+                      class="jspContainer"
+                      style="width: 293px; height: 273px"
+                    >
+                      <div
+                        class="jspPane"
+                        style="padding: 0px; top: 0px; width: 293px"
+                      >
+                        <div
+                          data-bind="  template: { name: 'taskTmpl', foreach: selectedProfileInvestigations }, sortableList: selectedProfileInvestigations"
+                          class="ui-sortable"
+                        ></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="resulttypearea">
+              <div
+                class="editcategory"
+                style="position: inherit; box-shadow: 0px 0px 0px"
+              >
+                <input
+                  type="checkbox"
+                  id="chkAddProfileComments"
+                  data-bind="checked: addProfileComments"
+                /><label for="chkAddProfileComments"
+                  ><span></span>Add Profile Comments</label
+                >
+              </div>
+
+              <div
+                data-bind="visible: addProfileComments"
+                class="showrangearea validationEngineContainer"
+                style="display: none"
+              >
+                <h2>Comment</h2>
+                <div class="frinslt">
+                  <div class="floting">
+                    <h5>Name</h5>
+                    <input
+                      type="text"
+                      name=""
+                      style="width: 180px"
+                      data-bind="value: selectedInvestigation() != null &amp;&amp; selectedInvestigation().selectedComment() != null ? selectedInvestigation().selectedComment().Name : '', valueUpdate: 'afterkeydown'"
+                      data-validation-engine="validate[required]"
+                    />
+                  </div>
+                  <div class="floting">
+                    <h5>Gender</h5>
+                    <select
+                      class="custom age"
+                      name=""
+                      data-bind="options: ['Both', 'Male', 'Female'], value: selectedInvestigation() != null &amp;&amp; selectedInvestigation().selectedComment() != null ? selectedInvestigation().selectedComment().Gender : null"
+                    >
+                      <option value="Both">Both</option>
+                      <option value="Male">Male</option>
+                      <option value="Female">Female</option>
+                    </select>
+                  </div>
+                  <div class="floting">
+                    <h5>Age Category</h5>
+                    <select
+                      class="custom age"
+                      name=""
+                      data-bind="options: ageCategories, optionsText: 'AgecategoryName', value: selectedInvestigation() != null &amp;&amp; selectedInvestigation().selectedComment() != null ? selectedInvestigation().selectedComment().AgeCategory : null"
+                    >
+                      <option value="">Infant</option>
+                      <option value="">New Born</option>
+                      <option value="">Custom</option>
+                      <option value="">All Ages</option>
+                      <option value="">Adult</option>
+                      <option value="">Child</option>
+                    </select>
+                  </div>
+                </div>
+                <div
+                  data-bind="if: selectedInvestigation() != null &amp;&amp; selectedInvestigation().Comment().length > 0"
+                ></div>
+                <div class="leftcommentarea">
+                  <h4>Comment</h4>
+                  <div
+                    data-bind="visible: selectedInvestigation() != null &amp;&amp; selectedInvestigation().selectedComment() != null"
+                    style="display: none"
+                  >
+                    <div
+                      id="ctl00_MainContent_LISTestMasterControl_RadEditor4"
+                      class="RadEditor Default reWrapper reDropdown,reToolbar,reSpinBox,RadEditor,reModule,reEditorModes,reDropDownBody,reAjaxspell_wrapper"
+                      style="height: 429px; width: 660px"
+                    >
+                      <div
+                        id="ctl00_MainContent_LISTestMasterControl_RadEditor4_dialogOpener"
+                        style="display: none"
+                      >
+                        <div
+                          id="ctl00_MainContent_LISTestMasterControl_RadEditor4_dialogOpener_Window"
+                          style="display: none"
+                        >
+                          <div
+                            id="ctl00_MainContent_LISTestMasterControl_RadEditor4_dialogOpener_Window_C"
+                            style="display: none"
+                          ></div>
+                          <input
+                            id="ctl00_MainContent_LISTestMasterControl_RadEditor4_dialogOpener_Window_ClientState"
+                            name="ctl00_MainContent_LISTestMasterControl_RadEditor4_dialogOpener_Window_ClientState"
+                            type="hidden"
+                            autocomplete="off"
+                          />
+                        </div>
+                        <input
+                          id="ctl00_MainContent_LISTestMasterControl_RadEditor4_dialogOpener_ClientState"
+                          name="ctl00_MainContent_LISTestMasterControl_RadEditor4_dialogOpener_ClientState"
+                          type="hidden"
+                          autocomplete="off"
+                        />
+                      </div>
+                      <table
+                        id="ctl00_MainContent_LISTestMasterControl_RadEditor4Wrapper"
+                        class="reLayoutWrapper"
+                        style="width: 100%; height: 429px"
+                      >
+                        <caption style="display: none">
+                          RadEditor - HTML WYSIWYG Editor. MS Word-like content
+                          editing experience thanks to a rich set of formatting
+                          tools, dropdowns, dialogs, system modules and built-in
+                          spell-check.
+                        </caption>
+                        <thead style="display: none">
+                          <tr>
+                            <th scope="col">
+                              <span
+                                >RadEditor's components - toolbar, content area,
+                                modes and modules</span
+                              >
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row" style="display: none">
+                              <span></span>
+                            </th>
+                            <td class="reWrapper_corner reCorner_top_left">
+                              &nbsp;
+                            </td>
+                            <td
+                              class="reWrapper_center reCenter_top"
+                              colspan="3"
+                            >
+                              &nbsp;
+                            </td>
+                            <td class="reWrapper_corner reCorner_top_right">
+                              &nbsp;
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row" style="display: none">
+                              <span>Toolbar's wrapper</span>
+                            </th>
+                            <td class="reLeftVerticalSide" rowspan="4">
+                              &nbsp;
+                            </td>
+                            <td
+                              rowspan="4"
+                              id="ctl00_MainContent_LISTestMasterControl_RadEditor4Left"
+                              class="reTlbVertical"
+                            ></td>
+                            <td
+                              id="ctl00_MainContent_LISTestMasterControl_RadEditor4Top"
+                              class="reToolCell"
+                              style="width: 100%"
+                            >
+                              <div class="Default reToolbarWrapper" style="">
+                                <ul class="reToolbar Default">
+                                  <li class="reGrip grip_first">&nbsp;</li>
+                                  <li>
+                                    <a
+                                      title="Bold"
+                                      class="reTool"
+                                      href="#"
+                                      unselectable="on"
+                                      ><span class="Bold" unselectable="on"
+                                        >&nbsp;</span
+                                      ></a
+                                    >
+                                  </li>
+                                  <li>
+                                    <a
+                                      title="Italic"
+                                      class="reTool"
+                                      href="#"
+                                      unselectable="on"
+                                      ><span class="Italic" unselectable="on"
+                                        >&nbsp;</span
+                                      ></a
+                                    >
+                                  </li>
+                                  <li>
+                                    <a
+                                      title="Underline"
+                                      class="reTool"
+                                      href="#"
+                                      unselectable="on"
+                                      ><span class="Underline" unselectable="on"
+                                        >&nbsp;</span
+                                      ></a
+                                    >
+                                  </li>
+                                  <li>
+                                    <a
+                                      title="Strikethrough"
+                                      class="reTool"
+                                      href="#"
+                                      unselectable="on"
+                                      ><span
+                                        class="StrikeThrough"
+                                        unselectable="on"
+                                        >&nbsp;</span
+                                      ></a
+                                    >
+                                  </li>
+                                  <li>
+                                    <a
+                                      title="Font Name"
+                                      class="reDropdown"
+                                      href="#"
+                                      unselectable="on"
+                                      ><span class="FontName" unselectable="on"
+                                        >Font&nbsp;Name</span
+                                      ></a
+                                    >
+                                  </li>
+                                  <li>
+                                    <a
+                                      title="Real font size"
+                                      class="reDropdown"
+                                      href="#"
+                                      unselectable="on"
+                                      ><span
+                                        class="RealFontSize"
+                                        unselectable="on"
+                                        >Real font size</span
+                                      ></a
+                                    >
+                                  </li>
+                                  <li>
+                                    <a
+                                      title="Align Left"
+                                      class="reTool"
+                                      href="#"
+                                      unselectable="on"
+                                      ><span
+                                        class="JustifyLeft"
+                                        unselectable="on"
+                                        >&nbsp;</span
+                                      ></a
+                                    >
+                                  </li>
+                                  <li>
+                                    <a
+                                      title="Align Left"
+                                      class="reTool"
+                                      href="#"
+                                      unselectable="on"
+                                      ><span
+                                        class="JustifyLeft"
+                                        unselectable="on"
+                                        >&nbsp;</span
+                                      ></a
+                                    >
+                                  </li>
+                                  <li>
+                                    <a
+                                      title="Align Center"
+                                      class="reTool"
+                                      href="#"
+                                      unselectable="on"
+                                      ><span
+                                        class="JustifyCenter"
+                                        unselectable="on"
+                                        >&nbsp;</span
+                                      ></a
+                                    >
+                                  </li>
+                                  <li>
+                                    <a
+                                      title="Align Right"
+                                      class="reTool"
+                                      href="#"
+                                      unselectable="on"
+                                      ><span
+                                        class="JustifyRight"
+                                        unselectable="on"
+                                        >&nbsp;</span
+                                      ></a
+                                    >
+                                  </li>
+                                  <li>
+                                    <a
+                                      title="Justify"
+                                      class="reTool"
+                                      href="#"
+                                      unselectable="on"
+                                      ><span
+                                        class="JustifyFull"
+                                        unselectable="on"
+                                        >&nbsp;</span
+                                      ></a
+                                    >
+                                  </li>
+                                  <li>
+                                    <a
+                                      title="Bullet List"
+                                      class="reTool"
+                                      href="#"
+                                      unselectable="on"
+                                      ><span
+                                        class="InsertUnorderedList"
+                                        unselectable="on"
+                                        >&nbsp;</span
+                                      ></a
+                                    >
+                                  </li>
+                                  <li>
+                                    <a
+                                      title="Numbered List"
+                                      class="reTool"
+                                      href="#"
+                                      unselectable="on"
+                                      ><span
+                                        class="InsertOrderedList"
+                                        unselectable="on"
+                                        >&nbsp;</span
+                                      ></a
+                                    >
+                                  </li>
+                                  <li>
+                                    <a
+                                      title="Indent"
+                                      class="reTool"
+                                      href="#"
+                                      unselectable="on"
+                                      ><span class="Indent" unselectable="on"
+                                        >&nbsp;</span
+                                      ></a
+                                    >
+                                  </li>
+                                  <li>
+                                    <a
+                                      title="Outdent"
+                                      class="reTool"
+                                      href="#"
+                                      unselectable="on"
+                                      ><span class="Outdent" unselectable="on"
+                                        >&nbsp;</span
+                                      ></a
+                                    >
+                                  </li>
+                                  <li>
+                                    <a
+                                      title="Paragraph Style"
+                                      class="reDropdown"
+                                      href="#"
+                                      unselectable="on"
+                                      ><span
+                                        class="FormatBlock"
+                                        unselectable="on"
+                                        >Normal</span
+                                      ></a
+                                    >
+                                  </li>
+                                  <li>
+                                    <a
+                                      title="Subscript"
+                                      class="reTool"
+                                      href="#"
+                                      unselectable="on"
+                                      ><span class="Subscript" unselectable="on"
+                                        >&nbsp;</span
+                                      ></a
+                                    >
+                                  </li>
+                                  <li>
+                                    <a
+                                      title="SuperScript"
+                                      class="reTool"
+                                      href="#"
+                                      unselectable="on"
+                                      ><span
+                                        class="Superscript"
+                                        unselectable="on"
+                                        >&nbsp;</span
+                                      ></a
+                                    >
+                                  </li>
+                                  <li>
+                                    <a
+                                      title="Cut"
+                                      class="reTool"
+                                      href="#"
+                                      unselectable="on"
+                                      ><span class="Cut" unselectable="on"
+                                        >&nbsp;</span
+                                      ></a
+                                    >
+                                  </li>
+                                  <li>
+                                    <a
+                                      title="Insert Table"
+                                      class="reTool reSplitButton"
+                                      href="#"
+                                      unselectable="on"
+                                      ><span
+                                        class="InsertTable"
+                                        unselectable="on"
+                                        >&nbsp;</span
+                                      ><span class="split_arrow"
+                                        >&nbsp;</span
+                                      ></a
+                                    >
+                                  </li>
+                                  <li class="reGrip grip_last">&nbsp;</li>
+                                </ul>
+                              </div>
+                            </td>
+                            <td
+                              rowspan="4"
+                              id="ctl00_MainContent_LISTestMasterControl_RadEditor4Right"
+                              class="reTlbVertical"
+                            ></td>
+                            <td rowspan="4" class="reRightVerticalSide">
+                              &nbsp;
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row" style="display: none">
+                              <span>Content area wrapper</span>
+                            </th>
+                            <td
+                              id="ctl00_MainContent_LISTestMasterControl_RadEditor4Center"
+                              class="reContentCell"
+                              style="height: 100%"
+                            >
+                              <label
+                                for="ctl00_MainContent_LISTestMasterControl_RadEditor4ContentHiddenTextarea"
+                                style="display: none"
+                                >RadEditor hidden textarea</label
+                              ><textarea
+                                id="ctl00_MainContent_LISTestMasterControl_RadEditor4ContentHiddenTextarea"
+                                name="ctl00$MainContent$LISTestMasterControl$RadEditor4"
+                                rows="4"
+                                cols="20"
+                                style="display: none"
+                              ></textarea
+                              ><iframe
+                                frameborder="0"
+                                src="javascript:'<html></html>';"
+                                id="ctl00_MainContent_LISTestMasterControl_RadEditor4_contentIframe"
+                                title="Rich text editor with ID ctl00_MainContent_LISTestMasterControl_RadEditor4"
+                                style="
+                                  width: 100%;
+                                  height: 427px;
+                                  margin: 0px;
+                                  padding: 0px;
+                                "
+                                >Your browser does not support inline frames or
+                                is currently configured not to display inline
+                                frames.</iframe
+                              >
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row" style="display: none">
+                              <span
+                                >RadEditor's bottom area: Design, Html and
+                                Preview modes, Statistics module and resize
+                                handle.</span
+                              >
+                            </th>
+                            <td class="reToolZone">
+                              <table
+                                class="reBottomTable"
+                                id="ctl00_MainContent_LISTestMasterControl_RadEditor4_BottomTable"
+                                style="width: 100%"
+                              >
+                                <caption style="display: none">
+                                  It contains RadEditor's Modes/views (HTML,
+                                  Design and Preview), Statistics and Resizer
+                                </caption>
+                                <thead style="display: none">
+                                  <tr>
+                                    <th scope="col">
+                                      <span>Editor Mode buttons</span>
+                                    </th>
+                                    <th scope="col">
+                                      <span>Statistics module</span>
+                                    </th>
+                                    <th scope="col">
+                                      <span>Editor resizer</span>
+                                    </th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td class="reEditorModesCell">
+                                      <div
+                                        class="reEditorModes"
+                                        id="ctl00_MainContent_LISTestMasterControl_RadEditor4_ModesWrapper"
+                                      >
+                                        <ul>
+                                          <li>
+                                            <a
+                                              href="javascript:void(0);"
+                                              title="Design"
+                                              class="reMode_design reMode_selected"
+                                              ><span>Design</span></a
+                                            >
+                                          </li>
+                                          <li>
+                                            <a
+                                              href="javascript:void(0);"
+                                              title="HTML"
+                                              class="reMode_html"
+                                              ><span>HTML</span></a
+                                            >
+                                          </li>
+                                          <li>
+                                            <a
+                                              href="javascript:void(0);"
+                                              title="Preview"
+                                              class="reMode_preview"
+                                              ><span>Preview</span></a
+                                            >
+                                          </li>
+                                        </ul>
+                                      </div>
+                                    </td>
+                                    <td
+                                      class="reBottomZone"
+                                      id="ctl00_MainContent_LISTestMasterControl_RadEditor4Bottom"
+                                    >
+                                      &nbsp;
+                                    </td>
+                                    <td
+                                      class="reResizeCell"
+                                      style="width: 15px"
+                                    >
+                                      <div
+                                        id="ctl00_MainContent_LISTestMasterControl_RadEditor4BottomResizer"
+                                        style="cursor: se-resize"
+                                      >
+                                        &nbsp;
+                                      </div>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                              <noscript>
+                                <p>
+                                  RadEditor - please enable JavaScript to use
+                                  the rich text editor.
+                                </p>
+                              </noscript>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row" style="display: none">
+                              <span
+                                >RadEditor's Modules - special tools used to
+                                provide extra information such as Tag Inspector,
+                                Real Time HTML Viewer, Tag Properties and
+                                other.</span
+                              >
+                            </th>
+                            <td
+                              id="ctl00_MainContent_LISTestMasterControl_RadEditor4Module"
+                              class="reToolZone"
+                            ></td>
+                          </tr>
+                          <tr>
+                            <th scope="row" style="display: none">
+                              <span></span>
+                            </th>
+                            <td class="reWrapper_corner reCorner_bottom_left">
+                              &nbsp;
+                            </td>
+                            <td
+                              class="reWrapper_center reCenter_bottom"
+                              colspan="3"
+                            >
+                              &nbsp;
+                            </td>
+                            <td class="reWrapper_corner reCorner_bottom_right">
+                              &nbsp;
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <input
+                        id="ctl00_MainContent_LISTestMasterControl_RadEditor4_ClientState"
+                        name="ctl00_MainContent_LISTestMasterControl_RadEditor4_ClientState"
+                        type="hidden"
+                        autocomplete="off"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="buttonaddarea"
+                  data-bind="if: selectedInvestigation() != null"
+                ></div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="btmbottonarea"
+            data-bind="if: selectedInvestigation() != null"
+          ></div>
+        </div>
+      </div>
+
+      <div
+        data-bind="if: selectedPrimary() != null"
+        id="LisTestMaster_divAddPrimary"
+        class="validationEngineContainer"
+      ></div>
+
+      <div
+        data-bind="if: selectedSecondary() != null"
+        id="LisTestMaster_divAddSecondary"
+        class="validationEngineContainer"
+      ></div>
+    </div>
     <script src="nav.js"></script>
-</body>
+  </body>
 </html>
