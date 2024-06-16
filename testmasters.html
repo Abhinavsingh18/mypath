@@ -471,18 +471,18 @@
             <div class="modal-content">
                 <span class="close" id="closeSecondaryModal">&times;</span>
                 <div class="modal-header">ADD SECONDARY CATEGORY</div>
-                <form id="secondaryCategoryForm" style="padding-left: 12px; padding-bottom: 12px;">
+                <form id="secondaryCategoryForm" action="https://rssmarthut.com/mypath/secondarycategory.php" method="POST" style="padding-left: 12px; padding-bottom: 12px;">
                   <div style="margin-bottom:1vw;">
                     <label for="primaryCategorySelect">Select Primary Category:</label>
                   <select id="primaryCategorySelect" name="primaryCategorySelect" required style="padding:0 4px; width: 18vw; border: 0.1px solid #f296fd; border-radius: 3px; background-color: #ececec;">
-                      <!-- Options will be dynamically added here -->
+                      
                   </select>
                   </div>
 
                   <div>
                     <label for="secondaryCategoryName">Name:</label>
                   <input type="text" id="secondaryCategoryName" name="secondaryCategoryName" required placeholder="ENTER THE SECONDARY CATEGORY" style="padding-left:4PX; width: 18vw; border: 0.1px solid #f296fd; border-radius: 3px; background-color: #ececec;">
-                  <button id="secondarybtn" type="submit" style="border: 0.1px solid rgb(176, 170, 171); border-radius: 5px; height: 1.7vw; width: 8.5vw;">Add</button>
+                  <button id="secondarybtn" type="submit" style="border: 0.1px solid rgb(176, 170, 171); border-radius: 5px; height: 1.7vw; width: 8.5vw;" onclick="alert('SECONDARY CATEGORY ADDED SUCCESSFULLY')">Add</button>
                   </div>
                 </form>
             </div>
@@ -531,6 +531,9 @@
       primarybtn.addEventListener("click", () => {
           primaryCategoryModal.style.display = "none";
       });
+      secondarybtn.addEventListener("click", () => {
+          secondaryCategoryModal.style.display = "none";
+      });
 
   
       // Close secondary category modal
@@ -552,49 +555,9 @@
       });
   
       // Handle form submissions
-      document.getElementById("primaryCategoryForm").addEventListener("submit", (event) => {
-          event.preventDefault();
-          const form = event.target;
-          const formData = new FormData(form);
+     
   
-          fetch(form.action, {
-              method: form.method,
-              body: formData
-          }).then(response => {
-              if (!response.ok) {
-                  throw new Error('Network response was not ok');
-              }
-              return response.json();
-          }).then(data => {
-              console.log(data);
-              primaryCategoryModal.style.display = "none"; // Hide the modal on successful form submission
-              
-          }).catch(error => {
-              console.error('There has been a problem with your fetch operation:', error);
-              
-          });
-      });
-  
-      document.getElementById("secondaryCategoryForm").addEventListener("submit", (event) => {
-          event.preventDefault();
-          const form = event.target;
-          const formData = new FormData(form);
-  
-          fetch(form.action, {
-              method: form.method,
-              body: formData
-          }).then(response => {
-              if (!response.ok) {
-                  throw new Error('Network response was not ok');
-              }
-              return response.json();
-          }).then(data => {
-              console.log(data);
-              secondaryCategoryModal.style.display = "none"; // Hide the modal on successful form submission
-          }).catch(error => {
-              console.error('There has been a problem with your fetch operation:', error);
-          });
-      });
+      
   </script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -633,6 +596,7 @@
 });
 
   </script>
+  
   
     <script src="nav.js"></script>
   </body>
