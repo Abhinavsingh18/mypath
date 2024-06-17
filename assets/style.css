@@ -4331,7 +4331,8 @@ padding: 0.3em;
   font: 12px "PT Sans", sans-serif;
   border-bottom: 1px solid #d8d8d8;
   border-right: 1px solid #d8d8d8;
-  text-align: center;
+  /* text-align: center; */
+  padding: 0px 15px;
 }
 .categorylist td:last-child {
   border-right: none;
