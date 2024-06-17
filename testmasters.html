@@ -207,7 +207,7 @@
                 <form id="secondaryCategoryForm" action="https://rssmarthut.com/mypath/secondarycategory.php" method="POST" style="padding-left: 12px; padding-bottom: 12px;">
                   <div style="margin-bottom:1vw;">
                     <label for="primaryCategorySelect">Select Primary Category:</label>
-                  <select id="primaryCategorySelect" name="primaryCategorySelect" required style="padding:0 4px; width: 18vw; border: 0.1px solid #f296fd; border-radius: 3px; background-color: #ececec;">
+                  <select id="primaryCategorySelectInSecondary" class="primaryCategorySelect" name="primaryCategorySelect" required style="padding:0 4px; width: 18vw; border: 0.1px solid #f296fd; border-radius: 3px; background-color: #ececec;">
                       
                   </select>
                   </div>
@@ -225,16 +225,19 @@
               <span class="close" id="closeAddTestModal" style="top: -8px;">&times;</span>
               <div class="modal-header">ADD TEST CATEGORY</div>
               <form id="addTestForm" method="POST" action="/your-api-endpoint"   style="padding-left: 12px;">
-                  <label for="primaryCategory">Primary Category</label>
-                  <select id="primaryCategory" name="primaryCategory" style="    padding: 0 4px;
+                  
+                  <label for="primaryCategorySelect">Primary Category:</label>
+                  <select id="primaryCategorySelectInTest" name="primaryCategorySelect" required style="    padding: 0 4px;
                   width: 18vw;
                   border: 0.1px solid #f296fd;
                   border-radius: 3px;
-                  background-color: #ececec;margin-bottom: 3px;margin-left:1.4vw" required>
-                      <!-- Options will be populated dynamically -->
+                  background-color: #ececec;margin-bottom: 3px;margin-left:1.4vw">
+                  <!-- Options will be populated dynamically -->
+                      
                   </select>
                   
-                  <label for="secondaryCategory">Secondary Category</label>
+                  
+                  <label for="secondaryCategory">Secondary Category:</label>
                   <select id="secondaryCategory" name="secondaryCategory" style="    padding: 0 4px;
                   width: 18vw;
                   border: 0.1px solid #f296fd;
@@ -243,7 +246,7 @@
                       <!-- Options will be populated dynamically -->
                   </select>
                   
-                  <label for="testName">Test Name</label>
+                  <label for="testName">Test Name:</label>
                   <input type="text" id="testName" name="testName" style="padding-left:4PX; width: 18vw; border: 0.1px solid #f296fd; border-radius: 3px; background-color: #ececec;margin-left: 4.6vw;" required>
                   
                   <button type="submit" id="addTestBtn" style="    background-color: #26a6dc;
@@ -511,32 +514,39 @@ document.getElementById("addTestForm").addEventListener("submit", (event) => {
 
 
     document.addEventListener('DOMContentLoaded', function() {
-        var primaryCategorySelect = document.getElementById('primaryCategorySelect');
+        
+        const primaryCategorySelectInSecondary = document.getElementById('primaryCategorySelectInSecondary');
+        const primaryCategorySelectInTest = document.getElementById('primaryCategorySelectInTest');
+        
+        // Fetch and populate primary categories for the select in the add SECONDARY modal
+        fetchPrimaryCategories(primaryCategorySelectInSecondary);
+        // Fetch and populate primary categories for the select in the add test modal
+        fetchPrimaryCategories(primaryCategorySelectInTest);
 
-        function fetchPrimaryCategories() {
-            var url = 'https://rssmarthut.com/mypath/primarycategory.php?fetch=true';
+        
+        function fetchPrimaryCategories(selectElement) {
+        var url = 'https://rssmarthut.com/mypath/primarycategory.php?fetch=true';
 
-            fetch(url)
-                .then(response => response.json())
-                .then(data => {
-                    populatePrimaryCategorySelect(data);
-                    populatePrimaryCategoryTable(data);
-                })
-                .catch(error => {
-                    console.error('Error fetching primary categories:', error);
-                });
-        }
+        fetch(url)
+              .then(response => response.json())
+              .then(data => {
+                   populatePrimaryCategorySelect(data, selectElement);
+                   populatePrimaryCategoryTable(data);
+        })
+        .catch(error => {
+            console.error('Error fetching primary categories:', error);
+        });
+}
 
-        // Function to populate the primary category select element
-        function populatePrimaryCategorySelect(categories) {
-            primaryCategorySelect.innerHTML = ''; // Clear any existing options
-            categories.forEach(category => {
-                var option = document.createElement('option');
-                option.value = category; // Replace with the actual ID field
-                option.textContent = category; // Replace with the actual name field
-                primaryCategorySelect.appendChild(option);
-            });
-        }
+        function populatePrimaryCategorySelect(categories, selectElement) {
+           selectElement.innerHTML = ''; // Clear any existing options
+           categories.forEach(category => {
+              var option = document.createElement('option');
+              option.value = category; // Replace with the actual ID field
+              option.textContent = category; // Replace with the actual name field
+              selectElement.appendChild(option);
+    });
+}
 
         function populatePrimaryCategoryTable(categories) {
             var tableBody = document.getElementById('primaryCategoryTableBody');
