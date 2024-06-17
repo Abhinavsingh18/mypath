@@ -244,7 +244,7 @@
 
 
 
-              <button type="submit" id="addTestBtn" style="    background-color: #26a6dc;
+              <button type="submit" id="testbtn" style="    background-color: #26a6dc;
                   margin-bottom: 1vw;
                   margin-top: 1vw;
                   border: 0.1px solid #f296fd;
@@ -386,6 +386,7 @@
 
       const primarybtn = document.getElementById("primarybtn");
       const secondarybtn = document.getElementById("secondarybtn");
+      const testbtn = document.getElementById("testbtn");
 
       // Open primary category modal
       addPrimaryCategoryBtn.addEventListener("click", () => {
@@ -409,14 +410,6 @@
       primarybtn.addEventListener("click", () => {
         primaryCategoryModal.style.display = "none";
       });
-      secondarybtn.addEventListener("click", () => {
-        secondaryCategoryModal.style.display = "none";
-      });
-
-      // Close add test modal
-      closeAddTestModal.addEventListener("click", () => {
-        addTestModal.style.display = "none";
-      });
 
       // Close secondary category modal
       closeSecondaryModal.addEventListener("click", () => {
@@ -425,6 +418,15 @@
       secondarybtn.addEventListener("click", () => {
         secondaryCategoryModal.style.display = "none";
       });
+
+      // Close add test modal
+      closeAddTestModal.addEventListener("click", () => {
+        addTestModal.style.display = "none";
+      });
+      testbtn.addEventListener("click", () => {
+        addTestModal.style.display = "none";
+      });
+
 
       // Close modals when clicking outside
       window.addEventListener("click", (event) => {
@@ -477,6 +479,8 @@
         }).then(data => {
           console.log(data);
           secondaryCategoryModal.style.display = "none"; // Hide the modal on successful form submission
+
+          
         }).catch(error => {
           console.error('There has been a problem with your fetch operation:', error);
         });
@@ -490,18 +494,29 @@
         fetch(form.action, {
           method: form.method,
           body: formData
-        }).then(response => {
-          if (!response.ok) {
-            throw new Error('Network response was not ok');
-          }
-          return response.json();
-        }).then(data => {
-          console.log(data);
-          addTestModal.style.display = "none"; // Hide the modal on successful form submission
-        }).catch(error => {
-          console.error('There has been a problem with your fetch operation:', error);
-        });
+        })
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('Network response was not ok');
+            }
+            return response.json();
+          })
+          .then(data => {
+            if (data.status === "success") {
+              console.log(data.message);
+              alert('Test added successfully'); // Display success message
+              document.getElementById('addTestModal').style.display = "none"; // Hide the modal on successful form submission
+            } else {
+              console.error(data.message);
+              alert(data.message); // Display error message
+            }
+          })
+          .catch(error => {
+            console.error('There has been a problem with your fetch operation:', error);
+            alert('There has been a problem with your fetch operation: ' + error.message);
+          });
       });
+
 
     </script>
     <script>
