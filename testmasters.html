@@ -1,263 +1,250 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="./assets/nav.css" />
-    <link rel="stylesheet" href="./assets/style.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    />
 
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-      crossorigin="anonymous"
-    />
-  </head>
-  <body>
-    <script src="nav.js"></script>
-    <style>
-      .modal {
-          display: none;
-          position: fixed;
-          z-index: 1;
-          left: 0;
-          top: 0;
-          width: 100%;
-          height: 100%;
-          overflow: auto;
-          background-color: rgba(0,0,0,0.4);
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./assets/nav.css" />
+  <link rel="stylesheet" href="./assets/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
 
-      .modal-content {
-          background-color: #fefefe;
-          margin: 15% auto;
-        
-          border: 1px solid #888;
-          width: 80%;
-          max-width: 500px;
-          border-radius: 10px;
-      }
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+</head>
 
-      .close {
-          color: #aaa;
-          float: right;
-          font-size: 28px;
-          font-weight: bold;
+<body>
+  <script src="nav.js"></script>
+  <style>
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.4);
+    }
 
-      }
+    .modal-content {
+      background-color: #fefefe;
+      margin: 15% auto;
 
-      .close:hover,
-      .close:focus {
-          color: black;
-          text-decoration: none;
-          cursor: pointer;
-      }
+      border: 1px solid #888;
+      width: 80%;
+      max-width: 500px;
+      border-radius: 10px;
+    }
 
-      .modal-header {
-      
-          margin-bottom: 15px;
-          background-color: #26a6dc;
-      }
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+
+    }
+
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .modal-header {
+
+      margin-bottom: 15px;
+      background-color: #26a6dc;
+    }
   </style>
 
-    <div id="navbar"></div>
-    <div class="serachbar1">
-      <div class="forsearchcenter">
-        <input
-          type="text"
-          name="Search"
-          id="LISTestMasterModel_txtInvestigationSearch"
-          value="Search Investigation here"
-          onblur="if(this.value == '') {this.value = 'Search Investigation here'};"
-          onfocus="if(this.value =='Search Investigation here') {this.value =''};"
-        />
-        <input type="submit" name="" />
-      </div>
+  <div id="navbar"></div>
+  <div class="serachbar1">
+    <div class="forsearchcenter">
+      <input type="text" name="Search" id="LISTestMasterModel_txtInvestigationSearch" value="Search Investigation here"
+        onblur="if(this.value == '') {this.value = 'Search Investigation here'};"
+        onfocus="if(this.value =='Search Investigation here') {this.value =''};" />
+      <input type="submit" name="" />
     </div>
-    <div id="LISTestMasterModel" style="width: 100%">
-      <div class="middlesecregistion">
-        <div class="addPlusIcon" style="display: none">
-          Please click to show list box <i class="icon-plus"></i>
+  </div>
+  <div id="LISTestMasterModel" style="width: 100%">
+    <div class="middlesecregistion">
+      <div class="addPlusIcon" style="display: none">
+        Please click to show list box <i class="icon-plus"></i>
+      </div>
+      <div class="categorylist">
+        <div class="categoryouter">
+          <div class="parimarycategory">
+            <table width="450" border="0" cellspacing="0" cellpadding="0">
+              <thead>
+                <th>Sr.No.</th>
+                <th class="primry">Primary Category</th>
+                <th class="disble">Active</th>
+                <th>edit</th>
+              </thead>
+
+              <tbody id="primaryCategoryTableBody">
+
+
+
+
+
+              </tbody>
+            </table>
+            <div id="subOverlay" class="suboverly">
+              <div class="inptarea">
+                <input type="text" id="txtSearchPrimaryCategory" class="ui-autocomplete-input"
+                  autocomplete="off" /><span role="status" aria-live="polite"
+                  class="ui-helper-hidden-accessible"></span>
+                <input type="submit" name="" />
+              </div>
+            </div>
+
+          </div>
+          <div class="addprimarycategorybtn" data-bind="click: addNewPrimaryCategory" id="addPrimaryCategoryBtn">
+            <span></span>Add Primary Category
+          </div>
         </div>
-        <div class="categorylist">
-          <div class="categoryouter">
-            <div class="parimarycategory">
-              <table width="450" border="0" cellspacing="0" cellpadding="0">
-                <thead>
+        <div class="categoryouter">
+          <div class="secondrycategory">
+            <div class="clsebtn" onclick="">X</div>
+            <table width="450" border="0" cellspacing="0" cellpadding="0">
+              <thead>
+                <tr>
                   <th>Sr.No.</th>
-                  <th class="primry">Primary Category</th>
+                  <th class="primry">Secondary Category</th>
+                  <th>edit</th>
+                </tr>
+              </thead>
+              <tbody id="secondaryCategoryTableBody" data-bind="foreach: secondaryCategories">
+                <!-- Secondary categories will be populated here -->
+              </tbody>
+            </table>
+
+
+          </div>
+          <div class="addsecndrycategorybtn" data-bind="click: addNewSecondaryCategory" id="addSecondaryCategoryBtn">
+            <span></span>Add Secondary Category
+          </div>
+        </div>
+        <div class="categoryouter no">
+          <div class="lastadvisecategory">
+            <div class="clsebtn">X</div>
+            <table width="450" border="0" cellspacing="0" cellpadding="0">
+              <thead>
+                <tr>
+                  <th>Sr.No.</th>
+                  <th class="primry">Secondary Category</th>
                   <th class="disble">Active</th>
                   <th>edit</th>
-                </thead>
-
-                <tbody id="primaryCategoryTableBody">
-                 
-
-                  
-
-                  
-                </tbody>
-              </table>
-              <div id="subOverlay" class="suboverly">
-                <div class="inptarea">
-                  <input
-                    type="text"
-                    id="txtSearchPrimaryCategory"
-                    class="ui-autocomplete-input"
-                    autocomplete="off"
-                  /><span
-                    role="status"
-                    aria-live="polite"
-                    class="ui-helper-hidden-accessible"
-                  ></span>
-                  <input type="submit" name="" />
-                </div>
-              </div>
-             
-            </div>
-            <div
-              class="addprimarycategorybtn"
-              data-bind="click: addNewPrimaryCategory"
-              id="addPrimaryCategoryBtn"
-            >
-              <span></span>Add Primary Category
-            </div>
-          </div>
-          <div class="categoryouter">
-            <div class="secondrycategory">
-              <div class="clsebtn" onclick="">X</div>
-              <table width="450" border="0" cellspacing="0" cellpadding="0">
-                <thead>
-                    <tr>
-                        <th>Sr.No.</th>
-                        <th class="primry">Secondary Category</th>
-                        <th>edit</th>
-                    </tr>
-                </thead>
-                <tbody id="secondaryCategoryTableBody" data-bind="foreach: secondaryCategories">
-                    <!-- Secondary categories will be populated here -->
-                </tbody>
+                </tr>
+              </thead>
+              <tbody id="secondaryCategoryTableBody">
+                <!-- Secondary categories will be dynamically added here -->
+              </tbody>
             </table>
-            
-              
-            </div>
-            <div
-              class="addsecndrycategorybtn"
-              data-bind="click: addNewSecondaryCategory"
-              id="addSecondaryCategoryBtn"
-            >
-              <span></span>Add Secondary Category
-            </div>
+
+
+            </tbody>
+            </table>
+
           </div>
-          <div class="categoryouter no">
-            <div class="lastadvisecategory">
-              <div class="clsebtn">X</div>
-              <table width="450" border="0" cellspacing="0" cellpadding="0">
-                <thead>
-                  <tr>
-                    <th>Sr.No.</th>
-                    <th class="primry">Secondary Category</th>
-                    <th class="disble">Active</th>
-                    <th>edit</th>
-                  </tr>
-                </thead>
-                <tbody id="secondaryCategoryTableBody">
-                  <!-- Secondary categories will be dynamically added here -->
-                </tbody>
-              </table>
-              
-                  
-                </tbody>
-              </table>
-              
-            </div>
-            <div class="addinvestgnbtn" id="addTestBtn">
-              <span></span>ADD TEST
+          <div class="addinvestgnbtn" id="addTestBtn">
+            <span></span>ADD TEST
           </div>
-          </div>
+        </div>
 
 
 
-          <div id="primaryCategoryModal" class="modal">
-            <div class="modal-content">
-                <span class="close" id="closePrimaryModal" style="top: -8px;">&times;</span>
-                <div class="modal-header">ADD PRIMARY CATEGORY</div>
-               
-                <form id="primaryCategoryForm" action="https://rssmarthut.com/mypath/primarycategory.php" method="POST" style="padding-left: 12px;padding-bottom: 12px;">
-                  <label for="primaryCategoryName">Name:</label>
-                  <input type="text" id="primaryCategoryName" name="primaryCategoryName" required placeholder="ENTER THE PRIMARY CATEGORY" style="padding-left:4PX; width: 18vw; border: 0.1px solid #f296fd; border-radius: 3px;background-color: #ececec;">
-                  <button id="primarybtn" type="submit" style="border: 0.1px solid pink;border-radius: 5px;height: 1.7vw;width: 7vw;" onclick="alert('PRIMARY CATEGORY ADDED SUCCESSFULLY')">Add</button>
-              </form>
-              
-            </div>
-          </div>
-          <div id="secondaryCategoryModal" class="modal">
-            <div class="modal-content">
-                <span class="close" id="closeSecondaryModal"  style="top: -8px;">&times;</span>
-                <div class="modal-header">ADD SECONDARY CATEGORY</div>
-                <form id="secondaryCategoryForm" action="https://rssmarthut.com/mypath/secondarycategory.php" method="POST" style="padding-left: 12px; padding-bottom: 12px;">
-                  <div style="margin-bottom:1vw;">
-                    <label for="primaryCategorySelect">Select Primary Category:</label>
-                  <select id="primaryCategorySelectInSecondary" class="primaryCategorySelect" name="primaryCategorySelect" required style="padding:0 4px; width: 18vw; border: 0.1px solid #f296fd; border-radius: 3px; background-color: #ececec;">
-                      
-                  </select>
-                  </div>
+        <div id="primaryCategoryModal" class="modal">
+          <div class="modal-content">
+            <span class="close" id="closePrimaryModal" style="top: -8px;">&times;</span>
+            <div class="modal-header">ADD PRIMARY CATEGORY</div>
 
-                  <div>
-                    <label for="secondaryCategoryName">Name:</label>
-                  <input type="text" id="secondaryCategoryName" name="secondaryCategoryName" required placeholder="ENTER THE SECONDARY CATEGORY" style="padding-left:4PX; width: 18vw; border: 0.1px solid #f296fd; border-radius: 3px; background-color: #ececec;">
-                  <button id="secondarybtn" type="submit" style="border: 0.1px solid rgb(176, 170, 171); border-radius: 5px; height: 1.7vw; width: 8.5vw;" onclick="alert('SECONDARY CATEGORY ADDED SUCCESSFULLY')">Add</button>
-                  </div>
-                </form>
-            </div>
+            <form id="primaryCategoryForm" action="https://rssmarthut.com/mypath/primarycategory.php" method="POST"
+              style="padding-left: 12px;padding-bottom: 12px;">
+              <label for="primaryCategoryName">Name:</label>
+              <input type="text" id="primaryCategoryName" name="primaryCategoryName" required
+                placeholder="ENTER THE PRIMARY CATEGORY"
+                style="padding-left:4PX; width: 18vw; border: 0.1px solid #f296fd; border-radius: 3px;background-color: #ececec;">
+              <button id="primarybtn" type="submit"
+                style="border: 0.1px solid pink;border-radius: 5px;height: 1.7vw;width: 7vw;"
+                onclick="alert('PRIMARY CATEGORY ADDED SUCCESSFULLY')">Add</button>
+            </form>
+
+          </div>
+        </div>
+        <div id="secondaryCategoryModal" class="modal">
+          <div class="modal-content">
+            <span class="close" id="closeSecondaryModal" style="top: -8px;">&times;</span>
+            <div class="modal-header">ADD SECONDARY CATEGORY</div>
+            <form id="secondaryCategoryForm" action="https://rssmarthut.com/mypath/secondarycategory.php" method="POST"
+              style="padding-left: 12px; padding-bottom: 12px;">
+              <div style="margin-bottom:1vw;">
+                <label for="primaryCategorySelect">Select Primary Category:</label>
+                <select id="primaryCategorySelectInSecondary" class="primaryCategorySelect" name="primaryCategorySelect"
+                  required
+                  style="padding:0 4px; width: 18vw; border: 0.1px solid #f296fd; border-radius: 3px; background-color: #ececec;">
+
+                </select>
+              </div>
+
+              <div>
+                <label for="secondaryCategoryName">Name:</label>
+                <input type="text" id="secondaryCategoryName" name="secondaryCategoryName" required
+                  placeholder="ENTER THE SECONDARY CATEGORY"
+                  style="padding-left:4PX; width: 18vw; border: 0.1px solid #f296fd; border-radius: 3px; background-color: #ececec;">
+                <button id="secondarybtn" type="submit"
+                  style="border: 0.1px solid rgb(176, 170, 171); border-radius: 5px; height: 1.7vw; width: 8.5vw;"
+                  onclick="alert('SECONDARY CATEGORY ADDED SUCCESSFULLY')">Add</button>
+              </div>
+            </form>
+          </div>
         </div>
         <div id="addTestModal" class="modal">
           <div class="modal-content">
-              <span class="close" id="closeAddTestModal" style="top: -8px;">&times;</span>
-              <div class="modal-header">ADD TEST CATEGORY</div>
-              <form id="addTestForm" method="POST" action="/your-api-endpoint"   style="padding-left: 12px;display: flex;flex-direction: column;">
-                  
-                <div>
-                  <label for="primaryCategorySelect">Primary Category:</label>
-                  <select id="primaryCategorySelectInTest" name="primaryCategorySelect" required style="    padding: 0 4px;
+            <span class="close" id="closeAddTestModal" style="top: -8px;">&times;</span>
+            <div class="modal-header">ADD TEST CATEGORY</div>
+            <form id="addTestForm" method="POST" action="/your-api-endpoint"
+              style="padding-left: 12px;display: flex;flex-direction: column;">
+
+              <div>
+                <label for="primaryCategorySelect">Primary Category:</label>
+                <select id="primaryCategorySelectInTest" name="primaryCategorySelect" required style="    padding: 0 4px;
                   width: 18vw;
                   border: 0.1px solid #f296fd;
                   border-radius: 3px;
                   background-color: #ececec;margin-bottom: 3px;margin-left:1.4vw">
                   <!-- Options will be populated dynamically -->
-                      
-                  </select>
-                </div>
-                
-                 
-                <div>
-                  <label for="secondaryCategory">Secondary Category:</label>
-                  <select id="secondaryCategory" name="secondaryCategory" style="    padding: 0 4px;
+
+                </select>
+              </div>
+
+
+              <div>
+                <label for="secondaryCategory">Secondary Category:</label>
+                <select id="secondaryCategory" name="secondaryCategory" style="    padding: 0 4px;
                   width: 18vw;
                   border: 0.1px solid #f296fd;
                   border-radius: 3px;
                   background-color: #ececec;margin-bottom: 3px;" required>
-                      <!-- Options will be populated dynamically -->
-                  </select>
-                </div>
-                  
-                <div>
-                  <label for="testName">Test Name:</label>
-                  <input type="text" id="testName" name="testName" style="padding-left:4PX; width: 18vw; border: 0.1px solid #f296fd; border-radius: 3px; background-color: #ececec;margin-left: 4.6vw;" required>
-                </div>
-                  
-                  
-                  
-                <button type="submit" id="addTestBtn" style="    background-color: #26a6dc;
+                  <!-- Options will be populated dynamically -->
+                </select>
+              </div>
+
+              <div>
+                <label for="testName">Test Name:</label>
+                <input type="text" id="testName" name="testName"
+                  style="padding-left:4PX; width: 18vw; border: 0.1px solid #f296fd; border-radius: 3px; background-color: #ececec;margin-left: 4.6vw;"
+                  required>
+              </div>
+
+
+
+              <button type="submit" id="addTestBtn" style="    background-color: #26a6dc;
                   margin-bottom: 1vw;
                   margin-top: 1vw;
                   border: 0.1px solid #f296fd;
@@ -265,19 +252,19 @@
                   height: 1.7vw;
                   width: 8.5vw;
                   margin-left: 12vw;">Add Test</button>
-              </form>
+            </form>
           </div>
-      </div>
         </div>
+      </div>
 
-        <!-- Tabs Start Here -->
-      
+      <!-- Tabs Start Here -->
 
-      
 
-       
 
-     
+
+
+
+
     </div>
     <!-- <script>
       // Get modal elements
@@ -380,341 +367,374 @@
           });
       });
   </script> -->
-  
-  <script>
-    // Get modal elements
-const primaryCategoryModal = document.getElementById("primaryCategoryModal");
-const secondaryCategoryModal = document.getElementById("secondaryCategoryModal");
-const addTestModal = document.getElementById("addTestModal");
 
-// Get button elements
-const addPrimaryCategoryBtn = document.getElementById("addPrimaryCategoryBtn");
-const addSecondaryCategoryBtn = document.getElementById("addSecondaryCategoryBtn");
-const addTestBtn = document.getElementById("addTestBtn");
+    <script>
+      // Get modal elements
+      const primaryCategoryModal = document.getElementById("primaryCategoryModal");
+      const secondaryCategoryModal = document.getElementById("secondaryCategoryModal");
+      const addTestModal = document.getElementById("addTestModal");
 
-// Get close elements
-const closePrimaryModal = document.getElementById("closePrimaryModal");
-const closeSecondaryModal = document.getElementById("closeSecondaryModal");
-const closeAddTestModal = document.getElementById("closeAddTestModal");
+      // Get button elements
+      const addPrimaryCategoryBtn = document.getElementById("addPrimaryCategoryBtn");
+      const addSecondaryCategoryBtn = document.getElementById("addSecondaryCategoryBtn");
+      const addTestBtn = document.getElementById("addTestBtn");
 
-const primarybtn = document.getElementById("primarybtn");
-const secondarybtn = document.getElementById("secondarybtn");
+      // Get close elements
+      const closePrimaryModal = document.getElementById("closePrimaryModal");
+      const closeSecondaryModal = document.getElementById("closeSecondaryModal");
+      const closeAddTestModal = document.getElementById("closeAddTestModal");
 
-// Open primary category modal
-addPrimaryCategoryBtn.addEventListener("click", () => {
-    primaryCategoryModal.style.display = "block";
-});
+      const primarybtn = document.getElementById("primarybtn");
+      const secondarybtn = document.getElementById("secondarybtn");
 
-// Open secondary category modal
-addSecondaryCategoryBtn.addEventListener("click", () => {
-    secondaryCategoryModal.style.display = "block";
-});
+      // Open primary category modal
+      addPrimaryCategoryBtn.addEventListener("click", () => {
+        primaryCategoryModal.style.display = "block";
+      });
 
-// Open add test modal
-addTestBtn.addEventListener("click", () => {
-    addTestModal.style.display = "block";
-});
+      // Open secondary category modal
+      addSecondaryCategoryBtn.addEventListener("click", () => {
+        secondaryCategoryModal.style.display = "block";
+      });
 
-// Close primary category modal
-closePrimaryModal.addEventListener("click", () => {
-    primaryCategoryModal.style.display = "none";
-});
-primarybtn.addEventListener("click", () => {
-    primaryCategoryModal.style.display = "none";
-});
-secondarybtn.addEventListener("click", () => {
-    secondaryCategoryModal.style.display = "none";
-});
+      // Open add test modal
+      addTestBtn.addEventListener("click", () => {
+        addTestModal.style.display = "block";
+      });
 
-// Close add test modal
-closeAddTestModal.addEventListener("click", () => {
-    addTestModal.style.display = "none";
-});
-
-// Close secondary category modal
-closeSecondaryModal.addEventListener("click", () => {
-    secondaryCategoryModal.style.display = "none";
-});
-secondarybtn.addEventListener("click", () => {
-    secondaryCategoryModal.style.display = "none";
-});
-
-// Close modals when clicking outside
-window.addEventListener("click", (event) => {
-    if (event.target == primaryCategoryModal) {
+      // Close primary category modal
+      closePrimaryModal.addEventListener("click", () => {
         primaryCategoryModal.style.display = "none";
-    }
-    if (event.target == secondaryCategoryModal) {
+      });
+      primarybtn.addEventListener("click", () => {
+        primaryCategoryModal.style.display = "none";
+      });
+      secondarybtn.addEventListener("click", () => {
         secondaryCategoryModal.style.display = "none";
-    }
-    if (event.target == addTestModal) {
+      });
+
+      // Close add test modal
+      closeAddTestModal.addEventListener("click", () => {
         addTestModal.style.display = "none";
-    }
-});
+      });
 
-// Handle form submissions
-document.getElementById("primaryCategoryForm").addEventListener("submit", (event) => {
-    event.preventDefault();
-    const form = event.target;
-    const formData = new FormData(form);
+      // Close secondary category modal
+      closeSecondaryModal.addEventListener("click", () => {
+        secondaryCategoryModal.style.display = "none";
+      });
+      secondarybtn.addEventListener("click", () => {
+        secondaryCategoryModal.style.display = "none";
+      });
 
-    fetch(form.action, {
-        method: form.method,
-        body: formData
-    }).then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
+      // Close modals when clicking outside
+      window.addEventListener("click", (event) => {
+        if (event.target == primaryCategoryModal) {
+          primaryCategoryModal.style.display = "none";
         }
-        return response.json();
-    }).then(data => {
-        console.log(data);
-        primaryCategoryModal.style.display = "none"; // Hide the modal on successful form submission
-    }).catch(error => {
-        console.error('There has been a problem with your fetch operation:', error);
-    });
-});
-
-document.getElementById("secondaryCategoryForm").addEventListener("submit", (event) => {
-    event.preventDefault();
-    const form = event.target;
-    const formData = new FormData(form);
-
-    fetch(form.action, {
-        method: form.method,
-        body: formData
-    }).then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
+        if (event.target == secondaryCategoryModal) {
+          secondaryCategoryModal.style.display = "none";
         }
-        return response.json();
-    }).then(data => {
-        console.log(data);
-        secondaryCategoryModal.style.display = "none"; // Hide the modal on successful form submission
-    }).catch(error => {
-        console.error('There has been a problem with your fetch operation:', error);
-    });
-});
-
-document.getElementById("addTestForm").addEventListener("submit", (event) => {
-    event.preventDefault();
-    const form = event.target;
-    const formData = new FormData(form);
-
-    fetch(form.action, {
-        method: form.method,
-        body: formData
-    }).then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
+        if (event.target == addTestModal) {
+          addTestModal.style.display = "none";
         }
-        return response.json();
-    }).then(data => {
-        console.log(data);
-        addTestModal.style.display = "none"; // Hide the modal on successful form submission
-    }).catch(error => {
-        console.error('There has been a problem with your fetch operation:', error);
-    });
-});
+      });
 
-  </script>
-  <script>
+      // Handle form submissions
+      document.getElementById("primaryCategoryForm").addEventListener("submit", (event) => {
+        event.preventDefault();
+        const form = event.target;
+        const formData = new FormData(form);
+
+        fetch(form.action, {
+          method: form.method,
+          body: formData
+        }).then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        }).then(data => {
+          console.log(data);
+          primaryCategoryModal.style.display = "none"; // Hide the modal on successful form submission
+        }).catch(error => {
+          console.error('There has been a problem with your fetch operation:', error);
+        });
+      });
+
+      document.getElementById("secondaryCategoryForm").addEventListener("submit", (event) => {
+        event.preventDefault();
+        const form = event.target;
+        const formData = new FormData(form);
+
+        fetch(form.action, {
+          method: form.method,
+          body: formData
+        }).then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        }).then(data => {
+          console.log(data);
+          secondaryCategoryModal.style.display = "none"; // Hide the modal on successful form submission
+        }).catch(error => {
+          console.error('There has been a problem with your fetch operation:', error);
+        });
+      });
+
+      document.getElementById("addTestForm").addEventListener("submit", (event) => {
+        event.preventDefault();
+        const form = event.target;
+        const formData = new FormData(form);
+
+        fetch(form.action, {
+          method: form.method,
+          body: formData
+        }).then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        }).then(data => {
+          console.log(data);
+          addTestModal.style.display = "none"; // Hide the modal on successful form submission
+        }).catch(error => {
+          console.error('There has been a problem with your fetch operation:', error);
+        });
+      });
+
+    </script>
+    <script>
 
 
 
-    document.addEventListener('DOMContentLoaded', function() {
-        
+      document.addEventListener('DOMContentLoaded', function () {
+
         const primaryCategorySelectInSecondary = document.getElementById('primaryCategorySelectInSecondary');
         const primaryCategorySelectInTest = document.getElementById('primaryCategorySelectInTest');
-        
+
         // Fetch and populate primary categories for the select in the add SECONDARY modal
         fetchPrimaryCategories(primaryCategorySelectInSecondary);
         // Fetch and populate primary categories for the select in the add test modal
         fetchPrimaryCategories(primaryCategorySelectInTest);
 
-        
-        function fetchPrimaryCategories(selectElement) {
-        var url = 'https://rssmarthut.com/mypath/primarycategory.php?fetch=true';
 
-        fetch(url)
-              .then(response => response.json())
-              .then(data => {
-                   populatePrimaryCategorySelect(data, selectElement);
-                   populatePrimaryCategoryTable(data);
-        })
-        .catch(error => {
-            console.error('Error fetching primary categories:', error);
-        });
-}
+        function fetchPrimaryCategories(selectElement) {
+          var url = 'https://rssmarthut.com/mypath/primarycategory.php?fetch=true';
+
+          fetch(url)
+            .then(response => response.json())
+            .then(data => {
+              populatePrimaryCategorySelect(data, selectElement);
+              populatePrimaryCategoryTable(data);
+            })
+            .catch(error => {
+              console.error('Error fetching primary categories:', error);
+            });
+        }
 
         function populatePrimaryCategorySelect(categories, selectElement) {
-           selectElement.innerHTML = ''; // Clear any existing options
-           categories.forEach(category => {
-              var option = document.createElement('option');
-              option.value = category; // Replace with the actual ID field
-              option.textContent = category; // Replace with the actual name field
-              selectElement.appendChild(option);
-    });
-}
+          selectElement.innerHTML = ''; // Clear any existing options
+          categories.forEach(category => {
+            var option = document.createElement('option');
+            option.value = category; // Replace with the actual ID field
+            option.textContent = category; // Replace with the actual name field
+            selectElement.appendChild(option);
+          });
+        }
 
         function populatePrimaryCategoryTable(categories) {
-            var tableBody = document.getElementById('primaryCategoryTableBody');
-            tableBody.innerHTML = ''; // Clear any existing rows
+          var tableBody = document.getElementById('primaryCategoryTableBody');
+          tableBody.innerHTML = ''; // Clear any existing rows
 
-            categories.forEach((category, index) => {
-                var row = document.createElement('tr');
+          categories.forEach((category, index) => {
+            var row = document.createElement('tr');
 
-                // Sr.No.
-                var srNoCell = document.createElement('td');
-                srNoCell.textContent = index + 1;
-                row.appendChild(srNoCell);
+            // Sr.No.
+            var srNoCell = document.createElement('td');
+            srNoCell.textContent = index + 1;
+            row.appendChild(srNoCell);
 
-                // Primary Category
-                var primaryCategoryCell = document.createElement('td');
-                primaryCategoryCell.className = 'primname';
-                primaryCategoryCell.style.textAlign = 'left';
-                primaryCategoryCell.style.padding = '0 15px';
-                primaryCategoryCell.textContent = category; // Replace with the actual name field
-                row.appendChild(primaryCategoryCell);
+            // Primary Category
+            var primaryCategoryCell = document.createElement('td');
+            primaryCategoryCell.className = 'primname';
+            primaryCategoryCell.style.textAlign = 'left';
+            primaryCategoryCell.style.padding = '0 15px';
+            primaryCategoryCell.textContent = category; // Replace with the actual name field
+            row.appendChild(primaryCategoryCell);
 
-                // Active
-                var activeCell = document.createElement('td');
-                activeCell.className = 'disbl';
-                var checkbox = document.createElement('input');
-                checkbox.type = 'checkbox';
-                checkbox.name = 'disable';
-                checkbox.id = 'disable';
-                checkbox.disabled = true;
-                checkbox.checked = category; // Replace with the actual active field
-                activeCell.appendChild(checkbox);
-                var label = document.createElement('label');
-                label.htmlFor = 'disable';
-                label.innerHTML = '<span></span>';
-                activeCell.appendChild(label);
-                row.appendChild(activeCell);
+            // Active
+            var activeCell = document.createElement('td');
+            activeCell.className = 'disbl';
+            var checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.name = 'disable';
+            checkbox.id = 'disable';
+            checkbox.disabled = true;
+            checkbox.checked = category; // Replace with the actual active field
+            activeCell.appendChild(checkbox);
+            var label = document.createElement('label');
+            label.htmlFor = 'disable';
+            label.innerHTML = '<span></span>';
+            activeCell.appendChild(label);
+            row.appendChild(activeCell);
 
-                // Edit
-                var editCell = document.createElement('td');
-                var editSpan = document.createElement('span');
-                editSpan.className = 'edit';
-                var editLink = document.createElement('a');
-                editLink.href = '#';
-                editLink.textContent = 'edit';
-                editLink.addEventListener('click', function() {
-                    editPrimaryCategory(category); // Define this function to handle editing
-                });
-                editSpan.appendChild(editLink);
-                editCell.appendChild(editSpan);
-                row.appendChild(editCell);
-
-                // Append the row to the table body
-                tableBody.appendChild(row);
+            // Edit
+            var editCell = document.createElement('td');
+            var editSpan = document.createElement('span');
+            editSpan.className = 'edit';
+            var editLink = document.createElement('a');
+            editLink.href = '#';
+            editLink.textContent = 'edit';
+            editLink.addEventListener('click', function () {
+              editPrimaryCategory(category); // Define this function to handle editing
             });
+            editSpan.appendChild(editLink);
+            editCell.appendChild(editSpan);
+            row.appendChild(editCell);
 
-            // Add click listeners to the primary category cells
-            addPrimaryCategoryClickListener();
+            // Append the row to the table body
+            tableBody.appendChild(row);
+          });
+
+          // Add click listeners to the primary category cells
+          addPrimaryCategoryClickListener();
         }
 
         function editPrimaryCategory(category) {
-            console.log('Editing category:', category);
+          console.log('Editing category:', category);
         }
 
         // Function to add event listeners to primary category cells
         function addPrimaryCategoryClickListener() {
-            const primaryCategoryCells = document.querySelectorAll('.primname');
+          const primaryCategoryCells = document.querySelectorAll('.primname');
 
-            primaryCategoryCells.forEach(cell => {
-                cell.addEventListener('click', function() {
-                    const primaryCategoryName = this.textContent.trim();
-                    fetchSecondaryCategories(primaryCategoryName);
-                    
-                });
+          primaryCategoryCells.forEach(cell => {
+            cell.addEventListener('click', function () {
+              const primaryCategoryName = this.textContent.trim();
+              fetchSecondaryCategories(primaryCategoryName);
+
             });
+          });
         }
 
         // Function to fetch secondary categories based on primary category name
         function fetchSecondaryCategories(primaryCategoryName) {
-            const url = 'https://rssmarthut.com/mypath/secondarycategory.php?fetch=true&pname=' + encodeURIComponent(primaryCategoryName);
+          const url = 'https://rssmarthut.com/mypath/secondarycategory.php?fetch=true&pname=' + encodeURIComponent(primaryCategoryName);
 
-            fetch(url)
-                .then(response => response.json())
-                .then(data => {
-                    populateSecondaryCategoryTable(data);
-                })
-                .catch(error => {
-                    console.error('Error fetching secondary categories:', error);
-                });
+          fetch(url)
+            .then(response => response.json())
+            .then(data => {
+              populateSecondaryCategoryTable(data);
+            })
+            .catch(error => {
+              console.error('Error fetching secondary categories:', error);
+            });
         }
 
         // Function to populate the secondary category table
         function populateSecondaryCategoryTable(categories) {
-            const tbody = document.getElementById('secondaryCategoryTableBody');
-            tbody.innerHTML = ''; // Clear existing rows
+          const tbody = document.getElementById('secondaryCategoryTableBody');
+          tbody.innerHTML = ''; // Clear existing rows
 
-            categories.forEach((category, index) => {
-                const row = document.createElement('tr');
+          categories.forEach((category, index) => {
+            const row = document.createElement('tr');
 
-                const srNoCell = document.createElement('td');
-                srNoCell.textContent = index + 1;
-                row.appendChild(srNoCell);
+            const srNoCell = document.createElement('td');
+            srNoCell.textContent = index + 1;
+            row.appendChild(srNoCell);
 
-                const secondaryCategoryCell = document.createElement('td');
-                secondaryCategoryCell.textContent = category.sname;
-                row.appendChild(secondaryCategoryCell);
+            const secondaryCategoryCell = document.createElement('td');
+            secondaryCategoryCell.textContent = category.sname;
+            row.appendChild(secondaryCategoryCell);
 
-                const editCell = document.createElement('td');
-                const editSpan = document.createElement('span');
-                editSpan.className = 'edit';
-                const editLink = document.createElement('a');
-                editLink.href = '#';
-                editLink.textContent = 'edit';
-                editSpan.appendChild(editLink);
-                editCell.appendChild(editSpan);
-                row.appendChild(editCell);
+            const editCell = document.createElement('td');
+            const editSpan = document.createElement('span');
+            editSpan.className = 'edit';
+            const editLink = document.createElement('a');
+            editLink.href = '#';
+            editLink.textContent = 'edit';
+            editSpan.appendChild(editLink);
+            editCell.appendChild(editSpan);
+            row.appendChild(editCell);
 
-                tbody.appendChild(row);
-            });
+            tbody.appendChild(row);
+          });
         }
 
         // Fetch primary categories on page load
-        fetchPrimaryCategories();
-    });
-</script>
+        function fetchSecondaryCategoriesInTest(primaryCategorySelectElement, secondaryCategorySelectElement) {
+          var primaryCategoryName = primaryCategorySelectElement.value;
+          var url = 'https://rssmarthut.com/mypath/secondarycategorylistintest.php?fetch=true&pname=' + primaryCategoryName;
 
- <script>
-  // Function to add event listeners to primary category cells
-  function addPrimaryCategoryClickListener() {
-      const primaryCategoryCells = document.querySelectorAll('.primname');
+          fetch(url)
+            .then(response => response.json())
+            .then(data => {
+              populateSecondaryCategorySelect(data, secondaryCategorySelectElement);
+            })
+            .catch(error => {
+              console.error('Error fetching secondary categories:', error);
+            });
+        }
 
-      primaryCategoryCells.forEach(cell => {
-          cell.addEventListener('click', function() {
-        
-              const primaryCategoryName = this.textContent.trim();
-              fetchSecondaryCategories(primaryCategoryName);
-              console.log(primaryCategoryName)
+        function populateSecondaryCategorySelect(categories, selectElement) {
+          selectElement.innerHTML = ''; // Clear any existing options
+          categories.forEach(category => {
+            var option = document.createElement('option');
+            option.value = category; // Replace with the actual ID field
+            option.textContent = category; // Replace with the actual name field
+            selectElement.appendChild(option);
           });
+        }
+
+
+
+        // Event listener to fetch and populate secondary categories when the primary category select in the add test modal is changed
+        primaryCategorySelectInTest.addEventListener('change', function () {
+          fetchSecondaryCategoriesInTest(this, document.getElementById('secondaryCategory'));
+        });
+
+
+
+        fetchPrimaryCategories();
       });
-  }
+    </script>
 
-  // Function to fetch secondary categories based on primary category name
-  function fetchSecondaryCategories(primaryCategoryName) {
-      const url = 'https://rssmarthut.com/mypath/secondarycategory.php?fetch=true&pname=' + encodeURIComponent(primaryCategoryName);
+    <script>
+      // Function to add event listeners to primary category cells
+      function addPrimaryCategoryClickListener() {
+        const primaryCategoryCells = document.querySelectorAll('.primname');
 
-      fetch(url)
+        primaryCategoryCells.forEach(cell => {
+          cell.addEventListener('click', function () {
+
+            const primaryCategoryName = this.textContent.trim();
+            fetchSecondaryCategories(primaryCategoryName);
+            console.log(primaryCategoryName)
+          });
+        });
+      }
+
+      // Function to fetch secondary categories based on primary category name
+      function fetchSecondaryCategories(primaryCategoryName) {
+        const url = 'https://rssmarthut.com/mypath/secondarycategory.php?fetch=true&pname=' + encodeURIComponent(primaryCategoryName);
+
+        fetch(url)
           .then(response => response.json())
           .then(data => {
-              populateSecondaryCategoryTable(data);
+            populateSecondaryCategoryTable(data);
           })
           .catch(error => {
-              console.error('Error fetching secondary categories:', error);
+            console.error('Error fetching secondary categories:', error);
           });
-  }
+      }
 
-  // Function to populate the secondary category table
-  function populateSecondaryCategoryTable(categories) {
-      const tbody = document.getElementById('secondaryCategoryTableBody');
-      tbody.innerHTML = ''; // Clear existing rows
+      // Function to populate the secondary category table
+      function populateSecondaryCategoryTable(categories) {
+        const tbody = document.getElementById('secondaryCategoryTableBody');
+        tbody.innerHTML = ''; // Clear existing rows
 
-      categories.forEach((category, index) => {
+        categories.forEach((category, index) => {
           const row = document.createElement('tr');
 
           const srNoCell = document.createElement('td');
@@ -736,17 +756,16 @@ document.getElementById("addTestForm").addEventListener("submit", (event) => {
           row.appendChild(editCell);
 
           tbody.appendChild(row);
-      });
-  }
+        });
+      }
 
-  // Initialize the primary category table with click listeners
-  addPrimaryCategoryClickListener();
-</script>
+      // Initialize the primary category table with click listeners
+      addPrimaryCategoryClickListener();
+    </script>
 
-  
-  
-   
-  </body>
+
+
+
+</body>
+
 </html>
-
-
