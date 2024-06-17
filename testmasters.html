@@ -90,7 +90,7 @@
         </div>
         <div class="categorylist">
           <div class="categoryouter">
-            <div class="parimarycategory border">
+            <div class="parimarycategory">
               <table width="450" border="0" cellspacing="0" cellpadding="0">
                 <thead>
                   <th>Sr.No.</th>
@@ -133,7 +133,7 @@
             </div>
           </div>
           <div class="categoryouter">
-            <div class="secondrycategory border">
+            <div class="secondrycategory">
               <div class="clsebtn" onclick="">X</div>
               <table width="450" border="0" cellspacing="0" cellpadding="0">
                 <thead>
@@ -159,7 +159,7 @@
             </div>
           </div>
           <div class="categoryouter no">
-            <div class="lastadvisecategory border">
+            <div class="lastadvisecategory">
               <div class="clsebtn">X</div>
               <table width="450" border="0" cellspacing="0" cellpadding="0">
                 <thead>
@@ -180,10 +180,13 @@
               </table>
               
             </div>
-            <div class="addinvestgnbtn" data-bind="click: addNewInvestigation">
-              <span></span>ADD INVESTIGATION
-            </div>
+            <div class="addinvestgnbtn" id="addTestBtn">
+              <span></span>ADD TEST
           </div>
+          </div>
+
+
+
           <div id="primaryCategoryModal" class="modal">
             <div class="modal-content">
                 <span class="close" id="closePrimaryModal" style="top: -8px;">&times;</span>
@@ -199,7 +202,7 @@
           </div>
           <div id="secondaryCategoryModal" class="modal">
             <div class="modal-content">
-                <span class="close" id="closeSecondaryModal">&times;</span>
+                <span class="close" id="closeSecondaryModal"  style="top: -8px;">&times;</span>
                 <div class="modal-header">ADD SECONDARY CATEGORY</div>
                 <form id="secondaryCategoryForm" action="https://rssmarthut.com/mypath/secondarycategory.php" method="POST" style="padding-left: 12px; padding-bottom: 12px;">
                   <div style="margin-bottom:1vw;">
@@ -217,6 +220,43 @@
                 </form>
             </div>
         </div>
+        <div id="addTestModal" class="modal">
+          <div class="modal-content">
+              <span class="close" id="closeAddTestModal" style="top: -8px;">&times;</span>
+              <div class="modal-header">ADD TEST CATEGORY</div>
+              <form id="addTestForm" method="POST" action="/your-api-endpoint"   style="padding-left: 12px;">
+                  <label for="primaryCategory">Primary Category</label>
+                  <select id="primaryCategory" name="primaryCategory" style="    padding: 0 4px;
+                  width: 18vw;
+                  border: 0.1px solid #f296fd;
+                  border-radius: 3px;
+                  background-color: #ececec;margin-bottom: 3px;margin-left:1.4vw" required>
+                      <!-- Options will be populated dynamically -->
+                  </select>
+                  
+                  <label for="secondaryCategory">Secondary Category</label>
+                  <select id="secondaryCategory" name="secondaryCategory" style="    padding: 0 4px;
+                  width: 18vw;
+                  border: 0.1px solid #f296fd;
+                  border-radius: 3px;
+                  background-color: #ececec;margin-bottom: 3px;" required>
+                      <!-- Options will be populated dynamically -->
+                  </select>
+                  
+                  <label for="testName">Test Name</label>
+                  <input type="text" id="testName" name="testName" style="padding-left:4PX; width: 18vw; border: 0.1px solid #f296fd; border-radius: 3px; background-color: #ececec;margin-left: 4.6vw;" required>
+                  
+                  <button type="submit" id="addTestBtn" style="    background-color: #26a6dc;
+                  margin-bottom: 1vw;
+                  margin-top: 1vw;
+                  border: 0.1px solid #f296fd;
+                  border-radius: 6px;
+                  height: 1.7vw;
+                  width: 8.5vw;
+                  margin-left: 12vw;">Add Test</button>
+              </form>
+          </div>
+      </div>
         </div>
 
         <!-- Tabs Start Here -->
@@ -228,7 +268,7 @@
 
      
     </div>
-    <script>
+    <!-- <script>
       // Get modal elements
       const primaryCategoryModal = document.getElementById("primaryCategoryModal");
       const secondaryCategoryModal = document.getElementById("secondaryCategoryModal");
@@ -328,8 +368,148 @@
               console.error('There has been a problem with your fetch operation:', error);
           });
       });
+  </script> -->
+  
+  <script>
+    // Get modal elements
+const primaryCategoryModal = document.getElementById("primaryCategoryModal");
+const secondaryCategoryModal = document.getElementById("secondaryCategoryModal");
+const addTestModal = document.getElementById("addTestModal");
+
+// Get button elements
+const addPrimaryCategoryBtn = document.getElementById("addPrimaryCategoryBtn");
+const addSecondaryCategoryBtn = document.getElementById("addSecondaryCategoryBtn");
+const addTestBtn = document.getElementById("addTestBtn");
+
+// Get close elements
+const closePrimaryModal = document.getElementById("closePrimaryModal");
+const closeSecondaryModal = document.getElementById("closeSecondaryModal");
+const closeAddTestModal = document.getElementById("closeAddTestModal");
+
+const primarybtn = document.getElementById("primarybtn");
+const secondarybtn = document.getElementById("secondarybtn");
+
+// Open primary category modal
+addPrimaryCategoryBtn.addEventListener("click", () => {
+    primaryCategoryModal.style.display = "block";
+});
+
+// Open secondary category modal
+addSecondaryCategoryBtn.addEventListener("click", () => {
+    secondaryCategoryModal.style.display = "block";
+});
+
+// Open add test modal
+addTestBtn.addEventListener("click", () => {
+    addTestModal.style.display = "block";
+});
+
+// Close primary category modal
+closePrimaryModal.addEventListener("click", () => {
+    primaryCategoryModal.style.display = "none";
+});
+primarybtn.addEventListener("click", () => {
+    primaryCategoryModal.style.display = "none";
+});
+secondarybtn.addEventListener("click", () => {
+    secondaryCategoryModal.style.display = "none";
+});
+
+// Close add test modal
+closeAddTestModal.addEventListener("click", () => {
+    addTestModal.style.display = "none";
+});
+
+// Close secondary category modal
+closeSecondaryModal.addEventListener("click", () => {
+    secondaryCategoryModal.style.display = "none";
+});
+secondarybtn.addEventListener("click", () => {
+    secondaryCategoryModal.style.display = "none";
+});
+
+// Close modals when clicking outside
+window.addEventListener("click", (event) => {
+    if (event.target == primaryCategoryModal) {
+        primaryCategoryModal.style.display = "none";
+    }
+    if (event.target == secondaryCategoryModal) {
+        secondaryCategoryModal.style.display = "none";
+    }
+    if (event.target == addTestModal) {
+        addTestModal.style.display = "none";
+    }
+});
+
+// Handle form submissions
+document.getElementById("primaryCategoryForm").addEventListener("submit", (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const formData = new FormData(form);
+
+    fetch(form.action, {
+        method: form.method,
+        body: formData
+    }).then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    }).then(data => {
+        console.log(data);
+        primaryCategoryModal.style.display = "none"; // Hide the modal on successful form submission
+    }).catch(error => {
+        console.error('There has been a problem with your fetch operation:', error);
+    });
+});
+
+document.getElementById("secondaryCategoryForm").addEventListener("submit", (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const formData = new FormData(form);
+
+    fetch(form.action, {
+        method: form.method,
+        body: formData
+    }).then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    }).then(data => {
+        console.log(data);
+        secondaryCategoryModal.style.display = "none"; // Hide the modal on successful form submission
+    }).catch(error => {
+        console.error('There has been a problem with your fetch operation:', error);
+    });
+});
+
+document.getElementById("addTestForm").addEventListener("submit", (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const formData = new FormData(form);
+
+    fetch(form.action, {
+        method: form.method,
+        body: formData
+    }).then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    }).then(data => {
+        console.log(data);
+        addTestModal.style.display = "none"; // Hide the modal on successful form submission
+    }).catch(error => {
+        console.error('There has been a problem with your fetch operation:', error);
+    });
+});
+
   </script>
   <script>
+
+
+
     document.addEventListener('DOMContentLoaded', function() {
         var primaryCategorySelect = document.getElementById('primaryCategorySelect');
 
