@@ -136,16 +136,17 @@
             <table width="450" border="0" cellspacing="0" cellpadding="0">
               <thead>
                 <tr>
-                  <th>Sr.No.</th>
+                  <th >Sr.No.</th>
                   <th class="primry">Test Category</th>
                   <th class="disble">Active</th>
                   <th>edit</th>
                 </tr>
               </thead>
-              <tbody id="secondaryCategoryTableBody">
-                <!-- Secondary categories will be dynamically added here -->
+              <tbody id="testCategoryTableBody">
+                <!-- Test categories will be dynamically added here -->
               </tbody>
             </table>
+
 
 
             </tbody>
@@ -266,107 +267,7 @@
 
 
     </div>
-    <!-- <script>
-      // Get modal elements
-      const primaryCategoryModal = document.getElementById("primaryCategoryModal");
-      const secondaryCategoryModal = document.getElementById("secondaryCategoryModal");
-  
-      // Get button elements
-      const addPrimaryCategoryBtn = document.getElementById("addPrimaryCategoryBtn");
-      const addSecondaryCategoryBtn = document.getElementById("addSecondaryCategoryBtn");
-  
-      // Get close elements
-      const closePrimaryModal = document.getElementById("closePrimaryModal");
-      const closeSecondaryModal = document.getElementById("closeSecondaryModal");
-
-      const primarybtn=document.getElementById("primarybtn");
-      const secondarybtn=document.getElementById("secondarybtn");
-  
-      // Open primary category modal
-      addPrimaryCategoryBtn.addEventListener("click", () => {
-          primaryCategoryModal.style.display = "block";
-      });
-  
-      // Open secondary category modal
-      addSecondaryCategoryBtn.addEventListener("click", () => {
-          secondaryCategoryModal.style.display = "block";
-      });
-  
-      // Close primary category modal
-      closePrimaryModal.addEventListener("click", () => {
-          primaryCategoryModal.style.display = "none";
-      });
-      primarybtn.addEventListener("click", () => {
-          primaryCategoryModal.style.display = "none";
-      });
-      secondarybtn.addEventListener("click", () => {
-          secondaryCategoryModal.style.display = "none";
-      });
-
-  
-      // Close secondary category modal
-      closeSecondaryModal.addEventListener("click", () => {
-          secondaryCategoryModal.style.display = "none";
-      });
-      secondarybtn.addEventListener("click", () => {
-          secondaryCategoryModal.style.display = "none";
-      });
-  
-      // Close modals when clicking outside
-      window.addEventListener("click", (event) => {
-          if (event.target == primaryCategoryModal) {
-              primaryCategoryModal.style.display = "none";
-          }
-          if (event.target == secondaryCategoryModal) {
-              secondaryCategoryModal.style.display = "none";
-          }
-      });
-  
-      // Handle form submissions
-      document.getElementById("primaryCategoryForm").addEventListener("submit", (event) => {
-          event.preventDefault();
-          const form = event.target;
-          const formData = new FormData(form);
-  
-          fetch(form.action, {
-              method: form.method,
-              body: formData
-          }).then(response => {
-              if (!response.ok) {
-                  throw new Error('Network response was not ok');
-              }
-              return response.json();
-          }).then(data => {
-              console.log(data);
-              primaryCategoryModal.style.display = "none"; // Hide the modal on successful form submission
-              
-          }).catch(error => {
-              console.error('There has been a problem with your fetch operation:', error);
-              
-          });
-      });
-  
-      document.getElementById("secondaryCategoryForm").addEventListener("submit", (event) => {
-          event.preventDefault();
-          const form = event.target;
-          const formData = new FormData(form);
-  
-          fetch(form.action, {
-              method: form.method,
-              body: formData
-          }).then(response => {
-              if (!response.ok) {
-                  throw new Error('Network response was not ok');
-              }
-              return response.json();
-          }).then(data => {
-              console.log(data);
-              secondaryCategoryModal.style.display = "none"; // Hide the modal on successful form submission
-          }).catch(error => {
-              console.error('There has been a problem with your fetch operation:', error);
-          });
-      });
-  </script> -->
+    
 
     <script>
       // Get modal elements
@@ -480,7 +381,7 @@
           console.log(data);
           secondaryCategoryModal.style.display = "none"; // Hide the modal on successful form submission
 
-          
+
         }).catch(error => {
           console.error('There has been a problem with your fetch operation:', error);
         });
@@ -629,6 +530,9 @@
               const primaryCategoryName = this.textContent.trim();
               fetchSecondaryCategories(primaryCategoryName);
 
+
+
+
             });
           });
         }
@@ -653,6 +557,7 @@
           tbody.innerHTML = ''; // Clear existing rows
 
           categories.forEach((category, index) => {
+            // console.log(category.sname)
             const row = document.createElement('tr');
 
             const srNoCell = document.createElement('td');
@@ -660,8 +565,12 @@
             row.appendChild(srNoCell);
 
             const secondaryCategoryCell = document.createElement('td');
+            secondaryCategoryCell.className = 'sname';
             secondaryCategoryCell.textContent = category.sname;
             row.appendChild(secondaryCategoryCell);
+
+
+
 
             const editCell = document.createElement('td');
             const editSpan = document.createElement('span');
@@ -676,6 +585,82 @@
             tbody.appendChild(row);
           });
         }
+
+
+
+
+
+
+
+        // function addSecondaryCategoryClickListener() {
+        //   const secondaryCategoryCells = document.querySelectorAll('.sname');
+
+        //   secondaryCategoryCells.forEach(cell => {
+        //     cell.addEventListener('click', function (e) {
+        //       const secondaryCategoryName = this.textContent.trim();
+        //       fetchTestCategories(secondaryCategoryName);
+        //     });
+        //   });
+
+
+
+
+        // }
+
+        function fetchTestCategories(secondaryCategoryName) {
+          const url = 'https://rssmarthut.com/mypath/testcategory.php?fetch=true&sname=' + encodeURIComponent(secondaryCategoryName);
+
+          fetch(url)
+            .then(response => response.json())
+            .then(data => {
+              populateTestCategoryTable(data);
+              
+            })
+            .catch(error => {
+              console.error('Error fetching test categories:', error);
+            });
+        }
+
+        function populateTestCategoryTable(testCategories) {
+          const tbody = document.getElementById('testCategoryTableBody');
+          tbody.innerHTML = ''; // Clear existing rows
+
+          testCategories.forEach((category, index) => {
+            const row = document.createElement('tr');
+
+            const srNoCell = document.createElement('td');
+            srNoCell.textContent = index + 1;
+            row.appendChild(srNoCell);
+
+            const testCategoryCell = document.createElement('td');
+            testCategoryCell.textContent = category.tname;
+            row.appendChild(testCategoryCell);
+
+            const activeCell = document.createElement('td');
+            activeCell.textContent = category.active ? 'Yes' : 'No';
+            row.appendChild(activeCell);
+
+            const editCell = document.createElement('td');
+            const editSpan = document.createElement('span');
+            editSpan.className = 'edit';
+            const editLink = document.createElement('a');
+            editLink.href = '#';
+            editLink.textContent = 'edit';
+            editSpan.appendChild(editLink);
+            editCell.appendChild(editSpan);
+            row.appendChild(editCell);
+
+            tbody.appendChild(row);
+          });
+        }
+        
+        document.addEventListener('click', function (e) {
+          if (e.target && e.target.classList.contains('sname')) {
+            const secondaryCategoryName = e.target.textContent.trim();
+            fetchTestCategories(secondaryCategoryName);
+          }
+        });
+
 
         // Fetch primary categories on page load
         function fetchSecondaryCategoriesInTest(primaryCategorySelectElement, secondaryCategorySelectElement) {
@@ -712,71 +697,12 @@
 
 
         fetchPrimaryCategories();
+        addPrimaryCategoryClickListener();
+    
       });
     </script>
 
-    <script>
-      // Function to add event listeners to primary category cells
-      function addPrimaryCategoryClickListener() {
-        const primaryCategoryCells = document.querySelectorAll('.primname');
 
-        primaryCategoryCells.forEach(cell => {
-          cell.addEventListener('click', function () {
-
-            const primaryCategoryName = this.textContent.trim();
-            fetchSecondaryCategories(primaryCategoryName);
-            console.log(primaryCategoryName)
-          });
-        });
-      }
-
-      // Function to fetch secondary categories based on primary category name
-      function fetchSecondaryCategories(primaryCategoryName) {
-        const url = 'https://rssmarthut.com/mypath/secondarycategory.php?fetch=true&pname=' + encodeURIComponent(primaryCategoryName);
-
-        fetch(url)
-          .then(response => response.json())
-          .then(data => {
-            populateSecondaryCategoryTable(data);
-          })
-          .catch(error => {
-            console.error('Error fetching secondary categories:', error);
-          });
-      }
-
-      // Function to populate the secondary category table
-      function populateSecondaryCategoryTable(categories) {
-        const tbody = document.getElementById('secondaryCategoryTableBody');
-        tbody.innerHTML = ''; // Clear existing rows
-
-        categories.forEach((category, index) => {
-          const row = document.createElement('tr');
-
-          const srNoCell = document.createElement('td');
-          srNoCell.textContent = index + 1;
-          row.appendChild(srNoCell);
-
-          const secondaryCategoryCell = document.createElement('td');
-          secondaryCategoryCell.textContent = category.sname;
-          row.appendChild(secondaryCategoryCell);
-
-          const editCell = document.createElement('td');
-          const editSpan = document.createElement('span');
-          editSpan.className = 'edit';
-          const editLink = document.createElement('a');
-          editLink.href = '#';
-          editLink.textContent = 'edit';
-          editSpan.appendChild(editLink);
-          editCell.appendChild(editSpan);
-          row.appendChild(editCell);
-
-          tbody.appendChild(row);
-        });
-      }
-
-      // Initialize the primary category table with click listeners
-      addPrimaryCategoryClickListener();
-    </script>
 
 
 
