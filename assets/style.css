@@ -8283,3 +8283,7 @@ a {
   justify-content: space-between;
   border-bottom: 0.2px solid #d9c7c7;
 }
+
+.border{
+  border-radius: 0.5rem;
+}
