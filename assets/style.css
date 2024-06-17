@@ -4334,6 +4334,10 @@ padding: 0.3em;
   /* text-align: center; */
   padding: 0px 15px;
 }
+.border{
+border-radius: 9px;
+}
+
 .categorylist td:last-child {
   border-right: none;
   width: 42px;
