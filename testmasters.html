@@ -224,8 +224,9 @@
           <div class="modal-content">
               <span class="close" id="closeAddTestModal" style="top: -8px;">&times;</span>
               <div class="modal-header">ADD TEST CATEGORY</div>
-              <form id="addTestForm" method="POST" action="/your-api-endpoint"   style="padding-left: 12px;">
+              <form id="addTestForm" method="POST" action="/your-api-endpoint"   style="padding-left: 12px;display: flex;flex-direction: column;">
                   
+                <div>
                   <label for="primaryCategorySelect">Primary Category:</label>
                   <select id="primaryCategorySelectInTest" name="primaryCategorySelect" required style="    padding: 0 4px;
                   width: 18vw;
@@ -235,8 +236,10 @@
                   <!-- Options will be populated dynamically -->
                       
                   </select>
-                  
-                  
+                </div>
+                
+                 
+                <div>
                   <label for="secondaryCategory">Secondary Category:</label>
                   <select id="secondaryCategory" name="secondaryCategory" style="    padding: 0 4px;
                   width: 18vw;
@@ -245,11 +248,16 @@
                   background-color: #ececec;margin-bottom: 3px;" required>
                       <!-- Options will be populated dynamically -->
                   </select>
+                </div>
                   
+                <div>
                   <label for="testName">Test Name:</label>
                   <input type="text" id="testName" name="testName" style="padding-left:4PX; width: 18vw; border: 0.1px solid #f296fd; border-radius: 3px; background-color: #ececec;margin-left: 4.6vw;" required>
+                </div>
                   
-                  <button type="submit" id="addTestBtn" style="    background-color: #26a6dc;
+                  
+                  
+                <button type="submit" id="addTestBtn" style="    background-color: #26a6dc;
                   margin-bottom: 1vw;
                   margin-top: 1vw;
                   border: 0.1px solid #f296fd;
