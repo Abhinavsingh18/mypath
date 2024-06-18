@@ -209,7 +209,7 @@
           <div class="modal-content">
             <span class="close" id="closeAddTestModal" style="top: -8px;">&times;</span>
             <div class="modal-header">ADD TEST CATEGORY</div>
-            <form id="addTestForm" method="POST" action="https://rssmarthut.com/mypath/testcategory.php"
+            <form id="addTestForm" method="POST" action="https://rssmarthut.com/mypath/testcategorysave.php"
               style="padding-left: 12px;display: flex;flex-direction: column;">
 
               <div>
@@ -387,36 +387,41 @@
         });
       });
 
+      
+    
       document.getElementById("addTestForm").addEventListener("submit", (event) => {
-        event.preventDefault();
-        const form = event.target;
-        const formData = new FormData(form);
+    event.preventDefault();
+    const form = event.target;
+    const formData = new FormData(form);
 
-        fetch(form.action, {
-          method: form.method,
-          body: formData
-        })
-          .then(response => {
-            if (!response.ok) {
-              throw new Error('Network response was not ok');
-            }
-            return response.json();
-          })
-          .then(data => {
-            if (data.status === "success") {
-              console.log(data.message);
-              alert('Test added successfully'); // Display success message
-              document.getElementById('addTestModal').style.display = "none"; // Hide the modal on successful form submission
-            } else {
-              console.error(data.message);
-              alert(data.message); // Display error message
-            }
-          })
-          .catch(error => {
-            console.error('There has been a problem with your fetch operation:', error);
-            alert('There has been a problem with your fetch operation: ' + error.message);
-          });
+    fetch(form.action, {
+      method: form.method,
+      body: formData,
+      headers: {
+        'Accept': 'application/json'
+      }
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        if (data.status === "success") {
+          console.log(data.message);
+          alert('Test added successfully'); // Display success message
+          document.getElementById('addTestModal').style.display = "none"; // Hide the modal on successful form submission
+        } else {
+          console.error(data.message);
+          alert(data.message); // Display error message
+        }
+      })
+      .catch(error => {
+        console.error('There has been a problem with your fetch operation:', error);
+        alert('There has been a problem with your fetch operation: ' + error.message);
       });
+});
 
 
     </script>
