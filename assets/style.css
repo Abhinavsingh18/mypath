@@ -4139,7 +4139,7 @@ input.ui-combobox-input {
 .categoryouter {
    display: flex;
    flex-direction: column;
-   width: 350px;
+   
   float: left;
   margin: 13px 14px 25px 0;
 }
