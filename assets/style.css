@@ -4132,7 +4132,7 @@ input.ui-combobox-input {
 .categorylist {
   display: flex;
   justify-content:space-evenly;
-  width: 100vw;
+  /* width: 100vw; */
   margin: 0 auto;
   position: relative;
 }
