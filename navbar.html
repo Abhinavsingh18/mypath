@@ -20,12 +20,14 @@
     <h4>Hi , Username</h4>
     <form>
         
-        <select name="acc" id="acc">
-          <option href="/gty" value="option1">HOME</option>
-          <option value="option2">SUPPORT</option>
-          <option value="option3">CHANGE PASSWORD</option>
-          <option value="option4">LOGOUT</option>
-        </select>
+      <select name="acc" id="acc" onchange="if (this.value) window.location.href=this.value">
+        <option value="" selected>Choose an option</option>
+        <option value="/mypath/home.html">HOME</option>
+        <option value="/mypath/support.html">SUPPORT</option>
+        <option value="/mypath/change_password.html">CHANGE PASSWORD</option>
+        <option value="/mypath">LOGOUT</option>
+    </select>
+
       </form>
       
   </div>
