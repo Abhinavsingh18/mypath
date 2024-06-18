@@ -9,3 +9,4 @@ function loadNavbar() {
 
   // Call the function to load the navbar
   loadNavbar();
+  

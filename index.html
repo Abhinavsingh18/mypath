@@ -112,24 +112,18 @@
 <body>
     <div class="card">
         <img src="./assets/Remove background project.png" alt="Samriddhi Enterprises">
-
         <div class="login_register">
             <a href="#" class="login" style="width: 100%; display: flex; justify-content: center; font-size: 0.9rem;">Please Login to continue</a>
         </div>
-
         <form class="form" id="loginForm">
             <input name="username" type="text" placeholder="Username" class="email" required>
             <input name="password" type="password" placeholder="Password" class="pass" required>
             <button type="submit" class="login_btn" style="font-size: 0.9rem;">Login now</button>
         </form>
-
         <div class="error" id="errorMsg">Invalid username or password</div>
-
         <a href="#" class="fp">Forgot password?</a>
-
         <div class="footer_card"></div>
     </div>
-
     <script>
         document.getElementById('loginForm').addEventListener('submit', function (event) {
             event.preventDefault(); // Prevent the form from submitting the default way
@@ -144,6 +138,8 @@
             .then(response => response.json())
             .then(data => {
                 if (data.status === 'success') {
+                    const username = formData.get('username');
+                    localStorage.setItem('username', username);
                     window.location.href = 'home.html';
                 } else {
                     document.getElementById('errorMsg').style.display = 'block';
