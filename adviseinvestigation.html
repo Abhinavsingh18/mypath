@@ -222,7 +222,10 @@
     </style>
   </head>
   <body>
-    <div id="navbar" style="position: absolute; top: 0;"></div>
+    <div style="position: fixed;top: 0;">
+      <div id="navbar"></div>
+
+    </div>
     <div class="maincont"
       style="
         width: 100%;
@@ -231,6 +234,7 @@
         align-items: center;
         position: absolute;
         top: 3px;
+        z-index: -9999999;
       "
     >
       <div class="container">
