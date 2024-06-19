@@ -1,151 +1,172 @@
 
 <style>
-  /* Existing CSS */
-  @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&display=swap");
-
-  * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: "Poppins", sans-serif;
-      text-decoration: none;
-  }
-
-  .navfull {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      /* background-color: #fff; */
-      padding: 10px 20px;
-      /* box-shadow: 0 2px 5px rgba(0,0,0,0.1);  */
-  }
-
-  .navtabs {
-      display: flex;
-      position: relative;
-  }
-
-  .navtab {
-      /* padding: 10px 20px; */
-      cursor: pointer;
-      position: relative;
-  }
-
-  .navtab:hover .dropdown {
-      display: block;
-  }
-
-  .dropdown {
-      display: none;
-      position: absolute;
-      top: 40px;
-      left: 0;
-      background-color: #fff;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      z-index: 1000;
-  }
-
-  .dropdown a {
-      display: block;
-      padding: 10px 20px;
-      color: #333;
-      white-space: nowrap;
-  }
-
-  .dropdown a:hover {
-      background-color: #f0f0f0;
-  }
-
-  .underline {
-      border-bottom: 2px solid #7171c8;
-      width: 100%;
-  }
-
-  .contact {
-      display: flex;
-      align-items: center;
-  }
-
-  .contact svg {
-      width: 24px;
-      height: 24px;
-      margin-right: 10px;
-  }
-
-  .mobno {
-      font-size: 1rem;
-      color: #333;
-  }
-
-  .account {
-      display: flex;
-      align-items: center;
-  }
-
-  .account h4 {
-      margin-right: 10px;
-  }
-
-  .account select {
-      padding: 5px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-  }
-</style>
-
-    <div class="navfull">
-        <div class="logo">
-            <img class="logo1" src="./assets/Remove background project.png" alt="">
-        </div>
-        <div class="navtabs">
-            <div class="navtab active" data-target="home">PATIENT
-                <div class="dropdown">
-                    <a href="/mypath/patient1.html">Patient Page 1</a>
-                    <a href="/mypath/patient2.html">Patient Page 2</a>
-                </div>
-            </div>
-            <div class="navtab" data-target="about">STAFF
-                <div class="dropdown">
-                    <a href="/mypath/staff1.html">Staff Page 1</a>
-                    <a href="/mypath/staff2.html">Staff Page 2</a>
-                </div>
-            </div>
-            <div class="navtab" data-target="contact">LABORATORY
-                <div class="dropdown">
-                    <a href="/mypath/laboratory1.html">Laboratory Page 1</a>
-                    <a href="/mypath/laboratory2.html">Laboratory Page 2</a>
-                </div>
-            </div>
-            <div class="navtab" data-target="page4">ACCOUNTS
-                <div class="dropdown">
-                    <a href="/mypath/accounts1.html">Accounts Page 1</a>
-                    <a href="/mypath/accounts2.html">Accounts Page 2</a>
-                </div>
-            </div>
-            <div class="navtab" data-target="page5">CONTROLS
-                <div class="dropdown">
-                    <a href="/mypath/controls1.html">Controls Page 1</a>
-                    <a href="/mypath/controls2.html">Controls Page 2</a>
-                </div>
-            </div>
-            <div class="underline"></div>
-        </div>
-        <div class="contact">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#7171c8" d="M164.9 24.6c-7.7-18.6-28-28.5-47.4-23.2l-88 24C12.1 30.2 0 46 0 64C0 311.4 200.6 512 448 512c18 0 33.8-12.1 38.6-29.5l24-88c5.3-19.4-4.6-39.7-23.2-47.4l-96-40c-16.3-6.8-35.2-2.1-46.3 11.6L304.7 368C234.3 334.7 177.3 277.7 144 207.3L193.3 167c13.7-11.2 18.4-30 11.6-46.3l-40-96z"/></svg>
-            <h4 class="mobno">+91 6969696969</h4>
-        </div>
-        <div class="account " style="display: flex;">
-            <h4 id="username">Hi, Username</h4>
-            <form>
-                <select name="acc" id="acc" style="background-color: #ccc;" onchange="if (this.value) window.location.href=this.value">
-                    <option value="" selected></option>
-                    <option value="/mypath/home.html">HOME</option>
-                    <option value="/mypath/support.html">SUPPORT</option>
-                    <option value="/mypath/change_password.html">CHANGE PASSWORD</option>
-                    <option value="/mypath">LOGOUT</option>
-                </select>
-            </form>
-        </div>
-    </div>
-
-   
+    /* Existing CSS */
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&display=swap");
+  
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+        text-decoration: none;
+    }
+  
+    .navfull {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        /* background-color: #fff; */
+        padding: 10px 20px;
+        /* box-shadow: 0 2px 5px rgba(0,0,0,0.1);  */
+    }
+  
+    .navtabs {
+        display: flex;
+        position: relative;
+    }
+  
+    .navtab {
+        /* padding: 10px 20px; */
+        cursor: pointer;
+        position: relative;
+    }
+  
+    .navtab:hover .dropdown {
+        display: block;
+    }
+  
+    .dropdown {
+        display: none;
+        position: absolute;
+        top: 40px;
+        left: 0;
+        background-color: #fff;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        z-index: 1000;
+    }
+  
+    .dropdown a {
+        display: block;
+        padding: 10px 20px;
+        color: #333;
+        white-space: nowrap;
+    }
+  
+    .dropdown a:hover {
+        background-color: #f0f0f0;
+    }
+  
+    .underline {
+        border-bottom: 2px solid #7171c8;
+        width: 100%;
+    }
+  
+    .contact {
+        display: flex;
+        align-items: center;
+    }
+  
+    .contact svg {
+        width: 24px;
+        height: 24px;
+        margin-right: 10px;
+    }
+  
+    .mobno {
+        font-size: 1rem;
+        color: #333;
+    }
+  
+    .account {
+        display: flex;
+        align-items: center;
+    }
+  
+    .account h4 {
+        margin-right: 10px;
+    }
+  
+    .account select {
+        padding: 5px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+  </style>
+  
+      <div class="navfull">
+          <div class="logo">
+              <img class="logo1" src="./assets/Remove background project.png" alt="">
+          </div>
+          <div class="navtabs">
+              <div class="navtab active" data-target="home">PATIENT
+                  <div class="dropdown">
+                      <a href="/mypath/patient1.html">Update Patient</a>
+                      <a href="/mypath/patient1.html">Reports</a>
+                      <a href="/mypath/patient1.html">Patient Book</a>
+                  </div>
+              </div>
+              <div class="navtab" data-target="about">STAFF
+                  <div class="dropdown">
+                      <a href="/mypath/staff1.html">Staff Registration</a>
+                      <a href="/mypath/staff2.html">Staff Book</a>
+                      <a href="/mypath/staff2.html">Staff Delivery</a>
+                  </div>
+              </div>
+              <div class="navtab" data-target="contact">LABORATORY
+                  <div class="dropdown">
+                      <a href="/mypath/laboratory1.html">Asvise Investigation</a>
+                      <a href="/mypath/laboratory2.html">WorkList</a>
+                      <a href="/mypath/laboratory2.html">Authenticate Reports</a>
+                      <a href="/mypath/laboratory2.html">Test Masters</a>
+                      <a href="/mypath/laboratory2.html">Panels</a>
+                      <a href="/mypath/laboratory2.html">Outsource Laboratories</a>
+                      <a href="/mypath/laboratory2.html">PNDT</a>
+                  </div>
+              </div>
+              <div class="navtab" data-target="page4">ACCOUNTS
+                  <div class="dropdown">
+                      <a href="/mypath/accounts1.html">Account Management</a>
+                      <a href="/mypath/accounts2.html">Income Expenses</a>
+                      <a href="/mypath/accounts2.html">Patient Account Reports</a>
+                      <a href="/mypath/accounts2.html">Patient Account Reports</a>
+                      <a href="/mypath/accounts2.html">Panel Reports</a>
+                      <a href="/mypath/accounts2.html">Worksheet Report</a>
+                      <a href="/mypath/accounts2.html">TAT Report</a>
+                      <a href="/mypath/accounts2.html">Patient Billing Summary</a>
+                      <a href="/mypath/accounts2.html">Misc Report</a>
+                  </div>
+              </div>
+              <div class="navtab" data-target="page5">CONTROLS
+                  <div class="dropdown">
+                      <a href="/mypath/controls1.html">Basic Setup</a>
+                      <a href="/mypath/controls2.html">Branch Master</a>
+                      <a href="/mypath/controls2.html">Report Configuration</a>
+                      <a href="/mypath/controls2.html">Templates</a>
+                      <a href="/mypath/controls2.html">E-Mail Setting</a>
+                      <a href="/mypath/controls2.html">ID Management</a>
+                      <a href="/mypath/controls2.html">Message Center</a>
+  
+                  </div>
+              </div>
+              <div class="underline"></div>
+          </div>
+          <div class="contact">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#7171c8" d="M164.9 24.6c-7.7-18.6-28-28.5-47.4-23.2l-88 24C12.1 30.2 0 46 0 64C0 311.4 200.6 512 448 512c18 0 33.8-12.1 38.6-29.5l24-88c5.3-19.4-4.6-39.7-23.2-47.4l-96-40c-16.3-6.8-35.2-2.1-46.3 11.6L304.7 368C234.3 334.7 177.3 277.7 144 207.3L193.3 167c13.7-11.2 18.4-30 11.6-46.3l-40-96z"/></svg>
+              <h4 class="mobno">+91 6969696969</h4>
+          </div>
+          <div class="account " style="display: flex;">
+              <h4 id="username">Hi, Username</h4>
+              <form>
+                  <select name="acc" id="acc" style="background-color: #ccc;" onchange="if (this.value) window.location.href=this.value">
+                      <option value="" selected></option>
+                      <option value="/mypath/home.html">HOME</option>
+                      <option value="/mypath/support.html">SUPPORT</option>
+                      <option value="/mypath/change_password.html">CHANGE PASSWORD</option>
+                      <option value="/mypath">LOGOUT</option>
+                  </select>
+              </form>
+          </div>
+      </div>
+  
+     
+  
