@@ -1,0 +1,20 @@
+body {
+    background-color: #f8f9fa;
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+.form-check-inline {
+    display: flex;
+    align-items: center;
+}
+
+.form-check-label {
+    margin-right: 10px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}

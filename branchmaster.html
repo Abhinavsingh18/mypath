@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Branch Master</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/mypath/assets/branchmaster.css">
+    <link rel="stylesheet" href="/mypath/assets/nav.css">
+</head>
+<body>
+    <div id="navbar"></div>
+<div class="container mt-5">
+    <h2>Branch Master</h2>
+    <form id="branchForm">
+        <div class="form-group">
+            <label for="branch_select">Select Branch:</label>
+            <input type="text" class="form-control" id="branch_select" name="branch_select">
+        </div>
+        <div class="form-group">
+            <label for="name">Name:<span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="name" name="name" required>
+        </div>
+        <div class="form-group form-check-inline">
+            <input type="checkbox" class="form-check-input" id="main_branch" name="main_branch">
+            <label class="form-check-label" for="main_branch">Main Branch</label>
+            <label for="branch_code" class="ml-3">Branch Code:</label>
+            <input type="text" class="form-control ml-2" id="branch_code" name="branch_code">
+        </div>
+        <div class="form-group">
+            <label for="owner">Owner:</label>
+            <input type="text" class="form-control" id="owner" name="owner" disabled>
+        </div>
+        <div class="form-group">
+            <label for="receipt_format">Receipt Format:<span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="receipt_format" name="receipt_format" required>
+        </div>
+        <div class="form-group">
+            <label for="receipt_no">Receipt No.:<span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="receipt_no" name="receipt_no" required>
+        </div>
+        <div class="form-group">
+            <label for="address">Address:</label>
+            <textarea class="form-control" id="address" name="address"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="area">Area:</label>
+            <input type="text" class="form-control" id="area" name="area">
+        </div>
+        <div class="form-group">
+            <label for="city">City:</label>
+            <select class="form-control" id="city" name="city">
+                <option value="">Select City</option>
+                <!-- Add city options here -->
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="state">State:</label>
+            <select class="form-control" id="state" name="state">
+                <option value="">Select State</option>
+                <!-- Add state options here -->
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="pincode">PinCode:</label>
+            <input type="text" class="form-control" id="pincode" name="pincode">
+        </div>
+        <div class="form-group">
+            <label for="country_select_input">Country:</label>
+<input list="country_list" id="country_select_input" class="form-control" name="country" placeholder="Select or type a country...">
+<datalist id="country_list">
+  <option value="United States (US)">
+  <option value="Canada">
+  <option value="United Kingdom">
+  <option value="Australia">
+  <!-- Add more countries as needed -->
+</datalist>
+        </div>
+
+        <div class="form-group">
+            <label for="branch_timing">Branch Timing:</label>
+            <textarea class="form-control" id="branch_timing" name="branch_timing"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="landline_no">Landline No.:</label>
+            <input type="text" class="form-control" id="landline_no" name="landline_no">
+        </div>
+        <div class="form-group">
+            <label for="mobile_no">Mobile No.:</label>
+            <input type="text" class="form-control" id="mobile_no" name="mobile_no">
+        </div>
+        <div class="form-group">
+            <label for="fax_no">Fax No.:</label>
+            <input type="text" class="form-control" id="fax_no" name="fax_no">
+        </div>
+        <button type="submit" class="btn btn-primary">Add</button>
+        <button type="reset" class="btn btn-secondary">Clear</button>
+    </form>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script src="nav.js"></script>
+
+<script>
+    // Retrieve username from localStorage
+    const username = localStorage.getItem('username');
+
+    // Set the value of the input field
+    document.getElementById('owner').value = username;
+</script>
+
+</body>
+</html>
