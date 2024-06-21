@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Branches</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/mypath/assets/branchmaster.css">
+    <link rel="stylesheet" href="/mypath/assets/nav.css">
+</head>
+<body>
+    <div id="navbar"></div>
+    <div class="container mt-5">
+        <h2>Branches Created by You</h2>
+        <div id="branchesList"></div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script src="nav.js"></script>
+
+    <script>
+        // Retrieve username from localStorage
+        const username = localStorage.getItem('username');
+
+        // Fetch branches created by the logged-in user
+        $(document).ready(function() {
+            $.ajax({
+                url: 'https://rssmarthut.com/mypath/get_user_branches.php',
+                method: 'POST',
+                data: { username: username },
+                success: function(response) {
+                    $('#branchesList').html(response);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

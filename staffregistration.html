@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Registration</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/mypath/assets/staffregistration.css"> <!-- Custom CSS for additional styling -->
+    <link rel="stylesheet" href="/mypath/assets/nav.css">
+</head>
+<body>
+    <div id="navbar"></div>
+    <div class="container mt-5">
+        <!-- Step 1: Basic Information -->
+        <div id="step1">
+            <h2>Step 1: Staff Basic Information</h2>
+            <form id="staffForm" action="https://rssmarthut.com/mypath/staffregistration.php" method="post" enctype="multipart/form-data">                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="branchName">Branch Name</label>
+                        <input type="text" class="form-control" id="branchName" name="branchName">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="addNewStaff">Add New Staff</label>
+                        <select class="form-control" id="addNewStaff" name="addNewStaff">
+                            <option>Doctor</option>
+                            <option>Nurse</option>
+                            <option>Technician</option>
+                            <!-- Add more options as needed -->
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="firstName">First Name</label>
+                        <input type="text" class="form-control" id="firstName" name="firstName" required>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="middleName">Middle Name</label>
+                        <input type="text" class="form-control" id="middleName" name="middleName">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="lastName">Last Name</label>
+                        <input type="text" class="form-control" id="lastName" name="lastName" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="specialization">Specialization</label>
+                        <select class="form-control" id="specialization" name="specialization">
+                            <option>Select Specialization</option>
+                            <!-- Add more options as needed -->
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="medicalId">Medical Id</label>
+                        <input type="text" class="form-control" id="medicalId" name="medicalId">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="uid">UID</label>
+                        <input type="text" class="form-control" id="uid" name="uid">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="department">Department</label>
+                        <select class="form-control" id="department" name="department">
+                            <option>Select Department</option>
+                            <!-- Add more options as needed -->
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="dateOfRegistration">Date Of Registration</label>
+                        <input type="text" class="form-control" id="dateOfRegistration" name="dateOfRegistration" readonly>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label>Sex</label><br>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" id="male" name="sex" value="Male" checked>
+                            <label class="form-check-label" for="male">Male</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" id="female" name="sex" value="Female">
+                            <label class="form-check-label" for="female">Female</label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="designation">Designation</label>
+                        <select class="form-control" id="designation" name="designation">
+                            <option>Select Designation</option>
+                            <!-- Add more options as needed -->
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="contactNo">Contact No.</label>
+                        <input type="text" class="form-control" id="contactNo" name="contactNo">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="newPassword">New Password</label>
+                        <input type="password" class="form-control" id="newPassword" name="newPassword" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="address">Address</label>
+                        <textarea class="form-control" id="address" name="address"></textarea>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="area">Area</label>
+                        <input type="text" class="form-control" id="area" name="area">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="city">City</label>
+                        <input type="text" class="form-control" id="city" name="city">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="state">State</label>
+                        <input type="text" class="form-control" id="state" name="state">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="pincode">PinCode</label>
+                        <input type="text" class="form-control" id="pincode" name="pincode">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="country">Country</label>
+                        <input type="text" class="form-control" id="country" name="country">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="imageUpload">Upload Image</label>
+                        <input type="file" class="form-control" id="imageUpload" name="imageUpload" accept="image/*">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="signatureUpload">Upload Signature</label>
+                        <input type="file" class="form-control" id="signatureUpload" name="signatureUpload" accept="image/*">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <button type="button" class="btn btn-secondary btn-next" onclick="showStep(2)">Next</button>
+                        <button type="reset" class="btn btn-secondary btn-reset">Reset</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- Step 2: About -->
+        <div id="step2" style="display:none;">
+            <h2>Step 2: About</h2>
+            <form>
+                <div class="form-group">
+                    <label for="about">About</label>
+                    <textarea class="form-control" id="about" name="about"></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <button type="button" class="btn btn-secondary" onclick="showStep(1)">Back</button>
+                        <button type="button" class="btn btn-secondary" onclick="showStep(3)">Skip</button>
+                        <button type="button" class="btn btn-primary" onclick="showStep(3)">Next</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- Step 3: Qualification -->
+        <div id="step3" style="display:none;">
+            <h2>Step 3: Qualification</h2>
+            <form>
+                <div class="form-group">
+                    <label for="qualification">Qualification</label>
+                    <textarea class="form-control" id="qualification" name="qualification"></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <button type="button" class="btn btn-secondary" onclick="showStep(2)">Back</button>
+                        <button type="button" class="btn btn-secondary" onclick="showStep(4)">Skip</button>
+                        <button type="button" class="btn btn-primary" onclick="showStep(4)">Next</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- Step 4: Experience -->
+        <div id="step4" style="display:none;">
+            <h2>Step 4: Experience</h2>
+            <form>
+                <div class="form-group">
+                    <label for="experience">Experience</label>
+                    <textarea class="form-control" id="experience" name="experience"></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <button type="button" class="btn btn-secondary" onclick="showStep(3)">Back</button>
+                        <button type="button" class="btn btn-secondary" onclick="showStep(5)">Skip</button>
+                        <button type="button" class="btn btn-primary" onclick="showStep(5)">Next</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- Step 5: Awards & Achievements -->
+        <div id="step5" style="display:none;">
+            <h2>Step 5: Awards & Achievements</h2>
+            <form>
+                <div class="form-group">
+                    <label for="awards">Awards & Achievements</label>
+                    <textarea class="form-control" id="awards" name="awards"></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <button type="button" class="btn btn-secondary" onclick="showStep(4)">Back</button>
+                        <button type="button" class="btn btn-secondary" onclick="showStep(6)">Skip</button>
+                        <button type="button" class="btn btn-primary" onclick="showStep(6)">Next</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- Step 6: Summary -->
+        <div id="step6" style="display:none;">
+            <h2>Step 6: Summary</h2>
+            <div id="summary"></div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <button type="button" class="btn btn-secondary" onclick="showStep(5)">Back</button>
+                    <button type="button" class="btn btn-primary" onclick="submitForm()">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="staffregistration.js"></script> <!-- Custom JS for additional functionality -->
+    <script src="nav.js"></script>
+</body>
+</html>
