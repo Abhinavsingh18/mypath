@@ -59,6 +59,61 @@
       margin-bottom: 15px;
       background-color: #26a6dc;
     }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    .modal-content {
+      background-color: #fefefe;
+      margin: 15% auto;
+      border: 1px solid #888;
+      width: 80%;
+      max-width: 500px;
+      border-radius: 10px;
+      padding: 20px;
+    }
+
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .modal-header {
+      background-color: #26a6dc;
+      padding: 10px;
+      color: white;
+      border-radius: 10px 10px 0 0;
+      text-align: center;
+    }
+
+    .branch-list {
+      margin-top: 15px;
+    }
+
+    .branch-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
   </style>
 
   <div id="navbar"></div>
@@ -260,13 +315,31 @@
       </div>
 
       <!-- Tabs Start Here -->
+      <button id="addTestPriceBtn" class="btn btn-primary">Add Test Price</button>
 
-
-
-
-
-
-
+      <!-- Modal Structure -->
+      <div id="addTestPriceModal" class="modal">
+        <div class="modal-content">
+          <span class="close" id="closeAddTestPriceModal">&times;</span>
+          <div class="modal-header">ADD TEST PRICE</div>
+          <form id="addTestPriceForm" method="POST" action="https://rssmarthut.com/mypath/testpriceadd.php">
+            <div>
+              <label for="testCategorySelect">Test Category:</label>
+              <select id="testCategorySelect" name="testCategorySelect" required class="form-control"></select>
+            </div>
+            <div>
+              <label for="branchSelect">Branch:</label>
+              <select id="branchSelect" name="branchSelect" required class="form-control"></select>
+            </div>
+            <div>
+              <label for="testPrice">Test Price:</label>
+              <input type="number" id="testPrice" name="testPrice" required class="form-control" />
+            </div>
+            <button type="submit" class="btn btn-success">Add Prices</button>
+          </form>
+        </div>
+      </div>
+    
     </div>
     
 
@@ -708,8 +781,84 @@
       });
     </script>
 
+<script>
+  var addTestPriceBtn = document.getElementById("addTestPriceBtn");
+  var addTestPriceModal = document.getElementById("addTestPriceModal");
+  var closeAddTestPriceModal = document.getElementById("closeAddTestPriceModal");
+  var testCategorySelect = document.getElementById("testCategorySelect");
+  var branchSelect = document.getElementById("branchSelect");
 
+  addTestPriceBtn.onclick = function () {
+    addTestPriceModal.style.display = "block";
+    fetchBranches();
+    fetchTestCategories();
+  }
 
+  closeAddTestPriceModal.onclick = function () {
+    addTestPriceModal.style.display = "none";
+  }
+
+  window.onclick = function (event) {
+    if (event.target == addTestPriceModal) {
+      addTestPriceModal.style.display = "none";
+    }
+  }
+
+  function fetchBranches() {
+    fetch('https://rssmarthut.com/mypath/getbranches.php', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      credentials: 'include' // Include credentials to ensure session is sent
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        branchSelect.innerHTML = "";
+        data.forEach(branch => {
+          var option = document.createElement("option");
+          option.value = branch.id;
+          option.innerHTML = branch.name;
+          branchSelect.appendChild(option);
+        });
+      })
+      .catch(error => {
+        console.error('Error fetching branches:', error);
+      });
+  }
+
+  function fetchTestCategories() {
+    fetch('https://rssmarthut.com/mypath/gettestcategories.php', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        testCategorySelect.innerHTML = "";
+        data.forEach(category => {
+          var option = document.createElement("option");
+          option.value = category.id;
+          option.innerHTML = category.name;
+          testCategorySelect.appendChild(option);
+        });
+      })
+      .catch(error => {
+        console.error('Error fetching test categories:', error);
+      });
+  }
+</script>
 
 
 
