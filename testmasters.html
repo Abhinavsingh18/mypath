@@ -17,103 +17,130 @@
 <body>
   <script src="nav.js"></script>
   <style>
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 1;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0, 0, 0, 0.4);
-    }
+    /* Modal styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    padding-top: 60px;
+}
 
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto; /* 5% from the top and centered */
+    padding-bottom: 1.5vw;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+    max-width: 600px; /* Max width for larger screens */
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.modal-header {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding-left: 1.5vw;
+    padding-right: 1.5vw;
+}
+
+label {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+select, input[type="text"], button {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+.success-msg {
+    color: green;
+    font-weight: bold;
+}
+
+.error-msg {
+    color: red;
+    font-weight: bold;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 600px) {
     .modal-content {
-      background-color: #fefefe;
-      margin: 15% auto;
-
-      border: 1px solid #888;
-      width: 80%;
-      max-width: 500px;
-      border-radius: 10px;
+        width: 90%; /* Adjust the width for mobile devices */
+        padding: 10px;
     }
 
-    .close {
-      color: #aaa;
-      float: right;
-      font-size: 28px;
-      font-weight: bold;
-
+    label, select, input[type="text"], button {
+        font-size: 14px; /* Smaller font size for mobile */
     }
 
-    .close:hover,
-    .close:focus {
-      color: black;
-      text-decoration: none;
-      cursor: pointer;
+    th, td {
+        padding: 8px;
     }
 
     .modal-header {
-
-      margin-bottom: 15px;
-      background-color: #26a6dc;
+        font-size: 20px;
     }
+}
 
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 1;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0, 0, 0, 0.4);
-    }
-
-    .modal-content {
-      background-color: #fefefe;
-      margin: 15% auto;
-      border: 1px solid #888;
-      width: 80%;
-      max-width: 500px;
-      border-radius: 10px;
-      padding: 20px;
-    }
-
-    .close {
-      color: #aaa;
-      float: right;
-      font-size: 28px;
-      font-weight: bold;
-    }
-
-    .close:hover,
-    .close:focus {
-      color: black;
-      text-decoration: none;
-      cursor: pointer;
-    }
-
-    .modal-header {
-      background-color: #26a6dc;
-      padding: 10px;
-      color: white;
-      border-radius: 10px 10px 0 0;
-      text-align: center;
-    }
-
-    .branch-list {
-      margin-top: 15px;
-    }
-
-    .branch-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 10px;
-    }
   </style>
 
   <div id="navbar"></div>
@@ -188,7 +215,7 @@
             <table width="450" border="0" cellspacing="0" cellpadding="0">
               <thead>
                 <tr>
-                  <th >Sr.No.</th>
+                  <th>Sr.No.</th>
                   <th class="primry">Test Category</th>
                   <th class="disble">Active</th>
                   <th>edit</th>
@@ -316,29 +343,39 @@
       <!-- Modal Structure -->
       <div id="addTestPriceModal" class="modal">
         <div class="modal-content">
-            <span class="close" id="closeAddTestPriceModal">&times;</span>
-            <div class="modal-header">ADD TEST PRICE</div>
-            <form id="addTestPriceForm" method="POST" action="https://rssmarthut.com/mypath/testpriceadd.php">
-                <div>
-                    <label for="testCategorySelect">Test Category:</label>
-                    <select id="testCategorySelect" name="testCategorySelect" required class="form-control"></select>
-                </div>
-                <div>
-                    <label for="branchSelect">Branch:</label>
-                    <select id="branchSelect" name="branchSelect" required class="form-control"></select>
-                </div>
-                <div>
-                    <label for="testPrice">Test Price:</label>
-                    <input type="number" id="testPrice" name="testPrice" required class="form-control" />
-                </div>
-                <button type="submit" class="btn btn-success">Add Prices</button>
-            </form>
+          <span class="close" id="closeAddTestPriceModal">&times;</span>
+          <div class="modal-header" style="background-color: #26a6dc;">ADD TEST PRICE</div>
+          <form id="priceForm" action="https://rssmarthut.com/mypath/savePrices.php" method="POST">
+            <input type="hidden" id="usernameInput" name="username" readonly>
+
+            <label for="branchSelect">Select Branch:</label>
+            <select id="branchSelect" name="branch" style="width: 10vw;">
+              <!-- Populate with branch options dynamically -->
+            </select>
+
+            <h3>Enter Prices for Tests</h3>
+            <table id="testsTable">
+              <thead>
+                <tr>
+                  <th>Test Name</th>
+                  <th>Price</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Test rows will be added here dynamically -->
+              </tbody>
+            </table>
+
+            <button type="submit">Add Prices</button>
+          </form>
+
+          <div id="responseMessage"></div>
         </div>
+      </div>
+
+
     </div>
-    
-    
-    </div>
-    
+
 
     <script>
       // Get modal elements
@@ -458,41 +495,41 @@
         });
       });
 
-      
-    
-      document.getElementById("addTestForm").addEventListener("submit", (event) => {
-    event.preventDefault();
-    const form = event.target;
-    const formData = new FormData(form);
 
-    fetch(form.action, {
-      method: form.method,
-      body: formData,
-      headers: {
-        'Accept': 'application/json'
-      }
-    })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      })
-      .then(data => {
-        if (data.status === "success") {
-          console.log(data.message);
-          alert('Test added successfully'); // Display success message
-          document.getElementById('addTestModal').style.display = "none"; // Hide the modal on successful form submission
-        } else {
-          console.error(data.message);
-          alert(data.message); // Display error message
-        }
-      })
-      .catch(error => {
-        console.error('There has been a problem with your fetch operation:', error);
-        alert('There has been a problem with your fetch operation: ' + error.message);
+
+      document.getElementById("addTestForm").addEventListener("submit", (event) => {
+        event.preventDefault();
+        const form = event.target;
+        const formData = new FormData(form);
+
+        fetch(form.action, {
+          method: form.method,
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        })
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('Network response was not ok');
+            }
+            return response.json();
+          })
+          .then(data => {
+            if (data.status === "success") {
+              console.log(data.message);
+              alert('Test added successfully'); // Display success message
+              document.getElementById('addTestModal').style.display = "none"; // Hide the modal on successful form submission
+            } else {
+              console.error(data.message);
+              alert(data.message); // Display error message
+            }
+          })
+          .catch(error => {
+            console.error('There has been a problem with your fetch operation:', error);
+            alert('There has been a problem with your fetch operation: ' + error.message);
+          });
       });
-});
 
 
     </script>
@@ -690,7 +727,7 @@
             .then(response => response.json())
             .then(data => {
               populateTestCategoryTable(data);
-              
+
             })
             .catch(error => {
               console.error('Error fetching test categories:', error);
@@ -729,7 +766,7 @@
             tbody.appendChild(row);
           });
         }
-        
+
         document.addEventListener('click', function (e) {
           if (e.target && e.target.classList.contains('sname')) {
             const secondaryCategoryName = e.target.textContent.trim();
@@ -774,88 +811,94 @@
 
         fetchPrimaryCategories();
         addPrimaryCategoryClickListener();
-    
+
       });
     </script>
 
-<script>
-  var addTestPriceBtn = document.getElementById("addTestPriceBtn");
-  var addTestPriceModal = document.getElementById("addTestPriceModal");
-  var closeAddTestPriceModal = document.getElementById("closeAddTestPriceModal");
-  var testCategorySelect = document.getElementById("testCategorySelect");
-  var branchSelect = document.getElementById("branchSelect");
+    <script>
+      var addTestPriceBtn = document.getElementById("addTestPriceBtn");
+      var addTestPriceModal = document.getElementById("addTestPriceModal");
+      var closeAddTestPriceModal = document.getElementById("closeAddTestPriceModal");
+      var testCategorySelect = document.getElementById("testCategorySelect");
+      var branchSelect = document.getElementById("branchSelect");
 
-  addTestPriceBtn.onclick = function () {
-      addTestPriceModal.style.display = "block";
-      fetchBranches();
-      fetchTestCategories();
-  }
+      addTestPriceBtn.onclick = function () {
+        addTestPriceModal.style.display = "block";
 
-  closeAddTestPriceModal.onclick = function () {
-      addTestPriceModal.style.display = "none";
-  }
-
-  window.onclick = function (event) {
-      if (event.target == addTestPriceModal) {
-          addTestPriceModal.style.display = "none";
       }
-  }
 
-  function fetchBranches() {
-      fetch('https://rssmarthut.com/mypath/getbranches.php', {
-          method: 'GET',
-          headers: {
-              'Content-Type': 'application/json'
-          },
-          credentials: 'include' // Include credentials to ensure session is sent
-      })
-      .then(response => {
-          if (!response.ok) {
-              throw new Error('Network response was not ok');
-          }
-          return response.json();
-      })
-      .then(data => {
-          branchSelect.innerHTML = "";
-          data.forEach(branch => {
-              var option = document.createElement("option");
-              option.value = branch.id;
-              option.innerHTML = branch.name;
-              branchSelect.appendChild(option);
-          });
-      })
-      .catch(error => {
-          console.error('Error fetching branches:', error);
-      });
-  }
+      closeAddTestPriceModal.onclick = function () {
+        addTestPriceModal.style.display = "none";
+      }
 
-  function fetchTestCategories() {
-      fetch('https://rssmarthut.com/mypath/gettestcategories.php', {
-          method: 'GET',
-          headers: {
-              'Content-Type': 'application/json'
-          }
-      })
-      .then(response => {
-          if (!response.ok) {
-              throw new Error('Network response was not ok');
-          }
-          return response.json();
-      })
-      .then(data => {
-          testCategorySelect.innerHTML = "";
-          data.forEach(tname => {
-              var option = document.createElement("option");
-              option.value = tname; // Use tname as the value
-              option.innerHTML = tname; // Use tname for display
-              testCategorySelect.appendChild(option);
-          });
-      })
-      .catch(error => {
-          console.error('Error fetching test categories:', error);
+      window.onclick = function (event) {
+        if (event.target == addTestPriceModal) {
+          addTestPriceModal.style.display = "none";
+        }
+      }
+
+    </script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        // Retrieve username from local storage and set it in the input field
+        const username = localStorage.getItem('username');
+        if (username) {
+          document.getElementById('usernameInput').value = username;
+
+          // Fetch branches based on the username
+          fetch(`https://rssmarthut.com/mypath/fetchBranches.php?username=${username}`)
+            .then(response => response.json())
+            .then(data => {
+              const branchSelect = document.getElementById('branchSelect');
+              data.forEach(branch => {
+                const option = document.createElement('option');
+                option.value = branch.branch_code;
+                option.textContent = branch.branchname;
+                branchSelect.appendChild(option);
+              });
+            })
+            .catch(error => console.error('Error fetching branches:', error));
+        }
+
+        // Fetch test categories and populate the table
+        fetch('https://rssmarthut.com/mypath/gettestcategories.php')
+          .then(response => response.json())
+          .then(data => {
+            const tableBody = document.getElementById('testsTable').getElementsByTagName('tbody')[0];
+
+            data.forEach(test => {
+              const row = tableBody.insertRow();
+              const cell1 = row.insertCell(0);
+              cell1.textContent = test;
+
+              const cell2 = row.insertCell(1);
+              const input = document.createElement('input');
+              input.type = 'text';
+              input.name = `price_${test}`;
+              cell2.appendChild(input);
+            });
+          })
+          .catch(error => console.error('Error fetching tests:', error));
       });
-  }
-</script>
+
+      document.getElementById('priceForm').addEventListener('submit', function (event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        const form = event.target;
+        const formData = new FormData(form);
+
+        fetch(form.action, {
+          method: form.method,
+          body: formData
+        })
+          .then(response => response.text())
+          .then(data => {
+            document.getElementById('responseMessage').innerHTML = data;
+          })
+          .catch(error => console.error('Error submitting form:', error));
+      });
+    </script>
+
 
 
 
