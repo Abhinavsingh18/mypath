@@ -873,7 +873,7 @@ th {
               const cell2 = row.insertCell(1);
               const input = document.createElement('input');
               input.type = 'text';
-              input.name = `price_${test}`;
+              input.name = `price_${test.tname}`;
               input.placeholder = test.tprice;
               cell2.appendChild(input);
             });
