@@ -868,12 +868,13 @@ th {
             data.forEach(test => {
               const row = tableBody.insertRow();
               const cell1 = row.insertCell(0);
-              cell1.textContent = test;
+              cell1.textContent = test.tname;
 
               const cell2 = row.insertCell(1);
               const input = document.createElement('input');
               input.type = 'text';
               input.name = `price_${test}`;
+              input.placeholder = test.tprice;
               cell2.appendChild(input);
             });
           })
