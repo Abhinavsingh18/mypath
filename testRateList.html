@@ -29,7 +29,7 @@
       #heading {
         text-align: center;
         color: #343a40;
-        padding-top: 5px;
+        padding-top: 8px;
         padding-right: 30px;
         font-weight: 500;
       }
@@ -69,59 +69,93 @@
       tr:hover {
         background-color: #e9ecef;
       }
+      .headingcont{
+        position: relative;
+        left: -37vw;
+        border-top-right-radius: 22px;
+        border-bottom-right-radius: 22px;
+        background-color: #26a6dc;
+        width: 26vw;
+        height: 3.5vw;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        scale: 0.9;
+      }
+      input{
+        width:20vw;
+          padding: 10px;
+          margin-bottom: 20px;
+          border: 1px solid #ced4da;
+          border-radius:20px;
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+      }
     </style>
   </head>
 
   <body>
     <div id="navbar"></div>
 
-    <div
-      style="
-        position: relative;
-        left: -36vw;
-        border-top-right-radius: 15px;
-        border-bottom-right-radius: 15px;
-        background-color: #26a6dc;
-        width: 26vw;
-        height: 4vw;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      "
-    >
+    <div class="headingcont">
       <h2 id="heading">Branch Test Pricing</h2>
     </div>
 
-    <div style="display: flex;width: 40vw;padding-top: 10px;">
+    <div style="display: flex;gap: 15vw; width:max-content;padding-top: 10px;">
+      <div style="display: flex;padding-left: 100px;">
         <label
-      style="
-        display: block;
-        margin-bottom: 10px;
-        font-weight: bold;
-        color: #343a40;
-      "
-      for="branchSelect"
-      >Select Branch:</label
-    >
-    <select
-      style="
-        width: 100%;
-        padding: 10px;
-        margin-bottom: 20px;
-        border: 1px solid #ced4da;
-        border-radius: 4px;
-        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-      "
-      id="branchSelect"
-      name="branchSelect"
-      required
-      class="form-control"
-    >
-      <option value="">Select a branch</option>
-      <!-- Options will be dynamically populated -->
-    </select>
+        style="
+          display: block;
+          margin-bottom: 10px;
+          font-weight: bold;
+          color: #343a40;
+        "
+        for="branchSelect"
+        >Select Branch:</label
+      >
+      <select
+        style="
+          width: 100%;
+          padding: 10px;
+          margin-bottom: 20px;
+          border: 1px solid #ced4da;
+          border-radius: 4px;
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+        "
+        id="branchSelect"
+        name="branchSelect"
+        required
+        class="form-control"
+      >
+        <option value="">Select a branch</option>
+        <!-- Options will be dynamically populated -->
+      </select>
+      </div>
 
+
+
+     <div style="display: flex;">
+        <label
+        style="
+          display: block;
+          margin-bottom: 10px;
+          font-weight: bold;
+          color: #343a40;
+        "
+        for="searchBox"
+        ></label
+      >
+      <input
+        type="text"
+        id="searchBox"
+        name="searchBox"
+        class="form-control"
+        placeholder="Search for a test"
+      />
+     </div>
     </div>
+
+    
+
     <div id="tablediv">
       <table id="testsTable">
         <thead>
@@ -170,6 +204,26 @@
                 .getElementsByTagName("tbody")[0];
               tableBody.innerHTML = "";
             }
+          });
+
+        document
+          .getElementById("searchBox")
+          .addEventListener("input", function () {
+            const searchTerm = this.value.toLowerCase();
+            const tableBody = document
+              .getElementById("testsTable")
+              .getElementsByTagName("tbody")[0];
+            const rows = tableBody.getElementsByTagName("tr");
+
+            Array.from(rows).forEach((row) => {
+              const cells = row.getElementsByTagName("td");
+              const testName = cells[0].textContent.toLowerCase();
+              if (testName.includes(searchTerm)) {
+                row.style.display = "";
+              } else {
+                row.style.display = "none";
+              }
+            });
           });
 
         function fetchTests(username, branchcode) {
