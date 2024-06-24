@@ -355,6 +355,8 @@ th {
             </select>
 
             <h3>Enter Prices for Tests</h3>
+            <input type="text" id="testSearch" placeholder="Search for tests..." class="form-control">
+
             <div id="tablediv" style="height: 50vh; overflow-y: scroll;">
               <table id="testsTable">
                 <thead>
@@ -843,65 +845,81 @@ th {
     </script>
     <script>
       document.addEventListener('DOMContentLoaded', function () {
-        // Retrieve username from local storage and set it in the input field
-        const username = localStorage.getItem('username');
-        if (username) {
+      // Retrieve username from local storage and set it in the input field
+      const username = localStorage.getItem('username');
+      if (username) {
           document.getElementById('usernameInput').value = username;
-
+  
           // Fetch branches based on the username
           fetch(`https://rssmarthut.com/mypath/fetchBranches.php?username=${username}`)
-            .then(response => response.json())
-            .then(data => {
-              const branchSelect = document.getElementById('branchSelect');
-              data.forEach(branch => {
-                const option = document.createElement('option');
-                option.value = branch.branch_code;
-                option.textContent = branch.branchname;
-                branchSelect.appendChild(option);
-              });
-            })
-            .catch(error => console.error('Error fetching branches:', error));
-        }
-
-        // Fetch test categories and populate the table
-        fetch('https://rssmarthut.com/mypath/gettestcategories.php')
+              .then(response => response.json())
+              .then(data => {
+                  const branchSelect = document.getElementById('branchSelect');
+                  data.forEach(branch => {
+                      const option = document.createElement('option');
+                      option.value = branch.branch_code;
+                      option.textContent = branch.branchname;
+                      branchSelect.appendChild(option);
+                  });
+              })
+              .catch(error => console.error('Error fetching branches:', error));
+      }
+  
+      let allTests = [];
+  
+      // Fetch test categories and populate the table
+      fetch('https://rssmarthut.com/mypath/gettestcategories.php')
           .then(response => response.json())
           .then(data => {
-            const tableBody = document.getElementById('testsTable').getElementsByTagName('tbody')[0];
-
-            data.forEach(test => {
+              allTests = data;
+              populateTable(allTests);
+          })
+          .catch(error => console.error('Error fetching tests:', error));
+  
+      // Add event listener to the search input
+      document.getElementById('testSearch').addEventListener('input', function () {
+          const searchQuery = this.value.toLowerCase();
+          const filteredTests = allTests.filter(test => test.tname.toLowerCase().includes(searchQuery));
+          populateTable(filteredTests);
+      });
+  
+      function populateTable(tests) {
+          const tableBody = document.getElementById('testsTable').getElementsByTagName('tbody')[0];
+          tableBody.innerHTML = ''; // Clear existing rows
+  
+          tests.forEach(test => {
               const row = tableBody.insertRow();
               const cell1 = row.insertCell(0);
               cell1.textContent = test.tname;
-
+  
               const cell2 = row.insertCell(1);
               const input = document.createElement('input');
               input.type = 'text';
               input.name = `price_${test.tname}`;
               input.placeholder = test.tprice;
               cell2.appendChild(input);
-            });
-          })
-          .catch(error => console.error('Error fetching tests:', error));
-      });
-
+          });
+      }
+      
       document.getElementById('priceForm').addEventListener('submit', function (event) {
-        event.preventDefault(); // Prevent the default form submission
-
-        const form = event.target;
-        const formData = new FormData(form);
-
-        fetch(form.action, {
-          method: form.method,
-          body: formData
-        })
+          event.preventDefault(); // Prevent the default form submission
+  
+          const form = event.target;
+          const formData = new FormData(form);
+  
+          fetch(form.action, {
+              method: form.method,
+              body: formData
+          })
           .then(response => response.text())
           .then(data => {
-            document.getElementById('responseMessage').innerHTML = data;
+              document.getElementById('responseMessage').innerHTML = data;
           })
           .catch(error => console.error('Error submitting form:', error));
       });
-    </script>
+  });
+  
+  </script>
 
 
 
