@@ -333,9 +333,10 @@ th {
                 <input type="text" id="searchTests" name="searchTests"
                   style="padding-left: 4px; width: 18vw; margin-right: 700px;  height: 2vw; border: 0.1px solid #f296fd; border-radius: 3px; background-color: #ececec;">
         
-                <div id="searchResults" style="position: relative;">
+                <ul id="searchResults" style="position: relative;">
                   <!-- Search results will be displayed here -->
-                </div>
+                  
+                </ul>
               </div>
         
               <button type="submit" id="testbtn"
@@ -347,42 +348,7 @@ th {
         </div>
         
         
-        <script>
-        document.getElementById('searchTests').addEventListener('input', function() {
-    const query = this.value;
-    if (query.length > 2) { // Perform search only if the query length is greater than 2
-        fetch('https://rssmarthut.com/mypath/searchtests.php?q=' + query)
-            .then(response => response.json())
-            .then(data => {
-                const resultsDiv = document.getElementById('searchResults');
-                resultsDiv.innerHTML = ''; // Clear previous results
 
-                if (data.length > 0) {
-                    data.forEach(test => {
-                        const testElement = document.createElement('div');
-                        testElement.textContent = test.tname;
-                        testElement.style.padding = '4px';
-                        testElement.style.cursor = 'pointer';
-                        testElement.style.borderBottom = '1px solid #ddd';
-                        testElement.addEventListener('click', () => {
-                            document.getElementById('searchTests').value = test.tname;
-                            resultsDiv.innerHTML = '';
-                        });
-                        resultsDiv.appendChild(testElement);
-                    });
-                } else {
-                    resultsDiv.innerHTML = '<div style="padding: 4px;">No results found</div>';
-                }
-            })
-            .catch(error => {
-                console.error('Error fetching search results:', error);
-            });
-    } else {
-        document.getElementById('searchResults').innerHTML = '';
-    }
-});
-
-        </script>
         
         
 
@@ -445,7 +411,7 @@ th {
 
 
    <script src="testmasters.js"></script>
-   <script>
+   <!-- <script>
     document.getElementById('searchTests').addEventListener('input', function() {
         const query = this.value;
         if (query.length > 2) { // Perform search only if the query length is greater than 2
@@ -473,8 +439,40 @@ th {
             document.getElementById('searchResults').innerHTML = '';
         }
     });
+    </script> -->
+    <script>
+      
+let allTests1 = [];
+
+// Fetch test categories and populate the table
+fetch('https://rssmarthut.com/mypath/gettestcategories.php')
+    .then(response => response.json())
+    .then(data => {
+        allTests1 = data;
+        populateTable(allTests1);
+    })
+    .catch(error => console.error('Error fetching tests:', error));
+
+// Add event listener to the search input
+document.getElementById('searchTests').addEventListener('input', function () {
+    const searchQuery = this.value.toLowerCase();
+    const filteredTests = allTests1.filter(test => test.tname.toLowerCase().includes(searchQuery));
+    pt(filteredTests);
+});
+
+function pt(tests) {
+    const fullList = document.getElementById('searchResults');
+    fullList.innerHTML = ''; // Clear existing rows
+
+    tests.forEach(test => {
+        
+        const listItem = document.createElement('li');
+        listItem.textContent = test.tname; 
+        
+        fullList.appendChild(listItem);
+    });
+}
     </script>
-    
 
 
 

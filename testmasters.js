@@ -502,7 +502,7 @@ function populateTable(tests) {
     tests.forEach(test => {
         const row = tableBody.insertRow();
         const cell1 = row.insertCell(0);
-        cell1.textContent = test.tname;
+        cell1.textContent = test.tname; 
 
         const cell2 = row.insertCell(1);
         const input = document.createElement('input');
