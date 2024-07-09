@@ -411,68 +411,92 @@ th {
 
 
    <script src="testmasters.js"></script>
-   <!-- <script>
-    document.getElementById('searchTests').addEventListener('input', function() {
-        const query = this.value;
-        if (query.length > 2) { // Perform search only if the query length is greater than 2
-            fetch('https://rssmarthut.com/mypath/searchtests.php?q=' + query)
-                .then(response => response.json())
-                .then(data => {
-                    const resultsDiv = document.getElementById('searchResults');
-                    resultsDiv.innerHTML = '';
-                    if (data.length > 0) {
-                        data.forEach(test => {
-                            const testElement = document.createElement('div');
-                            testElement.textContent = test.test_name;
-                            testElement.style.cursor = 'pointer';
-                            testElement.addEventListener('click', () => {
-                                document.getElementById('searchTests').value = test.test_name;
-                                resultsDiv.innerHTML = '';
-                            });
-                            resultsDiv.appendChild(testElement);
-                        });
-                    } else {
-                        resultsDiv.innerHTML = '<div>No results found</div>';
-                    }
-                });
-        } else {
-            document.getElementById('searchResults').innerHTML = '';
-        }
+   <script>
+    document.addEventListener('DOMContentLoaded', function () {
+    let allTests1 = [];
+
+    // Fetch test categories and populate the table
+    fetch('https://rssmarthut.com/mypath/gettestcategories.php')
+        .then(response => response.json())
+        .then(data => {
+            allTests1 = data;
+        })
+        .catch(error => console.error('Error fetching tests:', error));
+
+    // Add event listener to the search input
+    document.getElementById('searchTests').addEventListener('input', function () {
+        const searchQuery = this.value.toLowerCase();
+        const filteredTests = allTests1.filter(test => test.tname.toLowerCase().includes(searchQuery));
+        pt(filteredTests);
     });
-    </script> -->
-    <script>
-      
-let allTests1 = [];
 
-// Fetch test categories and populate the table
-fetch('https://rssmarthut.com/mypath/gettestcategories.php')
-    .then(response => response.json())
-    .then(data => {
-        allTests1 = data;
-        populateTable(allTests1);
-    })
-    .catch(error => console.error('Error fetching tests:', error));
+    function pt(tests) {
+        const fullList = document.getElementById('searchResults');
+        fullList.innerHTML = ''; // Clear existing rows
 
-// Add event listener to the search input
-document.getElementById('searchTests').addEventListener('input', function () {
-    const searchQuery = this.value.toLowerCase();
-    const filteredTests = allTests1.filter(test => test.tname.toLowerCase().includes(searchQuery));
-    pt(filteredTests);
+        tests.forEach(test => {
+            const listItem = document.createElement('li');
+            listItem.textContent = test.tname;
+            listItem.classList.add('search-result-item');
+            listItem.addEventListener('click', () => selectTest(test.tname));
+            fullList.appendChild(listItem);
+        });
+    }
+
+    let selectedTests = [];
+
+    // Function to select a test
+    function selectTest(test) {
+        if (!selectedTests.includes(test)) {
+            selectedTests.push(test);
+            renderSelectedTests();
+        }
+    }
+
+    // Function to remove a selected test
+    function removeSelectedTest(test) {
+        selectedTests = selectedTests.filter(t => t !== test);
+        renderSelectedTests();
+    }
+
+    // Function to render selected tests
+    function renderSelectedTests() {
+        const selectedTestsContainer = document.getElementById('selectedTestsContainer');
+        selectedTestsContainer.innerHTML = ''; // Clear existing content
+
+        selectedTests.forEach(test => {
+            const testDiv = document.createElement('div');
+            testDiv.classList.add('selected-test');
+            testDiv.textContent = test;
+
+            const removeBtn = document.createElement('span');
+            removeBtn.classList.add('remove-test');
+            removeBtn.innerHTML = '&times;';
+            removeBtn.addEventListener('click', () => removeSelectedTest(test));
+
+            testDiv.appendChild(removeBtn);
+            selectedTestsContainer.appendChild(testDiv);
+        });
+    }
+
+    // Function to toggle package fields
+    window.togglePackageFields = function (checked) {
+        const packageFields = document.getElementById('packageFields');
+        if (checked) {
+            packageFields.style.display = 'block';
+            if (!document.getElementById('selectedTestsContainer')) {
+                const selectedTestsContainer = document.createElement('div');
+                selectedTestsContainer.id = 'selectedTestsContainer';
+                selectedTestsContainer.classList.add('selected-tests-container');
+                packageFields.appendChild(selectedTestsContainer);
+            }
+        } else {
+            packageFields.style.display = 'none';
+        }
+    };
 });
 
-function pt(tests) {
-    const fullList = document.getElementById('searchResults');
-    fullList.innerHTML = ''; // Clear existing rows
-
-    tests.forEach(test => {
-        
-        const listItem = document.createElement('li');
-        listItem.textContent = test.tname; 
-        
-        fullList.appendChild(listItem);
-    });
-}
-    </script>
+   </script>
 
 
 
