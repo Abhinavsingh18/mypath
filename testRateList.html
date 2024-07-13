@@ -91,7 +91,6 @@
 <body>
   <div id="navbar"></div>
 
-
   <div class="headingcont">
     <h2 id="heading">Branch Test Pricing</h2>
   </div>
@@ -117,6 +116,7 @@
             <th>Test Name</th>
             <th>Price</th>
             <th>Update Price</th>
+            <th>Edit</th>
           </tr>
         </thead>
         <tbody>
@@ -124,6 +124,140 @@
       </table>
     </div>
   </form>
+
+  <!-- Edit Modal -->
+  <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editModalLabel">Edit Test Price</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form id="modalForm">
+            <div class="form-group">
+              <label for="modalTestName">Test Name</label>
+              <input type="text" class="form-control" id="modalTestName" readonly>
+            </div>
+            <div class="form-group">
+              <label for="modalPrice">Price</label>
+              <input type="number" class="form-control" id="modalPrice" required>
+            </div>
+            <button type="button" class="btn btn-primary" onclick="saveModalChanges()">Save changes</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <h2 class="text-center">Range</h2>
+    <form id="testForm" >
+        <div class="form-row" style="display: flex;flex-wrap: wrap;gap: 15px;">
+            <div class="form-group col-md-4">
+                <label for="rangeName">Range Name:</label>
+                <input type="text" class="form-control" id="rangeName" required>
+                <span class="error" id="rangeNameError"></span>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="criticalLow">Critical Low:</label>
+                <input type="number" class="form-control" id="criticalLow" required>
+                <span class="error" id="criticalLowError"></span>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="rangeFrom">Range From:</label>
+                <input type="number" class="form-control" id="rangeFrom" required>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="rangeTo">Range To:</label>
+                <input type="number" class="form-control" id="rangeTo" required>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="criticalHigh">Critical High:</label>
+                <input type="number" class="form-control" id="criticalHigh" required>
+                <span class="error" id="criticalHighError"></span>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="gender">Gender:</label>
+                <select class="form-control" id="gender" required>
+                    <option value="Both">Both</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="ageCategory">Age Category:</label>
+                <select class="form-control" id="ageCategory" required>
+                    <option value="All Ages">All Ages</option>
+                    <option value="Child">Child</option>
+                    <option value="Adult">Adult</option>
+                </select>
+            </div>
+            <div class="form-group col-md-2">
+                <label for="ageFrom">Age From:</label>
+                <input type="number" class="form-control" id="ageFrom" required>
+            </div>
+            <div class="form-group col-md-2">
+                <label for="ageFromType">Age From Type:</label>
+                <select class="form-control" id="ageFromType" required>
+                    <option value="Y">Years</option>
+                    <option value="M">Months</option>
+                    <option value="D">Days</option>
+                </select>
+            </div>
+            <div class="form-group col-md-2">
+                <label for="ageTo">Age To:</label>
+                <input type="number" class="form-control" id="ageTo" required>
+            </div>
+            <div class="form-group col-md-2">
+                <label for="ageToType">Age To Type:</label>
+                <select class="form-control" id="ageToType" required>
+                    <option value="Y">Years</option>
+                    <option value="M">Months</option>
+                    <option value="D">Days</option>
+                </select>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="branch">Branch:</label>
+                <select class="form-control" id="branch" required>
+                    <option value="All">All</option>
+                    <option value="Branch 1">Branch 1</option>
+                    <option value="Branch 2">Branch 2</option>
+                </select>
+            </div>
+        </div>
+        <button type="button" class="btn btn-primary" onclick="addData()">Add</button>
+    </form>
+
+    <div class="table-container">
+        <table class="table table-bordered mt-4">
+            <thead>
+                <tr>
+                    <th>Range Name</th>
+                    <th>Critical Low</th>
+                    <th>Range From</th>
+                    <th>Range To</th>
+                    <th>Critical High</th>
+                    <th>Gender</th>
+                    <th>Age Category</th>
+                    <th>Age From</th>
+                    <th>Age From Type</th>
+                    <th>Age To</th>
+                    <th>Age To Type</th>
+                    <th>Branch</th>
+                </tr>
+            </thead>
+            <tbody id="dataTable">
+            </tbody>
+        </table>
+    </div>
+</div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const username = localStorage.getItem("username");
@@ -195,12 +329,21 @@
               button.type = "button";
               button.textContent = "Update";
               button.onclick = function() {
-                console.log(username);
-                console.log(branchcode);
-                console.log(test.tname);
                 updatePrice(username, branchcode, test.testname);
               };
               cell3.appendChild(button);
+
+              const cell4 = row.insertCell(3);
+              const editButton = document.createElement("button");
+              editButton.type = "button";
+              editButton.textContent = "Edit";
+              editButton.classList.add("btn", "btn-secondary");
+              editButton.setAttribute("data-toggle", "modal");
+              editButton.setAttribute("data-target", "#editModal");
+              editButton.onclick = function() {
+                openEditModal(test.testname, test.price,branchcode);
+              };
+              cell4.appendChild(editButton);
             });
           })
           .catch((error) => console.error("Error fetching tests:", error));
@@ -226,8 +369,92 @@
         })
         .catch(error => console.error('Error updating price:', error));
       }
+
+      function openEditModal(testname, price,branchcode) {
+        document.getElementById('rangeName').value = testname;
+        document.getElementById('modalPrice').value = price;
+        document.querySelector('.container').style.display='block'
+      }
+
+      window.saveModalChanges = function() {
+        const testname = document.getElementById('rangeName').value;
+        const newPrice = document.getElementById('modalPrice').value;
+        updatePrice(username, branchcode, testname);
+        $('#editModal').modal('hide');
+      };
     });
   </script>
   <script src="./nav.js"></script>
+  <script>
+    function addData() {
+        var rangeName = $('#rangeName').val();
+        var criticalLow = $('#criticalLow').val();
+        var rangeFrom = $('#rangeFrom').val();
+        var rangeTo = $('#rangeTo').val();
+        var criticalHigh = $('#criticalHigh').val();
+        var gender = $('#gender').val();
+        var ageCategory = $('#ageCategory').val();
+        var ageFrom = $('#ageFrom').val();
+        var ageFromType = $('#ageFromType').val();
+        var ageTo = $('#ageTo').val();
+        var ageToType = $('#ageToType').val();
+        var branch = $('#branch').val();
+
+        if (rangeName && criticalLow && rangeFrom && rangeTo && criticalHigh && gender && ageCategory && ageFrom && ageFromType && ageTo && ageToType && branch) {
+            var newRow = `<tr>
+                <td>${rangeName}</td>
+                <td>${criticalLow}</td>
+                <td>${rangeFrom}</td>
+                <td>${rangeTo}</td>
+                <td>${criticalHigh}</td>
+                <td>${gender}</td>
+                <td>${ageCategory}</td>
+                <td>${ageFrom}</td>
+                <td>${ageFromType}</td>
+                <td>${ageTo}</td>
+                <td>${ageToType}</td>
+                <td>${branch}</td>
+            </tr>`;
+            $('#dataTable').append(newRow);
+            $('#testForm')[0].reset();
+            $('.error').text('');
+        } else {
+            if (!rangeName) $('#rangeNameError').text('This field is required');
+            if (!criticalLow) $('#criticalLowError').text('This field is required');
+            if (!criticalHigh) $('#criticalHighError').text('This field is required');
+        }
+    }
+</script>
+  <style>
+    .container {
+        margin-top: 20px;
+        display: none;
+      
+        border: 1px solid #212121;
+        border-radius: 10px;
+        padding: 10px;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .text-center{
+      color: #26a6dc;
+      font-size: 3rem;
+    }
+    .error {
+        color: red;
+    }
+    .form-group {
+        margin-bottom: 15px;
+    }
+    .form-control{
+      width:15vw;
+    }
+    .table-container {
+        margin-top: 30px;
+    }
+    .form-inline .form-group {
+        margin-right: 10px;
+    }
+</style>
 </body>
 </html>
