@@ -389,50 +389,51 @@ th {
 
       <div id="packageManagerModal" class="modal">
         <div class="modal-content">
-          <span class="close" id="closePackageManagerModal">&times;</span>
-          <div class="modal-header" style="background-color: #26a6dc;">PACKAGE MANAGER</div>
-          <form id="packageManagerForm" action="https://rssmarthut.com/mypath/packageManager.php" method="POST">
-            <input type="hidden" id="usernameInputInPackageManager" name="username" readonly>
-            
-            <label for="branchSelectInPackageManager">Select Branch:</label>
-            <select id="branchSelectInPackageManager" name="branch" style="width: 10vw;" required>
-              <option value="">--Select Branch--</option>
-              <!-- Populate with branch options dynamically -->
-            </select>
-            
-            <label for="testSelectInPackageManager">Select Package Name:</label>
-            <select id="testSelectInPackageManager" name="test" style="width: 10vw;" required>
-              <option value="">--Select Package Name--</option>
-              <!-- Populate with test options dynamically -->
-            </select>
-            
-            <div style="display: flex; align-items: center; margin-top: 10px;">
-              <input type="checkbox" id="includeAsPackageCheckbox" name="includeAsPackageCheckbox"
-                onchange="togglePackageFields(this.checked)" style="display: block; margin-right: 5px;">
-              <label for="includeAsPackageCheckbox">Include As Package</label>
-            </div>
-      
-            <div id="packageFields" style="display: none; margin-top: 10px;">
-              
-              <!-- Search bar for tests -->
-              <label for="searchTests">Search Tests:</label>
-              <input type="text" id="searchTests" name="searchTests"
-                style="padding-left: 4px; width: 18vw; margin-right: 700px;  height: 2vw; border: 0.1px solid #f296fd; border-radius: 3px; background-color: #ececec;">
-      
-              <ul id="searchResults" style="position: relative;">
-                <!-- Search results will be displayed here -->
-                
-              </ul>
-            </div>
-            <button type="button" id="addTestBtn">Add Test</button>
-            
-            <!-- Selected tests list -->
-            <ul id="selectedTestsList"></ul>
-            
-            <button type="button" id="submitSelectedTestsBtn">Submit Selected Tests</button>
-          </form>
+            <span class="close" id="closePackageManagerModal">&times;</span>
+            <div class="modal-header" style="background-color: #26a6dc;">PACKAGE MANAGER</div>
+            <form id="packageManagerForm" action="https://rssmarthut.com/mypath/packageManager.php" method="POST">
+                <input type="hidden" id="usernameInputInPackageManager" name="username" readonly>
+    
+                <label for="branchSelectInPackageManager">Select Branch:</label>
+                <select id="branchSelectInPackageManager" name="branch" style="width: 10vw;" required>
+                    <option value="">--Select Branch--</option>
+                    <!-- Populate with branch options dynamically -->
+                </select>
+    
+                <label for="testSelectInPackageManager">Select Package Name:</label>
+                <select id="testSelectInPackageManager" name="test" style="width: 10vw;" required>
+                    <option value="">--Select Package Name--</option>
+                    <!-- Populate with test options dynamically -->
+                </select>
+    
+                <div style="display: flex; align-items: center; margin-top: 10px;">
+                    <input type="checkbox" id="includeAsPackageCheckbox" name="includeAsPackageCheckbox"
+                        onchange="togglePackageFields(this.checked)" style="display: block; margin-right: 5px;">
+                    <label for="includeAsPackageCheckbox">Include As Package</label>
+                </div>
+    
+                <div id="packageFields" style="display: none; margin-top: 10px;">
+                    <!-- Search bar for tests -->
+                    <label for="searchTests">Search Tests:</label>
+                    <input type="text" id="searchTests" name="searchTests"
+                        style="padding-left: 4px; width: 18vw; margin-right: 700px; height: 2vw; border: 0.1px solid #f296fd; border-radius: 3px; background-color: #ececec;">
+    
+                    <ul id="searchResults" style="position: relative;">
+                        <!-- Search results will be displayed here -->
+                    </ul>
+                </div>
+    
+                <!-- Hidden input to store selected tests -->
+                <input type="hidden" id="selectedTestsInput" name="selectedTests" value="">
+    
+                <!-- Selected tests list -->
+                <ul id="selectedTestsList"></ul>
+    
+                <button type="submit" id="submitSelectedTestsBtn">Submit Selected Tests</button>
+            </form>
         </div>
-      </div>
+    </div>
+    
       
       
       
