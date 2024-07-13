@@ -317,24 +317,7 @@ th {
                   required>
               </div>
         
-              <div style="display: flex; align-items: center; margin-top: 10px;">
-                <input type="checkbox" id="includeAsPackageCheckbox" name="includeAsPackageCheckbox"
-                  onchange="togglePackageFields(this.checked)" style="display: block; margin-right: 5px;">
-                <label for="includeAsPackageCheckbox">Include As Package</label>
-              </div>
-        
-              <div id="packageFields" style="display: none; margin-top: 10px;">
-                
-                <!-- Search bar for tests -->
-                <label for="searchTests">Search Tests:</label>
-                <input type="text" id="searchTests" name="searchTests"
-                  style="padding-left: 4px; width: 18vw; margin-right: 700px;  height: 2vw; border: 0.1px solid #f296fd; border-radius: 3px; background-color: #ececec;">
-        
-                <ul id="searchResults" style="position: relative;">
-                  <!-- Search results will be displayed here -->
-                  
-                </ul>
-              </div>
+              
         
               <button type="submit" id="testbtn"
                 style="background-color: #26a6dc; margin-bottom: 1vw; margin-top: 1vw; border: 0.1px solid #f296fd; border-radius: 6px; width: 8.5vw; margin-left: 12vw;">
@@ -403,6 +386,7 @@ th {
           <div id="responseMessage"></div>
         </div>
       </div>
+
       <div id="packageManagerModal" class="modal">
         <div class="modal-content">
           <span class="close" id="closePackageManagerModal">&times;</span>
@@ -416,12 +400,30 @@ th {
               <!-- Populate with branch options dynamically -->
             </select>
             
-            <label for="testSelectInPackageManager">Select Test:</label>
+            <label for="testSelectInPackageManager">Select Package Name:</label>
             <select id="testSelectInPackageManager" name="test" style="width: 10vw;" required>
-              <option value="">--Select Test--</option>
+              <option value="">--Select Package Name--</option>
               <!-- Populate with test options dynamically -->
             </select>
             
+            <div style="display: flex; align-items: center; margin-top: 10px;">
+              <input type="checkbox" id="includeAsPackageCheckbox" name="includeAsPackageCheckbox"
+                onchange="togglePackageFields(this.checked)" style="display: block; margin-right: 5px;">
+              <label for="includeAsPackageCheckbox">Include As Package</label>
+            </div>
+      
+            <div id="packageFields" style="display: none; margin-top: 10px;">
+              
+              <!-- Search bar for tests -->
+              <label for="searchTests">Search Tests:</label>
+              <input type="text" id="searchTests" name="searchTests"
+                style="padding-left: 4px; width: 18vw; margin-right: 700px;  height: 2vw; border: 0.1px solid #f296fd; border-radius: 3px; background-color: #ececec;">
+      
+              <ul id="searchResults" style="position: relative;">
+                <!-- Search results will be displayed here -->
+                
+              </ul>
+            </div>
             <button type="button" id="addTestBtn">Add Test</button>
             
             <!-- Selected tests list -->
@@ -431,6 +433,8 @@ th {
           </form>
         </div>
       </div>
+      
+      
       
       
     

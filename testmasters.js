@@ -618,7 +618,6 @@ window.togglePackageFields = function (checked) {
 
 ///////
 
-
 document.addEventListener("DOMContentLoaded", function() {
   // Get the modal
   var packageManagerModal = document.getElementById("packageManagerModal");
@@ -692,38 +691,7 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   // Function to handle adding selected test to the right side with remove option
-  function addSelectedTest() {
-    var testSelect = document.getElementById('testSelectInPackageManager');
-    var selectedTestName = testSelect.value;
-
-    if (selectedTestName) {
-      var selectedTestsList = document.getElementById('selectedTestsList');
-      
-      // Create list item
-      var listItem = document.createElement('li');
-      listItem.className = 'selected-test-item';
-      
-      // Test name
-      var testNameSpan = document.createElement('span');
-      testNameSpan.textContent = selectedTestName;
-      listItem.appendChild(testNameSpan);
-      
-      // Remove button
-      var removeButton = document.createElement('button');
-      removeButton.textContent = 'Remove';
-      removeButton.className = 'remove-test-btn';
-      removeButton.onclick = function() {
-        listItem.remove();
-      };
-      listItem.appendChild(removeButton);
-      
-      // Append list item to selected tests list
-      selectedTestsList.appendChild(listItem);
-      
-      // Clear the selection after adding
-      testSelect.value = '';
-    }
-  }
+ 
 
   // Event listener for adding selected test
   document.getElementById('addTestBtn').addEventListener('click', function() {
