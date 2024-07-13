@@ -531,4 +531,202 @@ document.getElementById('priceForm').addEventListener('submit', function (event)
 });
 });
 
+///////////////////
+document.addEventListener('DOMContentLoaded', function () {
+let allTests1 = [];
 
+// Fetch test categories and populate the table
+fetch('https://rssmarthut.com/mypath/gettestcategories.php')
+    .then(response => response.json())
+    .then(data => {
+        allTests1 = data;
+    })
+    .catch(error => console.error('Error fetching tests:', error));
+
+// Add event listener to the search input
+document.getElementById('searchTests').addEventListener('input', function () {
+    const searchQuery = this.value.toLowerCase();
+    const filteredTests = allTests1.filter(test => test.tname.toLowerCase().includes(searchQuery));
+    pt(filteredTests);
+});
+
+function pt(tests) {
+    const fullList = document.getElementById('searchResults');
+    fullList.innerHTML = ''; // Clear existing rows
+
+    tests.forEach(test => {
+        const listItem = document.createElement('li');
+        listItem.textContent = test.tname;
+        listItem.classList.add('search-result-item');
+        listItem.addEventListener('click', () => selectTest(test.tname));
+        fullList.appendChild(listItem);
+    });
+}
+
+let selectedTests = [];
+
+// Function to select a test
+function selectTest(test) {
+    if (!selectedTests.includes(test)) {
+        selectedTests.push(test);
+        renderSelectedTests();
+    }
+}
+
+// Function to remove a selected test
+function removeSelectedTest(test) {
+    selectedTests = selectedTests.filter(t => t !== test);
+    renderSelectedTests();
+}
+
+// Function to render selected tests
+function renderSelectedTests() {
+    const selectedTestsContainer = document.getElementById('selectedTestsContainer');
+    selectedTestsContainer.innerHTML = ''; // Clear existing content
+
+    selectedTests.forEach(test => {
+        const testDiv = document.createElement('div');
+        testDiv.classList.add('selected-test');
+        testDiv.textContent = test;
+
+        const removeBtn = document.createElement('span');
+        removeBtn.classList.add('remove-test');
+        removeBtn.innerHTML = '&times;';
+        removeBtn.addEventListener('click', () => removeSelectedTest(test));
+
+        testDiv.appendChild(removeBtn);
+        selectedTestsContainer.appendChild(testDiv);
+    });
+}
+
+// Function to toggle package fields
+window.togglePackageFields = function (checked) {
+    const packageFields = document.getElementById('packageFields');
+    if (checked) {
+        packageFields.style.display = 'block';
+        if (!document.getElementById('selectedTestsContainer')) {
+            const selectedTestsContainer = document.createElement('div');
+            selectedTestsContainer.id = 'selectedTestsContainer';
+            selectedTestsContainer.classList.add('selected-tests-container');
+            packageFields.appendChild(selectedTestsContainer);
+        }
+    } else {
+        packageFields.style.display = 'none';
+    }
+};
+});
+
+///////
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  // Get the modal
+  var packageManagerModal = document.getElementById("packageManagerModal");
+
+  // Get the button that opens the modal
+  var packageManagerBtn = document.getElementById("packageManagerBtn");
+
+  // Get the <span> element that closes the modal
+  var closePackageManagerModal = document.getElementById("closePackageManagerModal");
+
+  // When the user clicks the button, open the modal
+  packageManagerBtn.onclick = function() {
+    packageManagerModal.style.display = "block";
+    // Set the username from local storage
+    var username = localStorage.getItem('username');
+    document.getElementById('usernameInputInPackageManager').value = username;
+    // Populate branches
+    populateBranches(username);
+  }
+
+  // When the user clicks on <span> (x), close the modal
+  closePackageManagerModal.onclick = function() {
+    packageManagerModal.style.display = "none";
+  }
+
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+    if (event.target == packageManagerModal) {
+      packageManagerModal.style.display = "none";
+    }
+  }
+
+  // Function to populate branches dynamically
+  function populateBranches(username) {
+    fetch(`https://rssmarthut.com/mypath/fetchBranches.php?username=${username}`)
+      .then(response => response.json())
+      .then(data => {
+        const branchSelect = document.getElementById('branchSelectInPackageManager');
+        branchSelect.innerHTML = '<option value="">--Select Branch--</option>';
+        data.forEach(branch => {
+          const option = document.createElement('option');
+          option.value = branch.branch_code; // Use branch code for value
+          option.textContent = branch.branchname; // Display branch name
+          branchSelect.appendChild(option);
+        });
+      })
+      .catch(error => console.error('Error fetching branches:', error));
+  }
+
+  // Event listener for branch selection
+  document.getElementById('branchSelectInPackageManager').addEventListener('change', function() {
+    var branchCode = this.value;
+    populateTests(branchCode);
+  });
+
+  // Function to populate tests based on selected branch
+  function populateTests(branchCode) {
+    fetch(`https://rssmarthut.com/mypath/fetchTests.php?branchCode=${branchCode}`)
+      .then(response => response.json())
+      .then(data => {
+        const testSelect = document.getElementById('testSelectInPackageManager');
+        testSelect.innerHTML = '<option value="">--Select Test--</option>';
+        data.forEach(test => {
+          const option = document.createElement('option');
+          option.value = test; // Use test name for value
+          option.textContent = test; // Display test name
+          testSelect.appendChild(option);
+        });
+      })
+      .catch(error => console.error('Error fetching tests:', error));
+  }
+
+  // Function to handle adding selected test to the right side with remove option
+  function addSelectedTest() {
+    var testSelect = document.getElementById('testSelectInPackageManager');
+    var selectedTestName = testSelect.value;
+
+    if (selectedTestName) {
+      var selectedTestsList = document.getElementById('selectedTestsList');
+      
+      // Create list item
+      var listItem = document.createElement('li');
+      listItem.className = 'selected-test-item';
+      
+      // Test name
+      var testNameSpan = document.createElement('span');
+      testNameSpan.textContent = selectedTestName;
+      listItem.appendChild(testNameSpan);
+      
+      // Remove button
+      var removeButton = document.createElement('button');
+      removeButton.textContent = 'Remove';
+      removeButton.className = 'remove-test-btn';
+      removeButton.onclick = function() {
+        listItem.remove();
+      };
+      listItem.appendChild(removeButton);
+      
+      // Append list item to selected tests list
+      selectedTestsList.appendChild(listItem);
+      
+      // Clear the selection after adding
+      testSelect.value = '';
+    }
+  }
+
+  // Event listener for adding selected test
+  document.getElementById('addTestBtn').addEventListener('click', function() {
+    addSelectedTest();
+  });
+});

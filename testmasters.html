@@ -324,10 +324,7 @@ th {
               </div>
         
               <div id="packageFields" style="display: none; margin-top: 10px;">
-                <label for="packageName">Package Name:</label>
-                <input type="text" id="packageName" name="packageName"
-                  style="padding-left: 4px; margin-right: 700px;  width: 18vw; height: 2vw; border: 0.1px solid #f296fd; border-radius: 3px; background-color: #ececec;">
-        
+                
                 <!-- Search bar for tests -->
                 <label for="searchTests">Search Tests:</label>
                 <input type="text" id="searchTests" name="searchTests"
@@ -367,6 +364,7 @@ th {
 
       <!-- Tabs Start Here -->
       <button id="addTestPriceBtn" class="btn btn-primary">Add Test Price</button>
+      <button id="packageManagerBtn" class="btn btn-secondary" style="margin-left: 10px;">Package Manager</button>
 
       <!-- Modal Structure -->
       <div id="addTestPriceModal" class="modal">
@@ -405,100 +403,69 @@ th {
           <div id="responseMessage"></div>
         </div>
       </div>
+      <div id="packageManagerModal" class="modal">
+        <div class="modal-content">
+          <span class="close" id="closePackageManagerModal">&times;</span>
+          <div class="modal-header" style="background-color: #26a6dc;">PACKAGE MANAGER</div>
+          <form id="packageManagerForm" action="https://rssmarthut.com/mypath/packageManager.php" method="POST">
+            <input type="hidden" id="usernameInputInPackageManager" name="username" readonly>
+            
+            <label for="branchSelectInPackageManager">Select Branch:</label>
+            <select id="branchSelectInPackageManager" name="branch" style="width: 10vw;" required>
+              <option value="">--Select Branch--</option>
+              <!-- Populate with branch options dynamically -->
+            </select>
+            
+            <label for="testSelectInPackageManager">Select Test:</label>
+            <select id="testSelectInPackageManager" name="test" style="width: 10vw;" required>
+              <option value="">--Select Test--</option>
+              <!-- Populate with test options dynamically -->
+            </select>
+            
+            <button type="button" id="addTestBtn">Add Test</button>
+            
+            <!-- Selected tests list -->
+            <ul id="selectedTestsList"></ul>
+            
+            <button type="button" id="submitSelectedTestsBtn">Submit Selected Tests</button>
+          </form>
+        </div>
+      </div>
+      
+      
+    
+    
+<style>
+  .selected-test-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  margin-bottom: 5px;
+}
 
+.remove-test-btn {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.remove-test-btn:hover {
+  background-color: #d32f2f;
+}
+
+</style>      
+      
+      
+      
 
     </div>
 
-
    <script src="testmasters.js"></script>
-   <script>
-    document.addEventListener('DOMContentLoaded', function () {
-    let allTests1 = [];
-
-    // Fetch test categories and populate the table
-    fetch('https://rssmarthut.com/mypath/gettestcategories.php')
-        .then(response => response.json())
-        .then(data => {
-            allTests1 = data;
-        })
-        .catch(error => console.error('Error fetching tests:', error));
-
-    // Add event listener to the search input
-    document.getElementById('searchTests').addEventListener('input', function () {
-        const searchQuery = this.value.toLowerCase();
-        const filteredTests = allTests1.filter(test => test.tname.toLowerCase().includes(searchQuery));
-        pt(filteredTests);
-    });
-
-    function pt(tests) {
-        const fullList = document.getElementById('searchResults');
-        fullList.innerHTML = ''; // Clear existing rows
-
-        tests.forEach(test => {
-            const listItem = document.createElement('li');
-            listItem.textContent = test.tname;
-            listItem.classList.add('search-result-item');
-            listItem.addEventListener('click', () => selectTest(test.tname));
-            fullList.appendChild(listItem);
-        });
-    }
-
-    let selectedTests = [];
-
-    // Function to select a test
-    function selectTest(test) {
-        if (!selectedTests.includes(test)) {
-            selectedTests.push(test);
-            renderSelectedTests();
-        }
-    }
-
-    // Function to remove a selected test
-    function removeSelectedTest(test) {
-        selectedTests = selectedTests.filter(t => t !== test);
-        renderSelectedTests();
-    }
-
-    // Function to render selected tests
-    function renderSelectedTests() {
-        const selectedTestsContainer = document.getElementById('selectedTestsContainer');
-        selectedTestsContainer.innerHTML = ''; // Clear existing content
-
-        selectedTests.forEach(test => {
-            const testDiv = document.createElement('div');
-            testDiv.classList.add('selected-test');
-            testDiv.textContent = test;
-
-            const removeBtn = document.createElement('span');
-            removeBtn.classList.add('remove-test');
-            removeBtn.innerHTML = '&times;';
-            removeBtn.addEventListener('click', () => removeSelectedTest(test));
-
-            testDiv.appendChild(removeBtn);
-            selectedTestsContainer.appendChild(testDiv);
-        });
-    }
-
-    // Function to toggle package fields
-    window.togglePackageFields = function (checked) {
-        const packageFields = document.getElementById('packageFields');
-        if (checked) {
-            packageFields.style.display = 'block';
-            if (!document.getElementById('selectedTestsContainer')) {
-                const selectedTestsContainer = document.createElement('div');
-                selectedTestsContainer.id = 'selectedTestsContainer';
-                selectedTestsContainer.classList.add('selected-tests-container');
-                packageFields.appendChild(selectedTestsContainer);
-            }
-        } else {
-            packageFields.style.display = 'none';
-        }
-    };
-});
-
-   </script>
-
-
 
 </body>
 
