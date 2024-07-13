@@ -219,13 +219,12 @@
                 </select>
             </div>
             <div class="form-group col-md-4">
-                <label for="branch">Branch:</label>
-                <select class="form-control" id="branch" required>
-                    <option value="All">All</option>
-                    <option value="Branch 1">Branch 1</option>
-                    <option value="Branch 2">Branch 2</option>
-                </select>
-            </div>
+              <label for="branch">Branch:</label>
+              <select class="form-control" id="branch" required>
+                  <option value="">Select a branch</option>
+              </select>
+          </div>
+          
         </div>
         <button type="button" class="btn btn-primary" onclick="addData()">Add</button>
     </form>
@@ -384,8 +383,9 @@
       };
     });
   </script>
+
   <script src="./nav.js"></script>
-  <script>
+  <sc>
     function addData() {
         var rangeName = $('#rangeName').val();
         var criticalLow = $('#criticalLow').val();
@@ -424,7 +424,7 @@
             if (!criticalHigh) $('#criticalHighError').text('This field is required');
         }
     }
-</script>
+</sc>
   <style>
     .container {
         margin-top: 20px;
