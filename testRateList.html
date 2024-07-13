@@ -221,32 +221,37 @@
             <div class="form-group col-md-4">
               <label for="branch">Branch:</label>
               <select class="form-control" id="branch" required>
-                  <option value="">Select a branch</option>
+                <option value="">Select a branch</option>
               </select>
-          </div>
+              <input type="hidden" id="branchCode">
+            </div>
+            
           
         </div>
         <button type="button" class="btn btn-primary" onclick="addData()">Add</button>
+        <button type="button" class="btn btn-primary" onclick="saveData()">Save</button>
     </form>
 
     <div class="table-container">
         <table class="table table-bordered mt-4">
-            <thead>
-                <tr>
-                    <th>Range Name</th>
-                    <th>Critical Low</th>
-                    <th>Range From</th>
-                    <th>Range To</th>
-                    <th>Critical High</th>
-                    <th>Gender</th>
-                    <th>Age Category</th>
-                    <th>Age From</th>
-                    <th>Age From Type</th>
-                    <th>Age To</th>
-                    <th>Age To Type</th>
-                    <th>Branch</th>
-                </tr>
-            </thead>
+          <thead>
+            <tr>
+              <th>Range Name</th>
+              <th>Critical Low</th>
+              <th>Range From</th>
+              <th>Range To</th>
+              <th>Critical High</th>
+              <th>Gender</th>
+              <th>Age Category</th>
+              <th>Age From</th>
+              <th>Age From Type</th>
+              <th>Age To</th>
+              <th>Age To Type</th>
+              <th>Branch</th>
+              <th>Branch Code</th>
+            </tr>
+          </thead>
+          
             <tbody id="dataTable">
             </tbody>
         </table>
@@ -383,48 +388,133 @@
       };
     });
   </script>
-
   <script src="./nav.js"></script>
-  <sc>
-    function addData() {
-        var rangeName = $('#rangeName').val();
-        var criticalLow = $('#criticalLow').val();
-        var rangeFrom = $('#rangeFrom').val();
-        var rangeTo = $('#rangeTo').val();
-        var criticalHigh = $('#criticalHigh').val();
-        var gender = $('#gender').val();
-        var ageCategory = $('#ageCategory').val();
-        var ageFrom = $('#ageFrom').val();
-        var ageFromType = $('#ageFromType').val();
-        var ageTo = $('#ageTo').val();
-        var ageToType = $('#ageToType').val();
-        var branch = $('#branch').val();
+  <script>
+document.addEventListener("DOMContentLoaded", function () {
+    const username = localStorage.getItem("username");
 
-        if (rangeName && criticalLow && rangeFrom && rangeTo && criticalHigh && gender && ageCategory && ageFrom && ageFromType && ageTo && ageToType && branch) {
-            var newRow = `<tr>
-                <td>${rangeName}</td>
-                <td>${criticalLow}</td>
-                <td>${rangeFrom}</td>
-                <td>${rangeTo}</td>
-                <td>${criticalHigh}</td>
-                <td>${gender}</td>
-                <td>${ageCategory}</td>
-                <td>${ageFrom}</td>
-                <td>${ageFromType}</td>
-                <td>${ageTo}</td>
-                <td>${ageToType}</td>
-                <td>${branch}</td>
-            </tr>`;
-            $('#dataTable').append(newRow);
-            $('#testForm')[0].reset();
-            $('.error').text('');
-        } else {
-            if (!rangeName) $('#rangeNameError').text('This field is required');
-            if (!criticalLow) $('#criticalLowError').text('This field is required');
-            if (!criticalHigh) $('#criticalHighError').text('This field is required');
-        }
+    if (username) {
+        fetch(`https://rssmarthut.com/mypath/fetchBranches.php?username=${username}`)
+            .then((response) => response.json())
+            .then((data) => {
+                const branchSelect = document.getElementById("branch");
+                branchSelect.innerHTML = ""; // Clear existing options
+
+                data.forEach((branch) => {
+                    const option = document.createElement("option");
+                    option.value = branch.branch_code;
+                    option.textContent = branch.branchname;
+                    branchSelect.appendChild(option);
+                });
+
+                branchSelect.addEventListener("change", function () {
+                    const selectedBranchCode = branchSelect.value;
+                    const branchCodeInput = document.getElementById("branchCode");
+                    branchCodeInput.value = selectedBranchCode;
+                });
+            })
+            .catch((error) => console.error("Error fetching branches:", error));
     }
-</sc>
+});
+
+function addData() {
+    var rangeName = $('#rangeName').val();
+    var criticalLow = $('#criticalLow').val();
+    var rangeFrom = $('#rangeFrom').val();
+    var rangeTo = $('#rangeTo').val();
+    var criticalHigh = $('#criticalHigh').val();
+    var gender = $('#gender').val();
+    var ageCategory = $('#ageCategory').val();
+    var ageFrom = $('#ageFrom').val();
+    var ageFromType = $('#ageFromType').val();
+    var ageTo = $('#ageTo').val();
+    var ageToType = $('#ageToType').val();
+    var branch = $('#branch option:selected').text();
+    var branchCode = $('#branchCode').val();
+
+    if (rangeName && criticalLow && rangeFrom && rangeTo && criticalHigh && gender && ageCategory && ageFrom && ageFromType && ageTo && ageToType && branch && branchCode) {
+        var newRow = `<tr>
+            <td>${rangeName}</td>
+            <td>${criticalLow}</td>
+            <td>${rangeFrom}</td>
+            <td>${rangeTo}</td>
+            <td>${criticalHigh}</td>
+            <td>${gender}</td>
+            <td>${ageCategory}</td>
+            <td>${ageFrom}</td>
+            <td>${ageFromType}</td>
+            <td>${ageTo}</td>
+            <td>${ageToType}</td>
+            <td>${branch}</td>
+            <td>${branchCode}</td>
+        </tr>`;
+        $('#dataTable').append(newRow);
+        $('#testForm')[0].reset();
+        $('.error').text('');
+    } else {
+        if (!rangeName) $('#rangeNameError').text('This field is required');
+        if (!criticalLow) $('#criticalLowError').text('This field is required');
+        if (!criticalHigh) $('#criticalHighError').text('This field is required');
+    }
+}
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const username = localStorage.getItem("username");
+
+    if (username) {
+        fetch(`https://rssmarthut.com/mypath/fetchBranches.php?username=${username}`)
+            .then((response) => response.json())
+            .then((data) => {
+                const branchSelect = document.getElementById("branch");
+                branchSelect.innerHTML = ""; // Clear existing options
+
+                data.forEach((branch) => {
+                    const option = document.createElement("option");
+                    option.value = branch.branch_code;
+                    option.textContent = branch.branchname;
+                    branchSelect.appendChild(option);
+                });
+            })
+            .catch((error) => console.error("Error fetching branches:", error));
+    }
+});
+
+</script>
+
+<script>
+  function saveData() {
+      var data = [];
+
+      // Iterate through each row in the table
+      $('#dataTable tbody tr').each(function() {
+          var rowData = {};
+          $(this).find('td').each(function(index, element) {
+              var columnName = $('#dataTable th').eq(index).text().trim().toLowerCase().replace(' ', '_');
+              rowData[columnName] = $(element).text().trim();
+          });
+          data.push(rowData);
+      });
+
+      // Send data to PHP script via AJAX
+      $.ajax({
+          url: 'https://rssmarthut.com/mypath/saverange.php',
+          type: 'POST',
+          data: { data: JSON.stringify(data) },
+          success: function(response) {
+              console.log('Data saved successfully:', response);
+              // Optionally, handle success feedback to the user
+          },
+          error: function(xhr, status, error) {
+              console.error('Error saving data:', error);
+              // Optionally, handle error feedback to the user
+          }
+      });
+  }
+</script>
+
+
   <style>
     .container {
         margin-top: 20px;
