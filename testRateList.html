@@ -157,7 +157,7 @@
         <div class="form-row" style="display: flex;flex-wrap: wrap;gap: 15px;">
             <div class="form-group col-md-4">
                 <label for="rangeName">Range Name:</label>
-                <input type="text" class="form-control" id="rangeName" required>
+                <input type="text" class="form-control" id="rangeName" name="rangeName" required>
                 <span class="error" id="rangeNameError"></span>
             </div>
             <div class="form-group col-md-4">
@@ -229,7 +229,6 @@
           
         </div>
         <button type="button" class="btn btn-primary" onclick="addData()">Add</button>
-        <button type="button" class="btn btn-primary" onclick="saveData()">Save</button>
     </form>
 
     <div class="table-container">
@@ -255,7 +254,9 @@
             <tbody id="dataTable">
             </tbody>
         </table>
+        <button type="button" class="btn btn-primary" onclick="saveData()">Save</button>
     </div>
+
 </div>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -390,74 +391,101 @@
   </script>
   <script src="./nav.js"></script>
   <script>
-document.addEventListener("DOMContentLoaded", function () {
-    const username = localStorage.getItem("username");
-
-    if (username) {
+    document.addEventListener("DOMContentLoaded", function () {
+      const username = localStorage.getItem("username");
+  
+      if (username) {
         fetch(`https://rssmarthut.com/mypath/fetchBranches.php?username=${username}`)
-            .then((response) => response.json())
-            .then((data) => {
-                const branchSelect = document.getElementById("branch");
-                branchSelect.innerHTML = ""; // Clear existing options
-
-                data.forEach((branch) => {
-                    const option = document.createElement("option");
-                    option.value = branch.branch_code;
-                    option.textContent = branch.branchname;
-                    branchSelect.appendChild(option);
-                });
-
-                branchSelect.addEventListener("change", function () {
-                    const selectedBranchCode = branchSelect.value;
-                    const branchCodeInput = document.getElementById("branchCode");
-                    branchCodeInput.value = selectedBranchCode;
-                });
-            })
-            .catch((error) => console.error("Error fetching branches:", error));
-    }
-});
-
-function addData() {
-    var rangeName = $('#rangeName').val();
-    var criticalLow = $('#criticalLow').val();
-    var rangeFrom = $('#rangeFrom').val();
-    var rangeTo = $('#rangeTo').val();
-    var criticalHigh = $('#criticalHigh').val();
-    var gender = $('#gender').val();
-    var ageCategory = $('#ageCategory').val();
-    var ageFrom = $('#ageFrom').val();
-    var ageFromType = $('#ageFromType').val();
-    var ageTo = $('#ageTo').val();
-    var ageToType = $('#ageToType').val();
-    var branch = $('#branch option:selected').text();
-    var branchCode = $('#branchCode').val();
-
-    if (rangeName && criticalLow && rangeFrom && rangeTo && criticalHigh && gender && ageCategory && ageFrom && ageFromType && ageTo && ageToType && branch && branchCode) {
+          .then((response) => response.json())
+          .then((data) => {
+            const branchSelect = document.getElementById("branch");
+            branchSelect.innerHTML = ""; // Clear existing options
+  
+            data.forEach((branch) => {
+              const option = document.createElement("option");
+              option.value = branch.branch_code;
+              option.textContent = branch.branchname;
+              branchSelect.appendChild(option);
+            });
+  
+            branchSelect.addEventListener("change", function () {
+              const selectedBranchCode = branchSelect.value;
+              const branchCodeInput = document.getElementById("branchCode");
+              branchCodeInput.value = selectedBranchCode;
+            });
+          })
+          .catch((error) => console.error("Error fetching branches:", error));
+      }
+    });
+  
+    function addData() {
+      var rangeName = $('#rangeName').val();
+      var criticalLow = $('#criticalLow').val();
+      var rangeFrom = $('#rangeFrom').val();
+      var rangeTo = $('#rangeTo').val();
+      var criticalHigh = $('#criticalHigh').val();
+      var gender = $('#gender').val();
+      var ageCategory = $('#ageCategory').val();
+      var ageFrom = $('#ageFrom').val();
+      var ageFromType = $('#ageFromType').val();
+      var ageTo = $('#ageTo').val();
+      var ageToType = $('#ageToType').val();
+      var branch = $('#branch option:selected').text();
+      var branchCode = $('#branchCode').val();
+  
+      if (rangeName && criticalLow && rangeFrom && rangeTo && criticalHigh && gender && ageCategory && ageFrom && ageFromType && ageTo && ageToType && branch && branchCode) {
         var newRow = `<tr>
-            <td>${rangeName}</td>
-            <td>${criticalLow}</td>
-            <td>${rangeFrom}</td>
-            <td>${rangeTo}</td>
-            <td>${criticalHigh}</td>
-            <td>${gender}</td>
-            <td>${ageCategory}</td>
-            <td>${ageFrom}</td>
-            <td>${ageFromType}</td>
-            <td>${ageTo}</td>
-            <td>${ageToType}</td>
-            <td>${branch}</td>
-            <td>${branchCode}</td>
+          <td>${rangeName}</td>
+          <td>${criticalLow}</td>
+          <td>${rangeFrom}</td>
+          <td>${rangeTo}</td>
+          <td>${criticalHigh}</td>
+          <td>${gender}</td>
+          <td>${ageCategory}</td>
+          <td>${ageFrom}</td>
+          <td>${ageFromType}</td>
+          <td>${ageTo}</td>
+          <td>${ageToType}</td>
+          <td>${branch}</td>
+          <td>${branchCode}</td>
         </tr>`;
         $('#dataTable').append(newRow);
         $('#testForm')[0].reset();
         $('.error').text('');
-    } else {
+      } else {
         if (!rangeName) $('#rangeNameError').text('This field is required');
         if (!criticalLow) $('#criticalLowError').text('This field is required');
         if (!criticalHigh) $('#criticalHighError').text('This field is required');
+      }
     }
-}
-</script>
+  
+    function saveData() {
+      var data = [];
+  
+      $('#dataTable tbody tr').each(function() {
+        var rowData = {};
+        $(this).find('td').each(function(index, element) {
+          var columnName = $('#dataTable th').eq(index).text().trim().toLowerCase().replace(' ', '_');
+          rowData[columnName] = $(element).text().trim();
+        });
+        data.push(rowData);
+      });
+  
+      $.ajax({
+        url: 'https://rssmarthut.com/mypath/saverange.php',
+        type: 'POST',
+        data: { data: JSON.stringify(data) },
+        success: function(response) {
+          console.log('Data saved successfully:', response);
+        },
+        error: function(xhr, status, error) {
+          console.error('Error saving data:', error);
+        }
+      });
+    }
+  </script>
+  
+    
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
