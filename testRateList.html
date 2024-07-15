@@ -153,109 +153,105 @@
   </div>
   <div class="container">
     <h2 class="text-center">Range</h2>
-    <form id="testForm" >
-        <div class="form-row" style="display: flex;flex-wrap: wrap;gap: 15px;">
-            <div class="form-group col-md-4">
-                <label for="rangeName">Range Name:</label>
-                <input type="text" class="form-control" id="rangeName" name="rangeName" required>
-                <span class="error" id="rangeNameError"></span>
-            </div>
-            <div class="form-group col-md-4">
-                <label for="criticalLow">Critical Low:</label>
-                <input type="number" class="form-control" id="criticalLow" required>
-                <span class="error" id="criticalLowError"></span>
-            </div>
-            <div class="form-group col-md-4">
-                <label for="rangeFrom">Range From:</label>
-                <input type="number" class="form-control" id="rangeFrom" required>
-            </div>
-            <div class="form-group col-md-4">
-                <label for="rangeTo">Range To:</label>
-                <input type="number" class="form-control" id="rangeTo" required>
-            </div>
-            <div class="form-group col-md-4">
-                <label for="criticalHigh">Critical High:</label>
-                <input type="number" class="form-control" id="criticalHigh" required>
-                <span class="error" id="criticalHighError"></span>
-            </div>
-            <div class="form-group col-md-4">
-                <label for="gender">Gender:</label>
-                <select class="form-control" id="gender" required>
-                    <option value="Both">Both</option>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                </select>
-            </div>
-            <div class="form-group col-md-4">
-                <label for="ageCategory">Age Category:</label>
-                <select class="form-control" id="ageCategory" required>
-                    <option value="All Ages">All Ages</option>
-                    <option value="Child">Child</option>
-                    <option value="Adult">Adult</option>
-                </select>
-            </div>
-            <div class="form-group col-md-2">
-                <label for="ageFrom">Age From:</label>
-                <input type="number" class="form-control" id="ageFrom" required>
-            </div>
-            <div class="form-group col-md-2">
-                <label for="ageFromType">Age From Type:</label>
-                <select class="form-control" id="ageFromType" required>
-                    <option value="Y">Years</option>
-                    <option value="M">Months</option>
-                    <option value="D">Days</option>
-                </select>
-            </div>
-            <div class="form-group col-md-2">
-                <label for="ageTo">Age To:</label>
-                <input type="number" class="form-control" id="ageTo" required>
-            </div>
-            <div class="form-group col-md-2">
-                <label for="ageToType">Age To Type:</label>
-                <select class="form-control" id="ageToType" required>
-                    <option value="Y">Years</option>
-                    <option value="M">Months</option>
-                    <option value="D">Days</option>
-                </select>
-            </div>
-            <div class="form-group col-md-4">
+    <form id="testForm">
+      <div class="form-row" style="display: flex; flex-wrap: wrap; gap: 15px;">
+          <div class="form-group col-md-4">
+              <label for="rangeName">Range Name:</label>
+              <input type="text" class="form-control" id="rangeName" name="rangeName" required>
+              <span class="error" id="rangeNameError"></span>
+          </div>
+          <div class="form-group col-md-4">
+              <label for="criticalLow">Critical Low:</label>
+              <input type="number" class="form-control" id="criticalLow" required>
+              <span class="error" id="criticalLowError"></span>
+          </div>
+          <div class="form-group col-md-4">
+              <label for="rangeFrom">Range From:</label>
+              <input type="number" class="form-control" id="rangeFrom" required>
+          </div>
+          <div class="form-group col-md-4">
+              <label for="rangeTo">Range To:</label>
+              <input type="number" class="form-control" id="rangeTo" required>
+          </div>
+          <div class="form-group col-md-4">
+              <label for="criticalHigh">Critical High:</label>
+              <input type="number" class="form-control" id="criticalHigh" required>
+              <span class="error" id="criticalHighError"></span>
+          </div>
+          <div class="form-group col-md-4">
+              <label for="gender">Gender:</label>
+              <select class="form-control" id="gender" required>
+                  <option value="Both">Both</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+              </select>
+          </div>
+          <div class="form-group col-md-4">
+              <label for="ageCategory">Age Category:</label>
+              <select class="form-control" id="ageCategory" required>
+                  <option value="All Ages">All Ages</option>
+                  <option value="Child">Child</option>
+                  <option value="Adult">Adult</option>
+              </select>
+          </div>
+          <div class="form-group col-md-2">
+              <label for="ageFrom">Age From:</label>
+              <input type="number" class="form-control" id="ageFrom" required>
+          </div>
+          <div class="form-group col-md-2">
+              <label for="ageFromType">Age From Type:</label>
+              <select class="form-control" id="ageFromType" required>
+                  <option value="Y">Years</option>
+                  <option value="M">Months</option>
+                  <option value="D">Days</option>
+              </select>
+          </div>
+          <div class="form-group col-md-2">
+              <label for="ageTo">Age To:</label>
+              <input type="number" class="form-control" id="ageTo" required>
+          </div>
+          <div class="form-group col-md-2">
+              <label for="ageToType">Age To Type:</label>
+              <select class="form-control" id="ageToType" required>
+                  <option value="Y">Years</option>
+                  <option value="M">Months</option>
+                  <option value="D">Days</option>
+              </select>
+          </div>
+          <div class="form-group col-md-4">
               <label for="branch">Branch:</label>
               <select class="form-control" id="branch" required>
-                <option value="">Select a branch</option>
+                  <option value="">Select a branch</option>
               </select>
               <input type="hidden" id="branchCode">
-            </div>
-            
-          
-        </div>
-        <button type="button" class="btn btn-primary" onclick="addData()">Add</button>
-    </form>
+          </div>
+      </div>
+      <button type="button" class="btn btn-primary" onclick="addData()">Add</button>
+      <button type="button" class="btn btn-success" onclick="saveData()">Save Data</button>
+  </form>
 
-    <div class="table-container">
-        <table class="table table-bordered mt-4">
-          <thead>
-            <tr>
-              <th>Range Name</th>
-              <th>Critical Low</th>
-              <th>Range From</th>
-              <th>Range To</th>
-              <th>Critical High</th>
-              <th>Gender</th>
-              <th>Age Category</th>
-              <th>Age From</th>
-              <th>Age From Type</th>
-              <th>Age To</th>
-              <th>Age To Type</th>
-              <th>Branch</th>
-              <th>Branch Code</th>
-            </tr>
-          </thead>
-          
-            <tbody id="dataTable">
-            </tbody>
-        </table>
-        <button type="button" class="btn btn-primary" onclick="saveData()">Save</button>
-    </div>
+
+  <table id="dataTable" class="table table-bordered mt-3">
+    <thead>
+        <tr>
+            <th>Range Name</th>
+            <th>Critical Low</th>
+            <th>Range From</th>
+            <th>Range To</th>
+            <th>Critical High</th>
+            <th>Gender</th>
+            <th>Age Category</th>
+            <th>Age From</th>
+            <th>Age From Type</th>
+            <th>Age To</th>
+            <th>Age To Type</th>
+            <th>Branch</th>
+            <th>Branch Code</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
 
 </div>
 
@@ -418,71 +414,9 @@
       }
     });
   
-    function addData() {
-      var rangeName = $('#rangeName').val();
-      var criticalLow = $('#criticalLow').val();
-      var rangeFrom = $('#rangeFrom').val();
-      var rangeTo = $('#rangeTo').val();
-      var criticalHigh = $('#criticalHigh').val();
-      var gender = $('#gender').val();
-      var ageCategory = $('#ageCategory').val();
-      var ageFrom = $('#ageFrom').val();
-      var ageFromType = $('#ageFromType').val();
-      var ageTo = $('#ageTo').val();
-      var ageToType = $('#ageToType').val();
-      var branch = $('#branch option:selected').text();
-      var branchCode = $('#branchCode').val();
-  
-      if (rangeName && criticalLow && rangeFrom && rangeTo && criticalHigh && gender && ageCategory && ageFrom && ageFromType && ageTo && ageToType && branch && branchCode) {
-        var newRow = `<tr>
-          <td>${rangeName}</td>
-          <td>${criticalLow}</td>
-          <td>${rangeFrom}</td>
-          <td>${rangeTo}</td>
-          <td>${criticalHigh}</td>
-          <td>${gender}</td>
-          <td>${ageCategory}</td>
-          <td>${ageFrom}</td>
-          <td>${ageFromType}</td>
-          <td>${ageTo}</td>
-          <td>${ageToType}</td>
-          <td>${branch}</td>
-          <td>${branchCode}</td>
-        </tr>`;
-        $('#dataTable').append(newRow);
-        $('#testForm')[0].reset();
-        $('.error').text('');
-      } else {
-        if (!rangeName) $('#rangeNameError').text('This field is required');
-        if (!criticalLow) $('#criticalLowError').text('This field is required');
-        if (!criticalHigh) $('#criticalHighError').text('This field is required');
-      }
-    }
-  
-    function saveData() {
-      var data = [];
-  
-      $('#dataTable tbody tr').each(function() {
-        var rowData = {};
-        $(this).find('td').each(function(index, element) {
-          var columnName = $('#dataTable th').eq(index).text().trim().toLowerCase().replace(' ', '_');
-          rowData[columnName] = $(element).text().trim();
-        });
-        data.push(rowData);
-      });
-  
-      $.ajax({
-        url: 'https://rssmarthut.com/mypath/saverange.php',
-        type: 'POST',
-        data: { data: JSON.stringify(data) },
-        success: function(response) {
-          console.log('Data saved successfully:', response);
-        },
-        error: function(xhr, status, error) {
-          console.error('Error saving data:', error);
-        }
-      });
-    }
+    
+
+ 
   </script>
   
     
@@ -512,35 +446,85 @@ document.addEventListener("DOMContentLoaded", function () {
 </script>
 
 <script>
-  function saveData() {
-      var data = [];
 
-      // Iterate through each row in the table
-      $('#dataTable tbody tr').each(function() {
-          var rowData = {};
-          $(this).find('td').each(function(index, element) {
-              var columnName = $('#dataTable th').eq(index).text().trim().toLowerCase().replace(' ', '_');
-              rowData[columnName] = $(element).text().trim();
-          });
-          data.push(rowData);
-      });
+var dataEntries = [];
 
-      // Send data to PHP script via AJAX
-      $.ajax({
-          url: 'https://rssmarthut.com/mypath/saverange.php',
-          type: 'POST',
-          data: { data: JSON.stringify(data) },
-          success: function(response) {
-              console.log('Data saved successfully:', response);
-              // Optionally, handle success feedback to the user
-          },
-          error: function(xhr, status, error) {
-              console.error('Error saving data:', error);
-              // Optionally, handle error feedback to the user
-          }
-      });
-  }
-</script>
+function addData() {
+    var rangeName = $('#rangeName').val();
+    var criticalLow = $('#criticalLow').val();
+    var rangeFrom = $('#rangeFrom').val();
+    var rangeTo = $('#rangeTo').val();
+    var criticalHigh = $('#criticalHigh').val();
+    var gender = $('#gender').val();
+    var ageCategory = $('#ageCategory').val();
+    var ageFrom = $('#ageFrom').val();
+    var ageFromType = $('#ageFromType').val();
+    var ageTo = $('#ageTo').val();
+    var ageToType = $('#ageToType').val();
+    var branch = $('#branch option:selected').text();
+    var branchCode = $('#branchCode').val();
+
+    if (rangeName && criticalLow && rangeFrom && rangeTo && criticalHigh && gender && ageCategory && ageFrom && ageFromType && ageTo && ageToType && branch && branchCode) {
+        var newRow = `<tr>
+          <td>${rangeName}</td>
+          <td>${criticalLow}</td>
+          <td>${rangeFrom}</td>
+          <td>${rangeTo}</td>
+          <td>${criticalHigh}</td>
+          <td>${gender}</td>
+          <td>${ageCategory}</td>
+          <td>${ageFrom}</td>
+          <td>${ageFromType}</td>
+          <td>${ageTo}</td>
+          <td>${ageToType}</td>
+          <td>${branch}</td>
+          <td>${branchCode}</td>
+        </tr>`;
+        $('#dataTable tbody').append(newRow);
+        $('#testForm')[0].reset();
+        $('.error').text('');
+
+        // Store the data entry in the array
+        var dataEntry = {
+            rangeName: rangeName,
+            criticalLow: criticalLow,
+            rangeFrom: rangeFrom,
+            rangeTo: rangeTo,
+            criticalHigh: criticalHigh,
+            gender: gender,
+            ageCategory: ageCategory,
+            ageFrom: ageFrom,
+            ageFromType: ageFromType,
+            ageTo: ageTo,
+            ageToType: ageToType,
+            branch: branch,
+            branchCode: branchCode
+        };
+        dataEntries.push(dataEntry);
+    } else {
+        if (!rangeName) $('#rangeNameError').text('This field is required');
+        if (!criticalLow) $('#criticalLowError').text('This field is required');
+        if (!criticalHigh) $('#criticalHighError').text('This field is required');
+    }
+}
+
+function saveData() {
+    $.ajax({
+        type: 'POST',
+        url: 'https://rssmarthut.com/mypath/saverange.php',
+        data: { data: JSON.stringify(dataEntries) },
+        success: function(response) {
+            console.log(response);
+            alert('Data saved successfully!');
+        },
+        error: function(xhr, status, error) {
+            console.error(error);
+            alert('An error occurred while saving the data.');
+        }
+    });
+}
+
+ </script>
 
 
   <style>
