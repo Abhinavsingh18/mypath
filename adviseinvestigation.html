@@ -256,6 +256,7 @@
         </div>
 
         <form id="adviseInvestigationForm">
+
           <div class="searchpatient">
             <input
               type="text"
@@ -273,33 +274,64 @@
                 background-color: #dcc3c3;
               "
             />
-            <ul id="searchResults" style="    top: 4.4vw;
-            left: 26%;
-            
-            border-radius: 7px;
-            
-            
-            width: 21vw;
-            position: absolute;
-            background-color: #f1e5e5;
-            padding-left: 5px;padding-right: 4px;">
-            </ul>
+            <span id="pidDisplay" style="position: absolute; top: 1.5vw; left: 700px; font-weight: bold;"></span>
+            <ul
+              id="searchResults"
+              style="
+                top: 4.4vw;
+                left: 26%;
+                border-radius: 7px;
+                width: 21vw;
+                position: absolute;
+                background-color: #f1e5e5;
+                padding-left: 5px;
+                padding-right: 4px;
+              "
+            ></ul>
           </div>
-          <div class="form-group">
-            <label for="advisedDate">Advised Date:</label>
-            <input type="date" id="advisedDate" name="advisedDate" required />
-          </div>
+          
 
+          <style>
+            .search-result-item {
+              padding: 8px;
+              border-bottom: 1px solid #ccc;
+              list-style-type: none;
+              cursor: pointer;
+            }
+        
+            .patient-firstname,
+            .patient-pid {
+              display: inline-block;
+              margin-right: 10px;
+            }
+        
+            .patient-contactnumber {
+              margin-top: 5px;
+              color: #555;
+            }
+          </style>
+        
+          <div class="form-group">
+            <label for="patientname">Patient Name:</label>
+            <input type="text" id="patientname" name="patientname" required />
+          </div>
+        
+          <div class="form-group">
+            <label for="contactnumber">Contact Number:</label>
+            <input type="tel" id="contactnumber" name="contactnumber" required />
+          </div>
+        
+          <div class="form-group">
+            <label for="advisedDate">Advised Date and Time:</label>
+            <input type="datetime-local" id="advisedDate" name="advisedDate" required />
+          </div>
+          
+        
           <div class="form-group">
             <label for="advisedByDoctor">Advised By Doctor:</label>
-            <input
-              type="text"
-              id="advisedByDoctor"
-              name="advisedByDoctor"
-              required
-            />
+            <input type="text" id="advisedByDoctor" name="advisedByDoctor" required />
           </div>
-
+        
           <div class="form-group">
             <label for="advisedByFacility">Advised By Medical Facility:</label>
             <select id="advisedByFacility" name="advisedByFacility" required>
@@ -308,86 +340,50 @@
               <option value="facility2">Facility 2</option>
             </select>
           </div>
-
+        
           <div class="form-group">
             <label for="locations">Locations:</label>
-            <input
-              type="text"
-              id="locations"
-              name="locations"
-              value="Samarpan Health Care Institute"
-              readonly
-            />
+            <input type="text" id="locations" name="locations" value="Samarpan Health Care Institute" readonly />
           </div>
-
+        
           <div class="form-group">
             <label for="reportDeliveryMode">Report Delivery Mode:</label>
             <div class="radio-group">
-              <label
-                ><input
-                  type="radio"
-                  name="reportDeliveryMode"
-                  value="email"
-                  required
-                />Email</label
-              >
-              <label
-                ><input
-                  type="radio"
-                  name="reportDeliveryMode"
-                  value="hospitalDoctor"
-                />Hospital/Doctor</label
-              >
-              <label
-                ><input
-                  type="radio"
-                  name="reportDeliveryMode"
-                  value="courier"
-                />Courier</label
-              >
-              <label
-                ><input
-                  type="radio"
-                  name="reportDeliveryMode"
-                  value="self"
-                />Self</label
-              >
-              <label
-                ><input
-                  type="radio"
-                  name="reportDeliveryMode"
-                  value="directByHand"
-                />Direct/By Hand</label
-              >
+              <label>
+                <input type="checkbox" name="reportDeliveryModeCheckbox" value="emailCheckbox" />
+                <input type="radio" name="reportDeliveryMode" value="email" required /> Email
+              </label>
+              <label>
+                <input type="checkbox" name="reportDeliveryModeCheckbox" value="hospitalDoctorCheckbox" />
+                <input type="radio" name="reportDeliveryMode" value="hospitalDoctor" /> Hospital/Doctor
+              </label>
+              <label>
+                <input type="checkbox" name="reportDeliveryModeCheckbox" value="courierCheckbox" />
+                <input type="radio" name="reportDeliveryMode" value="courier" /> Courier
+              </label>
+              <label>
+                <input type="checkbox" name="reportDeliveryModeCheckbox" value="selfCheckbox" />
+                <input type="radio" name="reportDeliveryMode" value="self" /> Self
+              </label>
+              <label>
+                <input type="checkbox" name="reportDeliveryModeCheckbox" value="directByHandCheckbox" />
+                <input type="radio" name="reportDeliveryMode" value="directByHand" /> Direct/By Hand
+              </label>
             </div>
           </div>
-
+        
           <div class="addnd">
             <div class="form-group" style="width: 10vw !important">
-              <label for="addNewDoctor" style="width: max-content"
-                >Add New Doctor:</label
-              >
-              <input
-                style="scale: 0.3"
-                type="checkbox"
-                id="addNewDoctor"
-                name="addNewDoctor"
-              />
+              <label for="addNewDoctor" style="width: max-content">Add New Doctor:</label>
+              <input style="scale: 0.3" type="checkbox" id="addNewDoctor" name="addNewDoctor" />
             </div>
-
+        
             <div class="form-group" style="width: 10vw !important">
-              <label for="urgentReport" style="width: max-content"
-                >Urgent Report:</label
-              >
-              <input
-                style="scale: 0.3"
-                type="checkbox"
-                id="urgentReport"
-                name="urgentReport"
-              />
+              <label for="urgentReport" style="width: max-content">Urgent Report:</label>
+              <input style="scale: 0.3" type="checkbox" id="urgentReport" name="urgentReport" />
             </div>
           </div>
-
+        
           <div class="form-group">
             <label for="referredBy">Referred By:</label>
             <select id="referredBy" name="referredBy">
@@ -396,7 +392,7 @@
               <option value="referral2">Referral 2</option>
             </select>
           </div>
-
+        
           <div class="form-group">
             <label for="insurancePanel">Select Insurance Panel:</label>
             <select id="insurancePanel" name="insurancePanel">
@@ -405,7 +401,7 @@
               <option value="panel2">Panel 2</option>
             </select>
           </div>
-
+        
           <div class="form-group">
             <label for="collectedBy">To Be Collected By:</label>
             <select id="collectedBy" name="collectedBy">
@@ -414,48 +410,34 @@
               <option value="collector2">Collector 2</option>
             </select>
           </div>
-
+        
           <div class="form-group">
             <label for="patientAddress">Patient Address:</label>
-            <textarea
-              id="patientAddress"
-              name="patientAddress"
-              rows="3"
-              required
-            ></textarea>
+            <textarea id="patientAddress" name="patientAddress" rows="3" required></textarea>
           </div>
-
+        
           <div class="form-group">
             <label for="clinicalHistory">Clinical History (H/O):</label>
-            <textarea
-              id="clinicalHistory"
-              name="clinicalHistory"
-              rows="3"
-              required
-            ></textarea>
+            <textarea id="clinicalHistory" name="clinicalHistory" rows="3" required></textarea>
           </div>
-
+        
           <div class="form-group">
             <label for="accountSettlement">Account Settlement:</label>
             <div class="checkbox-group" style="gap: 2.1vw">
-              <input
-                type="checkbox"
-                id="corporatePanel"
-                name="corporatePanel"
-              />
+              <input type="checkbox" id="corporatePanel" name="corporatePanel" />
               <label for="corporatePanel">Corporate Panel</label>
               <input type="checkbox" id="csr" name="csr" />
               <label for="csr">CSR</label>
             </div>
-            <div style="color: red; font-size: 12px">
-              No Corporate Panel Exist
-            </div>
+            <div style="color: red; font-size: 12px">No Corporate Panel Exist</div>
           </div>
-
+        
           <div class="form-actions">
             <button type="submit">Register Patient</button>
           </div>
         </form>
+        
+
       </div>
     </div>
 
@@ -579,43 +561,75 @@
         data[key] = value;
       });
     </script>
-    <script>
-      const searchInput = document.getElementById("searchInput");
-      const searchResults = document.getElementById("searchResults");
 
-      searchInput.addEventListener("input", function () {
-        const inputValue = this.value.trim();
-        if (inputValue !== "") {
-          fetch(`https://rssmarthut.com/mypath/searchpatient.php?query=${inputValue}`)
-            .then((response) => response.json())
-            .then((data) => {
-              // Clear previous results
-              searchResults.innerHTML = "";
-              // Display new results
-              data.forEach((patient) => {
-                const li = document.createElement("li");
-                const firstNameSpan = document.createElement("span");
-                const pidSpan = document.createElement("span");
+<script>
+  const searchInput = document.getElementById("searchInput");
+  const searchResults = document.getElementById("searchResults");
+  const patientNameInput = document.getElementById("patientname");
+  const contactNumberInput = document.getElementById("contactnumber");
+  const pidDisplay = document.getElementById("pidDisplay"); // Element to display PID
+  const advisedDateTimeInput = document.getElementById("advisedDate");
 
-                firstNameSpan.textContent = patient.firstname;
-                pidSpan.textContent = patient.pid;
-
-                li.appendChild(firstNameSpan);
-                
-                li.appendChild(pidSpan);
-                
-                // li.textContent = `${patient.firstname} - ${patient.pid}`;
-
-                searchResults.appendChild(li);
-              });
-            })
-            .catch((error) => console.error("Error:", error));
-        } else {
-          // Clear search results if input is empty
+  searchInput.addEventListener("input", function () {
+    const inputValue = this.value.trim();
+    if (inputValue !== "") {
+      fetch(`https://rssmarthut.com/mypath/searchpatient.php?query=${inputValue}`)
+        .then((response) => response.json())
+        .then((data) => {
+          // Clear previous results
           searchResults.innerHTML = "";
-        }
-      });
-    </script>
+          // Display new results
+          data.forEach((patient) => {
+            const li = document.createElement("li");
+            li.classList.add("search-result-item");
+
+            const firstNameSpan = document.createElement("span");
+            firstNameSpan.classList.add("patient-firstname");
+            firstNameSpan.textContent = patient.firstname;
+
+            const pidSpan = document.createElement("span");
+            pidSpan.classList.add("patient-pid");
+            pidSpan.textContent = `PID: ${patient.pid}`;
+
+            const contactNumberSpan = document.createElement("div");
+            contactNumberSpan.classList.add("patient-contactnumber");
+            contactNumberSpan.textContent = `Contact: ${patient.contactnumber}`;
+
+            li.appendChild(firstNameSpan);
+            li.appendChild(pidSpan);
+            li.appendChild(contactNumberSpan);
+
+            // Add click event listener to populate the form fields
+            li.addEventListener("click", function () {
+              patientNameInput.value = patient.firstname;
+              contactNumberInput.value = patient.contactnumber;
+              pidDisplay.textContent = `PID: ${patient.pid}`;
+              advisedDateTimeInput.value = getCurrentDateTime(); // Set current date and time
+              searchResults.innerHTML = ""; // Clear search results after selection
+            });
+
+            searchResults.appendChild(li);
+          });
+        })
+        .catch((error) => console.error("Error:", error));
+    } else {
+      // Clear search results if input is empty
+      searchResults.innerHTML = "";
+    }
+  });
+
+  // Function to get current date and time in the required format (YYYY-MM-DDTHH:MM)
+  function getCurrentDateTime() {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, "0");
+    const day = String(now.getDate()).padStart(2, "0");
+    const hours = String(now.getHours()).padStart(2, "0");
+    const minutes = String(now.getMinutes()).padStart(2, "0");
+    return `${year}-${month}-${day}T${hours}:${minutes}`;
+  }
+</script>
+
     <script src="nav.js"></script>
   </body>
 </html>
