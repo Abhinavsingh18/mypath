@@ -250,6 +250,7 @@
         </tr>
     </thead>
     <tbody>
+      
     </tbody>
 </table>
 
@@ -375,6 +376,8 @@
         document.getElementById('rangeName').value = testname;
         document.getElementById('modalPrice').value = price;
         document.querySelector('.container').style.display='block'
+        fetchRangeData(testname,branchcode)
+        console.log(testname,branchcode)
       }
 
       window.saveModalChanges = function() {
@@ -526,6 +529,91 @@ function saveData() {
 
  </script>
 
+<script>
+
+
+function fetchRangeData(testname,branchcode) {
+  fetch(`https://rssmarthut.com/mypath/getRangeData.php?branchCode=${branchcode}&rangeName=${testname}`)
+            .then(response => response.json())
+            .then(data => {
+                // Select the table body
+                const tbody = document.querySelector('#dataTable tbody');
+
+                // Check if there is data
+                if (data.length > 0) {
+                    // Clear any existing rows in the tbody
+                    tbody.innerHTML = '';
+
+                    // Iterate over the data and create rows
+                    data.forEach(item => {
+                        // Create a new row
+                        const row = document.createElement('tr');
+
+                        // Define the columns
+                        const columns = [
+                            item.range_name || 'N/A',
+                            item.critical_low || 'N/A',
+                            item.range_from || 'N/A',
+                            item.range_to || 'N/A',
+                            item.critical_high || 'N/A',
+                            item.gender || 'N/A',
+                            item.age_category || 'N/A',
+                            item.age_from || 'N/A',
+                            item.age_from_type || 'N/A',
+                            item.age_to || 'N/A',
+                            item.age_to_type || 'N/A',
+                            item.branch || 'N/A',
+                            item.branch_code || 'N/A'
+                        ];
+
+                        // Create and append each cell
+                        columns.forEach(text => {
+                            const cell = document.createElement('td');
+                            cell.textContent = text;
+                            row.appendChild(cell);
+                        });
+
+                        // Append the row to the tbody
+                        tbody.appendChild(row);
+                    });
+                } else {
+                    // Handle case where no data is found
+                    console.error('No data found for the selected test and branch.');
+                }
+            })
+            .catch(error => console.error('Error fetching range data:', error));
+          }
+
+</script>
+
+<script>
+  window.saveModalChanges = function() {
+    const testname = document.getElementById('rangeName').value;
+    const newPrice = document.getElementById('modalPrice').value;
+    const branchcode = document.getElementById('branchCode').value;
+
+    // Update existing range data in database
+    updateRangeData(testname, branchcode);
+
+    $('#editModal').modal('hide');
+};
+
+function updateRangeData(testname, branchcode) {
+    const formData = new FormData(document.getElementById('testForm'));
+
+    fetch('https://rssmarthut.com/mypath/updateRangeData.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.text())
+    .then(result => {
+        console.log('Range data updated successfully:', result);
+        // Optionally update UI or show success message
+    })
+    .catch(error => console.error('Error updating range data:', error));
+}
+
+</script>
 
   <style>
     .container {
