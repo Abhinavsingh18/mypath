@@ -385,8 +385,9 @@
         document.getElementById('rangeName').value = testname;
         document.getElementById('modalPrice').value = price;
         document.querySelector('.container').style.display='block'
+        noDataMessage.style.display = 'none';
+        document.querySelector('#dataTable tbody').innerHTML=""
         fetchRangeData(testname,branchcode)
-        console.log(testname,branchcode)
       }
 
       window.saveModalChanges = function() {
