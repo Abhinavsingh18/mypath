@@ -443,7 +443,7 @@
 
     <!-- The Modal -->
     <div id="myModal" class="modal">
-      <div class="modal-content" style="background-color: #f1d9d9">
+      <div class="modal-content">
           <span class="close">&times;</span>
           <form id="registerPatientForm" method="POST" action="https://rssmarthut.com/mypath/patients.php">
               <div class="form-group">
@@ -488,12 +488,18 @@
                   <input type="email" id="email" name="email" required />
               </div>
               <div class="form-group">
-                  <label for="contactnumber">Contact Number:</label>
-                  <input type="tel" id="contactnumber" name="contactnumber" required />
-              </div>
-              <div class="form-group">
                   <label for="address">Address:</label>
                   <textarea id="address" name="address" rows="3" required></textarea>
+              </div>
+              <div class="form-group">
+                  <label for="branch">Branch:</label>
+                  <select id="branch" name="branch" required>
+                      <option value="">Select Branch</option>
+                  </select>
+              </div>
+              <div class="form-group">
+                  <label for="contactnumber">Contact Number:</label>
+                  <input type="tel" id="contactnumber" name="contactnumber" required />
               </div>
               <div class="form-group">
                   <label for="area">Area:</label>
@@ -521,7 +527,8 @@
               </div>
           </form>
       </div>
-    </div>
+  </div>
+  
 
     <script>
       // Get the modal
@@ -560,6 +567,8 @@
       formData.forEach((value, key) => {
         data[key] = value;
       });
+
+
     </script>
 
 <script>
@@ -628,6 +637,50 @@
     const minutes = String(now.getMinutes()).padStart(2, "0");
     return `${year}-${month}-${day}T${hours}:${minutes}`;
   }
+</script>
+
+<script>
+    
+ // Function to fetch branches
+ function fetchBranches() {
+        var username = localStorage.getItem('username'); // Assuming the username is stored in local storage
+        if (!username) {
+            console.error("Username not found in local storage.");
+            return;
+        }
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'https://rssmarthut.com/mypath/fetchBranches.php?username=' + encodeURIComponent(username), true);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4) {
+                if (xhr.status == 200) {
+                    try {
+                        var branches = JSON.parse(xhr.responseText);
+                        console.log("Branches fetched successfully:", branches); // Log fetched branches
+                        var branchSelect = document.getElementById('branch');
+                        branchSelect.innerHTML = '<option value="">Select Branch</option>'; // Clear existing options
+                        branches.forEach(function(branch) {
+                            var option = document.createElement('option');
+                            option.value = branch.branch_code; // Assuming branch code is 'branch_code'
+                            option.textContent = branch.branchname; // Assuming branch name is 'branchname'
+                            branchSelect.appendChild(option);
+                        });
+                    } catch (e) {
+                        console.error("Failed to parse branches JSON:", e);
+                    }
+                } else {
+                    console.error("Failed to fetch branches. Status:", xhr.status);
+                }
+            }
+        };
+        xhr.onerror = function () {
+            console.error("Request failed.");
+        };
+        xhr.send();
+    }
+
+    // Fetch branches initially to see if data is being fetched outside modal too
+    fetchBranches();
 </script>
 
     <script src="nav.js"></script>
