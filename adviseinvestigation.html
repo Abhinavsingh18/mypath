@@ -578,6 +578,7 @@
   const contactNumberInput = document.getElementById("contactnumber");
   const pidDisplay = document.getElementById("pidDisplay"); // Element to display PID
   const advisedDateTimeInput = document.getElementById("advisedDate");
+  const locationsInput = document.getElementById("locations"); // Element to display the branch name
 
   searchInput.addEventListener("input", function () {
     const inputValue = this.value.trim();
@@ -604,9 +605,14 @@
             contactNumberSpan.classList.add("patient-contactnumber");
             contactNumberSpan.textContent = `Contact: ${patient.contactnumber}`;
 
+            const branchSpan = document.createElement("div");
+            branchSpan.classList.add("patient-branch");
+            branchSpan.textContent = `Branch: ${patient.branch}`; // Assuming `branchName` is returned from your API
+
             li.appendChild(firstNameSpan);
             li.appendChild(pidSpan);
             li.appendChild(contactNumberSpan);
+            // li.appendChild(branchSpan);
 
             // Add click event listener to populate the form fields
             li.addEventListener("click", function () {
@@ -614,6 +620,7 @@
               contactNumberInput.value = patient.contactnumber;
               pidDisplay.textContent = `PID: ${patient.pid}`;
               advisedDateTimeInput.value = getCurrentDateTime(); // Set current date and time
+              locationsInput.value = patient.branch; // Set the branch name in the locations input
               searchResults.innerHTML = ""; // Clear search results after selection
             });
 
@@ -639,6 +646,7 @@
   }
 </script>
 
+
 <script>
     
  // Function to fetch branches
@@ -661,7 +669,7 @@
                         branchSelect.innerHTML = '<option value="">Select Branch</option>'; // Clear existing options
                         branches.forEach(function(branch) {
                             var option = document.createElement('option');
-                            option.value = branch.branch_code; // Assuming branch code is 'branch_code'
+                            // option.value = branch.branch_code; // Assuming branch code is 'branch_code'
                             option.textContent = branch.branchname; // Assuming branch name is 'branchname'
                             branchSelect.appendChild(option);
                         });
