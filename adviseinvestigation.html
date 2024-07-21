@@ -334,7 +334,7 @@
         
           <div class="form-group">
             <label for="advisedByFacility">Advised By Medical Facility:</label>
-            <select id="advisedByFacility" name="advisedByFacility" required>
+            <select id="advisedByFacility" name="advisedByFacility">
               <option value="">Select Facility</option>
               <option value="facility1">Facility 1</option>
               <option value="facility2">Facility 2</option>
@@ -418,7 +418,7 @@
         
           <div class="form-group">
             <label for="clinicalHistory">Clinical History (H/O):</label>
-            <textarea id="clinicalHistory" name="clinicalHistory" rows="3" required></textarea>
+            <textarea id="clinicalHistory" name="clinicalHistory" rows="3"></textarea>
           </div>
         
           <div class="form-group">
@@ -573,77 +573,85 @@
 
 <script>
   const searchInput = document.getElementById("searchInput");
-  const searchResults = document.getElementById("searchResults");
-  const patientNameInput = document.getElementById("patientname");
-  const contactNumberInput = document.getElementById("contactnumber");
-  const pidDisplay = document.getElementById("pidDisplay"); // Element to display PID
-  const advisedDateTimeInput = document.getElementById("advisedDate");
-  const locationsInput = document.getElementById("locations"); // Element to display the branch name
+const searchResults = document.getElementById("searchResults");
+const patientNameInput = document.getElementById("patientname");
+const contactNumberInput = document.getElementById("contactnumber");
+const pidDisplay = document.getElementById("pidDisplay"); // Element to display PID
+const advisedDateTimeInput = document.getElementById("advisedDate");
+const locationsInput = document.getElementById("locations"); // Element to display the branch name
+const addressInput = document.getElementById("patientAddress"); // Element to display the address
 
-  searchInput.addEventListener("input", function () {
-    const inputValue = this.value.trim();
-    if (inputValue !== "") {
-      fetch(`https://rssmarthut.com/mypath/searchpatient.php?query=${inputValue}`)
-        .then((response) => response.json())
-        .then((data) => {
-          // Clear previous results
-          searchResults.innerHTML = "";
-          // Display new results
-          data.forEach((patient) => {
-            const li = document.createElement("li");
-            li.classList.add("search-result-item");
+searchInput.addEventListener("input", function () {
+  const inputValue = this.value.trim();
+  if (inputValue !== "") {
+    fetch(`https://rssmarthut.com/mypath/searchpatient.php?query=${inputValue}`)
+      .then((response) => response.json())
+      .then((data) => {
+        // Clear previous results
+        searchResults.innerHTML = "";
+        // Display new results
+        data.forEach((patient) => {
+          const li = document.createElement("li");
+          li.classList.add("search-result-item");
 
-            const firstNameSpan = document.createElement("span");
-            firstNameSpan.classList.add("patient-firstname");
-            firstNameSpan.textContent = patient.firstname;
+          const firstNameSpan = document.createElement("span");
+          firstNameSpan.classList.add("patient-firstname");
+          firstNameSpan.textContent = patient.firstname;
 
-            const pidSpan = document.createElement("span");
-            pidSpan.classList.add("patient-pid");
-            pidSpan.textContent = `PID: ${patient.pid}`;
+          const pidSpan = document.createElement("span");
+          pidSpan.classList.add("patient-pid");
+          pidSpan.textContent = `PID: ${patient.pid}`;
 
-            const contactNumberSpan = document.createElement("div");
-            contactNumberSpan.classList.add("patient-contactnumber");
-            contactNumberSpan.textContent = `Contact: ${patient.contactnumber}`;
+          const contactNumberSpan = document.createElement("div");
+          contactNumberSpan.classList.add("patient-contactnumber");
+          contactNumberSpan.textContent = `Contact: ${patient.contactnumber}`;
 
-            const branchSpan = document.createElement("div");
-            branchSpan.classList.add("patient-branch");
-            branchSpan.textContent = `Branch: ${patient.branch}`; // Assuming `branchName` is returned from your API
+          const branchSpan = document.createElement("div");
+          branchSpan.classList.add("patient-branch");
+          branchSpan.textContent = `Branch: ${patient.branch}`;
 
-            li.appendChild(firstNameSpan);
-            li.appendChild(pidSpan);
-            li.appendChild(contactNumberSpan);
-            // li.appendChild(branchSpan);
+          const addressSpan = document.createElement("div");
+          addressSpan.classList.add("patient-address");
+          addressSpan.textContent = `Address: ${patient.address}`;
 
-            // Add click event listener to populate the form fields
-            li.addEventListener("click", function () {
-              patientNameInput.value = patient.firstname;
-              contactNumberInput.value = patient.contactnumber;
-              pidDisplay.textContent = `PID: ${patient.pid}`;
-              advisedDateTimeInput.value = getCurrentDateTime(); // Set current date and time
-              locationsInput.value = patient.branch; // Set the branch name in the locations input
-              searchResults.innerHTML = ""; // Clear search results after selection
-            });
+          li.appendChild(firstNameSpan);
+          li.appendChild(pidSpan);
+          li.appendChild(contactNumberSpan);
+          // li.appendChild(branchSpan);
+          // li.appendChild(addressSpan);
 
-            searchResults.appendChild(li);
+          // Add click event listener to populate the form fields
+          li.addEventListener("click", function () {
+            patientNameInput.value = patient.firstname;
+            contactNumberInput.value = patient.contactnumber;
+            pidDisplay.textContent = `PID: ${patient.pid}`;
+            advisedDateTimeInput.value = getCurrentDateTime(); // Set current date and time
+            locationsInput.value = patient.branch; // Set the branch name in the locations input
+            addressInput.value = patient.address; // Set the address in the address input
+            searchResults.innerHTML = ""; // Clear search results after selection
           });
-        })
-        .catch((error) => console.error("Error:", error));
-    } else {
-      // Clear search results if input is empty
-      searchResults.innerHTML = "";
-    }
-  });
 
-  // Function to get current date and time in the required format (YYYY-MM-DDTHH:MM)
-  function getCurrentDateTime() {
-    const now = new Date();
-    const year = now.getFullYear();
-    const month = String(now.getMonth() + 1).padStart(2, "0");
-    const day = String(now.getDate()).padStart(2, "0");
-    const hours = String(now.getHours()).padStart(2, "0");
-    const minutes = String(now.getMinutes()).padStart(2, "0");
-    return `${year}-${month}-${day}T${hours}:${minutes}`;
+          searchResults.appendChild(li);
+        });
+      })
+      .catch((error) => console.error("Error:", error));
+  } else {
+    // Clear search results if input is empty
+    searchResults.innerHTML = "";
   }
+});
+
+// Function to get current date and time in the required format (YYYY-MM-DDTHH:MM)
+function getCurrentDateTime() {
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, "0");
+  const day = String(now.getDate()).padStart(2, "0");
+  const hours = String(now.getHours()).padStart(2, "0");
+  const minutes = String(now.getMinutes()).padStart(2, "0");
+  return `${year}-${month}-${day}T${hours}:${minutes}`;
+}
+
 </script>
 
 
