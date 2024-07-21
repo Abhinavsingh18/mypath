@@ -660,7 +660,7 @@ function getCurrentDateTime() {
 
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
     // Function to fetch branches
     function fetchBranches() {
         var username = localStorage.getItem('username'); // Assuming the username is stored in local storage
@@ -705,7 +705,9 @@ function getCurrentDateTime() {
         var branchSelect = document.getElementById('branch');
         var selectedOption = branchSelect.options[branchSelect.selectedIndex];
         var branchCodeInput = document.getElementById('branchcode');
-        branchCodeInput.value = selectedOption.getAttribute('data-branch-code') || '';
+        if (selectedOption) {
+            branchCodeInput.value = selectedOption.getAttribute('data-branch-code') || '';
+        }
     }
 
     // Fetch branches initially
