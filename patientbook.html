@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Attractive Merging Pages</title>
+<style>
+    body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+  background: linear-gradient(135deg, #ff7e5f, #feb47b);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.container {
+  position: relative;
+  width: 80%;
+  height: 80%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+}
+
+.page {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.page1 {
+  transform: translateX(0%);
+}
+
+.page2 {
+  transform: translateX(100%);
+}
+
+button {
+  background: linear-gradient(135deg, #ff7e5f, #feb47b);
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: linear-gradient(135deg, #feb47b, #ff7e5f);
+}
+
+</style></head>
+<body>
+  <div class="container">
+    <div class="page page1">
+      <h1>Page 1</h1>
+      <p>Welcome to the first page. This page has some content that will merge with the next page.</p>
+      <button onclick="showPage(2)">Go to Page 2</button>
+    </div>
+    <div class="page page2">
+      <h1>Page 2</h1>
+      <p>Here is some content on the second page. It will merge seamlessly with the previous page.</p>
+      <button onclick="showPage(1)">Back to Page 1</button>
+    </div>
+  </div>
+  <script>
+    function showPage(pageNumber) {
+  const pages = document.querySelectorAll('.page');
+  pages.forEach((page, index) => {
+    if (index + 1 === pageNumber) {
+      page.style.transform = 'translateX(0%)';
+    } else {
+      page.style.transform = 'translateX(100%)';
+    }
+  });
+}
+
+  </script>
+</body>
+</html>

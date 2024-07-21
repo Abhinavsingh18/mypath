@@ -444,90 +444,94 @@
     <!-- The Modal -->
     <div id="myModal" class="modal">
       <div class="modal-content">
-          <span class="close">&times;</span>
-          <form id="registerPatientForm" method="POST" action="https://rssmarthut.com/mypath/patients.php">
-              <div class="form-group">
-                  <label for="title">Title:</label>
-                  <select id="title" name="title">
-                      <option value="mr">Mr.</option>
-                      <option value="mrs">Mrs.</option>
-                      <option value="ms">Ms.</option>
-                      <option value="dr">Dr.</option>
-                  </select>
-              </div>
-              <div class="form-group">
-                  <label for="firstname">First Name:</label>
-                  <input type="text" id="firstname" name="firstname" required />
-              </div>
-              <div class="form-group">
-                  <label for="lastname">Last Name:</label>
-                  <input type="text" id="lastname" name="lastname" required />
-              </div>
-              <div class="form-group">
-                  <label for="uid">UID:</label>
-                  <input type="text" id="uid" name="uid" required />
-              </div>
-              <div class="form-group">
-                  <label for="gender">Gender:</label>
-                  <select id="gender" name="gender" required>
-                      <option value="male">Male</option>
-                      <option value="female">Female</option>
-                      <option value="other">Other</option>
-                  </select>
-              </div>
-              <div class="form-group">
-                  <label for="age">Age:</label>
-                  <input type="number" id="age" name="age" required />
-              </div>
-              <div class="form-group">
-                  <label for="dob">Date of Birth:</label>
-                  <input type="date" id="dob" name="dob" required />
-              </div>
-              <div class="form-group">
-                  <label for="email">Email:</label>
-                  <input type="email" id="email" name="email" required />
-              </div>
-              <div class="form-group">
-                  <label for="address">Address:</label>
-                  <textarea id="address" name="address" rows="3" required></textarea>
-              </div>
-              <div class="form-group">
-                  <label for="branch">Branch:</label>
-                  <select id="branch" name="branch" required>
-                      <option value="">Select Branch</option>
-                  </select>
-              </div>
-              <div class="form-group">
-                  <label for="contactnumber">Contact Number:</label>
-                  <input type="tel" id="contactnumber" name="contactnumber" required />
-              </div>
-              <div class="form-group">
-                  <label for="area">Area:</label>
-                  <input type="text" id="area" name="area" required />
-              </div>
-              <div class="form-group">
-                  <label for="city">City:</label>
-                  <input type="text" id="city" name="city" required />
-              </div>
-              <div class="form-group">
-                  <label for="state">State:</label>
-                  <input type="text" id="state" name="state" required />
-              </div>
-              <div class="form-group">
-                  <label for="country">Country:</label>
-                  <input type="text" id="country" name="country" required />
-              </div>
-              <div class="form-group">
-                  <label for="pincode">Pincode:</label>
-                  <input type="text" id="pincode" name="pincode" required />
-              </div>
-              <div class="form-actions">
-                  <button type="submit">Submit</button>
-                  <button type="reset">Reset</button>
-              </div>
-          </form>
+        <span class="close">&times;</span>
+        <form id="registerPatientForm" method="POST" action="https://rssmarthut.com/mypath/patients.php">
+          <div class="form-group">
+            <label for="title">Title:</label>
+            <select id="title" name="title">
+              <option value="mr">Mr.</option>
+              <option value="mrs">Mrs.</option>
+              <option value="ms">Ms.</option>
+              <option value="dr">Dr.</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="firstname">First Name:</label>
+            <input type="text" id="firstname" name="firstname" required />
+          </div>
+          <div class="form-group">
+            <label for="lastname">Last Name:</label>
+            <input type="text" id="lastname" name="lastname" required />
+          </div>
+          <div class="form-group">
+            <label for="uid">UID:</label>
+            <input type="text" id="uid" name="uid" required />
+          </div>
+          <div class="form-group">
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender" required>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" required />
+          </div>
+          <div class="form-group">
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" name="dob" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required />
+          </div>
+          <div class="form-group">
+            <label for="address">Address:</label>
+            <textarea id="address" name="address" rows="3" required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="branch">Branch:</label>
+            <select id="branch" name="branch" required>
+              <option value="">Select Branch</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="branchcode">Branch Code:</label>
+            <input type="text" id="branchcode" name="branchcode" readonly required />
+          </div>
+          <div class="form-group">
+            <label for="contactnumber">Contact Number:</label>
+            <input type="tel" id="contactnumber" name="contactnumber" required />
+          </div>
+          <div class="form-group">
+            <label for="area">Area:</label>
+            <input type="text" id="area" name="area" required />
+          </div>
+          <div class="form-group">
+            <label for="city">City:</label>
+            <input type="text" id="city" name="city" required />
+          </div>
+          <div class="form-group">
+            <label for="state">State:</label>
+            <input type="text" id="state" name="state" required />
+          </div>
+          <div class="form-group">
+            <label for="country">Country:</label>
+            <input type="text" id="country" name="country" required />
+          </div>
+          <div class="form-group">
+            <label for="pincode">Pincode:</label>
+            <input type="text" id="pincode" name="pincode" required />
+          </div>
+          <div class="form-actions">
+            <button type="submit">Submit</button>
+            <button type="reset">Reset</button>
+          </div>
+        </form>
       </div>
-  </div>
+    </div>
   
 
     <script>
@@ -656,9 +660,9 @@ function getCurrentDateTime() {
 
 
 <script>
-    
- // Function to fetch branches
- function fetchBranches() {
+  document.addEventListener('DOMContentLoaded', function() {
+    // Function to fetch branches
+    function fetchBranches() {
         var username = localStorage.getItem('username'); // Assuming the username is stored in local storage
         if (!username) {
             console.error("Username not found in local storage.");
@@ -677,8 +681,9 @@ function getCurrentDateTime() {
                         branchSelect.innerHTML = '<option value="">Select Branch</option>'; // Clear existing options
                         branches.forEach(function(branch) {
                             var option = document.createElement('option');
-                            // option.value = branch.branch_code; // Assuming branch code is 'branch_code'
-                            option.textContent = branch.branchname; // Assuming branch name is 'branchname'
+                            option.value = branch.branchname; // Set branch name as the option value
+                            option.textContent = branch.branchname; // Set branch name as the displayed text
+                            option.setAttribute('data-branch-code', branch.branch_code); // Store branch code in data attribute
                             branchSelect.appendChild(option);
                         });
                     } catch (e) {
@@ -695,8 +700,21 @@ function getCurrentDateTime() {
         xhr.send();
     }
 
-    // Fetch branches initially to see if data is being fetched outside modal too
+    // Function to update branch code input field based on selected branch
+    function updateBranchCode() {
+        var branchSelect = document.getElementById('branch');
+        var selectedOption = branchSelect.options[branchSelect.selectedIndex];
+        var branchCodeInput = document.getElementById('branchcode');
+        branchCodeInput.value = selectedOption.getAttribute('data-branch-code') || '';
+    }
+
+    // Fetch branches initially
     fetchBranches();
+
+    // Add event listener to branch select element to update branch code on change
+    document.getElementById('branch').addEventListener('change', updateBranchCode);
+});
+
 </script>
 
     <script src="nav.js"></script>
