@@ -319,6 +319,7 @@
 
       function fetchTests(username, branchcode) {
         fetch(`https://rssmarthut.com/mypath/getTestPrices.php?username=${username}&branchcode=${branchcode}`)
+   
           .then((response) => response.json())
           .then((data) => {
             const tableBody = document.getElementById("testsTable").getElementsByTagName("tbody")[0];
