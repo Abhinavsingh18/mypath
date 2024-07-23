@@ -220,6 +220,7 @@
         }
       }
     </style>
+
   </head>
   <body>
     <div style="position: absolute; top: 0; z-index: 99">
@@ -369,11 +370,11 @@
               id="searchInput"
               placeholder="Search Patient"
               style="
-                top: 1.03vw;
-                left: 26%;
+                top:40px;
+                left: 300px;
                 padding: 6px;
                 border-radius: 7px;
-                height: 5%;
+                height: 35px;
                 border: 0.1px solid #d2b9b9;
                 width: 21vw;
                 position: absolute;
@@ -392,8 +393,8 @@
             <ul
               id="searchResults"
               style="
-                top: 4.4vw;
-                left: 26%;
+                top: 70px;
+                left:300px;
                 border-radius: 7px;
                 width: 21vw;
                 position: absolute;
@@ -607,7 +608,7 @@
           </div>
 
           <!-- Add Tests Button -->
-          <div class="form-group" style="display: none;">
+          <div class="form-group" style="display: none; ">
             <label for="addTestsButton">Add Tests:</label>
             <button type="button" id="addTestsButton">Add Tests</button>
           </div>
@@ -616,8 +617,8 @@
             <textarea id="remarks" name="remarks" rows="3"></textarea>
           </div>
 
-          <div style="display: flex;flex-direction:column;">
-            <div id="testsDiv">
+          <div style="display: flex;flex-direction:column; ">
+            <div id="testsDiv" style="overflow-y: scroll; height: 500px;">
               <h3>Add Tests</h3>
 
               <table id="testsTable">
@@ -659,7 +660,11 @@
           <div class="form-actions">
             <button type="submit">Submit</button>
           </div>
+          <div class="form-actions ">
+            <button type="submit">Print Slip</button>
+          </div>
         </form>
+        
       </div>
     </div>
 
