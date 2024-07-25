@@ -363,7 +363,7 @@
           }
         </style>
 
-<form id="adviseInvestigationForm" method="POST" action="https://rssmarthut.com/mypath/reportdata.php">
+<form id="adviseInvestigationForm" method="POST" >
   <div class="searchpatient">
       <input type="text" id="searchInput" placeholder="Search Patient" style="top:40px; left: 300px; padding: 6px; border-radius: 7px; height: 35px; border: 0.1px solid #d2b9b9; width: 21vw; position: absolute; background-color: #dcc3c3;" />
       <span id="pidDisplay" style="position: absolute; top: 1.5vw; left: 700px; font-weight: bold;"></span>
@@ -553,6 +553,10 @@
   </div>
 </form>
 
+
+
+
+
 <!-- Modal -->
 <!-- Print Modal -->
 <div id="printModal" style="display:none;">
@@ -587,9 +591,18 @@
 </script>
 
 <script>
-  document.getElementById('adviseInvestigationForm').addEventListener('submit', function(e) {
+ document.getElementById('adviseInvestigationForm').addEventListener('submit', function(e) {
     e.preventDefault();
+
+    if (this.submitted) {
+        return; // Prevent multiple submissions
+    }
+    this.submitted = true;
+
     var formData = new FormData(this);
+
+    // Serialize the selectedTests array and append it to the formData
+    formData.append('selectedTests', JSON.stringify(selectedTests));
 
     fetch('https://rssmarthut.com/mypath/reportdata.php', {
         method: 'POST',
@@ -602,9 +615,15 @@
         } else {
             alert('Form submission failed.');
         }
+        this.submitted = false; // Reset the flag after the submission is done
     })
-    .catch(error => console.error('Error:', error));
+    .catch(error => {
+        console.error('Error:', error);
+        this.submitted = false; // Reset the flag in case of an error
+    });
 });
+
+
 
 document.getElementById('printSlip').addEventListener('click', function() {
     var formData = new FormData(document.getElementById('adviseInvestigationForm'));
