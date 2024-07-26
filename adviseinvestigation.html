@@ -53,6 +53,7 @@
         border-radius: 10px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       }
+
       select,
       input,
       textarea {
@@ -161,6 +162,7 @@
         text-decoration: none;
         cursor: pointer;
       }
+
       .select {
         width: 200px;
       }
@@ -171,9 +173,11 @@
         width: 19%;
         padding: 0;
       }
+
       label > input {
         width: max-content !important;
       }
+
       #openModalBtn {
         position: relative;
         left: -20.5px;
@@ -188,10 +192,12 @@
         justify-content: center;
         gap: 5px;
       }
+
       #openModalBtn:hover {
         box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
         transition: all 0.3s ease;
       }
+
       .icn1 {
         display: flex;
         justify-content: center;
@@ -202,31 +208,38 @@
         border-radius: 50%;
         scale: 1.2;
       }
+
       .addnd {
         display: flex;
         gap: 11vw;
       }
+
       @media only screen and (max-width: 768px) {
         .maincont {
           width: auto !important;
         }
+
         .form-group .radio-group {
           flex-direction: column;
         }
+
         .container {
           margin: 0;
           width: 100%;
           scale: 0.95;
         }
+
         .form-group > input {
           scale: 1.05 !important;
         }
+
         .addnd {
           gap: 38vw;
         }
       }
     </style>
   </head>
+
   <body>
     <div style="position: absolute; top: 0; z-index: 99">
       <div id="navbar"></div>
@@ -281,12 +294,14 @@
           /* Table Styling */
           #testsTable {
             width: 50%;
-            border-collapse: separate; /* Use separate to allow border-radius to work */
+            border-collapse: separate;
+            /* Use separate to allow border-radius to work */
             border-spacing: 0;
             background-color: white;
             border: 1px solid black;
             border-radius: 10px;
-            overflow: hidden; /* To ensure rounded corners work */
+            overflow: hidden;
+            /* To ensure rounded corners work */
           }
 
           #testsTable th,
@@ -316,9 +331,11 @@
           #testsTable tbody td:last-child {
             border-bottom-right-radius: 10px;
           }
+
           .form-group {
             margin-bottom: 1rem;
           }
+
           #testsDiv {
             display: none;
             margin-top: 20px;
@@ -359,9 +376,11 @@
           .form-actions {
             margin-top: 20px;
           }
+
           button {
             border: none;
           }
+
           td button {
             width: 2rem;
             font-size: 1.5rem;
@@ -618,6 +637,11 @@
           <div style="display: flex; flex-direction: column">
             <div id="testsDiv" style="overflow-y: scroll; height: 500px">
               <h3>Add Tests</h3>
+              <input
+                type="text"
+                id="TestsSearchInput"
+                placeholder="Search for tests..."
+              />
               <table id="testsTable">
                 <thead>
                   <tr>
@@ -735,9 +759,7 @@
           });
       }
 
-      document
-        .getElementById("printSlip")
-        .addEventListener("click", function () {
+      document.getElementById("printSlip").addEventListener("click", function () {
           var formData = new FormData(
             document.getElementById("adviseInvestigationForm")
           );
@@ -775,14 +797,13 @@
     <script>
       const username = localStorage.getItem("username");
 
-      document
-        .getElementById("addTestsButton")
-        .addEventListener("click", function () {
+      document.getElementById("addTestsButton").addEventListener("click", function () {
           // const testsDiv = document.getElementById('testsDiv');
           // testsDiv.style.display = 'block';
           // Replace with actual values
         });
 
+      let allTests = []; // Variable to store all fetched tests
       const selectedTests = [];
 
       function fetchTests(username, branchcode) {
@@ -790,34 +811,39 @@
         fetch(url)
           .then((response) => response.json())
           .then((data) => {
-            const tableBody = document.querySelector("#testsTable tbody");
-            tableBody.innerHTML = ""; // Clear existing rows
-            data.forEach((test) => {
-              const row = document.createElement("tr");
-              const testNameCell = document.createElement("td");
-              testNameCell.textContent = test.testname;
-              const priceCell = document.createElement("td");
-              priceCell.textContent = test.price;
-              const actionCell = document.createElement("td");
-              actionCell.style.display = "flex";
-              actionCell.style.justifyContent = "center";
-
-              const addButton = document.createElement("button");
-              addButton.type = "button"; // Set button type to prevent form submission
-              addButton.textContent = "+";
-              addButton.addEventListener("click", function () {
-                addTest(test);
-              });
-              actionCell.appendChild(addButton);
-              row.appendChild(testNameCell);
-              row.appendChild(priceCell);
-              row.appendChild(actionCell);
-              tableBody.appendChild(row);
-            });
+            allTests = data; // Store all fetched tests
+            displayTests(allTests); // Display all tests initially
           })
           .catch((error) => {
             console.error("Error fetching tests:", error);
           });
+      }
+
+      function displayTests(tests) {
+        const tableBody = document.querySelector("#testsTable tbody");
+        tableBody.innerHTML = ""; // Clear existing rows
+        tests.forEach((test) => {
+          const row = document.createElement("tr");
+          const testNameCell = document.createElement("td");
+          testNameCell.textContent = test.testname;
+          const priceCell = document.createElement("td");
+          priceCell.textContent = test.price;
+          const actionCell = document.createElement("td");
+          actionCell.style.display = "flex";
+          actionCell.style.justifyContent = "center";
+
+          const addButton = document.createElement("button");
+          addButton.type = "button"; // Set button type to prevent form submission
+          addButton.textContent = "+";
+          addButton.addEventListener("click", function () {
+            addTest(test);
+          });
+          actionCell.appendChild(addButton);
+          row.appendChild(testNameCell);
+          row.appendChild(priceCell);
+          row.appendChild(actionCell);
+          tableBody.appendChild(row);
+        });
       }
 
       function addTest(test) {
@@ -864,6 +890,16 @@
         document.getElementById("totalPrice").textContent =
           totalPrice.toFixed(2);
       }
+
+      document.getElementById("TestsSearchInput").addEventListener("input", function () {
+          const searchQuery = this.value.toLowerCase();
+          const filteredTests = allTests.filter((test) =>
+            test.testname.toLowerCase().includes(searchQuery)
+          );
+          displayTests(filteredTests);
+        });
+
+     
     </script>
 
     <!-- The Modal -->
