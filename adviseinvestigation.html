@@ -686,7 +686,10 @@
 
           <div class="form-actions">
             <button type="submit" id="submitForm">Submit</button>
+            
+            <button type="reset" id="resetForm">Reset</button>
           </div>
+          
           <div class="form-actions">
             <button type="button" id="printSlip">Print Slip</button>
           </div>
@@ -725,79 +728,52 @@
       });
     </script>
 
-    <script>
-      const form = document.getElementById("adviseInvestigationForm");
-      if (form) {
-        form.removeEventListener("submit", formSubmitHandler); // Remove any existing listeners
-        form.addEventListener("submit", formSubmitHandler); // Add the single event listener
-      }
+<script>
+  const form = document.getElementById("adviseInvestigationForm");
+if (form) {
+    form.removeEventListener("submit", formSubmitHandler); // Remove any existing listeners
+    form.addEventListener("submit", formSubmitHandler); // Add the single event listener
+}
 
-      function formSubmitHandler(e) {
-        e.preventDefault();
+function formSubmitHandler(e) {
+    e.preventDefault();
 
-        if (this.submitted) {
-          return; // Prevent multiple submissions
+    if (this.submitted) {
+        return; // Prevent multiple submissions
+    }
+    this.submitted = true;
+
+    var formData = new FormData(this);
+
+    // Retrieve the pid value from the span element
+    var pid = document.getElementById("pidDisplay").textContent;
+
+    // Append the pid value to the FormData
+    formData.append("pid", pid);
+
+    // Serialize the selectedTests array and append it to the formData
+    formData.append("selectedTests", JSON.stringify(selectedTests));
+
+    fetch("https://rssmarthut.com/mypath/reportdata.php", {
+        method: "POST",
+        body: formData,
+    })
+    .then((response) => response.json())
+    .then((data) => {
+        if (data.success) {
+            alert("Form submitted successfully!");
+        } else {
+            alert("Form submission failed.");
         }
-        this.submitted = true;
+        this.submitted = false; // Reset the flag after the submission is done
+    })
+    .catch((error) => {
+        console.error("Error:", error);
+        this.submitted = false; // Reset the flag in case of an error
+    });
+}
 
-        var formData = new FormData(this);
-
-        // Serialize the selectedTests array and append it to the formData
-        formData.append("selectedTests", JSON.stringify(selectedTests));
-
-        fetch("https://rssmarthut.com/mypath/reportdata.php", {
-          method: "POST",
-          body: formData,
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            if (data.success) {
-              alert("Form submitted successfully!");
-            } else {
-              alert("Form submission failed.");
-            }
-            this.submitted = false; // Reset the flag after the submission is done
-          })
-          .catch((error) => {
-            console.error("Error:", error);
-            this.submitted = false; // Reset the flag in case of an error
-          });
-      }
-
-      document.getElementById("printSlip").addEventListener("click", function () {
-          var formData = new FormData(
-            document.getElementById("adviseInvestigationForm")
-          );
-          var modalContent = "";
-
-          formData.forEach((value, key) => {
-            modalContent +=
-              "<p><strong>" + key + ":</strong> " + value + "</p>";
-          });
-
-          document.getElementById("modalFormData").innerHTML = modalContent;
-
-          var selectedTestsTable = document
-            .getElementById("selectedTestsTable")
-            .cloneNode(true);
-          selectedTestsTable.removeAttribute("id");
-          document.getElementById("modalSelectedTests").innerHTML = "";
-          document
-            .getElementById("modalSelectedTests")
-            .appendChild(selectedTestsTable);
-
-          document.getElementById("printModal").style.display = "block";
-        });
-
-      function printPage() {
-        var printContent = document.getElementById("modalContent").innerHTML;
-        var originalContent = document.body.innerHTML;
-        document.body.innerHTML = printContent;
-        window.print();
-        document.body.innerHTML = originalContent;
-        document.getElementById("printModal").style.display = "none";
-      }
-    </script>
+</script>
 
     <script>
       const username = localStorage.getItem("username");
