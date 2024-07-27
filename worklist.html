@@ -117,65 +117,11 @@
         <li class="branches">
           <a href="#">Branches</a>
           <div class="testdropdwn k-content" tabindex="-1">
-            <div
-              class="scroll-pane"
-              style="overflow: hidden; padding: 0px; width: 140px"
-            >
+            <div class="scroll-pane" style="overflow: hidden; padding: 0px; width: 140px">
               <div class="jspContainer" style="width: 140px; height: 270px">
-                <div
-                  class="jspPane"
-                  style="padding: 0px; top: 0px; width: 140px"
-                >
-                  <div id="selectBranches" style="display: none">
-                    <p>
-                      <input
-                        type="checkbox"
-                        name="branch"
-                        id="chkLocation0"
-                      /><label for="chkLocation0"
-                        ><span></span>Samarpan Health Care Institute</label
-                      >
-                    </p>
-                    <p>
-                      <input
-                        type="checkbox"
-                        name="branch"
-                        id="chkLocation1"
-                      /><label for="chkLocation1"
-                        ><span></span>Samarpan Health Care Institute jiwaji
-                        nagar</label
-                      >
-                    </p>
-                    <p>
-                      <input
-                        type="checkbox"
-                        name="branch"
-                        id="chkLocation2"
-                      /><label for="chkLocation2"
-                        ><span></span>Samarpan Health Care Institute garima
-                        hospital</label
-                      >
-                    </p>
-                    <p>
-                      <input
-                        type="checkbox"
-                        name="branch"
-                        id="chkLocation3"
-                      /><label for="chkLocation3"
-                        ><span></span>Samarpan Health Care Institute patali
-                        hanuman hazira</label
-                      >
-                    </p>
-                    <p>
-                      <input
-                        type="checkbox"
-                        name="branch"
-                        id="chkLocation4"
-                      /><label for="chkLocation4"
-                        ><span></span>Samarpan Health Care Institute lakkad
-                        khana</label
-                      >
-                    </p>
+                <div class="jspPane" style="padding: 0px; top: 0px; width: 140px">
+                  <div id="selectBranches">
+                    <!-- Branches will be dynamically inserted here -->
                   </div>
                 </div>
               </div>
@@ -560,6 +506,7 @@
         </li>
       </ul>
     </div>
+
     <div>
       <div class="grdhdng">
         <h2>Investigation Worklist</h2>
@@ -1029,8 +976,83 @@
           </div>
         </div>
       </div> 
-    </div>
+    </div> 
+
     <script src="./nav.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+$(document).ready(function() {
+    // Get username from local storage
+    var username = localStorage.getItem('username');
+
+    // Check if username exists in local storage
+    if (!username) {
+        console.error('No username found in local storage.');
+        return;
+    }
+
+    // Fetch branches based on username
+    $.ajax({
+        url: 'https://rssmarthut.com/mypath/fetchBranches.php',
+        type: 'GET',
+        data: { username: encodeURIComponent(username) },
+        dataType: 'json',
+        success: function(data) {
+            if (data.error) {
+                console.error(data.error);
+                return;
+            }
+
+            var branchDropdown = $('#selectBranches');
+            branchDropdown.empty(); // Clear existing entries
+
+            if (data.length === 0) {
+                branchDropdown.append('<p>No branches found.</p>');
+                return;
+            }
+
+            // Populate dropdown with branch names
+            $.each(data, function(index, branch) {
+                branchDropdown.append(
+                    '<p><input type="checkbox" class="branch-checkbox" data-branch-id="' + branch.branchid + '" id="chkLocation' + index + 
+                    '"/><label for="chkLocation' + index + '"><span></span>' + 
+                    branch.branchname + '</label></p>'
+                );
+            });
+
+            branchDropdown.show(); // Show the dropdown if it was hidden
+        },
+        error: function(xhr, status, error) {
+            console.error('AJAX Error: ' + status + ' - ' + error);
+        }
+    });
+
+    // Event delegation to handle clicks on dynamically added checkboxes
+    $('#selectBranches').on('change', '.branch-checkbox', function() {
+        // Get the ID of the selected branch
+        var selectedBranchId = $(this).data('branch-id');
+        
+        // Get the branch name associated with the selected ID
+        var selectedBranchName = $(this).next('label').text();
+        
+        // Update the "Branches" label with the selected branch name
+        if ($(this).is(':checked')) {
+            $('.branches > a').text(selectedBranchName);
+        } else {
+            // If no branch is selected, reset the label
+            $('.branches > a').text('Branches');
+        }
+        
+        // Handle the selected branch ID and perform additional actions if needed
+        console.log(`Branch selected: ${selectedBranchId}`);
+    });
+});
+
+    </script>
+      
+    
 
   </body>
 </html>
