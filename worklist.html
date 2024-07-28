@@ -25,13 +25,18 @@
     <link rel="stylesheet" href="./assets/jquery.jscrollpane.css" />
     <link rel="stylesheet" href="./assets/kendo.common.min.css" />
     <link rel="stylesheet" href="./assets/nav.css" />
-
   </head>
   <body>
     <div id="navbar"></div>
 
     <div id="filterMenu" style="width: 100%">
-      <div id="labMenuUpper" data-role="menu" class="k-widget k-reset k-header k-menu k-menu-horizontal" tabindex="0" role="menubar">
+      <div
+        id="labMenuUpper"
+        data-role="menu"
+        class="k-widget k-reset k-header k-menu k-menu-horizontal"
+        tabindex="0"
+        role="menubar"
+      >
         <div class="topnextprevcalender">
           <div class="reminderbtn">
             <div class="btnrmd">
@@ -39,8 +44,18 @@
             </div>
           </div>
           <div class="calendarara">
-            <div style="display: flex; justify-content: center; align-items: center;" class="allbtn">
-              <i style="margin-left: 4px" class="fa-solid fa-share fa-flip-horizontal"></i>
+            <div
+              style="
+                display: flex;
+                justify-content: center;
+                align-items: center;
+              "
+              class="allbtn"
+            >
+              <i
+                style="margin-left: 4px"
+                class="fa-solid fa-share fa-flip-horizontal"
+              ></i>
             </div>
             <div class="prev">
               <i id="prevDate" class="fa-solid fa-chevron-left"></i>
@@ -50,20 +65,46 @@
             </h3>
             <div>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                <path d="M152 24c0-13.3-10.7-24-24-24s-24 10.7-24 24V64H64C28.7 64 0 92.7 0 128v16 48V448c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V192 144 128c0-35.3-28.7-64-64-64H344V24c0-13.3-10.7-24-24-24s-24 10.7-24 24V64H152V24zM48 192h80v56H48V192zm0 104h80v64H48V296zm128 0h96v64H176V296zm144 0h80v64H320V296zm80-48H320V192h80v56zm0 160v40c0 8.8-7.2 16-16 16H320V408h80zm-128 0v56H176V408h96zm-144 0v56H64c-8.8 0-16-7.2-16-16V408h80zM272 248H176V192h96v56z"/>
+                <path
+                  d="M152 24c0-13.3-10.7-24-24-24s-24 10.7-24 24V64H64C28.7 64 0 92.7 0 128v16 48V448c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V192 144 128c0-35.3-28.7-64-64-64H344V24c0-13.3-10.7-24-24-24s-24 10.7-24 24V64H152V24zM48 192h80v56H48V192zm0 104h80v64H48V296zm128 0h96v64H176V296zm144 0h80v64H320V296zm80-48H320V192h80v56zm0 160v40c0 8.8-7.2 16-16 16H320V408h80zm-128 0v56H176V408h96zm-144 0v56H64c-8.8 0-16-7.2-16-16V408h80zM272 248H176V192h96v56z"
+                />
               </svg>
               <div id="DateContainer" class="fromtodate" style="display: none">
                 <span class="arw"></span>
                 <h6>From Date</h6>
                 <div class="inptarea">
-                  <input type="text" id="txtFromDate" class="k-input" style="width: 100%;" />
+                  <input
+                    type="text"
+                    id="txtFromDate"
+                    class="k-input"
+                    style="width: 100%"
+                  />
                 </div>
                 <h6>To Date:</h6>
                 <div class="inptarea no">
-                  <input type="text" id="txtToDate" class="k-input" style="width: 100%;" />
+                  <input
+                    type="text"
+                    id="txtToDate"
+                    class="k-input"
+                    style="width: 100%"
+                  />
                 </div>
                 <div style="width: 100%; text-align: center">
-                  <a href="javascript:void(0);" id="btndateok" style="padding: 4px 10px; background: #26a6dc; border-radius: 3px; color: #fff; text-decoration: none; text-transform: uppercase; margin: 8px 0 5px; display: inline-block;">Ok</a>
+                  <a
+                    href="javascript:void(0);"
+                    id="btndateok"
+                    style="
+                      padding: 4px 10px;
+                      background: #26a6dc;
+                      border-radius: 3px;
+                      color: #fff;
+                      text-decoration: none;
+                      text-transform: uppercase;
+                      margin: 8px 0 5px;
+                      display: inline-block;
+                    "
+                    >Ok</a
+                  >
                 </div>
               </div>
             </div>
@@ -71,7 +112,15 @@
               <i id="nextDate" class="fa-solid fa-chevron-right"></i>
               <input type="button" id="NextDate" value="Next" />
             </div>
-            <div style="display: flex; justify-content: center; align-items: center;" class="reset" id="butReset">
+            <div
+              style="
+                display: flex;
+                justify-content: center;
+                align-items: center;
+              "
+              class="reset"
+              id="butReset"
+            >
               <i class="fa-solid fa-rotate-right"></i>
             </div>
           </div>
@@ -80,34 +129,38 @@
     </div>
 
     <script>
-      document.addEventListener("DOMContentLoaded", function() {
-  const dateInput = document.getElementById("lbldate");
-  let currentDate = new Date();
+      document.addEventListener("DOMContentLoaded", function () {
+        const dateInput = document.getElementById("lbldate");
+        let currentDate = new Date();
 
-  // Initialize the date input field
-  function updateDate() {
-    dateInput.value = currentDate.toISOString().split('T')[0]; // Format as YYYY-MM-DD
-  }
+        // Initialize the date input field
+        function updateDate() {
+          dateInput.value = currentDate.toISOString().split("T")[0]; // Format as YYYY-MM-DD
+        }
 
-  // Event listener for the Previous button
-  document.getElementById("prevDate").addEventListener("click", function() {
-    currentDate.setDate(currentDate.getDate() - 1); // Decrease the date by 1 day
-    updateDate();
-  });
+        // Event listener for the Previous button
+        document
+          .getElementById("prevDate")
+          .addEventListener("click", function () {
+            currentDate.setDate(currentDate.getDate() - 1); // Decrease the date by 1 day
+            updateDate();
+          });
 
-  // Event listener for the Next button
-  document.getElementById("nextDate").addEventListener("click", function() {
-    currentDate.setDate(currentDate.getDate() + 1); // Increase the date by 1 day
-    updateDate();
-  });
+        // Event listener for the Next button
+        document
+          .getElementById("nextDate")
+          .addEventListener("click", function () {
+            currentDate.setDate(currentDate.getDate() + 1); // Increase the date by 1 day
+            updateDate();
+          });
 
-  // Initialize the date display
-  updateDate();
-});
-
+        // Initialize the date display
+        updateDate();
+      });
     </script>
-     
-    <div class="worklistlinks k-widget k-reset k-header k-menu k-menu-horizontal"
+
+    <div
+      class="worklistlinks k-widget k-reset k-header k-menu k-menu-horizontal"
       id="labMenu"
       data-role="menu"
       tabindex="0"
@@ -117,9 +170,15 @@
         <li class="branches">
           <a href="#">Branches</a>
           <div class="testdropdwn k-content" tabindex="-1">
-            <div class="scroll-pane" style="overflow: hidden; padding: 0px; width: 140px">
+            <div
+              class="scroll-pane"
+              style="overflow: hidden; padding: 0px; width: 140px"
+            >
               <div class="jspContainer" style="width: 140px; height: 270px">
-                <div class="jspPane" style="padding: 0px; top: 0px; width: 140px">
+                <div
+                  class="jspPane"
+                  style="padding: 0px; top: 0px; width: 140px"
+                >
                   <div id="selectBranches">
                     <!-- Branches will be dynamically inserted here -->
                   </div>
@@ -514,7 +573,7 @@
         <input type="text" id="txtSearchWorkList" placeholder="Search" />
       </div>
 
-    <div
+      <div
         id="grid"
         oncontextmenu="return false;"
         data-role="grid"
@@ -539,14 +598,12 @@
                 <col style="width: 60px" />
                 <col style="width: 60px" />
               </colgroup>
-              <thead>
-                
-              </thead>
+              <thead></thead>
             </table>
           </div>
         </div>
         <div class="k-grid-content scroll-pane" style="height: 418.8px">
-          <table
+          <!-- <table
             role="treegrid"
             tabindex="0"
             data-role="selectable"
@@ -568,13 +625,46 @@
               <col style="width: 60px" />
               <col style="width: 60px" />
             </colgroup>
-            <tbody>
-              
-           
-             
+            
+          </table> -->
+          <table
+            role="treegrid"
+            tabindex="0"
+            data-role="selectable"
+            class="k-selectable"
+            style="height: auto;padding: 15px;"
+          >
+            <colgroup>
+              <col style="width: 90px" />
+              <col style="width: 160px" />
+              <col style="width: 150px" />
+              <col style="width: 155px" />
+              <col style="width: 160px" />
+              <col style="width: 150px" />
+            </colgroup>
+            <thead style="padding: 15px;">
+              <tr>
+                <th>Serial No.</th>
+                <th>PID</th>
+                <th>Patient Name</th>
+                <th>Advised Date</th>
+                <!-- <th>Selected Tests</th> -->
+                <th>Advised By Doctor</th>
+                <th>Advised By Facility</th>
+                <th>Ref</th>
+                <th>Total</th>
+                <th>Dis</th>
+                <th>Tax</th>
+                <th>Net</th>
+                <th>Bal</th>
+              </tr>
+            </thead>
+            <tbody id="patientsTableBody">
+              <!-- Patient rows will be dynamically inserted here -->
             </tbody>
           </table>
         </div>
+
         <div class="k-grid-footer" tabindex="-1" style="padding-right: 0px">
           <div class="k-grid-footer-wrap">
             <table>
@@ -652,84 +742,164 @@
           ><span class="k-pager-info k-label">1 - 20 of 28 items</span>
         </div>
       </div>
-
-    </div> 
+    </div>
 
     <script src="./nav.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
-$(document).ready(function() {
-    // Get username from local storage
-    var username = localStorage.getItem('username');
+      $(document).ready(function () {
+        // Get username from local storage
+        var username = localStorage.getItem("username");
 
-    // Check if username exists in local storage
-    if (!username) {
-        console.error('No username found in local storage.');
-        return;
-    }
+        // Check if username exists in local storage
+        if (!username) {
+          console.error("No username found in local storage.");
+          return;
+        }
 
-    // Fetch branches based on username
-    $.ajax({
-        url: 'https://rssmarthut.com/mypath/fetchBranches.php',
-        type: 'GET',
-        data: { username: encodeURIComponent(username) },
-        dataType: 'json',
-        success: function(data) {
+        // Fetch branches based on username
+        $.ajax({
+          url: "https://rssmarthut.com/mypath/fetchBranches.php",
+          type: "GET",
+          data: { username: encodeURIComponent(username) },
+          dataType: "json",
+          success: function (data) {
             if (data.error) {
-                console.error(data.error);
-                return;
+              console.error(data.error);
+              return;
             }
 
-            var branchDropdown = $('#selectBranches');
+            var branchDropdown = $("#selectBranches");
             branchDropdown.empty(); // Clear existing entries
 
             if (data.length === 0) {
-                branchDropdown.append('<p>No branches found.</p>');
-                return;
+              branchDropdown.append("<p>No branches found.</p>");
+              return;
             }
 
             // Populate dropdown with branch names
-            $.each(data, function(index, branch) {
-                branchDropdown.append(
-                    '<p><input type="checkbox" class="branch-checkbox" data-branch-id="' + branch.branchid + '" id="chkLocation' + index + 
-                    '"/><label for="chkLocation' + index + '"><span></span>' + 
-                    branch.branchname + '</label></p>'
-                );
+            $.each(data, function (index, branch) {
+              branchDropdown.append(
+                '<p><input type="checkbox" class="branch-checkbox" data-branch-id="' +
+                  branch.branchid +
+                  '" id="chkLocation' +
+                  index +
+                  '"/><label for="chkLocation' +
+                  index +
+                  '"><span></span>' +
+                  branch.branchname +
+                  "</label></p>"
+              );
             });
 
             branchDropdown.show(); // Show the dropdown if it was hidden
-        },
-        error: function(xhr, status, error) {
-            console.error('AJAX Error: ' + status + ' - ' + error);
-        }
-    });
+          },
+          error: function (xhr, status, error) {
+            console.error("AJAX Error: " + status + " - " + error);
+          },
+        });
 
-    // Event delegation to handle clicks on dynamically added checkboxes
-    $('#selectBranches').on('change', '.branch-checkbox', function() {
-        // Get the ID of the selected branch
-        var selectedBranchId = $(this).data('branch-id');
-        
-        // Get the branch name associated with the selected ID
-        var selectedBranchName = $(this).next('label').text();
-        
-        // Update the "Branches" label with the selected branch name
-        if ($(this).is(':checked')) {
-            $('.branches > a').text(selectedBranchName);
-        } else {
+        // Event delegation to handle clicks on dynamically added checkboxes
+        $("#selectBranches").on("change", ".branch-checkbox", function () {
+          // Get the ID of the selected branch
+          var selectedBranchId = $(this).data("branch-id");
+
+          // Get the branch name associated with the selected ID
+          var selectedBranchName = $(this).next("label").text();
+
+          // Update the "Branches" label with the selected branch name
+          if ($(this).is(":checked")) {
+            $(".branches > a").text(selectedBranchName);
+          } else {
             // If no branch is selected, reset the label
-            $('.branches > a').text('Branches');
-        }
-        
-        // Handle the selected branch ID and perform additional actions if needed
-        
-    });
-});
-
+            $(".branches > a").text("Branches");
+          }
+          const date = document.getElementById("lbldate").value;
+          console.log(date)
+          fetchPatients(selectedBranchName,date);
+          // Handle the selected branch ID and perform additional actions if needed
+        });
+      });
     </script>
-      
-    
 
+    <script>
+      function fetchPatients(branchname, date) {
+        $.ajax({
+          url: "https://rssmarthut.com/mypath/worklist.php",
+          type: "GET",
+          data: { branchname: branchname, date: date },
+          dataType: "json",
+          success: function (data) {
+            if (data.error) {
+              console.error(data.error);
+              return;
+            }
+
+            // Get the table body element
+            const tableBody = document.getElementById("patientsTableBody");
+            tableBody.innerHTML = ""; // Clear existing rows
+
+            // Populate the table with patient data
+            data.forEach((patient) => {
+              const row = document.createElement("tr");
+
+              // Create cells for each column and append to the row
+              const idCell = document.createElement("td");
+              idCell.textContent = patient.id;
+              row.appendChild(idCell);
+
+              const pidCell = document.createElement("td");
+              pidCell.textContent = patient.pid;
+              row.appendChild(pidCell);
+
+              const nameCell = document.createElement("td");
+              nameCell.textContent = patient.patientname;
+              row.appendChild(nameCell);
+              const dateCell = document.createElement("td");
+              dateCell.textContent = patient.advisedDate.split(' ')[0];
+              row.appendChild(dateCell);
+
+              
+              const doctorCell = document.createElement("td");
+              doctorCell.textContent = patient.advisedByDoctor;
+              row.appendChild(doctorCell);
+              const facilityCell = document.createElement("td");
+              facilityCell.textContent = patient.advisedByFacility;
+              row.appendChild(facilityCell);
+              const referredCell = document.createElement("td");
+              referredCell.textContent = patient.referredBy;
+              row.appendChild(referredCell);
+              const testsCell = document.createElement("td");
+              const selectedTestsArray = JSON.parse(patient.selectedTests);
+              const totalPrice = selectedTestsArray.reduce((sum, test) => sum + parseFloat(test.price), 0);
+              testsCell.textContent =  totalPrice.toFixed(2);
+              row.appendChild(testsCell);
+              const disCell = document.createElement("td");
+              disCell.textContent = 0;
+              row.appendChild(disCell);
+              const taxCell = document.createElement("td");
+              taxCell.textContent = 0;
+              row.appendChild(taxCell);
+              const netCell = document.createElement("td");
+              netCell.textContent = JSON.parse(patient.selectedTests).reduce((sum, test) => sum + parseFloat(test.price), 0).toFixed(2);
+              row.appendChild(netCell);
+              const balCell = document.createElement("td");
+              balCell.textContent = JSON.parse(patient.selectedTests).reduce((sum, test) => sum + parseFloat(test.price), 0).toFixed(2);
+              row.appendChild(balCell);
+
+              // Append the row to the table body
+              tableBody.appendChild(row);
+            });
+          },
+          error: function (xhr, status, error) {
+            console.error("AJAX Error: " + status + " - " + error);
+          },
+        });
+      }
+
+  
+    </script>
   </body>
 </html>
