@@ -887,11 +887,7 @@ function formSubmitHandler(e) {
     <div id="myModal" class="modal">
       <div class="modal-content">
         <span class="close">&times;</span>
-        <form
-          id="registerPatientForm"
-          method="POST"
-          action="https://rssmarthut.com/mypath/patients.php"
-        >
+        <form id="registerPatientForm" method="POST" action="https://rssmarthut.com/mypath/patients.php">
           <div class="form-group">
             <label for="title">Title:</label>
             <select id="title" name="title">
@@ -944,13 +940,12 @@ function formSubmitHandler(e) {
             </select>
           </div>
           <div class="form-group">
+            <label for="branchcode">Branch Code:</label>
+            <input type="text" id="branchcode" name="branchcode" readonly />
+          </div>
+          <div class="form-group">
             <label for="contactnumber">Contact Number:</label>
-            <input
-              type="tel"
-              id="contactnumber"
-              name="contactnumber"
-              required
-            />
+            <input type="tel" id="contactnumber" name="contactnumber" required />
           </div>
           <div class="form-group">
             <label for="area">Area:</label>
@@ -979,6 +974,7 @@ function formSubmitHandler(e) {
         </form>
       </div>
     </div>
+    
 
     <script>
       // Get the modal
@@ -1123,54 +1119,66 @@ function formSubmitHandler(e) {
       }
     </script>
 
-    <script>
-      // Function to fetch branches
-      function fetchBranches() {
-        var username = localStorage.getItem("username"); // Assuming the username is stored in local storage
-        if (!username) {
-          console.error("Username not found in local storage.");
-          return;
-        }
 
-        var xhr = new XMLHttpRequest();
-        xhr.open(
-          "GET",
-          "https://rssmarthut.com/mypath/fetchBranches.php?username=" +
-            encodeURIComponent(username),
-          true
-        );
-        xhr.onreadystatechange = function () {
-          if (xhr.readyState == 4) {
-            if (xhr.status == 200) {
-              try {
-                var branches = JSON.parse(xhr.responseText);
-                console.log("Branches fetched successfully:", branches); // Log fetched branches
-                var branchSelect = document.getElementById("branch");
-                branchSelect.innerHTML =
-                  '<option value="">Select Branch</option>'; // Clear existing options
-                branches.forEach(function (branch) {
-                  var option = document.createElement("option");
-                  // option.value = branch.branch_code; // Assuming branch code is 'branch_code'
-                  option.textContent = branch.branchname; // Assuming branch name is 'branchname'
-                  branchSelect.appendChild(option);
-                });
-              } catch (e) {
-                console.error("Failed to parse branches JSON:", e);
-              }
-            } else {
-              console.error("Failed to fetch branches. Status:", xhr.status);
-            }
+<script>
+
+  function fetchBranches() {
+    var username = localStorage.getItem("username"); // Assuming the username is stored in local storage
+    if (!username) {
+      console.error("Username not found in local storage.");
+      return;
+    }
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "https://rssmarthut.com/mypath/fetchBranches.php?username=" + encodeURIComponent(username), true);
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState == 4) {
+        if (xhr.status == 200) {
+          try {
+            var branches = JSON.parse(xhr.responseText);
+            console.log("Branches fetched successfully:", branches); // Log fetched branches
+            var branchSelect = document.getElementById("branch");
+            branchSelect.innerHTML = '<option value="">Select Branch</option>'; // Clear existing options
+            branches.forEach(function (branch) {
+              var option = document.createElement("option");
+              option.value = branch.branch_code; // Set value to branch code
+              option.textContent = branch.branchname; // Set text to branch name
+              branchSelect.appendChild(option);
+            });
+
+            // Add change event listener to update branchcode field
+            branchSelect.addEventListener("change", function () {
+              var selectedOption = branchSelect.options[branchSelect.selectedIndex];
+              var branchcodeField = document.getElementById("branchcode");
+              branchcodeField.value = selectedOption.value; // Set branch code field value
+
+              // Ensure the branch field displays the branch name (Optional, if needed)
+              // var branchField = document.getElementById("branch");
+              // branchField.value = selectedOption.textContent; // Set branch name field value
+            });
+
+          } catch (e) {
+            console.error("Failed to parse branches JSON:", e);
           }
-        };
-        xhr.onerror = function () {
-          console.error("Request failed.");
-        };
-        xhr.send();
+        } else {
+          console.error("Failed to fetch branches. Status:", xhr.status);
+        }
       }
+    };
+    xhr.onerror = function () {
+      console.error("Request failed.");
+    };
+    xhr.send();
+  }
 
-      // Fetch branches initially to see if data is being fetched outside modal too
-      fetchBranches();
-    </script>
+  // Fetch branches initially
+  fetchBranches();
+</script>
+
+
+
+
+
 
     <script src="nav.js"></script>
   </body>
