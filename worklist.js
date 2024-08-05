@@ -162,7 +162,7 @@ function fetchPatients(branchname, date) {
 
                         // Create detail table
                         const detailTableHTML = `
-                            <div class="k-grid k-widget" style="height: 160px;width:100vw; margin:auto">
+                            <div class="k-grid k-widget" style="height: 160px;width:99vw; margin:auto">
                                 <div class="k-grid-header" style="padding-right: 17px;">
                                     <div class="k-grid-header-wrap" data-role="resizable">
                                         <table role="grid">
@@ -178,11 +178,11 @@ function fetchPatients(branchname, date) {
                                             </colgroup>
                                             <thead>
                                                 <tr>
-                                                    <th style="width: 200px" class="k-header">Test Name</th>
-                                                    <th style="width: 346px" class="k-header">Report Number</th>
-                                                    <th style="width: 160px" class="k-header">Advised Date</th>
-                                                    <th style="width: 80px;" class="k-header">Report Status</th>
-                                                    <th style="width:345px" class="k-header">Sample</th>
+                                                    <th style="width: 13vw" class="k-header">Test Name</th>
+                                                    <th style="width: 23vw" class="k-header">Report Number</th>
+                                                    <th style="width: 10.6vw" class="k-header">Advised Date</th>
+                                                    <th style="width: 5.2vw;" class="k-header">Report Status</th>
+                                                    <th style="width:23vw" class="k-header">Sample</th>
                                                     <th style="width:160px" class="k-header">Panel Company</th>
                                                     
                                                 </tr>
@@ -204,7 +204,7 @@ function fetchPatients(branchname, date) {
                                             ${selectedTestsArray.map(test => `
                                                 <tr data-testdetail="testDetail" class="purple k-state-selected" aria-selected="true">
                                                     <td style="width:200px">${test.testname}</td>
-                                                    <td><a class="reportNumber" tabindex="0" style="color:red" data-patientname="${patient.patientname}" data-adviseddate="${patient.advisedDate}" data-testname="${test.testname}">${test.REPORTNUMBER}</a></td>
+                                                    <td><a class="reportNumber" tabindex="0" style="color:red" data-patientname="${patient.patientname}" data-adviseddate="${patient.advisedDate}" data-testname="${test.testname}" data-gender="${patient.gender}" data-age="${patient.age}">${test.REPORTNUMBER}</a></td>
                                                     <td style="width:160px">${patient.advisedDate.split(' ')[0]}</td>
                                                     <td style="width:80px;"></td>
                                                     <td></td>
@@ -243,12 +243,16 @@ $(document).ready(function () {
         var patientName = $(this).data('patientname');
         var advisedDate = $(this).data('adviseddate');
         var testName = $(this).data('testname');
+        var gender=$(this).data('gender')
+        var age=$(this).data('age')
 
         // Update the modal with the report number, test name, patient name, and advised date
         $('#hoverResultSrNo').text(reportNumber);
         $('#hoverTestName').text(testName);
         $('#hoverPatientName').text(patientName);
         $('#hoverAdvisedDate').text(advisedDate);
+        $('#hovergender').text(gender);
+        $('#hoverage').text(age);
 
         // Display the modal
         $('#divHoverGridResult').fadeIn(); // Using fadeIn for smooth appearance
