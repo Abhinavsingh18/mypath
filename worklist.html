@@ -704,162 +704,283 @@
       </div>
     </div>
 
+<!-- Modal Structure -->
+<div id="divHoverGridResult" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3>Result Value</h3>
+      <button class="close-btn" onclick="document.getElementById('divHoverGridResult').style.display='none';">Close</button>
+    </div>
+    <div class="modal-body">
+      <div class="patient-details">
+        <h4>
+          <p><strong>Report Number:</strong> <span id="hoverResultSrNo"></span></p>
+          <p><strong>Test Name:</strong> <span id="hoverTestName"></span></p>
+          <p><strong>Patient Name:</strong> <span id="hoverPatientName"></span></p>
+          <p><strong>Advised Date:</strong> <span id="hoverAdvisedDate"></span></p> <!-- Added for advised date -->
+
+        </h4>
+       
+      </div>
+      
+      <div class="action-buttons">
+        <button id="btnresultPublish">Publish all</button>
+        <button id="btnresultUnchk">Check all</button>
+      </div>
+      
+      <div id="grdResult" class="grid">
+        <!-- Grid Header -->
+        <div class="grid-header">
+          <table>
+            <thead>
+              <tr>
+                <th>Description</th>
+                <th>Unit</th>
+                <th>Type</th>
+                <th>Range</th>
+                <th>Result Value</th>
+                <th>Remarks</th>
+                <th>Upload</th>
+              </tr>
+            </thead>
+          </table>
+        </div>
+        
+        <!-- Grid Content -->
+        <div class="grid-body">
+          <table>
+            <tbody>
+              <!-- Example Row 1 -->
+              <tr>
+                <td>BLOOD GROUP ABO</td>
+                <td></td>
+                <td>Words</td>
+                <td></td>
+                <td>
+                  <div class="result-value">
+                    <span>O</span>
+                    <button class="edit-btn">Edit</button>
+                    <div class="edit-section">
+                      <input type="text" value="O">
+                    </div>
+                  </div>
+                </td>
+                <td><button class="remarks-btn">Remarks</button></td>
+                <td><input type="button" value="Select.."></td>
+              </tr>
+              <!-- Example Row 2 -->
+              <tr>
+                <td>RH TYPING</td>
+                <td></td>
+                <td>Words</td>
+                <td></td>
+                <td>
+                  <div class="result-value">
+                    <span>POSITIVE</span>
+                    <button class="edit-btn">Edit</button>
+                    <div class="edit-section">
+                      <input type="text" value="POSITIVE">
+                    </div>
+                  </div>
+                </td>
+                <td><button class="remarks-btn">Remarks</button></td>
+                <td><input type="button" value="Select.."></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      
+      <div id="pnlHoverResultCancelledTest" class="cancelled-tests" style="display: none;">
+        All Tests Cancelled
+      </div>
+      
+      <div class="file-upload">
+        <input type="file" id="fileUpload" multiple>
+        <button>Upload</button>
+      </div>
+      
+      <div class="modal-footer">
+        <button id="btnCalculate">Calculate Formula</button>
+        <button id="btnEditAll">Modify</button>
+        <button id="hoverResultConfirmAllSample" style="display: none;">Confirm All Samples</button>
+        <button id="btnSaveIncompleteResult">Save</button>
+        <button id="btnSaveResult">Save & Complete</button>
+        <button id="btnPreviousResults">Previous</button>
+        <button id="btnCloseResultWithoutSaving">Close</button>
+        <button id="btnNextResults">Next</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+</style>
+<style>
+  /* Modal Background */
+.modal {
+  display: none; 
+  position: fixed; 
+  z-index: 1000; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgba(0,0,0,0.4); /* Black background with opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto; 
+  padding: 20px; 
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 1200px;
+}
+
+/* Modal Header */
+.modal-header {
+  padding: 10px 15px;
+  background: #f1f1f1;
+  border-bottom: 1px solid #ddd;
+  position: relative;
+}
+
+.modal-header h3 {
+  margin: 0;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: #f44336;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+
+/* Modal Body */
+.modal-body {
+  padding: 20px;
+}
+
+.patient-details {
+  margin-bottom: 20px;
+}
+
+.detail-item {
+  margin-bottom: 10px;
+}
+
+.warning {
+  color: red;
+}
+
+.action-buttons button {
+  margin-right: 10px;
+}
+
+/* Grid */
+.grid {
+  margin-top: 20px;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.grid-header {
+  background-color: #f4f4f4;
+}
+
+.grid-header table {
+  width: 100%;
+}
+
+.grid-body table {
+  width: 100%;
+}
+
+.grid-body td, .grid-body th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.result-value {
+  display: flex;
+  align-items: center;
+}
+
+.result-value .edit-btn {
+  margin-left: 10px;
+}
+
+.edit-section {
+  display: none;
+}
+
+/* Modal Footer */
+.modal-footer {
+  padding: 10px 15px;
+  border-top: 1px solid #ddd;
+  text-align: right;
+}
+
+.file-upload {
+  margin-top: 20px;
+}
+
+</style>
+
+<script>
+  function openModal() {
+  document.getElementById('divHoverGridResult').style.display = 'block';
+}
+
+</script>
+
+
     <script src="./nav.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <script>
-      $(document).ready(function () {
-        // Get username from local storage
-        var username = localStorage.getItem("username");
-
-        // Check if username exists in local storage
-        if (!username) {
-          console.error("No username found in local storage.");
-          return;
-        }
-
-        // Fetch branches based on username
-        $.ajax({
-          url: "https://rssmarthut.com/mypath/fetchBranches.php",
-          type: "GET",
-          data: { username: encodeURIComponent(username) },
-          dataType: "json",
-          success: function (data) {
-            if (data.error) {
-              console.error(data.error);
-              return;
-            }
-
-            var branchDropdown = $("#selectBranches");
-            branchDropdown.empty(); // Clear existing entries
-
-            if (data.length === 0) {
-              branchDropdown.append("<p>No branches found.</p>");
-              return;
-            }
-
-            // Populate dropdown with branch names
-            $.each(data, function (index, branch) {
-              branchDropdown.append(
-                '<p><input type="checkbox" class="branch-checkbox" data-branch-id="' +
-                  branch.branchid +
-                  '" id="chkLocation' +
-                  index +
-                  '"/><label for="chkLocation' +
-                  index +
-                  '"><span></span>' +
-                  branch.branchname +
-                  "</label></p>"
-              );
-            });
-
-            branchDropdown.show(); // Show the dropdown if it was hidden
-          },
-          error: function (xhr, status, error) {
-            console.error("AJAX Error: " + status + " - " + error);
-          },
-        });
-
-        // Event delegation to handle clicks on dynamically added checkboxes
-        $("#selectBranches").on("change", ".branch-checkbox", function () {
-          // Get the ID of the selected branch
-          var selectedBranchId = $(this).data("branch-id");
-
-          // Get the branch name associated with the selected ID
-          var selectedBranchName = $(this).next("label").text();
-
-          // Update the "Branches" label with the selected branch name
-          if ($(this).is(":checked")) {
-            $(".branches > a").text(selectedBranchName);
-          } else {
-            // If no branch is selected, reset the label
-            $(".branches > a").text("Branches");
-          }
-          const date = document.getElementById("lbldate").value;
-          console.log(date)
-          fetchPatients(selectedBranchName,date);
-          // Handle the selected branch ID and perform additional actions if needed
-        });
-      });
-    </script>
-
-    <script>
-      function fetchPatients(branchname, date) {
-        $.ajax({
-          url: "https://rssmarthut.com/mypath/worklist.php",
-          type: "GET",
-          data: { branchname: branchname, date: date },
-          dataType: "json",
-          success: function (data) {
-            if (data.error) {
-              console.error(data.error);
-              return;
-            }
-
-            // Get the table body element
-            const tableBody = document.getElementById("patientsTableBody");
-            tableBody.innerHTML = ""; // Clear existing rows
-
-            // Populate the table with patient data
-            data.forEach((patient) => {
-              const row = document.createElement("tr");
-
-              // Create cells for each column and append to the row
-              const idCell = document.createElement("td");
-              idCell.textContent = patient.id;
-              row.appendChild(idCell);
-
-              const pidCell = document.createElement("td");
-              pidCell.textContent = patient.pid;
-              row.appendChild(pidCell);
-
-              const nameCell = document.createElement("td");
-              nameCell.textContent = patient.patientname;
-              row.appendChild(nameCell);
-              const dateCell = document.createElement("td");
-              dateCell.textContent = patient.advisedDate.split(' ')[0];
-              row.appendChild(dateCell);
-
-              
-              const doctorCell = document.createElement("td");
-              doctorCell.textContent = patient.advisedByDoctor;
-              row.appendChild(doctorCell);
-              const facilityCell = document.createElement("td");
-              facilityCell.textContent = patient.advisedByFacility;
-              row.appendChild(facilityCell);
-              const referredCell = document.createElement("td");
-              referredCell.textContent = patient.referredBy;
-              row.appendChild(referredCell);
-              const testsCell = document.createElement("td");
-              const selectedTestsArray = JSON.parse(patient.selectedTests);
-              const totalPrice = selectedTestsArray.reduce((sum, test) => sum + parseFloat(test.price), 0);
-              testsCell.textContent =  totalPrice.toFixed(2);
-              row.appendChild(testsCell);
-              const disCell = document.createElement("td");
-              disCell.textContent = 0;
-              row.appendChild(disCell);
-              const taxCell = document.createElement("td");
-              taxCell.textContent = 0;
-              row.appendChild(taxCell);
-              const netCell = document.createElement("td");
-              netCell.textContent = JSON.parse(patient.selectedTests).reduce((sum, test) => sum + parseFloat(test.price), 0).toFixed(2);
-              row.appendChild(netCell);
-              const balCell = document.createElement("td");
-              balCell.textContent = JSON.parse(patient.selectedTests).reduce((sum, test) => sum + parseFloat(test.price), 0).toFixed(2);
-              row.appendChild(balCell);
-
-              // Append the row to the table body
-              tableBody.appendChild(row);
-            });
-          },
-          error: function (xhr, status, error) {
-            console.error("AJAX Error: " + status + " - " + error);
-          },
-        });
-      }
-
-  
-    </script>
+    <script src="worklist.js"></script>
   </body>
 </html>
