@@ -211,19 +211,27 @@ function fetchRangeData(testname, age, gender, branch) {
                 return;
             }
 
+            // <p><strong>Comment:</strong> ${entry.comment || 'N/A'}</p>
+                    
+            // <div><p> ${entry.comment || 'N/A'}</p></div>
+
             let rangeDescription = "";
             data.forEach(entry => {
                 const rangeInfo = `
-                    <p><strong>Range Name:</strong> ${entry.range_name || 'N/A'}</p>
-                    <p><strong>Unit:</strong> ${entry.unit || 'N/A'}</p>
-                    <p><strong>Type:</strong> ${entry.type || 'N/A'}</p>
-                    <p><strong>Comment:</strong> ${entry.comment || 'N/A'}</p>
-                    <p><strong>Age Category:</strong> ${entry.age_category || 'N/A'}</p>
-                    <p><strong>Range:</strong> ${entry.range_from || 'N/A'} - ${entry.range_to || 'N/A'}</p>
-                    <p><strong>Critical Low:</strong> ${entry.critical_low || 'N/A'}</p>
-                    <p><strong>Critical High:</strong> ${entry.critical_high || 'N/A'}</p>
-                    <p><strong>Age From:</strong> ${entry.age_from || 'N/A'} (${entry.age_from_type || 'N/A'})</p>
-                    <p><strong>Age To:</strong> ${entry.age_to || 'N/A'} (${entry.age_to_type || 'N/A'})</p>
+                    <p style="width:18vw"> ${entry.range_name || 'N/A'}</p>
+                    <p style="width:6vw"> ${entry.unit || 'N/A'}</p>
+                    <p style="width:7.3vw"> ${entry.type || 'N/A'}</p>
+                    <p style="width:7.9vw">
+                        <span style="background-color:red;color:white;padding-left:4px;padding-right:4px;border-radius:3px">${entry.critical_low || 'N/A'}</span>
+                        <span style="background-color:#25a0ff;padding-left:4px;padding-right:4px;color:white;border-radius:3px">${entry.range_from || 'N/A'} - ${entry.range_to || 'N/A'}</span>
+                        <span style="background-color:red;color:white;padding-left:4px;padding-right:4px;border-radius:3px">${entry.critical_high || 'N/A'}</span>
+                    </p>
+                    <p style="width:19.8vw"><input type="text" placeholder="Report Value" style="border=none;border-radius:3px;border:none;margin-bottom:5.4px"></p>
+                    <p style="width:12vw"><input type="text" placeholder="Remark" style="border=none;border-radius:3px;border:none;margin-bottom:5.4px"></p>
+                    
+                   
+                  
+                 
                 `;
                 rangeDescription += rangeInfo;
             });
