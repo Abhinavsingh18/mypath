@@ -167,6 +167,18 @@
               <span class="error" id="rangeNameError"></span>
           </div>
           <div class="form-group col-md-4">
+            <label for="unit">Unit:</label>
+            <input type="text" class="form-control" id="unit" name="unit">
+        </div>
+        <div class="form-group col-md-4">
+            <label for="type">Type:</label>
+            <input type="text" class="form-control" id="type" name="type">
+        </div>
+        <div class="form-group col-md-4">
+            <label for="comment">Comment:</label>
+            <textarea class="form-control" id="comment" name="comment" rows="2"></textarea>
+        </div>
+          <div class="form-group col-md-4">
               <label for="criticalLow">Critical Low:</label>
               <input type="number" class="form-control" id="criticalLow" required>
               <span class="error" id="criticalLowError"></span>
@@ -241,6 +253,9 @@
     <thead>
         <tr>
             <th>Range Name</th>
+            <th>Unit</th>          
+            <th>Type</th>          
+            <th>Comment</th>
             <th>Critical Low</th>
             <th>Range From</th>
             <th>Range To</th>
@@ -460,11 +475,13 @@ document.addEventListener("DOMContentLoaded", function () {
 </script>
 
 <script>
-
-var dataEntries = [];
+  var dataEntries = [];
 
 function addData() {
     var rangeName = $('#rangeName').val();
+    var unit = $('#unit').val();
+    var type = $('#type').val();
+    var comment = $('#comment').val();
     var criticalLow = $('#criticalLow').val();
     var rangeFrom = $('#rangeFrom').val();
     var rangeTo = $('#rangeTo').val();
@@ -478,9 +495,12 @@ function addData() {
     var branch = $('#branch option:selected').text();
     var branchCode = $('#branchCode').val();
 
-    if (rangeName && criticalLow && rangeFrom && rangeTo && criticalHigh && gender && ageCategory && ageFrom && ageFromType && ageTo && ageToType && branch && branchCode) {
+    if (rangeName && unit && type && criticalLow && rangeFrom && rangeTo && criticalHigh && gender && ageCategory && ageFrom && ageFromType && ageTo && ageToType && branch && branchCode) {
         var newRow = `<tr>
           <td>${rangeName}</td>
+          <td>${unit}</td>
+          <td>${type}</td>
+          <td>${comment}</td>
           <td>${criticalLow}</td>
           <td>${rangeFrom}</td>
           <td>${rangeTo}</td>
@@ -501,6 +521,9 @@ function addData() {
         // Store the data entry in the array
         var dataEntry = {
             rangeName: rangeName,
+            unit: unit,
+            type: type,
+            comment: comment,
             criticalLow: criticalLow,
             rangeFrom: rangeFrom,
             rangeTo: rangeTo,
@@ -530,6 +553,7 @@ function saveData() {
         success: function(response) {
             console.log(response);
             alert('Data saved successfully!');
+            dataEntries = []; // Clear dataEntries after successful save
         },
         error: function(xhr, status, error) {
             console.error(error);
@@ -538,62 +562,67 @@ function saveData() {
     });
 }
 
- </script>
+</script>
 
 <script>
+  function fetchRangeData(testname, branchcode) {
+    fetch(`https://rssmarthut.com/mypath/getRangeData.php?branchCode=${branchcode}&rangeName=${testname}`)
+        .then(response => response.json())
+        .then(data => {
+            // Select the table body
+            const tbody = document.querySelector('#dataTable tbody');
+            const noDataMessage = document.querySelector('#noDataMessage');
 
+            // Check if there is data
+            if (data.length > 0) {
+                // Clear any existing rows in the tbody
+                tbody.innerHTML = '';
 
-function fetchRangeData(testname,branchcode) {
-  fetch(`https://rssmarthut.com/mypath/getRangeData.php?branchCode=${branchcode}&rangeName=${testname}`)
-            .then(response => response.json())
-            .then(data => {
-                // Select the table body
-                const tbody = document.querySelector('#dataTable tbody');
+                // Hide the no data message
+                noDataMessage.style.display = 'none';
 
-                // Check if there is data
-                if (data.length > 0) {
-                    // Clear any existing rows in the tbody
-                    tbody.innerHTML = '';
+                // Iterate over the data and create rows
+                data.forEach(item => {
+                    // Create a new row
+                    const row = document.createElement('tr');
 
-                    // Iterate over the data and create rows
-                    data.forEach(item => {
-                        // Create a new row
-                        const row = document.createElement('tr');
+                    // Define the columns including the new fields
+                    const columns = [
+                        item.range_name || 'N/A',
+                        item.unit || 'N/A',
+                        item.type || 'N/A',
+                        item.comment || 'N/A',
+                        item.critical_low || 'N/A',
+                        item.range_from || 'N/A',
+                        item.range_to || 'N/A',
+                        item.critical_high || 'N/A',
+                        item.gender || 'N/A',
+                        item.age_category || 'N/A',
+                        item.age_from || 'N/A',
+                        item.age_from_type || 'N/A',
+                        item.age_to || 'N/A',
+                        item.age_to_type || 'N/A',
+                        item.branch || 'N/A',
+                        item.branch_code || 'N/A'
+                    ];
 
-                        // Define the columns
-                        const columns = [
-                            item.range_name || 'N/A',
-                            item.critical_low || 'N/A',
-                            item.range_from || 'N/A',
-                            item.range_to || 'N/A',
-                            item.critical_high || 'N/A',
-                            item.gender || 'N/A',
-                            item.age_category || 'N/A',
-                            item.age_from || 'N/A',
-                            item.age_from_type || 'N/A',
-                            item.age_to || 'N/A',
-                            item.age_to_type || 'N/A',
-                            item.branch || 'N/A',
-                            item.branch_code || 'N/A'
-                        ];
-
-                        // Create and append each cell
-                        columns.forEach(text => {
-                            const cell = document.createElement('td');
-                            cell.textContent = text;
-                            row.appendChild(cell);
-                        });
-
-                        // Append the row to the tbody
-                        tbody.appendChild(row);
+                    // Create and append each cell
+                    columns.forEach(text => {
+                        const cell = document.createElement('td');
+                        cell.textContent = text;
+                        row.appendChild(cell);
                     });
-                } else {
-                    // Handle case where no data is found
-                    noDataMessage.style.display = 'block';
-                }
-            })
-            .catch(error => console.error('Error fetching range data:', error));
-          }
+
+                    // Append the row to the tbody
+                    tbody.appendChild(row);
+                });
+            } else {
+                // Handle case where no data is found
+                noDataMessage.style.display = 'block';
+            }
+        })
+        .catch(error => console.error('Error fetching range data:', error));
+}
 
 </script>
 
