@@ -641,7 +641,7 @@ function saveData() {
     const editButton = row.querySelector('button');
     editButton.textContent = 'Save';
     editButton.removeEventListener('click', () => editRow(row, item));
-    editButton.addEventListener('click', () => saveRow(row, item));
+    editButton.addEventListener('click', () => {saveRow(row, item);alert("Range Updated Successfully")});
   }
 
   function saveRow(row, item) {
