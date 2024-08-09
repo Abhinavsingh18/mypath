@@ -92,10 +92,10 @@ $(document).ready(function () {
                             const detailCell = $("<td>").addClass("k-detail-cell").attr("colspan", "12");
                             const selectedTestsHTML = selectedTestsArray.map(test => `
                                 <tr data-testdetail="testDetail" class="purple k-state-selected">
-                                    <td style="width:200px">${test.testname}</td>
-                                    <td><a class="reportNumber" tabindex="0" style="color:red" data-patientname="${patient.patientname}" data-adviseddate="${patient.advisedDate}" data-testname="${test.testname}" data-gender="${patient.gender}" data-age="${patient.age}">${test.REPORTNUMBER}</a></td>
-                                    <td style="width:160px">${patient.advisedDate.split(' ')[0]}</td>
-                                    <td style="width:80px;"></td>
+                                    <td style="width:15vw">${test.testname}</td>
+                                    <td style="width:26.2vw"><a class="reportNumber" tabindex="0" style="color:red" data-patientname="${patient.patientname}" data-adviseddate="${patient.advisedDate}" data-testname="${test.testname}" data-gender="${patient.gender}" data-age="${patient.age}">${test.REPORTNUMBER}</a></td>
+                                    <td style="width:12vw">${patient.advisedDate.split(' ')[0]}</td>
+                                    <td style="width:6vw;"></td>
                                     <td></td>
                                     <td>default</td>
                                 </tr>
@@ -129,7 +129,7 @@ $(document).ready(function () {
                                     <div class="k-grid-content" style="height: 126.4px;">
                                         <table data-role="grid" role="grid" style="height: auto;" class="k-selectable">
                                             <colgroup>
-                                                <col>
+                                                <col style="width=15vw">
                                                 <col>
                                                 <col>
                                                 <col>
