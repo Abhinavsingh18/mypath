@@ -62,10 +62,12 @@ $(document).ready(function () {
                     console.error(data.error);
                     return;
                 }
-
+    
                 const tableBody = $("#patientsTableBody");
                 tableBody.empty();
-
+    
+                let totalSum = 0;
+    
                 data.forEach(patient => {
                     const row = $("<tr>");
                     row.append(`<td>${patient.id}</td>`);
@@ -77,13 +79,16 @@ $(document).ready(function () {
                     row.append(`<td>${patient.referredBy}</td>`);
                     const selectedTestsArray = JSON.parse(patient.selectedTests);
                     const totalPrice = selectedTestsArray.reduce((sum, test) => sum + parseFloat(test.price), 0);
+                    
+                    totalSum += totalPrice;
+    
                     row.append(`<td>${totalPrice.toFixed(2)}</td>`);
                     row.append(`<td>0</td>`);
                     row.append(`<td>0</td>`);
                     row.append(`<td>${totalPrice.toFixed(2)}</td>`);
                     row.append(`<td>${totalPrice.toFixed(2)}</td>`);
                     tableBody.append(row);
-
+    
                     row.on("click", function () {
                         if ($(this).next(".k-detail-row").length) {
                             $(this).next(".k-detail-row").toggle();
@@ -146,13 +151,18 @@ $(document).ready(function () {
                         }
                     });
                 });
+    
+                // Update footer with total sum
+                $(".k-footer-template td").eq(8).text(totalSum.toFixed(2));
+                $(".k-footer-template td").eq(11).text(totalSum.toFixed(2));
+                $(".k-footer-template td").eq(12).text(totalSum.toFixed(2));
             },
             error: function (xhr, status, error) {
                 console.error("AJAX Error: " + status + " - " + error);
             }
         });
     }
-
+    
     // Handle clicks on report number links
     $(document).on('click', '.reportNumber', function (event) {
         event.preventDefault();
