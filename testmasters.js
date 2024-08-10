@@ -458,6 +458,7 @@ window.onclick = function (event) {
 
 document.addEventListener('DOMContentLoaded', function () {
 // Retrieve username from local storage and set it in the input field
+// Retrieve username from local storage and set it in the input field
 const username = localStorage.getItem('username');
 if (username) {
     document.getElementById('usernameInput').value = username;
@@ -467,15 +468,24 @@ if (username) {
         .then(response => response.json())
         .then(data => {
             const branchSelect = document.getElementById('branchSelect');
+            const branchNameInput = document.getElementById('branchNameInput');
+
             data.forEach(branch => {
                 const option = document.createElement('option');
                 option.value = branch.branch_code;
                 option.textContent = branch.branchname;
                 branchSelect.appendChild(option);
             });
+
+            // Update branchNameInput when branchSelect changes
+            branchSelect.addEventListener('change', () => {
+                const selectedBranch = branchSelect.options[branchSelect.selectedIndex];
+                branchNameInput.value = selectedBranch.textContent;
+            });
         })
         .catch(error => console.error('Error fetching branches:', error));
 }
+
 
 let allTests = [];
 

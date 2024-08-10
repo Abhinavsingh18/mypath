@@ -18,130 +18,149 @@
   <script src="nav.js"></script>
   <style>
     /* Modal styles */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-    
-}
+    .modal {
+      display: none;
+      /* Hidden by default */
+      position: fixed;
+      /* Stay in place */
+      z-index: 1;
+      /* Sit on top */
+      left: 0;
+      top: 0;
+      width: 100%;
+      /* Full width */
+      height: 100%;
+      /* Full height */
+      overflow: auto;
+      /* Enable scroll if needed */
+      background-color: rgb(0, 0, 0);
+      /* Fallback color */
+      background-color: rgba(0, 0, 0, 0.4);
+      /* Black w/ opacity */
 
-.modal-content {
-    background-color: #fefefe;
-    margin: 2% auto; /* 5% from the top and centered */
-    padding-bottom: 1.5vw;
-    border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
-    max-width: 600px; /* Max width for larger screens */
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-}
+    }
 
-.modal-header {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    padding-left: 1.5vw;
-    padding-right: 1.5vw;
-}
-
-label {
-    font-size: 18px;
-    margin-bottom: 5px;
-}
-
-select, input[type="text"], button {
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-button {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-button:hover {
-    background-color: #45a049;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-th, td {
-
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-    padding: 10px;
-}
-
-th {
-    background-color: #f2f2f2;
-}
-
-.success-msg {
-    color: green;
-    font-weight: bold;
-}
-
-.error-msg {
-    color: red;
-    font-weight: bold;
-}
-
-/* Responsive styles */
-@media screen and (max-width: 600px) {
     .modal-content {
-        width: 90%; /* Adjust the width for mobile devices */
-        padding: 10px;
-    }
-
-    label, select, input[type="text"], button {
-        font-size: 14px; /* Smaller font size for mobile */
-    }
-
-    th, td {
-        padding: 8px;
+      background-color: #fefefe;
+      margin: 2% auto;
+      /* 5% from the top and centered */
+      padding-bottom: 1.5vw;
+      border: 1px solid #888;
+      width: 80%;
+      /* Could be more or less, depending on screen size */
+      max-width: 600px;
+      /* Max width for larger screens */
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     }
 
     .modal-header {
-        font-size: 20px;
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      text-align: center;
     }
-}
 
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      padding-left: 1.5vw;
+      padding-right: 1.5vw;
+    }
+
+    label {
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+
+    select,
+    input[type="text"],
+    button {
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th,
+    td {
+
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+      padding: 10px;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    .success-msg {
+      color: green;
+      font-weight: bold;
+    }
+
+    .error-msg {
+      color: red;
+      font-weight: bold;
+    }
+
+    /* Responsive styles */
+    @media screen and (max-width: 600px) {
+      .modal-content {
+        width: 90%;
+        /* Adjust the width for mobile devices */
+        padding: 10px;
+      }
+
+      label,
+      select,
+      input[type="text"],
+      button {
+        font-size: 14px;
+        /* Smaller font size for mobile */
+      }
+
+      th,
+      td {
+        padding: 8px;
+      }
+
+      .modal-header {
+        font-size: 20px;
+      }
+    }
   </style>
 
   <div id="navbar"></div>
@@ -251,8 +270,7 @@ th {
               <input type="text" id="primaryCategoryName" name="primaryCategoryName" required
                 placeholder="ENTER THE PRIMARY CATEGORY"
                 style="padding-left:4PX; width: 18vw; border: 0.1px solid #f296fd; border-radius: 3px;background-color: #ececec;">
-              <button id="primarybtn" type="submit"
-                style="border: 0.1px solid pink;border-radius: 5px;width: 7vw;"
+              <button id="primarybtn" type="submit" style="border: 0.1px solid pink;border-radius: 5px;width: 7vw;"
                 onclick="alert('PRIMARY CATEGORY ADDED SUCCESSFULLY')">Add</button>
             </form>
 
@@ -292,7 +310,7 @@ th {
             <div class="modal-header">ADD TEST CATEGORY</div>
             <form id="addTestForm" method="POST" action="https://rssmarthut.com/mypath/testcategorysave.php"
               style="padding-left: 12px; display: flex; flex-direction: column;">
-        
+
               <div>
                 <label for="primaryCategorySelect">Primary Category:</label>
                 <select id="primaryCategorySelectInTest" name="primaryCategorySelect" required
@@ -300,7 +318,7 @@ th {
                   <!-- Options will be populated dynamically -->
                 </select>
               </div>
-        
+
               <div>
                 <label for="secondaryCategory">Secondary Category:</label>
                 <select id="secondaryCategory" name="secondaryCategory"
@@ -309,16 +327,16 @@ th {
                   <!-- Options will be populated dynamically -->
                 </select>
               </div>
-        
+
               <div>
                 <label for="testName">Test Name:</label>
                 <input type="text" id="testName" name="testName"
                   style="padding-left: 4px; width: 18vw; height: 2vw; border: 0.1px solid #f296fd; border-radius: 3px; background-color: #ececec; margin-left: 4.6vw;"
                   required>
               </div>
-        
-              
-        
+
+
+
               <button type="submit" id="testbtn"
                 style="background-color: #26a6dc; margin-bottom: 1vw; margin-top: 1vw; border: 0.1px solid #f296fd; border-radius: 6px; width: 8.5vw; margin-left: 12vw;">
                 Add Test
@@ -326,22 +344,22 @@ th {
             </form>
           </div>
         </div>
-        
-        
 
-        
-        
 
-<script>
-  function togglePackageFields(checked) {
-    const packageFields = document.getElementById('packageFields');
-    if (checked) {
-      packageFields.style.display = 'block';
-    } else {
-      packageFields.style.display = 'none';
-    }
-  }
-</script>
+
+
+
+
+        <script>
+          function togglePackageFields(checked) {
+            const packageFields = document.getElementById('packageFields');
+            if (checked) {
+              packageFields.style.display = 'block';
+            } else {
+              packageFields.style.display = 'none';
+            }
+          }
+        </script>
 
       </div>
 
@@ -362,6 +380,10 @@ th {
               <option value=""></option>
               <!-- Populate with branch options dynamically -->
             </select>
+
+            <label for="branchNameInput">Branch Name:</label>
+            <input type="text" id="branchNameInput" name="branchname" style="width: 10vw;" readonly>
+
 
             <h3>Enter Prices for Tests</h3>
             <input type="text" id="testSearch" placeholder="Search for tests..." class="form-control">
@@ -389,88 +411,87 @@ th {
 
       <div id="packageManagerModal" class="modal">
         <div class="modal-content">
-            <span class="close" id="closePackageManagerModal">&times;</span>
-            <div class="modal-header" style="background-color: #26a6dc;">PACKAGE MANAGER</div>
-            <form id="packageManagerForm" action="https://rssmarthut.com/mypath/packageManager.php" method="POST">
-                <input type="hidden" id="usernameInputInPackageManager" name="username" readonly>
-    
-                <label for="branchSelectInPackageManager">Select Branch:</label>
-                <select id="branchSelectInPackageManager" name="branch" style="width: 10vw;" required>
-                    <option value="">--Select Branch--</option>
-                    <!-- Populate with branch options dynamically -->
-                </select>
-    
-                <label for="testSelectInPackageManager">Select Package Name:</label>
-                <select id="testSelectInPackageManager" name="test" style="width: 10vw;" required>
-                    <option value="">--Select Package Name--</option>
-                    <!-- Populate with test options dynamically -->
-                </select>
-    
-                <div style="display: flex; align-items: center; margin-top: 10px;">
-                    <input type="checkbox" id="includeAsPackageCheckbox" name="includeAsPackageCheckbox"
-                        onchange="togglePackageFields(this.checked)" style="display: block; margin-right: 5px;">
-                    <label for="includeAsPackageCheckbox">Include As Package</label>
-                </div>
-    
-                <div id="packageFields" style="display: none; margin-top: 10px;">
-                    <!-- Search bar for tests -->
-                    <label for="searchTests">Search Tests:</label>
-                    <input type="text" id="searchTests" name="searchTests"
-                        style="padding-left: 4px; width: 18vw; margin-right: 700px; height: 2vw; border: 0.1px solid #f296fd; border-radius: 3px; background-color: #ececec;">
-    
-                    <ul id="searchResults" style="position: relative;">
-                        <!-- Search results will be displayed here -->
-                    </ul>
-                </div>
-    
-                <!-- Hidden input to store selected tests -->
-                <input type="hidden" id="selectedTestsInput" name="selectedTests" value="">
-    
-                <!-- Selected tests list -->
-                <ul id="selectedTestsList"></ul>
-    
-                <button type="submit" id="submitSelectedTestsBtn">Submit Selected Tests</button>
-            </form>
+          <span class="close" id="closePackageManagerModal">&times;</span>
+          <div class="modal-header" style="background-color: #26a6dc;">PACKAGE MANAGER</div>
+          <form id="packageManagerForm" action="https://rssmarthut.com/mypath/packageManager.php" method="POST">
+            <input type="hidden" id="usernameInputInPackageManager" name="username" readonly>
+
+            <label for="branchSelectInPackageManager">Select Branch:</label>
+            <select id="branchSelectInPackageManager" name="branch" style="width: 10vw;" required>
+              <option value="">--Select Branch--</option>
+              <!-- Populate with branch options dynamically -->
+            </select>
+
+            <label for="testSelectInPackageManager">Select Package Name:</label>
+            <select id="testSelectInPackageManager" name="test" style="width: 10vw;" required>
+              <option value="">--Select Package Name--</option>
+              <!-- Populate with test options dynamically -->
+            </select>
+
+            <div style="display: flex; align-items: center; margin-top: 10px;">
+              <input type="checkbox" id="includeAsPackageCheckbox" name="includeAsPackageCheckbox"
+                onchange="togglePackageFields(this.checked)" style="display: block; margin-right: 5px;">
+              <label for="includeAsPackageCheckbox">Include As Package</label>
+            </div>
+
+            <div id="packageFields" style="display: none; margin-top: 10px;">
+              <!-- Search bar for tests -->
+              <label for="searchTests">Search Tests:</label>
+              <input type="text" id="searchTests" name="searchTests"
+                style="padding-left: 4px; width: 18vw; margin-right: 700px; height: 2vw; border: 0.1px solid #f296fd; border-radius: 3px; background-color: #ececec;">
+
+              <ul id="searchResults" style="position: relative;">
+                <!-- Search results will be displayed here -->
+              </ul>
+            </div>
+
+            <!-- Hidden input to store selected tests -->
+            <input type="hidden" id="selectedTestsInput" name="selectedTests" value="">
+
+            <!-- Selected tests list -->
+            <ul id="selectedTestsList"></ul>
+
+            <button type="submit" id="submitSelectedTestsBtn">Submit Selected Tests</button>
+          </form>
         </div>
+      </div>
+
+
+
+
+
+
+
+      <style>
+        .selected-test-item {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 5px 10px;
+          border: 1px solid #ccc;
+          margin-bottom: 5px;
+        }
+
+        .remove-test-btn {
+          background-color: #f44336;
+          color: white;
+          border: none;
+          padding: 5px 10px;
+          border-radius: 3px;
+          cursor: pointer;
+        }
+
+        .remove-test-btn:hover {
+          background-color: #d32f2f;
+        }
+      </style>
+
+
+
+
     </div>
-    
-      
-      
-      
-      
-    
-    
-<style>
-  .selected-test-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 5px 10px;
-  border: 1px solid #ccc;
-  margin-bottom: 5px;
-}
 
-.remove-test-btn {
-  background-color: #f44336;
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 3px;
-  cursor: pointer;
-}
-
-.remove-test-btn:hover {
-  background-color: #d32f2f;
-}
-
-</style>      
-      
-      
-      
-
-    </div>
-
-   <script src="testmasters.js"></script>
+    <script src="testmasters.js"></script>
 
 </body>
 

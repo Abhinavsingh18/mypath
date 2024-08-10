@@ -215,19 +215,15 @@ function fetchRangeData(testname, age, gender, branch) {
         dataType: "json",
         success: function (data) {
             console.log("Data received from server:", data);
-            
+
             if (data.error) {
                 console.error("Error in response:", data.error);
                 return;
             }
 
-            // <p><strong>Comment:</strong> ${entry.comment || 'N/A'}</p>
-                    
-            // <div><p> ${entry.comment || 'N/A'}</p></div>
-
             let rangeDescription = "";
             data.forEach(entry => {
-                const rangeInfo = `
+                const rangeInfo = `<div style="display:flex">
                     <p style="width:18vw"> ${entry.range_name || 'N/A'}</p>
                     <p style="width:6vw"> ${entry.unit || 'N/A'}</p>
                     <p style="width:7.3vw"> ${entry.type || 'N/A'}</p>
@@ -238,11 +234,7 @@ function fetchRangeData(testname, age, gender, branch) {
                     </p>
                     <p style="width:19.8vw"><input type="text" placeholder="Report Value" style="border=none;border-radius:3px;border:none;margin-bottom:5.4px"></p>
                     <p style="width:12vw"><input type="text" placeholder="Remark" style="border=none;border-radius:3px;border:none;margin-bottom:5.4px"></p>
-                    
-                   
-                  
-                 
-                `;
+                </div>`;
                 rangeDescription += rangeInfo;
             });
 
