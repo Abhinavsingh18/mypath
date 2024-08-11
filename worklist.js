@@ -1,29 +1,30 @@
 
 $(document).on("click", ".print-button", function () {
   const reportNumber = $(this).siblings(".reportNumber").data("reportnumber");
+  const patientDetails = $(this).siblings(".reportNumber").data(); // Get patient details from data attributes
 
   $.ajax({
-      url: "https://rssmarthut.com/mypath/fetchDetailsToPrint.php",
-      type: "GET",
-      data: { reportNumber: reportNumber },
-      dataType: "json",
-      success: function (data) {
-          if (data.error) {
-              console.error(data.error);
-              return;
-          }
-
-          // Generate PDF
-          console.log(data);
-          generatePDF(data);
-      },
-      error: function (xhr, status, error) {
-          console.error("AJAX Error:", status, error);
+    url: "https://rssmarthut.com/mypath/fetchDetailsToPrint.php",
+    type: "GET",
+    data: { reportNumber: reportNumber, ...patientDetails }, // Pass patient details along with report number
+    dataType: "json",
+    success: function (data) {
+      if (data.error) {
+        console.error(data.error);
+        return;
       }
+
+      // Generate PDF
+      console.log(patientDetails)
+      generatePDF(data, patientDetails);
+    },
+    error: function (xhr, status, error) {
+      console.error("AJAX Error:", status, error);
+    }
   });
 });
 
-async function generatePDF(data) {
+async function generatePDF(data, patientDetails) {
   try {
     const { PDFDocument, rgb } = PDFLib;
     const pdfDoc = await PDFDocument.create();
@@ -51,10 +52,54 @@ async function generatePDF(data) {
     const idealRangeWidth = tableWidth * idealRangeWidthPercent;
 
     // Define row height
-    const rowHeight = 30;
+    const rowHeight = 30; // Height for table rows
+    const reducedRowHeight = 20; // Height for patient details
+    const lineOffset = 5; // Distance between the horizontal lines and patient details
 
-    // Draw table headers
+    // Initial yPosition
     let yPosition = height - margin - 50;
+
+    // Draw horizontal line above patient details
+    page.drawLine({
+      start: { x: margin, y: yPosition },
+      end: { x: width - margin, y: yPosition },
+      thickness: 1,
+      color: rgb(0, 0, 0),
+    });
+
+    // Draw patient details in two columns
+    const halfPageWidth = pageWidth / 2;
+    const details = [
+      `Report Number : ${patientDetails.reportnumber}`,
+      `Patient Name    : ${patientDetails.patientname}`,
+      `PID                    : ${patientDetails.pid}`,
+      `Age                    : ${patientDetails.age}(Y)`,
+      `Gender              : ${patientDetails.gender}`,
+      `ID                      : ${patientDetails.id}`,
+      `Advised Date    : ${patientDetails.adviseddate.split(" ")[0]}`,
+      `Referred By      : ${patientDetails.referredby}`,
+      `Mode                : ${patientDetails.reportdeliverymode}`,
+      `Branch              : ${patientDetails.locations}`
+    ];
+
+    details.forEach((detail, index) => {
+      if (index < 5) {
+        page.drawText(detail, { x: margin, y: yPosition - (index + 1) * reducedRowHeight - lineOffset, size: 10, color: rgb(0, 0, 0) });
+      } else {
+        page.drawText(detail, { x: halfPageWidth + margin, y: yPosition - (index - 4) * reducedRowHeight - lineOffset, size: 10, color: rgb(0, 0, 0) });
+      }
+    });
+
+    // Adjust yPosition to avoid large gaps
+    yPosition -= 7 * reducedRowHeight;
+    page.drawLine({
+      start: { x: margin, y: yPosition },
+      end: { x: width - margin, y: yPosition },
+      thickness: 1,
+      color: rgb(0, 0, 0),
+    });
+    // Draw table headers
+    yPosition -= rowHeight;
     page.drawText('TEST NAME', { x: margin, y: yPosition, size: 12, color: rgb(0, 0, 0) });
     page.drawText('UNIT', { x: margin + testNameWidth, y: yPosition, size: 12, color: rgb(0, 0, 0) });
     page.drawText('REPORT', { x: margin + testNameWidth + unitWidth, y: yPosition, size: 12, color: rgb(0, 0, 0) });
@@ -91,6 +136,14 @@ async function generatePDF(data) {
     console.error('Error generating PDF:', error);
   }
 }
+
+
+
+
+
+
+
+
 
 
 
@@ -209,12 +262,16 @@ $(document).ready(function () {
                                   <td style="width:15vw">${test.testname}</td>
                                   <td style="width:26.2vw">
                                       <a class="reportNumber" tabindex="0" style="color:red"
+                                         data-id=${patient.id}
+                                         data-referredBy=${patient.referredBy}
+                                         data-reportDeliveryMode=${patient.reportDeliveryMode}
                                          data-patientname="${patient.patientname}" 
                                          data-adviseddate="${patient.advisedDate}"
                                          data-testname="${test.testname}"
                                          data-gender="${patient.gender}" 
                                          data-age="${patient.age}" 
                                          data-pid="${patient.pid}"
+                                         data-locations="${patient.locations}"
                                          data-reportnumber="${test.REPORTNUMBER}">
                                          ${test.REPORTNUMBER}
                                       </a>
