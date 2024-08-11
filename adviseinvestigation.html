@@ -1084,7 +1084,7 @@ function formSubmitHandler(e) {
                   contactNumberInput.value = patient.contactnumber;
                   ageInput.value = patient.age; // Add this
                   genderInput.value = patient.gender; // Add this
-                  pidDisplay.textContent = `PID: ${patient.pid}`;
+                  pidDisplay.textContent = patient.pid;
                   advisedDateTimeInput.value = getCurrentDateTime(); // Set current date and time
                   locationsInput.value = patient.branch; // Set the branch name in the locations input
                   addressInput.value = patient.address; // Set the address in the address input
