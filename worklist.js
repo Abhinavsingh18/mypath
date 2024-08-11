@@ -1,111 +1,130 @@
 $(document).ready(function () {
-    // Fetch branches based on username
-    var username = localStorage.getItem("username");
+  // Fetch branches based on username
+  var username = localStorage.getItem("username");
 
-    if (!username) {
-        console.error("No username found in local storage.");
+  if (!username) {
+    console.error("No username found in local storage.");
+    return;
+  }
+
+  $.ajax({
+    url: "https://rssmarthut.com/mypath/fetchBranches.php",
+    type: "GET",
+    data: { username: encodeURIComponent(username) },
+    dataType: "json",
+    success: function (data) {
+      if (data.error) {
+        console.error(data.error);
         return;
-    }
+      }
 
-    $.ajax({
-        url: "https://rssmarthut.com/mypath/fetchBranches.php",
-        type: "GET",
-        data: { username: encodeURIComponent(username) },
-        dataType: "json",
-        success: function (data) {
-            if (data.error) {
-                console.error(data.error);
-                return;
-            }
+      var branchDropdown = $("#selectBranches");
+      branchDropdown.empty(); // Clear existing entries
 
-            var branchDropdown = $("#selectBranches");
-            branchDropdown.empty(); // Clear existing entries
+      if (data.length === 0) {
+        branchDropdown.append("<p>No branches found.</p>");
+        return;
+      }
 
-            if (data.length === 0) {
-                branchDropdown.append("<p>No branches found.</p>");
-                return;
-            }
-
-            $.each(data, function (index, branch) {
-                branchDropdown.append(
-                    `<p><input type="checkbox" class="branch-checkbox" data-branch-id="${branch.branchid}" id="chkLocation${index}"/>
+      $.each(data, function (index, branch) {
+        branchDropdown.append(
+          `<p><input type="checkbox" class="branch-checkbox" data-branch-id="${branch.branchid}" id="chkLocation${index}"/>
                     <label for="chkLocation${index}"><span></span>${branch.branchname}</label></p>`
-                );
-            });
+        );
+      });
 
-            branchDropdown.show(); // Show the dropdown if it was hidden
-        },
-        error: function (xhr, status, error) {
-            console.error("AJAX Error: " + status + " - " + error);
+      branchDropdown.show(); // Show the dropdown if it was hidden
+    },
+    error: function (xhr, status, error) {
+      console.error("AJAX Error: " + status + " - " + error);
+    },
+  });
+
+  // Handle clicks on dynamically added checkboxes
+  $("#selectBranches").on("change", ".branch-checkbox", function () {
+    var selectedBranchId = $(this).data("branch-id");
+    var selectedBranchName = $(this).next("label").text();
+    $(".branches > a").text(selectedBranchName);
+
+    const date = $("#lbldate").val();
+    fetchPatients(selectedBranchName, date);
+  });
+
+  // Fetch and display patient data
+  function fetchPatients(branchname, date) {
+    $.ajax({
+      url: "https://rssmarthut.com/mypath/worklist.php",
+      type: "GET",
+      data: { branchname: branchname, date: date },
+      dataType: "json",
+      success: function (data) {
+        if (data.error) {
+          console.error(data.error);
+          return;
         }
-    });
 
-    // Handle clicks on dynamically added checkboxes
-    $("#selectBranches").on("change", ".branch-checkbox", function () {
-        var selectedBranchId = $(this).data("branch-id");
-        var selectedBranchName = $(this).next("label").text();
-        $(".branches > a").text(selectedBranchName);
+        const tableBody = $("#patientsTableBody");
+        tableBody.empty();
 
-        const date = $("#lbldate").val();
-        fetchPatients(selectedBranchName, date);
-    });
+        let totalSum = 0;
 
-    // Fetch and display patient data
-    function fetchPatients(branchname, date) {
-        $.ajax({
-            url: "https://rssmarthut.com/mypath/worklist.php",
-            type: "GET",
-            data: { branchname: branchname, date: date },
-            dataType: "json",
-            success: function (data) {
-                if (data.error) {
-                    console.error(data.error);
-                    return;
-                }
-    
-                const tableBody = $("#patientsTableBody");
-                tableBody.empty();
-    
-                let totalSum = 0;
-    
-                data.forEach(patient => {
-                    const row = $("<tr>");
-                    row.append(`<td>${patient.id}</td>`);
-                    row.append(`<td>${patient.pid}</td>`);
-                    row.append(`<td>${patient.patientname}</td>`);
-                    row.append(`<td>${patient.advisedDate.split(' ')[0]}</td>`);
-                    row.append(`<td>${patient.advisedByDoctor}</td>`);
-                    row.append(`<td>${patient.advisedByFacility}</td>`);
-                    row.append(`<td>${patient.referredBy}</td>`);
-                    const selectedTestsArray = JSON.parse(patient.selectedTests);
-                    const totalPrice = selectedTestsArray.reduce((sum, test) => sum + parseFloat(test.price), 0);
-                    
-                    totalSum += totalPrice;
-    
-                    row.append(`<td>${totalPrice.toFixed(2)}</td>`);
-                    row.append(`<td>0</td>`);
-                    row.append(`<td>0</td>`);
-                    row.append(`<td>${totalPrice.toFixed(2)}</td>`);
-                    row.append(`<td>${totalPrice.toFixed(2)}</td>`);
-                    tableBody.append(row);
-    
-                    row.on("click", function () {
-                        if ($(this).next(".k-detail-row").length) {
-                            $(this).next(".k-detail-row").toggle();
-                        } else {
-                            const detailRow = $("<tr>").addClass("k-detail-row k-alt");
-                            const detailCell = $("<td>").addClass("k-detail-cell").attr("colspan", "12");
-                            const selectedTestsHTML = selectedTestsArray.map(test => `
+        data.forEach((patient) => {
+          const row = $("<tr>");
+          row.append(`<td>${patient.id}</td>`);
+          row.append(`<td>${patient.pid}</td>`);
+          row.append(`<td>${patient.patientname}</td>`);
+          row.append(`<td>${patient.advisedDate.split(" ")[0]}</td>`);
+          row.append(`<td>${patient.advisedByDoctor}</td>`);
+          row.append(`<td>${patient.advisedByFacility}</td>`);
+          row.append(`<td>${patient.referredBy}</td>`);
+          const selectedTestsArray = JSON.parse(patient.selectedTests);
+          const totalPrice = selectedTestsArray.reduce(
+            (sum, test) => sum + parseFloat(test.price),
+            0
+          );
+
+          totalSum += totalPrice;
+
+          row.append(`<td>${totalPrice.toFixed(2)}</td>`);
+          row.append(`<td>0</td>`);
+          row.append(`<td>0</td>`);
+          row.append(`<td>${totalPrice.toFixed(2)}</td>`);
+          row.append(`<td>${totalPrice.toFixed(2)}</td>`);
+          tableBody.append(row);
+
+          row.on("click", function () {
+            if ($(this).next(".k-detail-row").length) {
+              $(this).next(".k-detail-row").toggle();
+            } else {
+              const detailRow = $("<tr>").addClass("k-detail-row k-alt");
+              const detailCell = $("<td>")
+                .addClass("k-detail-cell")
+                .attr("colspan", "12");
+              const selectedTestsHTML = selectedTestsArray
+                .map(
+                  (test) => `
                                 <tr data-testdetail="testDetail" class="purple k-state-selected">
                                     <td style="width:15vw">${test.testname}</td>
-                                    <td style="width:26.2vw"><a class="reportNumber" tabindex="0" style="color:red" data-patientname="${patient.patientname}" data-adviseddate="${patient.advisedDate}" data-testname="${test.testname}" data-gender="${patient.gender}" data-age="${patient.age}" data-pid="${patient.pid}">${test.REPORTNUMBER}</a></td>
-                                    <td style="width:12vw">${patient.advisedDate.split(' ')[0]}</td>
+                                    <td style="width:26.2vw"><a class="reportNumber" tabindex="0" style="color:red" data-patientname="${
+                                      patient.patientname
+                                    }" data-adviseddate="${
+                    patient.advisedDate
+                  }" data-testname="${test.testname}" data-gender="${
+                    patient.gender
+                  }" data-age="${patient.age}" data-pid="${patient.pid}">${
+                    test.REPORTNUMBER
+                  }</a></td>
+                                    <td style="width:12vw">${
+                                      patient.advisedDate.split(" ")[0]
+                                    }</td>
                                     <td style="width:6vw;"></td>
                                     <td></td>
                                     <td>default</td>
                                 </tr>
-                            `).join('');
-                            detailCell.html(`
+                            `
+                )
+                .join("");
+              detailCell.html(`
                                 <div class="k-grid k-widget" style="height: 160px;width:99vw; margin:auto">
                                     <div class="k-grid-header" style="padding-right: 17px;">
                                         <div class="k-grid-header-wrap" data-role="resizable">
@@ -146,62 +165,64 @@ $(document).ready(function () {
                                     </div>
                                 </div>
                             `);
-                            detailRow.append(detailCell);
-                            $(this).after(detailRow);
-                        }
-                    });
-                });
-    
-                // Update footer with total sum
-                $(".k-footer-template td").eq(8).text(totalSum.toFixed(2));
-                $(".k-footer-template td").eq(11).text(totalSum.toFixed(2));
-                $(".k-footer-template td").eq(12).text(totalSum.toFixed(2));
-            },
-            error: function (xhr, status, error) {
-                console.error("AJAX Error: " + status + " - " + error);
+              detailRow.append(detailCell);
+              $(this).after(detailRow);
             }
+          });
         });
+
+        // Update footer with total sum
+        $(".k-footer-template td").eq(8).text(totalSum.toFixed(2));
+        $(".k-footer-template td").eq(11).text(totalSum.toFixed(2));
+        $(".k-footer-template td").eq(12).text(totalSum.toFixed(2));
+      },
+      error: function (xhr, status, error) {
+        console.error("AJAX Error: " + status + " - " + error);
+      },
+    });
+  }
+
+  // Handle clicks on report number links
+  $(document).on("click", ".reportNumber", function (event) {
+    event.preventDefault();
+
+    var reportNumber = $(this).text().trim();
+    var patientName = $(this).data("patientname");
+    var pidNumber = $(this).data("pid");
+    var advisedDate = $(this).data("adviseddate");
+    var testName = $(this).data("testname");
+    var gender = $(this).data("gender");
+    var age = $(this).data("age");
+    var branchName = $(".branch-checkbox:checked").next("label").text(); // Get the branch name
+
+    $("#hoverResultSrNo").text(reportNumber);
+    $("#hoverTestName").text(testName);
+    $("#hoverPatientName").text(patientName);
+    $("#hoverPidNumber").text(pidNumber);
+    $("#hoverAdvisedDate").text(advisedDate);
+    $("#hovergender").text(gender);
+    $("#hoverage").text(age);
+
+    // Fetch range data and display it
+    fetchRangeData(testName, age, gender, branchName);
+
+    $("#divHoverGridResult").fadeIn(); // Open the modal
+  });
+
+  // Close modal functionality
+  $("#MainContent_LISInvestigationWorkListControl_btnResultClose").click(
+    function () {
+      $("#divHoverGridResult").fadeOut(); // Close the modal
     }
-    
-    // Handle clicks on report number links
-    $(document).on('click', '.reportNumber', function (event) {
-        event.preventDefault();
+  );
 
-        var reportNumber = $(this).text().trim();
-        var patientName = $(this).data('patientname');
-        var pidNumber = $(this).data('pid');
-        var advisedDate = $(this).data('adviseddate');
-        var testName = $(this).data('testname');
-        var gender = $(this).data('gender');
-        var age = $(this).data('age');
-        var branchName = $(".branch-checkbox:checked").next("label").text(); // Get the branch name
+  $(window).click(function (event) {
+    if ($(event.target).is("#divHoverGridResult")) {
+      $("#divHoverGridResult").fadeOut(); // Close the modal when clicking outside
+    }
+  });
 
-        $('#hoverResultSrNo').text(reportNumber);
-        $('#hoverTestName').text(testName);
-        $('#hoverPatientName').text(patientName);
-        $('#hoverPidNumber').text(pidNumber);
-        $('#hoverAdvisedDate').text(advisedDate);
-        $('#hovergender').text(gender);
-        $('#hoverage').text(age);
-
-        // Fetch range data and display it
-        fetchRangeData(testName, age, gender, branchName);
-
-        $('#divHoverGridResult').fadeIn(); // Open the modal
-    });
-
-    // Close modal functionality
-    $('#MainContent_LISInvestigationWorkListControl_btnResultClose').click(function () {
-        $('#divHoverGridResult').fadeOut(); // Close the modal
-    });
-
-    $(window).click(function (event) {
-        if ($(event.target).is('#divHoverGridResult')) {
-            $('#divHoverGridResult').fadeOut(); // Close the modal when clicking outside
-        }
-    });
-
-function fetchRangeData(testname, age, gender, branch) {
+  function fetchRangeData(testname, age, gender, branch) {
     console.log("Parameters for AJAX request:");
     console.log("Test Name:", testname);
     console.log("Age:", age);
@@ -209,146 +230,158 @@ function fetchRangeData(testname, age, gender, branch) {
     console.log("Branch:", branch);
 
     $.ajax({
-        url: "https://rssmarthut.com/mypath/fetchRangeData.php",
-        type: "GET",
-        data: { testname: testname, age: age, gender: gender, branch: branch },
-        dataType: "json",
-        success: function (data) {
-            console.log("Data received from server:", data);
+      url: "https://rssmarthut.com/mypath/fetchRangeData.php",
+      type: "GET",
+      data: { testname: testname, age: age, gender: gender, branch: branch },
+      dataType: "json",
+      success: function (data) {
+        console.log("Data received from server:", data);
 
-            if (data.error) {
-                console.error("Error in response:", data.error);
-                return;
-            }
+        if (data.error) {
+          console.error("Error in response:", data.error);
+          return;
+        }
 
-            let rangeDescription = "";
-            data.forEach((entry, index) => {
-                const rangeInfo = `<div class="range-row" data-index="${index}" style="display:flex; align-items: center;">
-                    <p style="width:18vw">${entry.range_name || 'N/A'}</p>
-                    <p style="width:6vw">${entry.unit || 'N/A'}</p>
-                    <p style="width:7.3vw">${entry.type || 'N/A'}</p>
-                    <p style="width:7.9vw">
-                        <span style="background-color:red;color:white;padding-left:4px;padding-right:4px;border-radius:3px">${entry.critical_low || 'N/A'}</span>
-                        <span style="background-color:#25a0ff;padding-left:4px;padding-right:4px;color:white;border-radius:3px"><span>${entry.range_from || 'N/A'}</span> - <span>${entry.range_to || 'N/A'}</span></span>
-                        <span style="background-color:red;color:white;padding-left:4px;padding-right:4px;border-radius:3px">${entry.critical_high || 'N/A'}</span>
+        let rangeDescription = "";
+        data.forEach((entry, index) => {
+          const rangeInfo =
+           `<div class="range-row" data-index="${index}" style="display:flex; align-items: center;">
+                    <p style="width:18vw">${entry.range_name || "N/A"}</p>
+                    <p style="width:6vw">${entry.unit || "N/A"}</p>
+                    <p style="width:7.3vw">${entry.type || "N/A"}</p>
+                    <p style="width:8.9vw">
+                        <span style="background-color:red;color:white;padding-left:4px;padding-right:4px;border-radius:3px">${entry.critical_low || "N/A"}</span>
+                        <span style="background-color:#25a0ff;padding-left:4px;padding-right:4px;color:white;border-radius:3px"><span>${entry.range_from || "N/A"}</span> - <span>${entry.range_to || "N/A"}</span></span>
+                        <span style="background-color:red;color:white;padding-left:4px;padding-right:4px;border-radius:3px">${entry.critical_high || "N/A"}</span>
                     </p>
                     <p style="width:19.8vw"><input type="text" class="report-value" placeholder="Report Value" style="border:none;border-radius:3px;margin-bottom:5.4px"></p>
                     <p style="width:12vw"><input type="text" class="remark" placeholder="Remark" style="border:none;border-radius:3px;margin-bottom:5.4px"></p>
-                    <button class="save-row-btn" data-index="${index}">Save</button>
-                </div>`;
-                rangeDescription += rangeInfo;
-            });
-
-            $('#rangeDescription').html(rangeDescription);
-
-            // Attach event listeners to dynamically created save buttons
-            document.querySelectorAll('.save-row-btn').forEach(button => {
-                button.addEventListener('click', function() {
-                    const index = button.getAttribute('data-index');
-                    const row = document.querySelector(`.range-row[data-index='${index}']`);
-                    
-                    const rangeName = row.querySelector('p:nth-child(1)').textContent.trim();
-                    const unit = row.querySelector('p:nth-child(2)').textContent.trim();
-                    const type = row.querySelector('p:nth-child(3)').textContent.trim();
-                    const criticalLow = row.querySelector('p:nth-child(4) > span:nth-child(1)').textContent.trim();
-                    const rangeFrom = row.querySelector('p:nth-child(4) > span:nth-child(2) > span:nth-child(1)').textContent.trim();
-                    const rangeTo = row.querySelector('p:nth-child(4) > span:nth-child(2) > span:nth-child(2)').textContent.trim();
-                    const criticalHigh = row.querySelector('p:nth-child(4) > span:nth-child(3)').textContent.trim();
-                    const reportValue = row.querySelector('.report-value').value.trim();
-                    const remark = row.querySelector('.remark').value.trim();
-                    
-                    const dataToSend = {
-                        reportNumber: document.getElementById('hoverResultSrNo').textContent.trim(),
-                        testName: document.getElementById('hoverTestName').textContent.trim(),
-                        pid: document.getElementById('hoverPidNumber').textContent.trim(),
-                        rangeName,
-                        unit,
-                        type,
-                        criticalLow,
-                        rangeFrom,
-                        rangeTo,
-                        criticalHigh,
-                        reportValue,
-                        remark
-                    };
-
-                    // Log the data to console
-                    console.log('Data to send to backend:', dataToSend);
-
-                    // Send the data to the server
-                    $.ajax({
-                        url: "https://rssmarthut.com/mypath/saveRangeDetails.php",
-                        type: "POST",
-                        contentType: "application/json",
-                        data: JSON.stringify(dataToSend),
-                        success: function(response) {
-                            console.log("Data saved successfully:", response);
-                        },
-                        error: function(xhr, status, error) {
-                            console.error("Error saving data:", status, error);
-                        }
-                    });
-                });
-            });
-        },
-        error: function (xhr, status, error) {
-            console.error("AJAX Error:", status, error);
-        }
-    });
-}
-
-
-
-
-
-
-
-});
-
-$('#saveButton').click(function () {
-    var reportNumber = $('#hoverResultSrNo').text().trim();
-    
-    var reportData = [];
-    $('#rangeDescription div').each(function () {
-        var testname = $(this).find('p').eq(0).text().trim();
-        var unit = $(this).find('p').eq(1).text().trim();
-        var type = $(this).find('p').eq(2).text().trim();
-        var criticalLow = $(this).find('p').eq(3).find('span').eq(0).text().trim();
-        var criticalHigh = $(this).find('p').eq(3).find('span').eq(2).text().trim();
-        var resultValue = $(this).find('input').eq(0).val().trim();
-        var remarks = $(this).find('input').eq(1).val().trim();
-
-        reportData.push({
-            testname: testname,
-            unit: unit,
-            type: type,
-            criticalLow: criticalLow,
-            criticalHigh: criticalHigh,
-            resultValue: resultValue,
-            remarks: remarks
+                    <button style=" border-radius: 6px;border: none;padding-left: 4px;padding-right: 4px;background-color: cornflowerblue;" class="save-row-btn" data-index="${index}">Save</button>
+            </div>`;
+          rangeDescription += rangeInfo;
         });
-    });
 
-    $.ajax({
-        url: "https://rssmarthut.com/mypath/updateReportData.php",
-        type: "POST",
-        data: {
-            reportNumber: reportNumber,
-            reportData: JSON.stringify(reportData)
-        },
-        dataType: "json",
-        success: function (response) {
-            if (response.success) {
-                alert("Data saved successfully!");
-                $('#divHoverGridResult').fadeOut(); // Close the modal
-            } else {
-                console.error("Error saving data:", response.error);
-            }
-        },
-        error: function (xhr, status, error) {
-            console.error("AJAX Error: " + status + " - " + error);
-        }
+        $("#rangeDescription").html(rangeDescription);
+
+        // Attach event listeners to dynamically created save buttons
+        document.querySelectorAll(".save-row-btn").forEach((button) => {
+          button.addEventListener("click", function () {
+            const index = button.getAttribute("data-index");
+            const row = document.querySelector(
+              `.range-row[data-index='${index}']`
+            );
+
+            const rangeName = row
+              .querySelector("p:nth-child(1)")
+              .textContent.trim();
+            const unit = row.querySelector("p:nth-child(2)").textContent.trim();
+            const type = row.querySelector("p:nth-child(3)").textContent.trim();
+            const criticalLow = row
+              .querySelector("p:nth-child(4) > span:nth-child(1)")
+              .textContent.trim();
+            const rangeFrom = row
+              .querySelector(
+                "p:nth-child(4) > span:nth-child(2) > span:nth-child(1)"
+              )
+              .textContent.trim();
+            const rangeTo = row
+              .querySelector(
+                "p:nth-child(4) > span:nth-child(2) > span:nth-child(2)"
+              )
+              .textContent.trim();
+            const criticalHigh = row
+              .querySelector("p:nth-child(4) > span:nth-child(3)")
+              .textContent.trim();
+            const reportValue = row.querySelector(".report-value").value.trim();
+            const remark = row.querySelector(".remark").value.trim();
+
+            const dataToSend = {
+              reportNumber: document
+                .getElementById("hoverResultSrNo")
+                .textContent.trim(),
+              testName: document
+                .getElementById("hoverTestName")
+                .textContent.trim(),
+              pid: document.getElementById("hoverPidNumber").textContent.trim(),
+              rangeName,
+              unit,
+              type,
+              criticalLow,
+              rangeFrom,
+              rangeTo,
+              criticalHigh,
+              reportValue,
+              remark,
+            };
+
+            // Log the data to console
+            console.log("Data to send to backend:", dataToSend);
+
+            // Send the data to the server
+            $.ajax({
+              url: "https://rssmarthut.com/mypath/saveRangeDetails.php",
+              type: "POST",
+              contentType: "application/json",
+              data: JSON.stringify(dataToSend),
+              success: function (response) {
+                console.log("Data saved successfully:", response);
+              },
+              error: function (xhr, status, error) {
+                console.error("Error saving data:", status, error);
+              },
+            });
+          });
+        });
+      },
+      error: function (xhr, status, error) {
+        console.error("AJAX Error:", status, error);
+      },
     });
+  }
 });
 
+$("#saveButton").click(function () {
+  var reportNumber = $("#hoverResultSrNo").text().trim();
 
+  var reportData = [];
+  $("#rangeDescription div").each(function () {
+    var testname = $(this).find("p").eq(0).text().trim();
+    var unit = $(this).find("p").eq(1).text().trim();
+    var type = $(this).find("p").eq(2).text().trim();
+    var criticalLow = $(this).find("p").eq(3).find("span").eq(0).text().trim();
+    var criticalHigh = $(this).find("p").eq(3).find("span").eq(2).text().trim();
+    var resultValue = $(this).find("input").eq(0).val().trim();
+    var remarks = $(this).find("input").eq(1).val().trim();
+
+    reportData.push({
+      testname: testname,
+      unit: unit,
+      type: type,
+      criticalLow: criticalLow,
+      criticalHigh: criticalHigh,
+      resultValue: resultValue,
+      remarks: remarks,
+    });
+  });
+
+  $.ajax({
+    url: "https://rssmarthut.com/mypath/updateReportData.php",
+    type: "POST",
+    data: {
+      reportNumber: reportNumber,
+      reportData: JSON.stringify(reportData),
+    },
+    dataType: "json",
+    success: function (response) {
+      if (response.success) {
+        alert("Data saved successfully!");
+        $("#divHoverGridResult").fadeOut(); // Close the modal
+      } else {
+        console.error("Error saving data:", response.error);
+      }
+    },
+    error: function (xhr, status, error) {
+      console.error("AJAX Error: " + status + " - " + error);
+    },
+  });
+});
