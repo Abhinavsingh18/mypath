@@ -369,10 +369,7 @@ function attachSaveRowButtonListeners() {
                 remark,
             };
 
-            // Log the data to console
-            console.log("Data to send to backend:", dataToSend);
-
-            // Send the data to the server
+            
             $.ajax({
                 url: "https://rssmarthut.com/mypath/saveRangeDetails.php",
                 type: "POST",
