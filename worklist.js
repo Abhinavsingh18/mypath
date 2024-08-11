@@ -98,7 +98,7 @@ $(document).ready(function () {
                             const selectedTestsHTML = selectedTestsArray.map(test => `
                                 <tr data-testdetail="testDetail" class="purple k-state-selected">
                                     <td style="width:15vw">${test.testname}</td>
-                                    <td style="width:26.2vw"><a class="reportNumber" tabindex="0" style="color:red" data-patientname="${patient.patientname}" data-adviseddate="${patient.advisedDate}" data-testname="${test.testname}" data-gender="${patient.gender}" data-age="${patient.age}">${test.REPORTNUMBER}</a></td>
+                                    <td style="width:26.2vw"><a class="reportNumber" tabindex="0" style="color:red" data-patientname="${patient.patientname}" data-adviseddate="${patient.advisedDate}" data-testname="${test.testname}" data-gender="${patient.gender}" data-age="${patient.age}" data-pid="${patient.pid}">${test.REPORTNUMBER}</a></td>
                                     <td style="width:12vw">${patient.advisedDate.split(' ')[0]}</td>
                                     <td style="width:6vw;"></td>
                                     <td></td>
@@ -169,6 +169,7 @@ $(document).ready(function () {
 
         var reportNumber = $(this).text().trim();
         var patientName = $(this).data('patientname');
+        var pidNumber = $(this).data('pid');
         var advisedDate = $(this).data('adviseddate');
         var testName = $(this).data('testname');
         var gender = $(this).data('gender');
@@ -178,6 +179,7 @@ $(document).ready(function () {
         $('#hoverResultSrNo').text(reportNumber);
         $('#hoverTestName').text(testName);
         $('#hoverPatientName').text(patientName);
+        $('#hoverPidNumber').text(pidNumber);
         $('#hoverAdvisedDate').text(advisedDate);
         $('#hovergender').text(gender);
         $('#hoverage').text(age);
@@ -199,8 +201,6 @@ $(document).ready(function () {
         }
     });
 
-    // Fetch range data
-// Fetch range data
 function fetchRangeData(testname, age, gender, branch) {
     console.log("Parameters for AJAX request:");
     console.log("Test Name:", testname);
@@ -222,23 +222,74 @@ function fetchRangeData(testname, age, gender, branch) {
             }
 
             let rangeDescription = "";
-            data.forEach(entry => {
-                const rangeInfo = `<div style="display:flex">
-                    <p style="width:18vw"> ${entry.range_name || 'N/A'}</p>
-                    <p style="width:6vw"> ${entry.unit || 'N/A'}</p>
-                    <p style="width:7.3vw"> ${entry.type || 'N/A'}</p>
+            data.forEach((entry, index) => {
+                const rangeInfo = `<div class="range-row" data-index="${index}" style="display:flex; align-items: center;">
+                    <p style="width:18vw">${entry.range_name || 'N/A'}</p>
+                    <p style="width:6vw">${entry.unit || 'N/A'}</p>
+                    <p style="width:7.3vw">${entry.type || 'N/A'}</p>
                     <p style="width:7.9vw">
                         <span style="background-color:red;color:white;padding-left:4px;padding-right:4px;border-radius:3px">${entry.critical_low || 'N/A'}</span>
-                        <span style="background-color:#25a0ff;padding-left:4px;padding-right:4px;color:white;border-radius:3px">${entry.range_from || 'N/A'} - ${entry.range_to || 'N/A'}</span>
+                        <span style="background-color:#25a0ff;padding-left:4px;padding-right:4px;color:white;border-radius:3px"><span>${entry.range_from || 'N/A'}</span> - <span>${entry.range_to || 'N/A'}</span></span>
                         <span style="background-color:red;color:white;padding-left:4px;padding-right:4px;border-radius:3px">${entry.critical_high || 'N/A'}</span>
                     </p>
-                    <p style="width:19.8vw"><input type="text" placeholder="Report Value" style="border=none;border-radius:3px;border:none;margin-bottom:5.4px"></p>
-                    <p style="width:12vw"><input type="text" placeholder="Remark" style="border=none;border-radius:3px;border:none;margin-bottom:5.4px"></p>
+                    <p style="width:19.8vw"><input type="text" class="report-value" placeholder="Report Value" style="border:none;border-radius:3px;margin-bottom:5.4px"></p>
+                    <p style="width:12vw"><input type="text" class="remark" placeholder="Remark" style="border:none;border-radius:3px;margin-bottom:5.4px"></p>
+                    <button class="save-row-btn" data-index="${index}">Save</button>
                 </div>`;
                 rangeDescription += rangeInfo;
             });
 
             $('#rangeDescription').html(rangeDescription);
+
+            // Attach event listeners to dynamically created save buttons
+            document.querySelectorAll('.save-row-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const index = button.getAttribute('data-index');
+                    const row = document.querySelector(`.range-row[data-index='${index}']`);
+                    
+                    const rangeName = row.querySelector('p:nth-child(1)').textContent.trim();
+                    const unit = row.querySelector('p:nth-child(2)').textContent.trim();
+                    const type = row.querySelector('p:nth-child(3)').textContent.trim();
+                    const criticalLow = row.querySelector('p:nth-child(4) > span:nth-child(1)').textContent.trim();
+                    const rangeFrom = row.querySelector('p:nth-child(4) > span:nth-child(2) > span:nth-child(1)').textContent.trim();
+                    const rangeTo = row.querySelector('p:nth-child(4) > span:nth-child(2) > span:nth-child(2)').textContent.trim();
+                    const criticalHigh = row.querySelector('p:nth-child(4) > span:nth-child(3)').textContent.trim();
+                    const reportValue = row.querySelector('.report-value').value.trim();
+                    const remark = row.querySelector('.remark').value.trim();
+                    
+                    const dataToSend = {
+                        reportNumber: document.getElementById('hoverResultSrNo').textContent.trim(),
+                        testName: document.getElementById('hoverTestName').textContent.trim(),
+                        pid: document.getElementById('hoverPidNumber').textContent.trim(),
+                        rangeName,
+                        unit,
+                        type,
+                        criticalLow,
+                        rangeFrom,
+                        rangeTo,
+                        criticalHigh,
+                        reportValue,
+                        remark
+                    };
+
+                    // Log the data to console
+                    console.log('Data to send to backend:', dataToSend);
+
+                    // Send the data to the server
+                    $.ajax({
+                        url: "https://rssmarthut.com/mypath/saveRangeDetails.php",
+                        type: "POST",
+                        contentType: "application/json",
+                        data: JSON.stringify(dataToSend),
+                        success: function(response) {
+                            console.log("Data saved successfully:", response);
+                        },
+                        error: function(xhr, status, error) {
+                            console.error("Error saving data:", status, error);
+                        }
+                    });
+                });
+            });
         },
         error: function (xhr, status, error) {
             console.error("AJAX Error:", status, error);
@@ -248,4 +299,56 @@ function fetchRangeData(testname, age, gender, branch) {
 
 
 
+
+
+
+
 });
+
+$('#saveButton').click(function () {
+    var reportNumber = $('#hoverResultSrNo').text().trim();
+    
+    var reportData = [];
+    $('#rangeDescription div').each(function () {
+        var testname = $(this).find('p').eq(0).text().trim();
+        var unit = $(this).find('p').eq(1).text().trim();
+        var type = $(this).find('p').eq(2).text().trim();
+        var criticalLow = $(this).find('p').eq(3).find('span').eq(0).text().trim();
+        var criticalHigh = $(this).find('p').eq(3).find('span').eq(2).text().trim();
+        var resultValue = $(this).find('input').eq(0).val().trim();
+        var remarks = $(this).find('input').eq(1).val().trim();
+
+        reportData.push({
+            testname: testname,
+            unit: unit,
+            type: type,
+            criticalLow: criticalLow,
+            criticalHigh: criticalHigh,
+            resultValue: resultValue,
+            remarks: remarks
+        });
+    });
+
+    $.ajax({
+        url: "https://rssmarthut.com/mypath/updateReportData.php",
+        type: "POST",
+        data: {
+            reportNumber: reportNumber,
+            reportData: JSON.stringify(reportData)
+        },
+        dataType: "json",
+        success: function (response) {
+            if (response.success) {
+                alert("Data saved successfully!");
+                $('#divHoverGridResult').fadeOut(); // Close the modal
+            } else {
+                console.error("Error saving data:", response.error);
+            }
+        },
+        error: function (xhr, status, error) {
+            console.error("AJAX Error: " + status + " - " + error);
+        }
+    });
+});
+
+
