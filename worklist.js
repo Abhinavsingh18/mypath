@@ -230,88 +230,143 @@ $(document).ready(function () {
     console.log("Branch:", branch);
 
     $.ajax({
-      url: "https://rssmarthut.com/mypath/fetchRangeData.php",
+        url: "https://rssmarthut.com/mypath/fetchRangeData.php",
+        type: "GET",
+        data: { testname: testname, age: age, gender: gender, branch: branch },
+        dataType: "json",
+        success: function (data) {
+            console.log("Data received from server:", data);
+
+            if (data.error) {
+                console.error("Error in response:", data.error);
+                return;
+            }
+
+            let rangeDescription = "";
+            data.forEach((entry, index) => {
+                const rangeInfo =
+                    `<div class="range-row" data-index="${index}" style="display:flex; align-items: center;">
+                      <p style="width:18vw">${entry.range_name || "N/A"}</p>
+                      <p style="width:6vw">${entry.unit || "N/A"}</p>
+                      <p style="width:7.3vw">${entry.type || "N/A"}</p>
+                      <p style="width:8.9vw">
+                          <span style="background-color:red;color:white;padding-left:4px;padding-right:4px;border-radius:3px">${entry.critical_low || "N/A"}</span>
+                          <span style="background-color:#25a0ff;padding-left:4px;padding-right:4px;color:white;border-radius:3px"><span>${entry.range_from || "N/A"}</span> - <span>${entry.range_to || "N/A"}</span></span>
+                          <span style="background-color:red;color:white;padding-left:4px;padding-right:4px;border-radius:3px">${entry.critical_high || "N/A"}</span>
+                      </p>
+                      <p style="width:19.8vw"><input type="text" class="report-value" placeholder="Report Value" style="border:none;border-radius:3px;margin-bottom:5.4px"></p>
+                      <p style="width:12vw"><input type="text" class="remark" placeholder="Remark" style="border:none;border-radius:3px;margin-bottom:5.4px"></p>
+                      <button style="border-radius: 6px; border: none; padding-left: 4px; padding-right: 4px; background-color: cornflowerblue;" class="save-row-btn" data-index="${index}">Save</button>
+
+                      </div>`;
+                rangeDescription += rangeInfo;
+                fetchAndPopulateRowData(entry.range_name);
+            });
+
+            $("#rangeDescription").html(rangeDescription);
+
+            // Add the Save All button if not already present
+            const saveAllBtn = document.getElementById("saveAllBtn");
+            if (!saveAllBtn) {
+                const newSaveAllBtn = document.createElement("button");
+                newSaveAllBtn.id = "saveAllBtn";
+                newSaveAllBtn.style.borderRadius = "6px";
+                newSaveAllBtn.style.border = "none";
+                newSaveAllBtn.style.paddingLeft = "10px";
+                newSaveAllBtn.style.paddingRight = "10px";
+                newSaveAllBtn.style.backgroundColor = "green";
+                newSaveAllBtn.style.color = "white";
+                newSaveAllBtn.textContent = "Save All";
+
+                const container = document.getElementById("rangeContainer");
+                if (container) {
+                    container.appendChild(newSaveAllBtn);
+                } else {
+                    console.error("Parent container #rangeContainer not found.");
+                }
+
+                // Add event listener to Save All button
+                newSaveAllBtn.addEventListener("click", function () {
+                    document.querySelectorAll(".save-row-btn").forEach((button) => {
+                        button.click();
+                    });
+                });
+            }
+
+            // Attach event listeners to dynamically created save buttons
+            attachSaveRowButtonListeners();
+        },
+        error: function (xhr, status, error) {
+            console.error("AJAX Error:", status, error);
+        },
+    });
+}
+
+function fetchAndPopulateRowData(rangeName) {
+  const reportNumber = document.getElementById("hoverResultSrNo").textContent.trim();
+  const testName = document.getElementById("hoverTestName").textContent.trim();
+  const pid = document.getElementById("hoverPidNumber").textContent.trim();
+  
+  
+  $.ajax({
+      url: "https://rssmarthut.com/mypath/fetchDetails.php",
       type: "GET",
-      data: { testname: testname, age: age, gender: gender, branch: branch },
+      data: { reportNumber, testName, pid, rangeName },
       dataType: "json",
       success: function (data) {
-        console.log("Data received from server:", data);
+           if (data.error) {
+              console.error("Error in response:", data.error);
+              return;
+          }
+  
+          // Iterate over each row to find the matching rangeName
+          document.querySelectorAll('.range-row').forEach(row => {
+              const rowRangeName = row.querySelector('p:nth-child(1)').textContent.trim();
+  
+            
+              if (rowRangeName === rangeName) {
+                  row.querySelector(".report-value").value = data.reportValue || "N/A";
+                  row.querySelector(".remark").value = data.remark || "N/A";
+              }
+          });
+      },
+      error: function (xhr, status, error) {
+          console.error("AJAX Error:", status, error);
+      },
+  });
+  }
 
-        if (data.error) {
-          console.error("Error in response:", data.error);
-          return;
-        }
 
-        let rangeDescription = "";
-        data.forEach((entry, index) => {
-          const rangeInfo =
-           `<div class="range-row" data-index="${index}" style="display:flex; align-items: center;">
-                    <p style="width:18vw">${entry.range_name || "N/A"}</p>
-                    <p style="width:6vw">${entry.unit || "N/A"}</p>
-                    <p style="width:7.3vw">${entry.type || "N/A"}</p>
-                    <p style="width:8.9vw">
-                        <span style="background-color:red;color:white;padding-left:4px;padding-right:4px;border-radius:3px">${entry.critical_low || "N/A"}</span>
-                        <span style="background-color:#25a0ff;padding-left:4px;padding-right:4px;color:white;border-radius:3px"><span>${entry.range_from || "N/A"}</span> - <span>${entry.range_to || "N/A"}</span></span>
-                        <span style="background-color:red;color:white;padding-left:4px;padding-right:4px;border-radius:3px">${entry.critical_high || "N/A"}</span>
-                    </p>
-                    <p style="width:19.8vw"><input type="text" class="report-value" placeholder="Report Value" style="border:none;border-radius:3px;margin-bottom:5.4px"></p>
-                    <p style="width:12vw"><input type="text" class="remark" placeholder="Remark" style="border:none;border-radius:3px;margin-bottom:5.4px"></p>
-                    <button style=" border-radius: 6px;border: none;padding-left: 4px;padding-right: 4px;background-color: cornflowerblue;" class="save-row-btn" data-index="${index}">Save</button>
-            </div>`;
-          rangeDescription += rangeInfo;
-        });
 
-        $("#rangeDescription").html(rangeDescription);
-
-        // Attach event listeners to dynamically created save buttons
-        document.querySelectorAll(".save-row-btn").forEach((button) => {
-          button.addEventListener("click", function () {
+function attachSaveRowButtonListeners() {
+    document.querySelectorAll(".save-row-btn").forEach((button) => {
+        button.addEventListener("click", function () {
             const index = button.getAttribute("data-index");
-            const row = document.querySelector(
-              `.range-row[data-index='${index}']`
-            );
+            const row = document.querySelector(`.range-row[data-index='${index}']`);
 
-            const rangeName = row
-              .querySelector("p:nth-child(1)")
-              .textContent.trim();
+            const rangeName = row.querySelector("p:nth-child(1)").textContent.trim();
             const unit = row.querySelector("p:nth-child(2)").textContent.trim();
             const type = row.querySelector("p:nth-child(3)").textContent.trim();
-            const criticalLow = row
-              .querySelector("p:nth-child(4) > span:nth-child(1)")
-              .textContent.trim();
-            const rangeFrom = row
-              .querySelector(
-                "p:nth-child(4) > span:nth-child(2) > span:nth-child(1)"
-              )
-              .textContent.trim();
-            const rangeTo = row
-              .querySelector(
-                "p:nth-child(4) > span:nth-child(2) > span:nth-child(2)"
-              )
-              .textContent.trim();
-            const criticalHigh = row
-              .querySelector("p:nth-child(4) > span:nth-child(3)")
-              .textContent.trim();
+            const criticalLow = row.querySelector("p:nth-child(4) > span:nth-child(1)").textContent.trim();
+            const rangeFrom = row.querySelector("p:nth-child(4) > span:nth-child(2) > span:nth-child(1)").textContent.trim();
+            const rangeTo = row.querySelector("p:nth-child(4) > span:nth-child(2) > span:nth-child(2)").textContent.trim();
+            const criticalHigh = row.querySelector("p:nth-child(4) > span:nth-child(3)").textContent.trim();
             const reportValue = row.querySelector(".report-value").value.trim();
             const remark = row.querySelector(".remark").value.trim();
 
             const dataToSend = {
-              reportNumber: document
-                .getElementById("hoverResultSrNo")
-                .textContent.trim(),
-              testName: document
-                .getElementById("hoverTestName")
-                .textContent.trim(),
-              pid: document.getElementById("hoverPidNumber").textContent.trim(),
-              rangeName,
-              unit,
-              type,
-              criticalLow,
-              rangeFrom,
-              rangeTo,
-              criticalHigh,
-              reportValue,
-              remark,
+                reportNumber: document.getElementById("hoverResultSrNo").textContent.trim(),
+                testName: document.getElementById("hoverTestName").textContent.trim(),
+                pid: document.getElementById("hoverPidNumber").textContent.trim(),
+                rangeName,
+                unit,
+                type,
+                criticalLow,
+                rangeFrom,
+                rangeTo,
+                criticalHigh,
+                reportValue,
+                remark,
             };
 
             // Log the data to console
@@ -319,25 +374,24 @@ $(document).ready(function () {
 
             // Send the data to the server
             $.ajax({
-              url: "https://rssmarthut.com/mypath/saveRangeDetails.php",
-              type: "POST",
-              contentType: "application/json",
-              data: JSON.stringify(dataToSend),
-              success: function (response) {
-                console.log("Data saved successfully:", response);
-              },
-              error: function (xhr, status, error) {
-                console.error("Error saving data:", status, error);
-              },
+                url: "https://rssmarthut.com/mypath/saveRangeDetails.php",
+                type: "POST",
+                contentType: "application/json",
+                data: JSON.stringify(dataToSend),
+                success: function (response) {
+                    console.log("Data saved successfully:", response);
+                },
+                error: function (xhr, status, error) {
+                    console.error("Error saving data:", status, error);
+                },
             });
-          });
         });
-      },
-      error: function (xhr, status, error) {
-        console.error("AJAX Error:", status, error);
-      },
     });
-  }
+}
+
+
+
+
 });
 
 $("#saveButton").click(function () {
