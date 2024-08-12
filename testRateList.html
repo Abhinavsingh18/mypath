@@ -241,7 +241,7 @@
               <select class="form-control" id="branch" required>
                   <option value="">Select a branch</option>
               </select>
-              <input type="hidden" id="branchCode">
+              <input type="text" id="branchCode">
           </div>
       </div>
       <button type="button" class="btn btn-primary" onclick="addData()">Add</button>
@@ -306,6 +306,7 @@
 
       document.getElementById("branchSelect").addEventListener("change", function () {
         const selectedBranchCode = this.value;
+        
         document.getElementById('branchcodeInput').value = selectedBranchCode;
 
         if (selectedBranchCode) {
@@ -424,7 +425,7 @@
           .then((response) => response.json())
           .then((data) => {
             const branchSelect = document.getElementById("branch");
-            branchSelect.innerHTML = ""; // Clear existing options
+            // branchSelect.innerHTML = "";
   
             data.forEach((branch) => {
               const option = document.createElement("option");
@@ -450,7 +451,7 @@
   
     
 
-<script>
+<!-- <script>
 document.addEventListener("DOMContentLoaded", function () {
     const username = localStorage.getItem("username");
 
@@ -472,7 +473,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
-</script>
+</script> -->
 
 <script>
   var dataEntries = [];
@@ -494,6 +495,25 @@ function addData() {
     var ageToType = $('#ageToType').val();
     var branch = $('#branch option:selected').text();
     var branchCode = $('#branchCode').val();
+   
+    console.log({
+        rangeName,
+        unit,
+        type,
+        comment,
+        criticalLow,
+        rangeFrom,
+        rangeTo,
+        criticalHigh,
+        gender,
+        ageCategory,
+        ageFrom,
+        ageFromType,
+        ageTo,
+        ageToType,
+        branch,
+        branchCode
+    });
 
     if (rangeName && unit && type && criticalLow && rangeFrom && rangeTo && criticalHigh && gender && ageCategory && ageFrom && ageFromType && ageTo && ageToType && branch && branchCode) {
         var newRow = `<tr>
