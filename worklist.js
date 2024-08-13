@@ -41,8 +41,8 @@ async function generatePDF(data, patientDetails) {
 
     // Column width percentages
     const testNameWidthPercent = 0.43;
-    const unitWidthPercent = 0.20;
-    const reportWidthPercent = 0.19;
+    const unitWidthPercent = 0.20; // Now for the unit column
+    const reportWidthPercent = 0.19; // Now for the report column
     const idealRangeWidthPercent = 0.20;
 
     // Calculate column widths
@@ -55,6 +55,10 @@ async function generatePDF(data, patientDetails) {
     const rowHeight = 30; // Height for table rows
     const reducedRowHeight = 20; // Height for patient details
     const lineOffset = 5; // Distance between the horizontal lines and patient details
+
+    // Define font size and character width
+    const fontSize = 10;
+    const averageCharacterWidth = 6; // Adjust this value based on your font and size
 
     // Initial yPosition
     let yPosition = height - margin - 50;
@@ -98,20 +102,59 @@ async function generatePDF(data, patientDetails) {
       thickness: 1,
       color: rgb(0, 0, 0),
     });
+
+    // Adjust yPosition to shift everything down by 1 unit
+    yPosition -= 7; // Shift down by 1 unit
+
+    // Draw test name centered above the table
+    const testNameText = patientDetails.testname;
+
+    // Estimate text width
+    const testNameTextWidth = testNameText.length * averageCharacterWidth;
+    const testNameX = (width - testNameTextWidth) / 2; // Center the text horizontally
+    const testNameY = yPosition - 10; // Position the text slightly above the table
+
+    page.drawText(testNameText, { x: testNameX -20, y: testNameY, size: 15, color: rgb(0, 0, 0) });
+
     // Draw table headers
     yPosition -= rowHeight;
     page.drawText('TEST NAME', { x: margin, y: yPosition, size: 12, color: rgb(0, 0, 0) });
-    page.drawText('UNIT', { x: margin + testNameWidth, y: yPosition, size: 12, color: rgb(0, 0, 0) });
-    page.drawText('REPORT', { x: margin + testNameWidth + unitWidth, y: yPosition, size: 12, color: rgb(0, 0, 0) });
-    page.drawText('IDEAL RANGE', { x: margin + testNameWidth + unitWidth + reportWidth, y: yPosition, size: 12, color: rgb(0, 0, 0) });
+    page.drawText('REPORT', { x: margin + testNameWidth, y: yPosition, size: 12, color: rgb(0, 0, 0) });
+    page.drawText('UNIT', { x: margin + testNameWidth + reportWidth, y: yPosition, size: 12, color: rgb(0, 0, 0) });
+    page.drawText('IDEAL RANGE', { x: margin + testNameWidth + reportWidth + unitWidth, y: yPosition, size: 12, color: rgb(0, 0, 0) });
 
     // Draw table rows
     yPosition -= rowHeight;
     data.forEach(item => {
-      page.drawText(item.rangeName, { x: margin, y: yPosition, size: 12, color: rgb(0, 0, 0) });
-      page.drawText(item.unit, { x: margin + testNameWidth, y: yPosition, size: 12, color: rgb(0, 0, 0) });
-      page.drawText(item.reportValue, { x: margin + testNameWidth + unitWidth, y: yPosition, size: 12, color: rgb(0, 0, 0) });
-      page.drawText(`${item.rangeFrom}-${item.rangeTo}`, { x: margin + testNameWidth + unitWidth + reportWidth, y: yPosition, size: 12, color: rgb(0, 0, 0) });
+      const reportValue = parseFloat(item.reportValue);
+      const rangeFrom = parseFloat(item.rangeFrom);
+      const rangeTo = parseFloat(item.rangeTo);
+
+      // Draw test name, report, unit, and ideal range
+      page.drawText(item.rangeName, { x: margin, y: yPosition, size: 10, color: rgb(0, 0, 0) });
+      page.drawText(reportValue.toString(), { x: margin + testNameWidth, y: yPosition, size: 10, color: rgb(0, 0, 0) });
+      page.drawText(item.unit, { x: margin + testNameWidth + reportWidth, y: yPosition, size: 10, color: rgb(0, 0, 0) });
+
+      // Calculate text width for report value and underline it if needed
+      const reportText = reportValue.toString();
+      const reportTextWidth = reportText.length * averageCharacterWidth;
+      const reportTextX = margin + testNameWidth;
+      page.drawText(reportText, { x: reportTextX, y: yPosition, size: 10, color: rgb(0, 0, 0) });
+
+      // Draw ideal range
+      const idealRangeText = `${item.rangeFrom}-${item.rangeTo}`;
+      page.drawText(idealRangeText, { x: margin + testNameWidth + reportWidth + unitWidth, y: yPosition, size: 10, color: rgb(0, 0, 0) });
+
+      // Underline the REPORT value if necessary
+      if (reportValue < rangeFrom || reportValue > rangeTo) {
+        page.drawLine({
+          start: { x: reportTextX, y: yPosition - 4 }, // Line below text
+          end: { x: reportTextX + reportTextWidth, y: yPosition - 4 },
+          thickness: 1,
+          color: rgb(0, 0, 0),
+        });
+      }
+
       yPosition -= rowHeight;
 
       // Add more pages if necessary
@@ -127,7 +170,7 @@ async function generatePDF(data, patientDetails) {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `${patientDetails.patientname}_${patientDetails.reportnumber}`;
+    a.download = `${patientDetails.patientname}_${patientDetails.reportnumber}.pdf`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -136,6 +179,11 @@ async function generatePDF(data, patientDetails) {
     console.error('Error generating PDF:', error);
   }
 }
+
+
+
+
+
 
 
 
