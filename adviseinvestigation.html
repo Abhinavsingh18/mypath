@@ -491,49 +491,15 @@
           </div>
 
           <div class="form-group">
-            <label>Report Delivery Mode:</label>
-            <div class="checkbox-group">
-              <label>
-                <input
-                  type="checkbox"
-                  name="reportDeliveryMode[]"
-                  value="email"
-                />
-                Email
-              </label>
-              <label>
-                <input
-                  type="checkbox"
-                  name="reportDeliveryMode[]"
-                  value="hospitalDoctor"
-                />
-                Hospital/Doctor
-              </label>
-              <label>
-                <input
-                  type="checkbox"
-                  name="reportDeliveryMode[]"
-                  value="courier"
-                />
-                Courier
-              </label>
-              <label>
-                <input
-                  type="checkbox"
-                  name="reportDeliveryMode[]"
-                  value="self"
-                />
-                Self
-              </label>
-              <label>
-                <input
-                  type="checkbox"
-                  name="reportDeliveryMode[]"
-                  value="directByHand"
-                />
-                Direct/By Hand
-              </label>
-            </div>
+            <label for="reportDeliveryMode">Report Delivery Mode:</label>
+            <select id="reportDeliveryMode" name="reportDeliveryMode">
+              <option value="">Select Mode</option>
+              <option value="email">Email</option>
+              <option value="hospitalDoctor">Hospital/Doctor</option>
+              <option value="courier">Courier</option>
+              <option value="self">Self</option>
+              <option value="directByHand">Direct/By Hand</option>
+            </select>
           </div>
 
           <div class="addnd">
@@ -564,11 +530,7 @@
 
           <div class="form-group">
             <label for="referredBy">Referred By:</label>
-            <select id="referredBy" name="referredBy">
-              <option value="">Select</option>
-              <option value="referral1">Referral 1</option>
-              <option value="referral2">Referral 2</option>
-            </select>
+            <input type="text" id="referredBy" name="referredBy" placeholder="Enter referral details" />
           </div>
 
           <div class="form-group">
@@ -895,6 +857,7 @@ function formSubmitHandler(e) {
               <option value="mrs">Mrs.</option>
               <option value="ms">Ms.</option>
               <option value="dr">Dr.</option>
+              <option value="dr">Baby.</option>
             </select>
           </div>
           <div class="form-group">
