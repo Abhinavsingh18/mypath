@@ -127,7 +127,7 @@ async function generatePDF(data, patientDetails) {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'RangeDetailsReport.pdf';
+    a.download = `${patientDetails.patientname}_${patientDetails.reportnumber}`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
