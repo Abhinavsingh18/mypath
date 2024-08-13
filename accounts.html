@@ -242,30 +242,26 @@
       #MainContantDiv label {
         font-weight: normal !important;
       }
-      .cards{
+      .cards {
         width: 90vw;
         margin: auto;
         display: flex;
         flex-wrap: wrap;
-        justify-content: center ;
+        justify-content: center;
         padding: 2vw;
-  
-        gap: 1rem;
 
+        gap: 1rem;
       }
-      .cards>.col-md-3{
+      .cards > .col-md-3 {
         width: 22%;
-        
       }
-      .cards>.col-md-3>.expensesBox{
-        
+      .cards > .col-md-3 > .expensesBox {
         height: 6.5vw;
       }
-      .selections{
+      .selections {
         display: flex;
         gap: 2vw;
       }
-      
     </style>
 
     <div id="navbar"></div>
@@ -278,32 +274,35 @@
             data-ng-controller="IncomeAppcontroller"
             class="validationEngineContainer ng-scope"
           >
-            <h1 class="page-header" style="margin-bottom: 2vh;">Account Management</h1>
+            <h1 class="page-header" style="margin-bottom: 2vh">
+              Account Management
+            </h1>
 
             <div class="selections">
               <div class="col-md-3 col-sm-3">
                 <label style="font-weight: normal">Select Branch:</label>
-  
-                <select name="branchname" id="branchselect" class="form-control" >
-                  <option value=""> select an option</option>
+
+                <select
+                  name="branchname"
+                  id="branchSelect"
+                  class="form-control"
+                >
+                  <option value="">select an option</option>
                 </select>
+                <input type="hidden" id="usernameInput">
               </div>
-              <div class="col-md-3 col-sm-3" style="width: 13vw;">
+              <div class="col-md-3 col-sm-3" style="width: 13vw">
                 <label style="font-weight: normal">Select Date From:</label>
-                
+
                 <input
-                type="date"
-                name="dateRangeFrom"
-                id="dateRangeFrom"
-                class="form-control"
-                placeholder="Date From"
-                style="cursor: default"
-                readonly=""
+                  type="date"
+                  name="dateRangeFrom"
+                  id="dateRangeFrom"
+                  class="form-control"
+                  placeholder="Date From"
                 />
-               
               </div>
-              <div class="col-md-3 col-sm-3" style="width: 13vw;">
-                
+              <div class="col-md-3 col-sm-3" style="width: 13vw">
                 <label style="font-weight: normal">Select Date To:</label>
                 <input
                   type="date"
@@ -311,23 +310,44 @@
                   id="dateRangeTo"
                   class="form-control"
                   placeholder="Select Date"
-                  style="cursor: default"
-                  readonly=""
                 />
               </div>
-              <div class="col-md-6" style="margin-top: -2px;">
-                <div style="height:25px;">
-                    
-                </div>
-    
+              <div class="col-md-6" style="margin-top: -2px">
+                <div style="height: 25px"></div>
+
                 <div class="">
-                    <input id="btnlastmonth" type="button" value="Last Month" class="btnBlueBox">
-                    <input id="btnlast3month" type="button" value="Last 3 Month" class="btnBlueBox">
-                    <input id="btnlast6month" type="button" value="Last 6 Month" class="btnBlueBox">
-                    <input id="btnlast12month" type="button" value="Last 12 Month" class="btnBlueBox">
-                    <input id="Button1" type="button" value="Clear" class="btnClearBox">
+                  <input
+                    id="btnlastmonth"
+                    type="button"
+                    value="Last Month"
+                    class="btnBlueBox"
+                  />
+                  <input
+                    id="btnlast3month"
+                    type="button"
+                    value="Last 3 Month"
+                    class="btnBlueBox"
+                  />
+                  <input
+                    id="btnlast6month"
+                    type="button"
+                    value="Last 6 Month"
+                    class="btnBlueBox"
+                  />
+                  <input
+                    id="btnlast12month"
+                    type="button"
+                    value="Last 12 Month"
+                    class="btnBlueBox"
+                  />
+                  <input
+                    id="Button1"
+                    type="button"
+                    value="Clear"
+                    class="btnClearBox"
+                  />
                 </div>
-            </div>
+              </div>
             </div>
 
             <div class="cards">
