@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Advised Investigation</title>
+    <link rel="stylesheet" href="./assets/nav.css" />
+    <link rel="stylesheet" href="./assets/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&display=swap");
+      @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap");
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+        text-decoration: none;
+      }
+
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      .container {
+        width: 78%;
+
+        scale: 0.8;
+
+        background-color: #f1d9d9;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      select,
+      input,
+      textarea {
+        background-color: #d2b9b9;
+      }
+
+      .form-group {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 15px;
+      }
+
+      .form-group label {
+        width: 20%;
+        margin-right: 10px;
+        font-weight: bold;
+      }
+
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        width: 75%;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        font-family: "Roboto Mono", sans-serif;
+      }
+
+      .form-group .radio-group {
+        display: flex;
+        align-items: center;
+        width: 75%;
+      }
+
+      .form-group .radio-group label {
+        margin-right: 20px;
+      }
+
+      .form-group .radio-group input {
+        margin-right: 5px;
+      }
+
+      .form-group .checkbox-group {
+        display: flex;
+        align-items: center;
+        width: 75%;
+        margin-left: 5.5vw;
+      }
+
+      .form-group .checkbox-group input {
+        margin-right: 5px;
+        width: max-content;
+      }
+
+      .form-actions {
+        text-align: center;
+      }
+
+      .form-actions button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        background-color: #28a745;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+      }
+
+      .form-actions button:hover {
+        background-color: #218838;
+      }
+
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 999;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(64, 55, 55, 0.725);
+
+        padding-top: 40px;
+      }
+
+      .modal-content {
+        background-color: #fefefe;
+        margin: 5% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        border-radius: 10px;
+      }
+
+      .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+      }
+
+      .close:hover,
+      .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      .select {
+        width: 200px;
+      }
+
+      .radio-group > label {
+        display: flex;
+        gap: 2px;
+        width: 19%;
+        padding: 0;
+      }
+
+      label > input {
+        width: max-content !important;
+      }
+
+      #openModalBtn {
+        position: relative;
+        left: -20.5px;
+        width: max-content;
+
+        border-top-right-radius: 20px;
+        border-bottom-right-radius: 20px;
+        margin-bottom: 2vw;
+        font-size: 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+      }
+
+      #openModalBtn:hover {
+        box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+      }
+
+      .icn1 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: white;
+        width: 2.25rem;
+        height: 2.25rem;
+        border-radius: 50%;
+        scale: 1.2;
+      }
+
+      .addnd {
+        display: flex;
+        gap: 11vw;
+      }
+
+      @media only screen and (max-width: 768px) {
+        .maincont {
+          width: auto !important;
+        }
+
+        .form-group .radio-group {
+          flex-direction: column;
+        }
+
+        .container {
+          margin: 0;
+          width: 100%;
+          scale: 0.95;
+        }
+
+        .form-group > input {
+          scale: 1.05 !important;
+        }
+
+        .addnd {
+          gap: 38vw;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div style="position: absolute; top: 0; z-index: 99">
+      <div id="navbar"></div>
+    </div>
+    <div
+      class="maincont"
+      style="
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        top: 22px;
+      "
+    >
+      <div class="container">
+        <div style="display: flex; gap: 2.4vw">
+          <div
+            id="openModalBtn"
+            class="form-actions button"
+            style="background-color: #28a745; color: white"
+          >
+            <div>REGISTER PATIENT</div>
+            <div id="icn1" class="icn1">
+              <i
+                style="color: #212121; margin-left: 0.35rem; scale: 0.9"
+                class="fa-solid fa-user-plus"
+              ></i>
+            </div>
+          </div>
+        </div>
+
+        <style>
+          .search-result-item {
+            padding: 8px;
+            border-bottom: 1px solid #ccc;
+            list-style-type: none;
+            cursor: pointer;
+          }
+
+          .patient-firstname,
+          .patient-pid {
+            display: inline-block;
+            margin-right: 10px;
+          }
+
+          .patient-contactnumber {
+            margin-top: 5px;
+            color: #555;
+          }
+
+          /* Table Styling */
+          #testsTable {
+            width: 50%;
+            border-collapse: separate;
+            /* Use separate to allow border-radius to work */
+            border-spacing: 0;
+            background-color: white;
+            border: 1px solid black;
+            border-radius: 10px;
+            overflow: hidden;
+            /* To ensure rounded corners work */
+          }
+
+          #testsTable th,
+          #testsTable td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+          }
+
+          #testsTable th {
+            background-color: #f2f2f2;
+          }
+
+          /* Rounded corners for the first and last cell in header and footer */
+          #testsTable thead th:first-child {
+            border-top-left-radius: 10px;
+          }
+
+          #testsTable thead th:last-child {
+            border-top-right-radius: 10px;
+          }
+
+          #testsTable tbody td:first-child {
+            border-bottom-left-radius: 10px;
+          }
+
+          #testsTable tbody td:last-child {
+            border-bottom-right-radius: 10px;
+          }
+
+          .form-group {
+            margin-bottom: 1rem;
+          }
+
+          #testsDiv {
+            display: none;
+            margin-top: 20px;
+          }
+
+          #testsTable,
+          #selectedTestsTable {
+            width: 50%;
+            border-collapse: collapse;
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+          }
+
+          #testsTable th,
+          #testsTable td,
+          #selectedTestsTable th,
+          #selectedTestsTable td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+          }
+
+          #testsTable th:first-child,
+          #testsTable td:first-child,
+          #selectedTestsTable th:first-child,
+          #selectedTestsTable td:first-child {
+            border-top-left-radius: 10px;
+          }
+
+          #testsTable th:last-child,
+          #testsTable td:last-child,
+          #selectedTestsTable th:last-child,
+          #selectedTestsTable td:last-child {
+            border-top-right-radius: 10px;
+          }
+
+          .form-actions {
+            margin-top: 20px;
+          }
+
+          button {
+            border: none;
+          }
+
+          td button {
+            width: 2rem;
+            font-size: 1.5rem;
+          }
+        </style>
+
+        <form id="adviseInvestigationForm" method="POST">
+          <div class="searchpatient">
+            <input
+              type="text"
+              id="searchInput"
+              placeholder="Search Patient"
+              style="
+                top: 40px;
+                left: 300px;
+                padding: 6px;
+                border-radius: 7px;
+                height: 35px;
+                border: 0.1px solid #d2b9b9;
+                width: 21vw;
+                position: absolute;
+                background-color: #dcc3c3;
+              "
+            />
+            <span
+              id="pidDisplay"
+              style="
+                position: absolute;
+                top: 1.5vw;
+                left: 700px;
+                font-weight: bold;
+              "
+            ></span>
+            <ul
+              id="searchResults"
+              style="
+                top: 70px;
+                left: 300px;
+                border-radius: 7px;
+                width: 21vw;
+                position: absolute;
+                background-color: #f1e5e5;
+                padding-left: 5px;
+                padding-right: 4px;
+              "
+            ></ul>
+          </div>
+
+          <div class="form-group">
+            <label for="patientname">Patient Name:</label>
+            <input type="text" id="patientname" name="patientname" required />
+          </div>
+
+          <div class="form-group">
+            <label for="contactnumber">Contact Number:</label>
+            <input
+              type="tel"
+              id="contactnumber"
+              name="contactnumber"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="age">AGE:</label>
+            <input type="text" id="age" name="age" required />
+          </div>
+
+          <div class="form-group">
+            <label for="gender">Gender:</label>
+            <input type="text" id="gender" name="gender" required />
+          </div>
+
+          <div class="form-group">
+            <label for="advisedDate">Advised Date and Time:</label>
+            <input
+              type="datetime-local"
+              id="advisedDate"
+              name="advisedDate"
+              required
+            />
+          </div>
+
+          <input type="hidden" id="username" name="username" />
+
+          <div class="form-group">
+            <label for="advisedByDoctor">Advised By Doctor:</label>
+            <input
+              type="text"
+              id="advisedByDoctor"
+              name="advisedByDoctor"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="advisedByFacility">Advised By Medical Facility:</label>
+            <select id="advisedByFacility" name="advisedByFacility">
+              <option value="">Select Facility</option>
+              <option value="facility1">Facility 1</option>
+              <option value="facility2">Facility 2</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="locations">Locations:</label>
+            <input type="text" id="locations" name="locations" readonly />
+          </div>
+
+          <div class="form-group">
+            <label for="reportDeliveryMode">Report Delivery Mode:</label>
+            <select id="reportDeliveryMode" name="reportDeliveryMode">
+              <option value="">Select Mode</option>
+              <option value="email">Email</option>
+              <option value="hospitalDoctor">Hospital/Doctor</option>
+              <option value="courier">Courier</option>
+              <option value="self">Self</option>
+              <option value="directByHand">Direct/By Hand</option>
+            </select>
+          </div>
+
+          <div class="addnd">
+            <div class="form-group" style="width: 10vw !important">
+              <label for="addNewDoctor" style="width: max-content"
+                >Add New Doctor:</label
+              >
+              <input
+                style="scale: 0.3"
+                type="checkbox"
+                id="addNewDoctor"
+                name="addNewDoctor"
+              />
+            </div>
+
+            <div class="form-group" style="width: 10vw !important">
+              <label for="urgentReport" style="width: max-content"
+                >Urgent Report:</label
+              >
+              <input
+                style="scale: 0.3"
+                type="checkbox"
+                id="urgentReport"
+                name="urgentReport"
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="referredBy">Referred By:</label>
+            <input type="text" id="referredBy" name="referredBy" placeholder="Enter referral details" />
+          </div>
+
+          <div class="form-group">
+            <label for="insurancePanel">Select Insurance Panel:</label>
+            <select id="insurancePanel" name="insurancePanel">
+              <option value="">None</option>
+              <option value="panel1">Panel 1</option>
+              <option value="panel2">Panel 2</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="collectedBy">To Be Collected By:</label>
+            <select id="collectedBy" name="collectedBy">
+              <option value="">Select</option>
+              <option value="collector1">Collector 1</option>
+              <option value="collector2">Collector 2</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="patientAddress">Patient Address:</label>
+            <textarea
+              id="patientAddress"
+              name="patientAddress"
+              rows="3"
+              required
+            ></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="clinicalHistory">Clinical History (H/O):</label>
+            <textarea
+              id="clinicalHistory"
+              name="clinicalHistory"
+              rows="3"
+            ></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="accountSettlement">Account Settlement:</label>
+            <div class="checkbox-group" style="gap: 2.1vw">
+              <input
+                type="checkbox"
+                id="corporatePanel"
+                name="corporatePanel"
+              />
+              <label for="corporatePanel">Corporate Panel</label>
+              <input type="checkbox" id="csr" name="csr" />
+              <label for="csr">CSR</label>
+            </div>
+            <div style="color: red; font-size: 12px">
+              No Corporate Panel Exist
+            </div>
+          </div>
+
+          <div class="form-group" style="display: none">
+            <label for="addTestsButton">Add Tests:</label>
+            <button type="button" id="addTestsButton">Add Tests</button>
+          </div>
+          <div class="form-group">
+            <label for="remarks">Remarks:</label>
+            <textarea id="remarks" name="remarks" rows="3"></textarea>
+          </div>
+
+          <div style="display: flex; flex-direction: column">
+            <div id="testsDiv" style="overflow-y: scroll; height: 500px">
+              <h3>Add Tests</h3>
+              <input
+                type="text"
+                id="TestsSearchInput"
+                placeholder="Search for tests..."
+                style="    margin-bottom: 1vh;
+                width: 15vw;
+                padding: 5px;
+                border: none;
+                border-radius: 15px;"
+              />
+              <table id="testsTable">
+                <thead>
+                  <tr>
+                    <th>Test Name</th>
+                    <th>Price</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Test rows will be populated here -->
+                </tbody>
+              </table>
+            </div>
+
+            <div id="selectedTestsDiv" style="display: none; margin-top: 20px">
+              <h3>Selected Tests</h3>
+              <table id="selectedTestsTable">
+                <thead>
+                  <tr>
+                    <th>Test Name</th>
+                    <th>Price</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Selected test rows will be populated here -->
+                </tbody>
+              </table>
+              <div id="totalPriceDiv" style="margin-top: 10px">
+                <span style="color: rgb(49, 109, 237); font-size: 1.4rem"
+                  >Total Price:</span
+                >
+                <span id="totalPrice" style="font-size: 1.2rem"> ₹ 0</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" id="submitForm">Submit</button>
+            
+            <button type="reset" id="resetForm">Reset</button>
+          </div>
+          
+          <div class="form-actions">
+            <button type="button" id="printSlip">Print Slip</button>
+          </div>
+        </form>
+
+        <!-- Modal -->
+        <!-- Print Modal -->
+        <div id="printModal" style="display: none">
+          <div id="modalContent">
+            <h2>Print Slip</h2>
+            <div id="modalFormData">
+              <!-- Form data will be displayed here -->
+            </div>
+            <h3>Selected Tests</h3>
+            <div id="modalSelectedTests">
+              <!-- Selected tests will be displayed here -->
+            </div>
+            <button onclick="printPage()">Print</button>
+            <button
+              onclick="document.getElementById('printModal').style.display='none'"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const usernameInput = document.getElementById("username");
+        const username = localStorage.getItem("username"); // Assuming username is stored with key "username"
+        if (username) {
+          usernameInput.value = username;
+        }
+      });
+    </script>
+
+<script>
+  const form = document.getElementById("adviseInvestigationForm");
+if (form) {
+    form.removeEventListener("submit", formSubmitHandler); // Remove any existing listeners
+    form.addEventListener("submit", formSubmitHandler); // Add the single event listener
+}
+
+function formSubmitHandler(e) {
+    e.preventDefault();
+
+    if (this.submitted) {
+        return; // Prevent multiple submissions
+    }
+    this.submitted = true;
+
+    var formData = new FormData(this);
+
+    // Retrieve the pid value from the span element
+    var pid = document.getElementById("pidDisplay").textContent;
+
+    // Append the pid value to the FormData
+    formData.append("pid", pid);
+
+    // Serialize the selectedTests array and append it to the formData
+    formData.append("selectedTests", JSON.stringify(selectedTests));
+
+    fetch("https://rssmarthut.com/mypath/reportdata.php", {
+        method: "POST",
+        body: formData,
+    })
+    .then((response) => response.json())
+    .then((data) => {
+        if (data.success) {
+            alert("Form submitted successfully!");
+        } else {
+            alert("Form submission failed.");
+        }
+        this.submitted = false; // Reset the flag after the submission is done
+    })
+    .catch((error) => {
+        console.error("Error:", error);
+        this.submitted = false; // Reset the flag in case of an error
+    });
+}
+
+</script>
+
+    <script>
+      const username = localStorage.getItem("username");
+
+      document.getElementById("addTestsButton").addEventListener("click", function () {
+          // const testsDiv = document.getElementById('testsDiv');
+          // testsDiv.style.display = 'block';
+          // Replace with actual values
+        });
+
+      let allTests = []; // Variable to store all fetched tests
+      const selectedTests = [];
+
+      function fetchTests(username, branchcode) {
+        const url = `https://rssmarthut.com/mypath/getTestPrices.php?username=${username}&branchcode=${branchcode}`;
+        fetch(url)
+          .then((response) => response.json())
+          .then((data) => {
+            allTests = data; // Store all fetched tests
+            displayTests(allTests); // Display all tests initially
+          })
+          .catch((error) => {
+            console.error("Error fetching tests:", error);
+          });
+      }
+
+      function displayTests(tests) {
+        const tableBody = document.querySelector("#testsTable tbody");
+        tableBody.innerHTML = ""; // Clear existing rows
+        tests.forEach((test) => {
+          const row = document.createElement("tr");
+          const testNameCell = document.createElement("td");
+          testNameCell.textContent = test.testname;
+          const priceCell = document.createElement("td");
+          priceCell.textContent = test.price;
+          const actionCell = document.createElement("td");
+          actionCell.style.display = "flex";
+          actionCell.style.justifyContent = "center";
+
+          const addButton = document.createElement("button");
+          addButton.type = "button"; // Set button type to prevent form submission
+          addButton.textContent = "+";
+          addButton.addEventListener("click", function () {
+            addTest(test);
+          });
+          actionCell.appendChild(addButton);
+          row.appendChild(testNameCell);
+          row.appendChild(priceCell);
+          row.appendChild(actionCell);
+          tableBody.appendChild(row);
+        });
+      }
+
+      function addTest(test) {
+        if (!selectedTests.some((t) => t.testname === test.testname)) {
+          selectedTests.push(test);
+          updateSelectedTestsTable();
+        }
+      }
+
+      function removeTest(testName) {
+        const index = selectedTests.findIndex((t) => t.testname === testName);
+        if (index !== -1) {
+          selectedTests.splice(index, 1);
+          updateSelectedTestsTable();
+        }
+      }
+
+      function updateSelectedTestsTable() {
+        const tableBody = document.querySelector("#selectedTestsTable tbody");
+        tableBody.innerHTML = ""; // Clear existing rows
+        let totalPrice = 0;
+        selectedTests.forEach((test) => {
+          const row = document.createElement("tr");
+          const testNameCell = document.createElement("td");
+          testNameCell.textContent = test.testname;
+          const priceCell = document.createElement("td");
+          priceCell.textContent = test.price;
+          totalPrice += parseFloat(test.price);
+          const actionCell = document.createElement("td");
+          actionCell.style.display = "flex";
+          actionCell.style.justifyContent = "center";
+          const removeButton = document.createElement("button");
+          removeButton.type = "button"; // Set button type to prevent form submission
+          removeButton.textContent = "-";
+          removeButton.addEventListener("click", function () {
+            removeTest(test.testname);
+          });
+          actionCell.appendChild(removeButton);
+          row.appendChild(testNameCell);
+          row.appendChild(priceCell);
+          row.appendChild(actionCell);
+          tableBody.appendChild(row);
+        });
+        document.getElementById("totalPrice").textContent =
+          totalPrice.toFixed(2);
+      }
+
+      document.getElementById("TestsSearchInput").addEventListener("input", function () {
+          const searchQuery = this.value.toLowerCase();
+          const filteredTests = allTests.filter((test) =>
+            test.testname.toLowerCase().includes(searchQuery)
+          );
+          displayTests(filteredTests);
+        });
+
+     
+    </script>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <form id="registerPatientForm" method="POST" action="https://rssmarthut.com/mypath/patients.php">
+          <div class="form-group">
+            <label for="title">Title:</label>
+            <select id="title" name="title">
+              <option value="mr">Mr.</option>
+              <option value="mrs">Mrs.</option>
+              <option value="ms">Ms.</option>
+              <option value="dr">Dr.</option>
+              <option value="dr">Baby.</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="firstname">First Name:</label>
+            <input type="text" id="firstname" name="firstname" required />
+          </div>
+          <div class="form-group">
+            <label for="lastname">Last Name:</label>
+            <input type="text" id="lastname" name="lastname" required />
+          </div>
+          <div class="form-group">
+            <label for="uid">UID:</label>
+            <input type="text" id="uid" name="uid" required />
+          </div>
+          <div class="form-group">
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender" required>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" required />
+          </div>
+          <div class="form-group">
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" name="dob" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required />
+          </div>
+          <div class="form-group">
+            <label for="address">Address:</label>
+            <textarea id="address" name="address" rows="3" required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="branch">Branch:</label>
+            <select id="branch" name="branch" required>
+              <option value="">Select Branch</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="branchcode">Branch Code:</label>
+            <input type="text" id="branchcode" name="branchcode" readonly />
+          </div>
+          <div class="form-group">
+            <label for="contactnumber">Contact Number:</label>
+            <input type="tel" id="contactnumber" name="contactnumber" required />
+          </div>
+          <div class="form-group">
+            <label for="area">Area:</label>
+            <input type="text" id="area" name="area" required />
+          </div>
+          <div class="form-group">
+            <label for="city">City:</label>
+            <input type="text" id="city" name="city" required />
+          </div>
+          <div class="form-group">
+            <label for="state">State:</label>
+            <input type="text" id="state" name="state" required />
+          </div>
+          <div class="form-group">
+            <label for="country">Country:</label>
+            <input type="text" id="country" name="country" required />
+          </div>
+          <div class="form-group">
+            <label for="pincode">Pincode:</label>
+            <input type="text" id="pincode" name="pincode" required />
+          </div>
+
+          <input type="hidden" id="username1" name="username" />
+          <div class="form-actions">
+            <button type="submit">Submit</button>
+            <button type="reset">Reset</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    
+    <script>
+      // When the modal is shown, set the username field with the value from local storage
+      document.getElementById('registerPatientForm').addEventListener('submit', function() {
+        var username = localStorage.getItem('username');
+        if (username) {
+          document.getElementById('username1').value = username;
+        }
+      });
+    </script>
+
+    <script>
+      // Get the modal
+      var modal = document.getElementById("myModal");
+
+      // Get the button that opens the modal
+      var btn = document.getElementById("openModalBtn");
+
+      // Get the <span> element that closes the modal
+      var span = document.getElementsByClassName("close")[0];
+
+      // When the user clicks the button, open the modal
+      btn.onclick = function () {
+        modal.style.display = "block";
+      };
+
+      // When the user clicks on <span> (x), close the modal
+      span.onclick = function () {
+        modal.style.display = "none";
+      };
+
+      // When the user clicks anywhere outside of the modal, close it
+      window.onclick = function (event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      };
+
+      // Handle form submission
+
+      // Get form data
+      var formData = new FormData(event.target);
+
+      // Convert form data to JSON
+      var data = {};
+      formData.forEach((value, key) => {
+        data[key] = value;
+      });
+    </script>
+
+    <script>
+      const searchInput = document.getElementById("searchInput");
+      const searchResults = document.getElementById("searchResults");
+      const patientNameInput = document.getElementById("patientname");
+      const contactNumberInput = document.getElementById("contactnumber");
+      const ageInput = document.getElementById("age"); // Add this
+      const genderInput = document.getElementById("gender"); // Add this
+      const pidDisplay = document.getElementById("pidDisplay"); // Element to display PID
+      const advisedDateTimeInput = document.getElementById("advisedDate");
+      const locationsInput = document.getElementById("locations"); // Element to display the branch name
+      const addressInput = document.getElementById("patientAddress"); // Element to display the address
+
+      searchInput.addEventListener("input", function () {
+        const inputValue = this.value.trim();
+        if (inputValue !== "") {
+          fetch(
+            `https://rssmarthut.com/mypath/searchpatient.php?query=${inputValue}&username=${username}`
+          )
+            .then((response) => response.json())
+            .then((data) => {
+              // Clear previous results
+              searchResults.innerHTML = "";
+              // Display new results
+              data.forEach((patient) => {
+                const li = document.createElement("li");
+                li.classList.add("search-result-item");
+
+                const firstNameSpan = document.createElement("span");
+                firstNameSpan.classList.add("patient-firstname");
+                firstNameSpan.textContent = patient.firstname;
+
+                const pidSpan = document.createElement("span");
+                pidSpan.classList.add("patient-pid");
+                pidSpan.textContent = `${patient.pid}`;
+
+                const contactNumberSpan = document.createElement("div");
+                contactNumberSpan.classList.add("patient-contactnumber");
+                contactNumberSpan.textContent = `Contact: ${patient.contactnumber}`;
+
+                const ageSpan = document.createElement("div"); // Add this
+                ageSpan.classList.add("patient-age");
+                ageSpan.textContent = `Age: ${patient.age}`;
+
+                const genderSpan = document.createElement("div"); // Add this
+                genderSpan.classList.add("patient-gender");
+                genderSpan.textContent = `Gender: ${patient.gender}`;
+
+                const branchSpan = document.createElement("div");
+                branchSpan.classList.add("patient-branch");
+                branchSpan.textContent = `Branch: ${patient.branch}`;
+
+                const addressSpan = document.createElement("div");
+                addressSpan.classList.add("patient-address");
+                addressSpan.textContent = `Address: ${patient.address}`;
+
+                li.appendChild(firstNameSpan);
+                li.appendChild(pidSpan);
+                li.appendChild(contactNumberSpan);
+                // li.appendChild(ageSpan); // Add this
+                // li.appendChild(genderSpan); // Add this
+                // li.appendChild(branchSpan);
+                // li.appendChild(addressSpan);
+
+                // Add click event listener to populate the form fields
+                li.addEventListener("click", function () {
+                  patientNameInput.value = patient.firstname;
+                  contactNumberInput.value = patient.contactnumber;
+                  ageInput.value = patient.age; // Add this
+                  genderInput.value = patient.gender; // Add this
+                  pidDisplay.textContent = patient.pid;
+                  advisedDateTimeInput.value = getCurrentDateTime(); // Set current date and time
+                  locationsInput.value = patient.branch; // Set the branch name in the locations input
+                  addressInput.value = patient.address; // Set the address in the address input
+                  const testsDiv = document.getElementById("testsDiv");
+                  const selectedTestsDiv =
+                    document.getElementById("selectedTestsDiv");
+                  testsDiv.style.display = "block";
+                  selectedTestsDiv.style.display = "block";
+                  fetchTests(username, patient.branchcode);
+                  searchResults.innerHTML = ""; // Clear search results after selection
+                });
+
+                searchResults.appendChild(li);
+              });
+            })
+            .catch((error) => console.error("Error:", error));
+        } else {
+          // Clear search results if input is empty
+          searchResults.innerHTML = "";
+        }
+      });
+
+      // Function to get current date and time in the required format (YYYY-MM-DDTHH:MM)
+      function getCurrentDateTime() {
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = String(now.getMonth() + 1).padStart(2, "0");
+        const day = String(now.getDate()).padStart(2, "0");
+        const hours = String(now.getHours()).padStart(2, "0");
+        const minutes = String(now.getMinutes()).padStart(2, "0");
+        return `${year}-${month}-${day}T${hours}:${minutes}`;
+      }
+    </script>
+
+
+<script>
+
+  function fetchBranches() {
+    var username = localStorage.getItem("username"); // Assuming the username is stored in local storage
+    if (!username) {
+      console.error("Username not found in local storage.");
+      return;
+    }
+    var xhr = new XMLHttpRequest();
+xhr.open("GET", "https://rssmarthut.com/mypath/fetchBranches.php?username=" + encodeURIComponent(username), true);
+xhr.onreadystatechange = function () {
+  if (xhr.readyState == 4) {
+    if (xhr.status == 200) {
+      try {
+        var branches = JSON.parse(xhr.responseText);
+        console.log("Branches fetched successfully:", branches);
+        var branchSelect = document.getElementById("branch");
+        branchSelect.innerHTML = '<option value="">Select Branch</option>'; // Clear existing options
+        branches.forEach(function (branch) {
+          var option = document.createElement("option");
+          option.value = branch.branchname; // Set value to branch name
+          option.textContent = branch.branchname; // Set text to branch name
+          option.setAttribute("data-branch-code", branch.branch_code); // Store branch code in data attribute
+          branchSelect.appendChild(option);
+        });
+
+        // Add change event listener to update branchcode field
+        branchSelect.addEventListener("change", function () {
+          var selectedOption = branchSelect.options[branchSelect.selectedIndex];
+          var branchcodeField = document.getElementById("branchcode");
+          branchcodeField.value = selectedOption.getAttribute("data-branch-code"); // Set branch code field value
+        });
+
+      } catch (e) {
+        console.error("Failed to parse branches JSON:", e);
+      }
+    } else {
+      console.error("Failed to fetch branches. Status:", xhr.status);
+    }
+  }
+};
+xhr.onerror = function () {
+  console.error("Request failed.");
+};
+xhr.send();
+
+  }
+
+  // Fetch branches initially
+  fetchBranches();
+</script>
+
+
+
+
+
+
+    <script src="nav.js"></script>
+  </body>
+</html>
