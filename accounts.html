@@ -348,121 +348,11 @@
                       </div>
                   </div>
               </div>
-<<<<<<< HEAD
-=======
-              <div class="col-md-3 col-sm-3" style="width: 13vw">
-                <label style="font-weight: normal">Select Date To:</label>
-                <input
-                  type="date"
-                  name="dateRangeTo"
-                  id="dateRangeTo"
-                  class="form-control"
-                  placeholder="Select Date"
-                />
-              </div>
-              <div class="col-md-6" style="margin-top: -2px">
-                <div style="height: 25px"></div>
-
-                <div class="">
-                  <input
-                    id="btnlastmonth"
-                    type="button"
-                    value="Last Month"
-                    class="btnBlueBox"
-                  />
-                  <input
-                    id="btnlast3month"
-                    type="button"
-                    value="Last 3 Month"
-                    class="btnBlueBox"
-                  />
-                  <input
-                    id="btnlast6month"
-                    type="button"
-                    value="Last 6 Month"
-                    class="btnBlueBox"
-                  />
-                  <input
-                    id="btnlast12month"
-                    type="button"
-                    value="Last 12 Month"
-                    class="btnBlueBox"
-                  />
-                  <input
-                    id="Button1"
-                    type="button"
-                    value="Clear"
-                    class="btnClearBox"
-                  />
-                  <input
-                    id="Go"
-                    type="button"
-                    value="Go"
-                    class="btnClearBox"
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div class="cards">
-              <div class="col-md-3">
-                <div class="expensesBox boxColor01" id="divIncome">
-                  Income
-                  <span>
-                    <b id="spanIncome">
-                      <i class="fa fa-rupee"></i>
-                      0.00
-                    </b>
-                  </span>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="expensesBox boxColor01" id="divOutSource">
-                  Outsource Test
-                  <span><b id="spanOutsource">-</b></span>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="expensesBox boxColor01" id="divInsurance">
-                  Insurance Panel
-                  <span><b id="spanInsurance">-</b></span>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="expensesBox boxColor01" id="divPanelDoctor">
-                  Panel Doctors/Facilities
-                  <span><b id="spanPanelDoc">-</b></span>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="expensesBox boxColor01" id="divCorporate">
-                  Corporate Panel
-                  <span><b id="spanCorporate">-</b></span>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="expensesBox boxColor01" id="divExpenses">
-                  Expenses
-                  <span><b id="spanExpenses">-</b></span>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="expensesBox boxColor01" id="divRevenue">
-                  Test Wise Revenue
-                  <span
-                    ><b id="spanRevenue"
-                      ><i class="fa fa-rupee"></i>-</b
-                    ></span
-                  >
-                </div>
-              </div>
-            </div>
->>>>>>> c9fc0c746bce282d2f66117cbe2646bc1e921832
           </div>
       </form>
       
       </div>
-      <div id="dailyIncomeTableContainer">
+      <div id="dailyIncomeTableContainer" style="display: none;">
         <table role="grid" tabindex="-1">
             <colgroup>
                 <col style="width:14vw">
@@ -498,7 +388,7 @@
                     </th>
                 </tr>
             </thead>
-            <tbody id="dailyIncomeTableBody">
+            <tbody id="dailyIncomeTableBody" >
                 <!-- Rows will be dynamically added here -->
             </tbody>
         </table>
