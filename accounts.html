@@ -260,7 +260,11 @@
       }
       .selections {
         display: flex;
-        gap: 2vw;
+        gap: 1.2vw;
+      }
+      #Go{
+        background-color: #2e98cc;
+        color: white;
       }
     </style>
 
@@ -279,7 +283,7 @@
             </h1>
 
             <div class="selections">
-              <div class="col-md-3 col-sm-3">
+              <div class="col-md-3 col-sm-3" style="width: 15vw;">
                 <label style="font-weight: normal">Select Branch:</label>
 
                 <select
@@ -346,6 +350,12 @@
                     value="Clear"
                     class="btnClearBox"
                   />
+                  <input
+                    id="Go"
+                    type="button"
+                    value="Go"
+                    class="btnClearBox"
+                  />
                 </div>
               </div>
             </div>
@@ -354,11 +364,12 @@
               <div class="col-md-3">
                 <div class="expensesBox boxColor01" id="divIncome">
                   Income
-                  <span
-                    ><b id="spanIncome"
-                      ><i class="fa fa-rupee"></i>9660.00</b
-                    ></span
-                  >
+                  <span>
+                    <b id="spanIncome">
+                      <i class="fa fa-rupee"></i>
+                      0.00
+                    </b>
+                  </span>
                 </div>
               </div>
               <div class="col-md-3">
