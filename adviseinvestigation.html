@@ -930,6 +930,8 @@ function formSubmitHandler(e) {
             <label for="pincode">Pincode:</label>
             <input type="text" id="pincode" name="pincode" required />
           </div>
+
+          <input type="hidden" id="username1" name="username" />
           <div class="form-actions">
             <button type="submit">Submit</button>
             <button type="reset">Reset</button>
@@ -938,6 +940,15 @@ function formSubmitHandler(e) {
       </div>
     </div>
     
+    <script>
+      // When the modal is shown, set the username field with the value from local storage
+      document.getElementById('registerPatientForm').addEventListener('submit', function() {
+        var username = localStorage.getItem('username');
+        if (username) {
+          document.getElementById('username1').value = username;
+        }
+      });
+    </script>
 
     <script>
       // Get the modal
