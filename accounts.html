@@ -272,150 +272,127 @@
     <div id="warrper" style="margin-top: 15px">
       <div id="">
         <form method="post" action="" id="form1" style="width: 97vw">
-          <div
-            id="MainContantDiv"
-            data-ng-app="IncomeApp"
-            data-ng-controller="IncomeAppcontroller"
-            class="validationEngineContainer ng-scope"
-          >
-            <h1 class="page-header" style="margin-bottom: 2vh">
-              Account Management
-            </h1>
-
-            <div class="selections">
-              <div class="col-md-3 col-sm-3" style="width: 15vw;">
-                <label style="font-weight: normal">Select Branch:</label>
-
-                <select
-                  name="branchname"
-                  id="branchSelect"
-                  class="form-control"
-                >
-                  <option value="">select an option</option>
-                </select>
-                <input type="hidden" id="usernameInput">
+          <div id="MainContantDiv" data-ng-app="IncomeApp" data-ng-controller="IncomeAppcontroller" class="validationEngineContainer ng-scope">
+              <h1 class="page-header" style="margin-bottom: 2vh">Account Management</h1>
+  
+              <div class="selections">
+                  <div class="col-md-3 col-sm-3" style="width: 15vw;">
+                      <label style="font-weight: normal">Select Branch:</label>
+                      <select name="branchname" id="branchSelect" class="form-control">
+                          <option value="">select an option</option>
+                      </select>
+                      <input type="hidden" id="usernameInput">
+                  </div>
+                  <div class="col-md-3 col-sm-3" style="width: 13vw">
+                      <label style="font-weight: normal">Select Date From:</label>
+                      <input type="date" name="dateRangeFrom" id="dateRangeFrom" class="form-control" placeholder="Date From" />
+                  </div>
+                  <div class="col-md-3 col-sm-3" style="width: 13vw">
+                      <label style="font-weight: normal">Select Date To:</label>
+                      <input type="date" name="dateRangeTo" id="dateRangeTo" class="form-control" placeholder="Select Date" />
+                  </div>
+                  <div class="col-md-6" style="margin-top: -2px">
+                      <div style="height: 25px"></div>
+                      <div>
+                          <input id="btnlastmonth" type="button" value="Last Month" class="btnBlueBox" />
+                          <input id="btnlast3month" type="button" value="Last 3 Month" class="btnBlueBox" />
+                          <input id="btnlast6month" type="button" value="Last 6 Month" class="btnBlueBox" />
+                          <input id="btnlast12month" type="button" value="Last 12 Month" class="btnBlueBox" />
+                          <input id="Button1" type="button" value="Clear" class="btnClearBox" />
+                          <input id="Go" type="button" value="Go" class="btnClearBox" />
+                      </div>
+                  </div>
               </div>
-              <div class="col-md-3 col-sm-3" style="width: 13vw">
-                <label style="font-weight: normal">Select Date From:</label>
-
-                <input
-                  type="date"
-                  name="dateRangeFrom"
-                  id="dateRangeFrom"
-                  class="form-control"
-                  placeholder="Date From"
-                />
+  
+              <div class="cards">
+                  <div class="col-md-3">
+                      <div class="expensesBox boxColor01" id="divIncome">
+                          Income
+                          <span><b id="spanIncome"><i class="fa fa-rupee"></i>0.00</b></span>
+                      </div>
+                  </div>
+                  <div class="col-md-3">
+                      <div class="expensesBox boxColor01" id="divOutSource">
+                          Outsource Test
+                          <span><b id="spanOutsource">-</b></span>
+                      </div>
+                  </div>
+                  <div class="col-md-3">
+                      <div class="expensesBox boxColor01" id="divInsurance">
+                          Insurance Panel
+                          <span><b id="spanInsurance">-</b></span>
+                      </div>
+                  </div>
+                  <div class="col-md-3">
+                      <div class="expensesBox boxColor01" id="divPanelDoctor">
+                          Panel Doctors/Facilities
+                          <span><b id="spanPanelDoc">-</b></span>
+                      </div>
+                  </div>
+                  <div class="col-md-3">
+                      <div class="expensesBox boxColor01" id="divCorporate">
+                          Corporate Panel
+                          <span><b id="spanCorporate">-</b></span>
+                      </div>
+                  </div>
+                  <div class="col-md-3">
+                      <div class="expensesBox boxColor01" id="divExpenses">
+                          Expenses
+                          <span><b id="spanExpenses">-</b></span>
+                      </div>
+                  </div>
+                  <div class="col-md-3">
+                      <div class="expensesBox boxColor01" id="divRevenue">
+                          Test Wise Revenue
+                          <span><b id="spanRevenue"><i class="fa fa-rupee"></i>9660.00</b></span>
+                      </div>
+                  </div>
               </div>
-              <div class="col-md-3 col-sm-3" style="width: 13vw">
-                <label style="font-weight: normal">Select Date To:</label>
-                <input
-                  type="date"
-                  name="dateRangeTo"
-                  id="dateRangeTo"
-                  class="form-control"
-                  placeholder="Select Date"
-                />
-              </div>
-              <div class="col-md-6" style="margin-top: -2px">
-                <div style="height: 25px"></div>
-
-                <div class="">
-                  <input
-                    id="btnlastmonth"
-                    type="button"
-                    value="Last Month"
-                    class="btnBlueBox"
-                  />
-                  <input
-                    id="btnlast3month"
-                    type="button"
-                    value="Last 3 Month"
-                    class="btnBlueBox"
-                  />
-                  <input
-                    id="btnlast6month"
-                    type="button"
-                    value="Last 6 Month"
-                    class="btnBlueBox"
-                  />
-                  <input
-                    id="btnlast12month"
-                    type="button"
-                    value="Last 12 Month"
-                    class="btnBlueBox"
-                  />
-                  <input
-                    id="Button1"
-                    type="button"
-                    value="Clear"
-                    class="btnClearBox"
-                  />
-                  <input
-                    id="Go"
-                    type="button"
-                    value="Go"
-                    class="btnClearBox"
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div class="cards">
-              <div class="col-md-3">
-                <div class="expensesBox boxColor01" id="divIncome">
-                  Income
-                  <span>
-                    <b id="spanIncome">
-                      <i class="fa fa-rupee"></i>
-                      0.00
-                    </b>
-                  </span>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="expensesBox boxColor01" id="divOutSource">
-                  Outsource Test
-                  <span><b id="spanOutsource">-</b></span>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="expensesBox boxColor01" id="divInsurance">
-                  Insurance Panel
-                  <span><b id="spanInsurance">-</b></span>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="expensesBox boxColor01" id="divPanelDoctor">
-                  Panel Doctors/Facilities
-                  <span><b id="spanPanelDoc">-</b></span>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="expensesBox boxColor01" id="divCorporate">
-                  Corporate Panel
-                  <span><b id="spanCorporate">-</b></span>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="expensesBox boxColor01" id="divExpenses">
-                  Expenses
-                  <span><b id="spanExpenses">-</b></span>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="expensesBox boxColor01" id="divRevenue">
-                  Test Wise Revenue
-                  <span
-                    ><b id="spanRevenue"
-                      ><i class="fa fa-rupee"></i>9660.00</b
-                    ></span
-                  >
-                </div>
-              </div>
-            </div>
           </div>
-        </form>
+      </form>
+      
       </div>
+      <div id="dailyIncomeTableContainer">
+        <table role="grid" tabindex="-1">
+            <colgroup>
+                <col style="width:14vw">
+                <col style="width:14vw">
+                <col style="width:14vw">
+                <col style="width:14vw">
+                <col style="width:14vw">
+                <col style="width:14vw">
+                <col style="width:14vw">
+            </colgroup>
+            <thead role="rowgroup">
+                <tr role="row">
+                    <th role="columnheader" data-field="CurrentDate" data-title="Date" class="k-header" data-role="columnsorter">
+                        <a class="k-link" href="#" tabindex="-1">Date</a>
+                    </th>
+                    <th role="columnheader" data-field="TotalAmount" data-title="Total" class="k-header" data-role="columnsorter">
+                        <a class="k-link" href="#" tabindex="-1">Total</a>
+                    </th>
+                    <th role="columnheader" data-field="Discount" data-title="Discount" class="k-header" data-role="columnsorter">
+                        <a class="k-link" href="#" tabindex="-1">Discount</a>
+                    </th>
+                    <th role="columnheader" data-field="NetAmount" data-title="Net Amount" class="k-header" data-role="columnsorter">
+                        <a class="k-link" href="#" tabindex="-1">Net Amount</a>
+                    </th>
+                    <th role="columnheader" data-field="InitialAmount" data-title="Initial Amount" class="k-header" data-role="columnsorter">
+                        <a class="k-link" href="#" tabindex="-1">Initial Amount</a>
+                    </th>
+                    <th role="columnheader" data-field="Balance" data-title="Bal" class="k-header" data-role="columnsorter">
+                        <a class="k-link" href="#" tabindex="-1">Bal</a>
+                    </th>
+                    <th role="columnheader" data-field="Refund" data-title="Refund" class="k-header" data-role="columnsorter">
+                        <a class="k-link" href="#" tabindex="-1">Refund</a>
+                    </th>
+                </tr>
+            </thead>
+            <tbody id="dailyIncomeTableBody">
+                <!-- Rows will be dynamically added here -->
+            </tbody>
+        </table>
+    </div>
     </div>
     <script src="nav.js"></script>
     <script src="accounts.js"></script>
