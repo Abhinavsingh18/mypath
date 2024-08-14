@@ -266,6 +266,11 @@
         background-color: #2e98cc;
         color: white;
       }
+      #dailyIncomeTableContainer{
+        display: none;
+        overflow-y: scroll;
+        height: 30vh;
+      }
     </style>
 
     <div id="navbar"></div>
@@ -344,7 +349,7 @@
                   <div class="col-md-3">
                       <div class="expensesBox boxColor01" id="divRevenue">
                           Test Wise Revenue
-                          <span><b id="spanRevenue"><i class="fa fa-rupee"></i>9660.00</b></span>
+                          <span><b id="spanRevenue">-</b></span>
                       </div>
                   </div>
               </div>
@@ -352,7 +357,7 @@
       </form>
       
       </div>
-      <div id="dailyIncomeTableContainer" style="display: none;">
+      <div id="dailyIncomeTableContainer" >
         <table role="grid" tabindex="-1">
             <colgroup>
                 <col style="width:14vw">
