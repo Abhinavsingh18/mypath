@@ -185,6 +185,18 @@ async function generatePDF(data, patientDetails) {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 $(document).ready(function () {
   // Fetch branches based on username
   var username = localStorage.getItem("username");
@@ -271,15 +283,6 @@ $(document).ready(function () {
               (sum, test) => sum + parseFloat(test.price),
               0
           );
-          selectedTestsArray.forEach((test) => {
-            checkReportNumberAvailability(test.REPORTNUMBER, function(isAvailable) {
-                if (isAvailable) {
-                  row.css('background-color', '#dcabab')
-                } else {
-                  row.css('background-color', '#92ea59')
-                }
-            });
-        });
       
           totalSum += totalPrice;
       
@@ -299,8 +302,7 @@ $(document).ready(function () {
                       .addClass("k-detail-cell")
                       .attr("colspan", "12");
                   
-                  // Create HTML for selected test
-                  
+                  // Create HTML for selected tests
                   const selectedTestsHTML = selectedTestsArray
                       .map(
                           (test) => `
@@ -378,8 +380,8 @@ $(document).ready(function () {
       
                   // Check availability of report numbers
                   selectedTestsArray.forEach((test) => {
-                    checkReportNumberAvailability(test.REPORTNUMBER);
-                });
+                      checkReportNumberAvailability(test.REPORTNUMBER);
+                  });
               }
           });
       });
@@ -396,7 +398,8 @@ $(document).ready(function () {
     });
   }
 
-  function checkReportNumberAvailability(reportNumber, callback) {
+
+  function checkReportNumberAvailability(reportNumber) {
     $.ajax({
         url: "https://rssmarthut.com/mypath/checkReportNumber.php",
         type: "GET",
@@ -404,16 +407,12 @@ $(document).ready(function () {
         dataType: "json",
         success: function (data) {
             if (data.exists) {
+                // Show the print button if report number exists
                 $(".k-detail-row").last().find(".print-button").show();
-                callback(true);  // Call the callback with true if report number exists
-            } 
-            else{
-              callback(false)
             }
         },
         error: function (xhr, status, error) {
             console.error("AJAX Error:", status, error);
-           // Handle the error by returning false
         },
     });
 }
