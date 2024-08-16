@@ -347,7 +347,7 @@ $(document).ready(function () {
                                                data-reportnumber="${test.REPORTNUMBER}">
                                                ${test.REPORTNUMBER}
                                             </a>
-                                            <button class="print-button" style="display: none;margin-top: 10px;border: none;padding-left: 5px;color: #212121;scale: 0.9;padding-right: 8px;border-radius: 9px;background-color: #e99700">Print</button>
+                                            <button class="print-button" style="display: none;border: none;padding-left: 5px;color: #212121;scale: 0.9;padding-right: 8px;border-radius: 9px;background-color: #e99700">Print</button>
                                         </td>
                                         <td style="width:12vw">${patient.advisedDate.split(" ")[0]}</td>
                                         <td style="width:6vw;"></td>
