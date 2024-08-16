@@ -276,23 +276,47 @@ $(document).ready(function () {
                 row.append(`<td>${patient.advisedByDoctor}</td>`);
                 row.append(`<td>${patient.advisedByFacility}</td>`);
                 row.append(`<td>${patient.referredBy}</td>`);
-                
+
                 // Parse selected tests and calculate total price
                 const selectedTestsArray = JSON.parse(patient.selectedTests);
                 const totalPrice = selectedTestsArray.reduce(
                     (sum, test) => sum + parseFloat(test.price),
                     0
                 );
-            
+
                 totalSum += totalPrice;
-            
+
                 row.append(`<td>${totalPrice.toFixed(2)}</td>`);
                 row.append(`<td>0</td>`);
                 row.append(`<td>0</td>`);
                 row.append(`<td>${totalPrice.toFixed(2)}</td>`);
                 row.append(`<td>${totalPrice.toFixed(2)}</td>`);
                 tableBody.append(row);
-            
+
+                // Function to handle row color based on report number availability
+                function checkAllReportNumbersAvailability(selectedTestsArray, row) {
+                    let allFound = true;
+
+                    selectedTestsArray.forEach((test, index) => {
+                        checkReportNumberAvailability(test.REPORTNUMBER, null, function (exists) {
+                            if (!exists) {
+                                allFound = false;
+                            }
+
+                            // Apply color based on availability after all checks are done
+                            if (index === selectedTestsArray.length - 1) {
+                                if (allFound) {
+                                    row.css("background-color", "lightgreen");
+                                } else {
+                                    row.css("background-color", "lightpink");
+                                }
+                            }
+                        });
+                    });
+                }
+
+                checkAllReportNumbersAvailability(selectedTestsArray, row);
+
                 row.on("click", function () {
                     if ($(this).next(".k-detail-row").length) {
                         $(this).next(".k-detail-row").toggle();
@@ -301,7 +325,7 @@ $(document).ready(function () {
                         const detailCell = $("<td>")
                             .addClass("k-detail-cell")
                             .attr("colspan", "12");
-                        
+
                         // Create HTML for selected tests
                         const selectedTestsHTML = selectedTestsArray
                             .map(
@@ -330,8 +354,10 @@ $(document).ready(function () {
                                         <td></td>
                                         <td>default</td>
                                     </tr>
-                                `).join("");
-                
+                                `
+                            )
+                            .join("");
+
                         detailCell.html(`
                             <div class="k-grid k-widget" style="height: 160px;width:99vw; margin:auto">
                                 <div class="k-grid-header" style="padding-right: 17px;">
@@ -375,7 +401,7 @@ $(document).ready(function () {
                         `);
                         detailRow.append(detailCell);
                         $(this).after(detailRow);
-                
+
                         // Check availability of report numbers and associate each one with its respective print button
                         selectedTestsArray.forEach((test) => {
                             const printButton = $(detailRow).find(`[data-reportnumber="${test.REPORTNUMBER}"]`).next('.print-button');
@@ -396,7 +422,7 @@ $(document).ready(function () {
     });
 }
 
-function checkReportNumberAvailability(reportNumber, printButton) {
+function checkReportNumberAvailability(reportNumber, printButton, callback) {
     $.ajax({
         url: "https://rssmarthut.com/mypath/checkReportNumber.php",
         type: "GET",
@@ -405,16 +431,28 @@ function checkReportNumberAvailability(reportNumber, printButton) {
         success: function (data) {
             if (data.exists) {
                 console.log(`${reportNumber} exists`);
-                printButton.show(); // Show the print button for the specific report number
+                if (printButton) {
+                    printButton.show(); // Show the print button for the specific report number
+                }
+                if (callback) {
+                    callback(true);
+                }
             } else {
                 console.log(`${reportNumber} not found`);
+                if (callback) {
+                    callback(false);
+                }
             }
         },
         error: function (xhr, status, error) {
             console.error("AJAX Error:", status, error);
+            if (callback) {
+                callback(false);
+            }
         },
     });
 }
+
 
 
 
