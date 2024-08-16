@@ -252,154 +252,151 @@ $(document).ready(function () {
   // Fetch and display patient data
   function fetchPatients(branchname, date) {
     $.ajax({
-      url: "https://rssmarthut.com/mypath/worklist.php",
-      type: "GET",
-      data: { branchname: branchname, date: date },
-      dataType: "json",
-      success: function (data) {
-        if (data.error) {
-          console.error(data.error);
-          return;
-        }
+        url: "https://rssmarthut.com/mypath/worklist.php",
+        type: "GET",
+        data: { branchname: branchname, date: date },
+        dataType: "json",
+        success: function (data) {
+            if (data.error) {
+                console.error(data.error);
+                return;
+            }
 
-        const tableBody = $("#patientsTableBody");
-        tableBody.empty();
+            const tableBody = $("#patientsTableBody");
+            tableBody.empty();
 
-        let totalSum = 0;
+            let totalSum = 0;
 
-        data.forEach((patient) => {
-          const row = $("<tr>");
-          row.append(`<td>${patient.id}</td>`);
-          row.append(`<td>${patient.pid}</td>`);
-          row.append(`<td>${patient.patientname}</td>`);
-          row.append(`<td>${patient.advisedDate.split(" ")[0]}</td>`);
-          row.append(`<td>${patient.advisedByDoctor}</td>`);
-          row.append(`<td>${patient.advisedByFacility}</td>`);
-          row.append(`<td>${patient.referredBy}</td>`);
-          
-          // Parse selected tests and calculate total price
-          const selectedTestsArray = JSON.parse(patient.selectedTests);
-          const totalPrice = selectedTestsArray.reduce(
-              (sum, test) => sum + parseFloat(test.price),
-              0
-          );
-      
-          totalSum += totalPrice;
-      
-          row.append(`<td>${totalPrice.toFixed(2)}</td>`);
-          row.append(`<td>0</td>`);
-          row.append(`<td>0</td>`);
-          row.append(`<td>${totalPrice.toFixed(2)}</td>`);
-          row.append(`<td>${totalPrice.toFixed(2)}</td>`);
-          tableBody.append(row);
-      
-          row.on("click", function () {
-              if ($(this).next(".k-detail-row").length) {
-                  $(this).next(".k-detail-row").toggle();
-              } else {
-                  const detailRow = $("<tr>").addClass("k-detail-row k-alt");
-                  const detailCell = $("<td>")
-                      .addClass("k-detail-cell")
-                      .attr("colspan", "12");
-                  
-                  // Create HTML for selected tests
-                  const selectedTestsHTML = selectedTestsArray
-                      .map(
-                          (test) => `
-                              <tr data-testdetail="testDetail" class="purple k-state-selected">
-                                  <td style="width:15vw">${test.testname}</td>
-                                  <td style="width:26.2vw">
-                                      <a class="reportNumber" tabindex="0" style="color:red"
-                                         data-id=${patient.id}
-                                         data-referredBy=${patient.referredBy}
-                                         data-reportDeliveryMode=${patient.reportDeliveryMode}
-                                         data-patientname="${patient.patientname}" 
-                                         data-adviseddate="${patient.advisedDate}"
-                                         data-testname="${test.testname}"
-                                         data-gender="${patient.gender}" 
-                                         data-age="${patient.age}" 
-                                         data-pid="${patient.pid}"
-                                         data-locations="${patient.locations}"
-                                         data-reportnumber="${test.REPORTNUMBER}">
-                                         ${test.REPORTNUMBER}
-                                      </a>
-                                      <button class="print-button" style="display: none;margin-top: 10px;border: none;padding-left: 5px;color: #212121;scale: 0.9;padding-right: 8px;border-radius: 9px;background-color: #e99700">Print</button>
-                                  </td>
-                                  <td style="width:12vw">${patient.advisedDate.split(" ")[0]}</td>
-                                  <td style="width:6vw;"></td>
-                                  <td></td>
-                                  <td>default</td>
-                              </tr>
-                          `).join("");
-      
-                  detailCell.html(`
-                      <div class="k-grid k-widget" style="height: 160px;width:99vw; margin:auto">
-                          <div class="k-grid-header" style="padding-right: 17px;">
-                              <div class="k-grid-header-wrap" data-role="resizable">
-                                  <table role="grid">
-                                      <colgroup>
-                                          <col>
-                                          <col>
-                                          <col>
-                                          <col>
-                                          <col>
-                                          <col>
-                                      </colgroup>
-                                      <thead>
-                                          <tr>
-                                              <th style="width: 13vw" class="k-header">Test Name</th>
-                                              <th style="width: 23vw" class="k-header">Report Number</th>
-                                              <th style="width: 10.6vw" class="k-header">Advised Date</th>
-                                              <th style="width: 5.2vw;" class="k-header">Report Status</th>
-                                              <th style="width:23vw" class="k-header">Sample</th>
-                                              <th style="width:160px" class="k-header">Panel Company</th>
-                                          </tr>
-                                      </thead>
-                                  </table>
-                              </div>
-                          </div>
-                          <div class="k-grid-content" style="height: 126.4px;">
-                              <table data-role="grid" role="grid" style="height: auto;" class="k-selectable">
-                                  <colgroup>
-                                      <col style="width=15vw">
-                                      <col>
-                                      <col>
-                                      <col>
-                                  </colgroup>
-                                  <tbody>
-                                      ${selectedTestsHTML}
-                                  </tbody>
-                              </table>
-                          </div>
-                          
-                          
-                      </div>
-                  `);
-                  detailRow.append(detailCell);
-                  $(this).after(detailRow);
-      
-                  // Check availability of report numbers
-                  selectedTestsArray.forEach((test) => {
-                      checkReportNumberAvailability(test.REPORTNUMBER);
-                  });
-              }
-          });
-      });
-      
+            data.forEach((patient) => {
+                const row = $("<tr>");
+                row.append(`<td>${patient.id}</td>`);
+                row.append(`<td>${patient.pid}</td>`);
+                row.append(`<td>${patient.patientname}</td>`);
+                row.append(`<td>${patient.advisedDate.split(" ")[0]}</td>`);
+                row.append(`<td>${patient.advisedByDoctor}</td>`);
+                row.append(`<td>${patient.advisedByFacility}</td>`);
+                row.append(`<td>${patient.referredBy}</td>`);
+                
+                // Parse selected tests and calculate total price
+                const selectedTestsArray = JSON.parse(patient.selectedTests);
+                const totalPrice = selectedTestsArray.reduce(
+                    (sum, test) => sum + parseFloat(test.price),
+                    0
+                );
+            
+                totalSum += totalPrice;
+            
+                row.append(`<td>${totalPrice.toFixed(2)}</td>`);
+                row.append(`<td>0</td>`);
+                row.append(`<td>0</td>`);
+                row.append(`<td>${totalPrice.toFixed(2)}</td>`);
+                row.append(`<td>${totalPrice.toFixed(2)}</td>`);
+                tableBody.append(row);
+            
+                row.on("click", function () {
+                    if ($(this).next(".k-detail-row").length) {
+                        $(this).next(".k-detail-row").toggle();
+                    } else {
+                        const detailRow = $("<tr>").addClass("k-detail-row k-alt");
+                        const detailCell = $("<td>")
+                            .addClass("k-detail-cell")
+                            .attr("colspan", "12");
+                        
+                        // Create HTML for selected tests
+                        const selectedTestsHTML = selectedTestsArray
+                            .map(
+                                (test) => `
+                                    <tr data-testdetail="testDetail" class="purple k-state-selected">
+                                        <td style="width:15vw">${test.testname}</td>
+                                        <td style="width:26.2vw">
+                                            <a class="reportNumber" tabindex="0" style="color:red"
+                                               data-id=${patient.id}
+                                               data-referredBy=${patient.referredBy}
+                                               data-reportDeliveryMode=${patient.reportDeliveryMode}
+                                               data-patientname="${patient.patientname}" 
+                                               data-adviseddate="${patient.advisedDate}"
+                                               data-testname="${test.testname}"
+                                               data-gender="${patient.gender}" 
+                                               data-age="${patient.age}" 
+                                               data-pid="${patient.pid}"
+                                               data-locations="${patient.locations}"
+                                               data-reportnumber="${test.REPORTNUMBER}">
+                                               ${test.REPORTNUMBER}
+                                            </a>
+                                            <button class="print-button" style="display: none;margin-top: 10px;border: none;padding-left: 5px;color: #212121;scale: 0.9;padding-right: 8px;border-radius: 9px;background-color: #e99700">Print</button>
+                                        </td>
+                                        <td style="width:12vw">${patient.advisedDate.split(" ")[0]}</td>
+                                        <td style="width:6vw;"></td>
+                                        <td></td>
+                                        <td>default</td>
+                                    </tr>
+                                `).join("");
+                
+                        detailCell.html(`
+                            <div class="k-grid k-widget" style="height: 160px;width:99vw; margin:auto">
+                                <div class="k-grid-header" style="padding-right: 17px;">
+                                    <div class="k-grid-header-wrap" data-role="resizable">
+                                        <table role="grid">
+                                            <colgroup>
+                                                <col>
+                                                <col>
+                                                <col>
+                                                <col>
+                                                <col>
+                                                <col>
+                                            </colgroup>
+                                            <thead>
+                                                <tr>
+                                                    <th style="width: 13vw" class="k-header">Test Name</th>
+                                                    <th style="width: 23vw" class="k-header">Report Number</th>
+                                                    <th style="width: 10.6vw" class="k-header">Advised Date</th>
+                                                    <th style="width: 5.2vw;" class="k-header">Report Status</th>
+                                                    <th style="width:23vw" class="k-header">Sample</th>
+                                                    <th style="width:160px" class="k-header">Panel Company</th>
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="k-grid-content" style="height: 126.4px;">
+                                    <table data-role="grid" role="grid" style="height: auto;" class="k-selectable">
+                                        <colgroup>
+                                            <col style="width=15vw">
+                                            <col>
+                                            <col>
+                                            <col>
+                                        </colgroup>
+                                        <tbody>
+                                            ${selectedTestsHTML}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        `);
+                        detailRow.append(detailCell);
+                        $(this).after(detailRow);
+                
+                        // Check availability of report numbers and associate each one with its respective print button
+                        selectedTestsArray.forEach((test) => {
+                            const printButton = $(detailRow).find(`[data-reportnumber="${test.REPORTNUMBER}"]`).next('.print-button');
+                            checkReportNumberAvailability(test.REPORTNUMBER, printButton);
+                        });
+                    }
+                });
+            });
 
-        // Update footer with total sum
-        $(".k-footer-template td").eq(8).text(totalSum.toFixed(2));
-        $(".k-footer-template td").eq(11).text(totalSum.toFixed(2));
-        $(".k-footer-template td").eq(12).text(totalSum.toFixed(2));
-      },
-      error: function (xhr, status, error) {
-        console.error("AJAX Error: " + status + " - " + error);
-      },
+            // Update footer with total sum
+            $(".k-footer-template td").eq(8).text(totalSum.toFixed(2));
+            $(".k-footer-template td").eq(11).text(totalSum.toFixed(2));
+            $(".k-footer-template td").eq(12).text(totalSum.toFixed(2));
+        },
+        error: function (xhr, status, error) {
+            console.error("AJAX Error: " + status + " - " + error);
+        },
     });
-  }
+}
 
-
-  function checkReportNumberAvailability(reportNumber) {
+function checkReportNumberAvailability(reportNumber, printButton) {
     $.ajax({
         url: "https://rssmarthut.com/mypath/checkReportNumber.php",
         type: "GET",
@@ -407,8 +404,10 @@ $(document).ready(function () {
         dataType: "json",
         success: function (data) {
             if (data.exists) {
-                // Show the print button if report number exists
-                $(".k-detail-row").last().find(".print-button").show();
+                console.log(`${reportNumber} exists`);
+                printButton.show(); // Show the print button for the specific report number
+            } else {
+                console.log(`${reportNumber} not found`);
             }
         },
         error: function (xhr, status, error) {
@@ -416,6 +415,9 @@ $(document).ready(function () {
         },
     });
 }
+
+
+
   // Handle clicks on report number links
   $(document).on("click", ".reportNumber", function (event) {
     event.preventDefault();

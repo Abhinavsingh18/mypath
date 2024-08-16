@@ -4,27 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PDF Example</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-    <div id="content">
-        <h1>Hello, World!</h1>
-        <p>This is a sample PDF content.</p>
-    </div>
-    <button id="generatePDF">Generate PDF</button>
+    
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="./test.js"></script>
    
-    <script>
-        document.getElementById('generatePDF').addEventListener('click', () => {
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
-
-    doc.text('Hello world!', 10, 10);
-    doc.text('This is a sample PDF content.', 10, 20);
-
-    doc.save('sample.pdf');
-});
-
-    </script>
+   
 </body>
 </html>
