@@ -669,7 +669,7 @@ $(document).ready(function () {
                       <p style="width:18vw">${entry.range_name || "N/A"}</p>
                       <p style="width:6vw">${entry.unit || "N/A"}</p>
                       <p style="width:7.3vw">${entry.type || "N/A"}</p>
-                      <p style="width:8.9vw">
+                      <p style="width:9.9vw">
                           <span style="background-color:red;color:white;padding-left:4px;padding-right:4px;border-radius:3px">${
                             entry.critical_low || "N/A"
                           }</span>

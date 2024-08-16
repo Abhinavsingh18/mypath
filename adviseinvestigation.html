@@ -475,7 +475,10 @@
 
           <div class="form-group">
             <label for="advisedByDoctor">Advised By Doctor:</label>
-            <input type="text" id="advisedByDoctor" name="advisedByDoctor" />
+            <!-- <input type="text" id="advisedByDoctor" name="advisedByDoctor" /> -->
+            <select name="advisedByDoctor" id="advisedByDoctor">
+
+            </select>
           </div>
 
           <div class="form-group">
@@ -1042,6 +1045,7 @@
       const genderInput = document.getElementById("gender"); // Add this
       const pidDisplay = document.getElementById("pidDisplay"); // Element to display PID
       const advisedDateTimeInput = document.getElementById("advisedDate");
+      const advisedByDoctor = document.getElementById("advisedByDoctor");
       const locationsInput = document.getElementById("locations"); // Element to display the branch name
       const addressInput = document.getElementById("patientAddress"); // Element to display the address
 
@@ -1097,7 +1101,7 @@
                 // li.appendChild(addressSpan);
 
                 // Add click event listener to populate the form fields
-                li.addEventListener("click", function () {
+                li.addEventListener("click", async function () {
                   patientNameInput.value = patient.firstname;
                   contactNumberInput.value = patient.contactnumber;
                   ageInput.value = patient.age; // Add this
@@ -1113,6 +1117,14 @@
                   selectedTestsDiv.style.display = "block";
                   fetchTests(username, patient.branchcode);
                   searchResults.innerHTML = ""; // Clear search results after selection
+                  let doctorDetails = await fetchDoctorDetails(username,patient.branch);
+                  doctorDetails.forEach((doctor) => {
+                    var option = document.createElement("option");
+                    option.value = doctor.doctor_name;
+                    option.textContent = doctor.doctor_name;
+                    option.setAttribute("data-doctor", doctor.doctor_name); 
+                    advisedByDoctor.appendChild(option);
+                  });
                 });
 
                 searchResults.appendChild(li);
@@ -1191,6 +1203,26 @@
 
       // Fetch branches initially
       fetchBranches();
+    </script>
+    <script>
+      async function fetchDoctorDetails(username, branchName) {
+        const url = `https://rssmarthut.com/mypath/fetchDoctors.php?username=${username}&branch_name=${branchName}`;
+
+        try {
+          const response = await fetch(url);
+          const data = await response.json();
+
+          if (data.error) {
+            console.error(data.error);
+            return null; // Return null in case of an error
+          } else {
+            return data; // Return the fetched data
+          }
+        } catch (error) {
+          console.error("Error fetching doctor details:", error);
+          return null; // Return null in case of an error
+        }
+      }
     </script>
 
     <script src="nav.js"></script>
