@@ -250,6 +250,20 @@ $(document).ready(function () {
   });
 
   // Fetch and display patient data
+// Add this after your fetchPatients function
+$(document).ready(function () {
+  $("#txtSearchWorkList").on("keyup", function () {
+      const searchValue = $(this).val().toLowerCase();
+
+      $("#patientsTableBody tr").filter(function () {
+          const pid = $(this).find("td").eq(1).text().toLowerCase();
+          $(this).toggle(pid.includes(searchValue));
+      });
+  });
+});
+
+
+
   function fetchPatients(branchname, date) {
     $.ajax({
         url: "https://rssmarthut.com/mypath/worklist.php",
