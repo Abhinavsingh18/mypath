@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Branches</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/branchmaster.css">
+    <link rel="stylesheet" href="/assets/nav.css">
+</head>
+<body>
+    <div id="navbar"></div>
+    <div class="container mt-5">
+        <div class="row" style="display: flex;justify-content: center;">
+            
+            <div class="col-md-4">
+                <h2>Select Branch</h2>
+                
+                <!-- Form Start -->
+                <form id="branchForm" method="POST" action="https://rssmarthut.com/mypath/addDoctor.php">
+                    <div class="form-group">
+                        <label for="branchSelect">Branch</label>
+                        <select id="branchSelect" name="branch_code" class="form-control">
+                            <option value="">Select a branch</option>
+                            <!-- Branch options will be populated here -->
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="branchName">Branch Name</label>
+                        <input type="text" id="branchName" name="branch_name" class="form-control" readonly>
+                    </div>
+
+                    <div class="form-group mt-4">
+                        <label for="doctorName">Name of Doctor</label>
+                        <input type="text" id="doctorName" name="doctor_name" class="form-control" placeholder="Enter doctor's name">
+                    </div>
+                    <div class="form-group">
+                        <label for="designation">Designation</label>
+                        <!-- <input type="text" id="designation" name="designation" class="form-control" placeholder="Enter designation"> -->
+                        <select name="designation" id="designation" style="width: auto;">
+                            <option value="Doctor">Doctor</option>
+                            <option value="Consultant Pathologist">Consultant Pathologist</option>
+                        </select>
+                    </div>
+
+                    <!-- Hidden field to store the username -->
+                    <input type="hidden" id="username" name="username" value="">
+
+                    <button type="submit" class="btn btn-primary mt-3">Submit</button>
+                </form>
+                <!-- Form End -->
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="nav.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            const username = localStorage.getItem('username');
+            $('#username').val(username); // Set the username in the hidden input field
+
+            // Fetch all branch names for the select dropdown based on the logged-in user
+            $.ajax({
+                url: 'https://rssmarthut.com/mypath/fetchBranches1.php',
+                method: 'POST',
+                data: { username: username },
+                dataType: 'json', // Specify that the response is JSON
+                success: function(response) {
+                    response.forEach(function(branch) {
+                        $('#branchSelect').append(new Option(branch.branchname, branch.branch_code));
+                    });
+                },
+                error: function(xhr, status, error) {
+                    console.error("Failed to fetch branches: ", error);
+                }
+            });
+
+            // Update the branch name input field when a branch is selected
+            $('#branchSelect').change(function() {
+                const selectedBranchName = $('#branchSelect option:selected').text();
+                $('#branchName').val(selectedBranchName);
+            });
+        });
+    </script>
+</body>
+</html>
