@@ -475,10 +475,11 @@
 
           <div class="form-group">
             <label for="advisedByDoctor">Advised By Doctor:</label>
-            <!-- <input type="text" id="advisedByDoctor" name="advisedByDoctor" /> -->
-            <select name="advisedByDoctor" id="advisedByDoctor">
-
-            </select>
+            <input list="doctors" id="advisedByDoctor" class="form-control" name="advisedByDoctor" placeholder="Select A doctor ..." style="background-color:#d2b9b9">
+                <datalist id="doctors">
+                    
+                    <!-- Add more countries as needed -->
+                </datalist>
           </div>
 
           <div class="form-group">
@@ -1045,7 +1046,7 @@
       const genderInput = document.getElementById("gender"); // Add this
       const pidDisplay = document.getElementById("pidDisplay"); // Element to display PID
       const advisedDateTimeInput = document.getElementById("advisedDate");
-      const advisedByDoctor = document.getElementById("advisedByDoctor");
+      const advisedByDoctor = document.getElementById("doctors");
       const locationsInput = document.getElementById("locations"); // Element to display the branch name
       const addressInput = document.getElementById("patientAddress"); // Element to display the address
 
