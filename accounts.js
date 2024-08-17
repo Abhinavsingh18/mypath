@@ -142,11 +142,14 @@ document.addEventListener("DOMContentLoaded", function () {
           const data = JSON.parse(xhr.responseText);
           const tableBody = document.getElementById("dailyIncomeTableBody");
           tableBody.innerHTML = ""; // Clear existing rows
-  
-          // Insert rows for each date
-          for (const [date, totalPrice] of Object.entries(data.dateWiseIncome)) {
+    
+          // Reverse the date-wise income data
+          const reversedEntries = Object.entries(data.dateWiseIncome).reverse();
+    
+          // Insert rows for each date in reversed order
+          for (const [date, totalPrice] of reversedEntries) {
             const row = document.createElement("tr");
-            row.style.border="0.1px solid grey"
+            row.style.border = "0.1px solid grey";
             row.innerHTML = `
                       <td style="border-right:0.1px solid grey;padding:3px">${date}</td>
                       <td style="border-right:0.1px solid grey;padding:2px">${totalPrice}</td> 
@@ -158,7 +161,7 @@ document.addEventListener("DOMContentLoaded", function () {
                   `;
             tableBody.appendChild(row);
           }
-  
+    
           // Optionally, handle the total income in a separate element
           document.getElementById("totalIncome").innerText = data.totalIncome;
         }
@@ -171,6 +174,7 @@ document.addEventListener("DOMContentLoaded", function () {
         )}&branchname=${encodeURIComponent(branchname)}`
       );
     }
+    
   });
   
   // Function to fetch and display data
