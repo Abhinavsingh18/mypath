@@ -169,7 +169,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
   function fetchPrimaryCategories(selectElement) {
-    var url = 'https://rssmarthut.com/mypath/primarycategory.php?fetch=true';
+    var url = 'https://mrspdevelopers.com/public/mypath/primarycategory.php?fetch=true';
 
     fetch(url)
       .then(response => response.json())
@@ -272,7 +272,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Function to fetch secondary categories based on primary category name
   function fetchSecondaryCategories(primaryCategoryName) {
-    const url = 'https://rssmarthut.com/mypath/secondarycategory.php?fetch=true&pname=' + encodeURIComponent(primaryCategoryName);
+    const url = 'https://mrspdevelopers.com/public/mypath/secondarycategory.php?fetch=true&pname=' + encodeURIComponent(primaryCategoryName);
 
     fetch(url)
       .then(response => response.json())
@@ -341,7 +341,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // }
 
   function fetchTestCategories(secondaryCategoryName) {
-    const url = 'https://rssmarthut.com/mypath/testcategory.php?fetch=true&sname=' + encodeURIComponent(secondaryCategoryName);
+    const url = 'https://mrspdevelopers.com/public/mypath/testcategory.php?fetch=true&sname=' + encodeURIComponent(secondaryCategoryName);
 
     fetch(url)
       .then(response => response.json())
@@ -398,7 +398,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // Fetch primary categories on page load
   function fetchSecondaryCategoriesInTest(primaryCategorySelectElement, secondaryCategorySelectElement) {
     var primaryCategoryName = primaryCategorySelectElement.value;
-    var url = 'https://rssmarthut.com/mypath/secondarycategorylistintest.php?fetch=true&pname=' + primaryCategoryName;
+    var url = 'https://mrspdevelopers.com/public/mypath/secondarycategorylistintest.php?fetch=true&pname=' + primaryCategoryName;
 
     fetch(url)
       .then(response => response.json())
@@ -464,7 +464,7 @@ if (username) {
     document.getElementById('usernameInput').value = username;
 
     // Fetch branches based on the username
-    fetch(`https://rssmarthut.com/mypath/fetchBranches.php?username=${username}`)
+    fetch(`https://mrspdevelopers.com/public/mypath/fetchBranches.php?username=${username}`)
         .then(response => response.json())
         .then(data => {
             const branchSelect = document.getElementById('branchSelect');
@@ -490,7 +490,7 @@ if (username) {
 let allTests = [];
 
 // Fetch test categories and populate the table
-fetch('https://rssmarthut.com/mypath/gettestcategories.php')
+fetch('https://mrspdevelopers.com/public/mypath/gettestcategories.php')
     .then(response => response.json())
     .then(data => {
         allTests = data;
@@ -556,7 +556,7 @@ document.addEventListener('DOMContentLoaded', function () {
   let allTests1 = [];
 
   // Fetch test categories and populate the table
-  fetch('https://rssmarthut.com/mypath/gettestcategories.php')
+  fetch('https://mrspdevelopers.com/public/mypath/gettestcategories.php')
       .then(response => response.json())
       .then(data => {
           allTests1 = data;
@@ -671,7 +671,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Function to populate branches dynamically
   function populateBranches(username) {
-      fetch(`https://rssmarthut.com/mypath/fetchBranches.php?username=${username}`)
+      fetch(`https://mrspdevelopers.com/public/mypath/fetchBranches.php?username=${username}`)
           .then(response => response.json())
           .then(data => {
               const branchSelect = document.getElementById('branchSelectInPackageManager');
@@ -694,7 +694,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Function to populate tests based on selected branch
   function populateTests(branchCode) {
-      fetch(`https://rssmarthut.com/mypath/fetchTests.php?branchCode=${branchCode}`)
+      fetch(`https://mrspdevelopers.com/public/mypath/fetchTests.php?branchCode=${branchCode}`)
           .then(response => response.json())
           .then(data => {
               const testSelect = document.getElementById('testSelectInPackageManager');

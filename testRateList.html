@@ -112,7 +112,7 @@
       <input type="text" id="searchBox" name="searchBox" class="form-control" placeholder="Search for a test">
     </div>
   </div>
-  <form id="updateForm" method="post" action="https://rssmarthut.com/mypath/updateTestPriceList.php">
+  <form id="updateForm" method="post" action="https://mrspdevelopers.com/public/mypath/updateTestPriceList.php">
     <input type="hidden" name="username" id="usernameInput">
     <input type="hidden" name="branchcode" id="branchcodeInput">
     <div id="tablediv">
@@ -290,7 +290,7 @@
       document.getElementById('usernameInput').value = username;
 
       if (username) {
-        fetch(`https://rssmarthut.com/mypath/fetchBranches.php?username=${username}`)
+        fetch(`https://mrspdevelopers.com/public/mypath/fetchBranches.php?username=${username}`)
           .then((response) => response.json())
           .then((data) => {
             const branchSelect = document.getElementById("branchSelect");
@@ -334,7 +334,7 @@
       });
 
       function fetchTests(username, branchcode) {
-        fetch(`https://rssmarthut.com/mypath/getTestPrices.php?username=${username}&branchcode=${branchcode}`)
+        fetch(`https://mrspdevelopers.com/public/mypath/getTestPrices.php?username=${username}&branchcode=${branchcode}`)
    
           .then((response) => response.json())
           .then((data) => {
@@ -386,7 +386,7 @@
         formData.append("branch", branchcode);
         formData.append(`price_${testname}`, newPrice);
 
-        fetch('https://rssmarthut.com/mypath/updateTestPriceList.php', {
+        fetch('https://mrspdevelopers.com/public/mypath/updateTestPriceList.php', {
           method: 'POST',
           body: formData
         })
@@ -421,7 +421,7 @@
       const username = localStorage.getItem("username");
   
       if (username) {
-        fetch(`https://rssmarthut.com/mypath/fetchBranches.php?username=${username}`)
+        fetch(`https://mrspdevelopers.com/public/mypath/fetchBranches.php?username=${username}`)
           .then((response) => response.json())
           .then((data) => {
             const branchSelect = document.getElementById("branch");
@@ -456,7 +456,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const username = localStorage.getItem("username");
 
     if (username) {
-        fetch(`https://rssmarthut.com/mypath/fetchBranches.php?username=${username}`)
+        fetch(`https://mrspdevelopers.com/public/mypath/fetchBranches.php?username=${username}`)
             .then((response) => response.json())
             .then((data) => {
                 const branchSelect = document.getElementById("branch");
@@ -568,7 +568,7 @@ function addData() {
 function saveData() {
     $.ajax({
         type: 'POST',
-        url: 'https://rssmarthut.com/mypath/saverange.php',
+        url: 'https://mrspdevelopers.com/public/mypath/saverange.php',
         data: { data: JSON.stringify(dataEntries) },
         success: function(response) {
             console.log(response);
@@ -586,7 +586,7 @@ function saveData() {
 
 <script>
   function fetchRangeData(testname, branchcode) {
-    fetch(`https://rssmarthut.com/mypath/getRangeData.php?branchCode=${branchcode}&rangeName=${testname}`)
+    fetch(`https://mrspdevelopers.com/public/mypath/getRangeData.php?branchCode=${branchcode}&rangeName=${testname}`)
         .then(response => response.json())
         .then(data => {
             const tbody = document.querySelector('#dataTable tbody');
@@ -686,7 +686,7 @@ function saveData() {
     };
 
     // Send the updated data to the server
-    fetch('https://rssmarthut.com/mypath/updateRangeData.php', {
+    fetch('https://mrspdevelopers.com/public/mypath/updateRangeData.php', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -733,7 +733,7 @@ function saveData() {
 function updateRangeData(testname, branchcode) {
     const formData = new FormData(document.getElementById('testForm'));
 
-    fetch('https://rssmarthut.com/mypath/updateRangeData.php', {
+    fetch('https://mrspdevelopers.com/public/mypath/updateRangeData.php', {
         method: 'POST',
         body: formData
     })

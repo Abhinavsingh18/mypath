@@ -3,7 +3,7 @@ $(document).on("click", ".print-button", function () {
   const patientDetails = $(this).siblings(".reportNumber").data(); // Get patient details from data attributes
 
   $.ajax({
-    url: "https://rssmarthut.com/mypath/fetchDetailsToPrint.php",
+    url: "https://mrspdevelopers.com/public/mypath/fetchDetailsToPrint.php",
     type: "GET",
     data: { reportNumber: reportNumber, ...patientDetails }, // Pass patient details along with report number
     dataType: "json",
@@ -295,7 +295,7 @@ async function generatePDF(data, patientDetails) {
 }
 
 async function fetchDoctorDetails(username, branchName) {
-  const url = `https://rssmarthut.com/mypath/fetchDoctors.php?username=${username}&branch_name=${branchName}`;
+  const url = `https://mrspdevelopers.com/public/mypath/fetchDoctors.php?username=${username}&branch_name=${branchName}`;
 
   try {
     const response = await fetch(url);
@@ -323,7 +323,7 @@ $(document).ready(function () {
   }
 
   $.ajax({
-    url: "https://rssmarthut.com/mypath/fetchBranches.php",
+    url: "https://mrspdevelopers.com/public/mypath/fetchBranches.php",
     type: "GET",
     data: { username: encodeURIComponent(username) },
     dataType: "json",
@@ -380,7 +380,7 @@ $(document).ready(function () {
 
   function fetchPatients(branchname, date) {
     $.ajax({
-      url: "https://rssmarthut.com/mypath/worklist.php",
+      url: "https://mrspdevelopers.com/public/mypath/worklist.php",
       type: "GET",
       data: { branchname: branchname, date: date },
       dataType: "json",
@@ -574,7 +574,7 @@ $(document).ready(function () {
 
   function checkReportNumberAvailability(reportNumber, printButton, callback) {
     $.ajax({
-      url: "https://rssmarthut.com/mypath/checkReportNumber.php",
+      url: "https://mrspdevelopers.com/public/mypath/checkReportNumber.php",
       type: "GET",
       data: { reportNumber: reportNumber },
       dataType: "json",
@@ -651,7 +651,7 @@ $(document).ready(function () {
     console.log("Branch:", branch);
 
     $.ajax({
-      url: "https://rssmarthut.com/mypath/fetchRangeData.php",
+      url: "https://mrspdevelopers.com/public/mypath/fetchRangeData.php",
       type: "GET",
       data: { testname: testname, age: age, gender: gender, branch: branch },
       dataType: "json",
@@ -740,7 +740,7 @@ $(document).ready(function () {
     const pid = document.getElementById("hoverPidNumber").textContent.trim();
 
     $.ajax({
-      url: "https://rssmarthut.com/mypath/fetchDetails.php",
+      url: "https://mrspdevelopers.com/public/mypath/fetchDetails.php",
       type: "GET",
       data: { reportNumber, testName, pid, rangeName },
       dataType: "json",
@@ -817,7 +817,7 @@ $(document).ready(function () {
         };
 
         $.ajax({
-          url: "https://rssmarthut.com/mypath/saveRangeDetails.php",
+          url: "https://mrspdevelopers.com/public/mypath/saveRangeDetails.php",
           type: "POST",
           contentType: "application/json",
           data: JSON.stringify(dataToSend),
@@ -858,7 +858,7 @@ $("#saveButton").click(function () {
   });
 
   $.ajax({
-    url: "https://rssmarthut.com/mypath/updateReportData.php",
+    url: "https://mrspdevelopers.com/public/mypath/updateReportData.php",
     type: "POST",
     data: {
       reportNumber: reportNumber,
