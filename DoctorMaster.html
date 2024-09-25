@@ -17,7 +17,7 @@
                 <h2>Select Branch</h2>
                 
                 <!-- Form Start -->
-                <form id="branchForm" method="POST" action="https://rssmarthut.com/mypath/addDoctor.php">
+                <form id="branchForm" method="POST" action="https://mrspdevelopers.com/public/mypath/addDoctor.php">
                     <div class="form-group">
                         <label for="branchSelect">Branch</label>
                         <select id="branchSelect" name="branch_code" class="form-control">
@@ -65,7 +65,7 @@
 
             // Fetch all branch names for the select dropdown based on the logged-in user
             $.ajax({
-                url: 'https://rssmarthut.com/mypath/fetchBranches1.php',
+                url: 'https://mrspdevelopers.com/public/mypath/fetchBranches1.php',
                 method: 'POST',
                 data: { username: username },
                 dataType: 'json', // Specify that the response is JSON

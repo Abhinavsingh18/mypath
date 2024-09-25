@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
       document.getElementById("usernameInput").value = username;
       // Fetch branches based on the username
       fetch(
-        `https://rssmarthut.com/mypath/fetchBranches.php?username=${username}`
+        `https://mrspdevelopers.com/public/mypath/fetchBranches.php?username=${username}`
       )
         .then((response) => response.json())
         .then((data) => {
@@ -91,7 +91,7 @@ document.addEventListener("DOMContentLoaded", function () {
   
  
   
-      fetch("https://rssmarthut.com/mypath/fetchIncome.php", {
+      fetch("https://mrspdevelopers.com/public/mypath/fetchIncome.php", {
         method: "POST",
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
@@ -133,7 +133,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const xhr = new XMLHttpRequest();
       xhr.open(
         "POST",
-        "https://rssmarthut.com/mypath/fetchDetailedIncome.php",
+        "https://mrspdevelopers.com/public/mypath/fetchDetailedIncome.php",
         true
       );
       xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");

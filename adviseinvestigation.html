@@ -674,24 +674,66 @@
         <!-- Print Modal -->
         <div id="printModal" style="display: none">
           <div id="modalContent">
-            <h2>Print Slip</h2>
-            <div id="modalFormData">
-              <!-- Form data will be displayed here -->
-            </div>
-            <h3>Selected Tests</h3>
-            <div id="modalSelectedTests">
-              <!-- Selected tests will be displayed here -->
-            </div>
-            <button onclick="printPage()">Print</button>
-            <button
-              onclick="document.getElementById('printModal').style.display='none'"
-            >
-              Close
-            </button>
+              <h2>Print Slip</h2>
+              <div id="modalFormData">
+                  <!-- Form data will be displayed here -->
+              </div>
+              <h3>Selected Tests</h3>
+              <div id="modalSelectedTests">
+                  <!-- Selected tests will be displayed here -->
+              </div>
+              <button onclick="printPage()">Print</button>
+              <button onclick="document.getElementById('printModal').style.display='none'">
+                  Close
+              </button>
           </div>
-        </div>
+      </div>
       </div>
     </div>
+
+<script>
+  document.getElementById('printSlip').addEventListener('click', function () {
+    // Gather form data
+    const formData = new FormData(document.getElementById('adviseInvestigationForm'));
+    
+    // Collect labels and their corresponding input values
+    let modalContent = '';
+    document.querySelectorAll('#adviseInvestigationForm .form-group').forEach(group => {
+        const label = group.querySelector('label').textContent;
+        const input = group.querySelector('input, select, textarea');
+
+        if (input) {
+            modalContent += `<p><strong>${label}:</strong> ${input.value}</p>`;
+        }
+    });
+
+    // Display the collected data in the modal
+    document.getElementById('modalFormData').innerHTML = modalContent;
+
+    // Collect selected tests
+    let selectedTestsContent = '';
+    document.querySelectorAll('#selectedTestsTable tbody tr').forEach(row => {
+        const testName = row.querySelector('td:nth-child(1)').textContent;
+        const price = row.querySelector('td:nth-child(2)').textContent;
+        selectedTestsContent += `<p><strong>${testName}</strong>: ${price}</p>`;
+    });
+
+    document.getElementById('modalSelectedTests').innerHTML = selectedTestsContent;
+
+    // Display the modal
+    document.getElementById('printModal').style.display = 'block';
+});
+
+function printPage() {
+    const printContent = document.getElementById('printModal').innerHTML;
+    const originalContent = document.body.innerHTML;
+
+    document.body.innerHTML = printContent;
+    window.print();
+    document.body.innerHTML = originalContent;
+}
+
+</script>
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
@@ -729,7 +771,7 @@
         // Serialize the selectedTests array and append it to the formData
         formData.append("selectedTests", JSON.stringify(selectedTests));
 
-        fetch("https://rssmarthut.com/mypath/reportdata.php", {
+        fetch("https://mrspdevelopers.com/public/mypath/reportdata.php", {
           method: "POST",
           body: formData,
         })
@@ -764,7 +806,7 @@
       const selectedTests = [];
 
       function fetchTests(username, branchcode) {
-        const url = `https://rssmarthut.com/mypath/getTestPrices.php?username=${username}&branchcode=${branchcode}`;
+        const url = `https://mrspdevelopers.com/public/mypath/getTestPrices.php?username=${username}&branchcode=${branchcode}`;
         fetch(url)
           .then((response) => response.json())
           .then((data) => {
@@ -889,7 +931,7 @@
         <form
           id="registerPatientForm"
           method="POST"
-          action="https://rssmarthut.com/mypath/patients.php"
+          action="https://mrspdevelopers.com/public/mypath/patients.php"
         >
           <div class="form-group">
             <label for="title">Title:</label>
@@ -1054,7 +1096,7 @@
         const inputValue = this.value.trim();
         if (inputValue !== "") {
           fetch(
-            `https://rssmarthut.com/mypath/searchpatient.php?query=${inputValue}&username=${username}`
+            `https://mrspdevelopers.com/public/mypath/searchpatient.php?query=${inputValue}&username=${username}`
           )
             .then((response) => response.json())
             .then((data) => {
@@ -1160,7 +1202,7 @@
         var xhr = new XMLHttpRequest();
         xhr.open(
           "GET",
-          "https://rssmarthut.com/mypath/fetchBranches.php?username=" +
+          "https://mrspdevelopers.com/public/mypath/fetchBranches.php?username=" +
             encodeURIComponent(username),
           true
         );
@@ -1207,7 +1249,7 @@
     </script>
     <script>
       async function fetchDoctorDetails(username, branchName) {
-        const url = `https://rssmarthut.com/mypath/fetchDoctors.php?username=${username}&branch_name=${branchName}`;
+        const url = `https://mrspdevelopers.com/public/mypath/fetchDoctors.php?username=${username}&branch_name=${branchName}`;
 
         try {
           const response = await fetch(url);
